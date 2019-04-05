@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
     subSpec.dependency 'RxSwift', '~> 4.0'
     subSpec.dependency 'RxReachability', '~> 0.1.8'    
     subSpec.dependency 'CryptoSwift', '~> 0.15'    
-    subSpec.dependency '25519'
+    subSpec.dependency 'Curve25519'
     subSpec.dependency 'Base58'
     subSpec.dependency 'Keccak'
     subSpec.dependency 'Blake2'    
