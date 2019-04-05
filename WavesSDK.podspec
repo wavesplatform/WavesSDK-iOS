@@ -8,11 +8,11 @@ Pod::Spec.new do |spec|
   spec.authors      = { 'Mefilt' => 'Mefilt' }
   spec.summary      = 'Mefilt'
   spec.source       = { 'git' => 'https://github.com/wavesplatform/WavesSDK-iOS.git' }
-  spec.source_files = 'WavesSDK/Source/*.{swift}'
-
+  spec.source_files = 'WavesSDK/Source/*/*.{swift}'
+  spec.swift_version = "4.2"
 
   spec.subspec 'Extensions' do |subSpec|
-    subSpec.source_files =  'WavesSDK/Source/Extensions/*.{swift}'
+    subSpec.source_files =  'WavesSDK/Source/Extensions/*/*.{swift}'
 
     subSpec.dependency 'RxSwift', '~> 4.0'
     subSpec.dependency 'RxReachability', '~> 0.1.8'    
@@ -20,7 +20,14 @@ Pod::Spec.new do |spec|
     subSpec.dependency 'Curve25519'
     subSpec.dependency 'Base58'
     subSpec.dependency 'Keccak'
-    subSpec.dependency 'Blake2'    
+    subSpec.dependency 'Blake2'
+    
+    subSpec.framework = 'CoreTelephony'
+    subSpec.framework = 'Foundation'
+    subSpec.framework = 'UIKit'
+    subSpec.framework = 'Security'
+    subSpec.framework = 'CommonCrypto'
+
   end
 
 end
