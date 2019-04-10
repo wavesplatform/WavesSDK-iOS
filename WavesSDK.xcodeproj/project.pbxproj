@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		744056B10274BC211A2A75AE /* Pods_WavesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B5C2356C257EAC84D74AC2 /* Pods_WavesSDK.framework */; };
-		7B42335522563A2100E82730 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B42335422563A2100E82730 /* CoreTelephony.framework */; };
-		7B42335722563A3200E82730 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B42335622563A3200E82730 /* Security.framework */; };
-		7B42335922563B8500E82730 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B42335822563B8500E82730 /* CryptoSwift.framework */; };
 		7B42335B22563D6700E82730 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B42335A22563D6700E82730 /* Environment.swift */; };
 		7B42335D22563FDC00E82730 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B42335C22563FDC00E82730 /* GlobalConstants.swift */; };
 		7B72BBAE22550493004A047F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B72BBAD22550493004A047F /* AppDelegate.swift */; };
@@ -129,9 +126,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B42335922563B8500E82730 /* CryptoSwift.framework in Frameworks */,
-				7B42335722563A3200E82730 /* Security.framework in Frameworks */,
-				7B42335522563A2100E82730 /* CoreTelephony.framework in Frameworks */,
 				744056B10274BC211A2A75AE /* Pods_WavesSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,10 +355,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-WavesSDK/Pods-WavesSDK-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/25519/_25519.framework",
 				"${BUILT_PRODUCTS_DIR}/Base58/Base58.framework",
 				"${BUILT_PRODUCTS_DIR}/Blake2/Blake2.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Curve25519/Curve25519.framework",
 				"${BUILT_PRODUCTS_DIR}/Keccak/Keccak.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
@@ -376,10 +370,10 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/_25519.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Base58.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Blake2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Curve25519.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keccak.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
