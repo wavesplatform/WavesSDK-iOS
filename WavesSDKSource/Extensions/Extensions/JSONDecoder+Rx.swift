@@ -9,6 +9,10 @@
 import Foundation
 import RxSwift
 
+fileprivate enum Constants {
+    static let dateFormatterKey = "waves.dateFormatter"
+}
+
 public extension JSONDecoder {
 
     static func decode<Type: Decodable>(type: Type.Type, json name: String) -> Observable<Type> {
@@ -18,7 +22,7 @@ public extension JSONDecoder {
             do {
                 let decoder = JSONDecoder()
 
-                let dateFormate = DateFormatter.sharedFormatter
+                let dateFormate = DateFormatter.sharedFormatter(key: Constants.dateFormatterKey)
                 dateFormate.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
                 decoder.dateDecodingStrategy = .formatted(dateFormate)
 

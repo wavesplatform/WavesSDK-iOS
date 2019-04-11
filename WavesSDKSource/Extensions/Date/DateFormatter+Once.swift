@@ -10,18 +10,9 @@ import Foundation
 
 public extension DateFormatter {
 
-    fileprivate enum Constants {
-        static let DateFormatterKey = "waves.dateFormatter"
-    }
-
-    static var sharedFormatter: DateFormatter {
-        let formatter = Thread
-            .threadSharedObject(key: Constants.DateFormatterKey,
+    static func sharedFormatter(key: String) -> DateFormatter {
+        return Thread
+            .threadSharedObject(key: key,
                                 create: { return DateFormatter() })
-
-        //TODO: Library
-//        formatter.locale = Language.currentLocale
-
-        return formatter
     }
 }
