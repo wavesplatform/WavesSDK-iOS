@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.summary      = 'Extensions are helping for developer fast write code'  
 
   spec.source_files =  'WavesSDKSource/Extensions/**/*.{swift}'
-  spec.source =  {  :git => 'https://github.com/wavesplatform/WavesSDK-iOS.git' }
+  spec.source =  {  :git => 'https://github.com/wavesplatform/WavesSDK-iOS.git', :tag => 'v' + spec.version.to_s}
   
   spec.ios.framework = 'Foundation'
   spec.ios.framework = 'UIKit'

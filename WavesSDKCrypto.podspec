@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.summary      = 'The library contains method, variable and other entities for development on crypto'  
 
   spec.source_files =  'WavesSDKSource/Crypto/**/*.{swift}'
-  spec.source       = { 'git' => 'https://github.com/wavesplatform/WavesSDK-iOS.git' }
+  spec.source       = { 'git' => 'https://github.com/wavesplatform/WavesSDK-iOS.git', :tag => 'v' + spec.version.to_s }
   
   spec.ios.framework = 'Foundation'
   spec.ios.framework = 'UIKit'
