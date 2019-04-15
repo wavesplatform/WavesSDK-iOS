@@ -18,6 +18,7 @@ private enum Constants {
 public struct Environment: Decodable {
     
     private static var timestampServerDiff: Int64 = 0
+    private static let timestampQueue = DispatchQueue(label: "timestampServerQueue.diff")
 
     public struct AssetInfo: Decodable {
 
@@ -111,11 +112,20 @@ public extension Environment {
 
 public extension Environment {
 
-    static func updateTimestampServerDiff(_ timestamp: Int64) {
-        Environment.timestampServerDiff = timestamp
+    public static func updateTimestampServerDiff(_ timestamp: Int64) {
+
+        Environment.timestampQueue.async(flags: .barrier) {
+            Environment.timestampServerDiff = timestamp
+        }
     }
-    
+
     public var timestampServerDiff: Int64 {
-        return Environment.timestampServerDiff
+
+        var timeDiff: Int64 = 0
+
+        Environment.timestampQueue.sync {
+            timeDiff = Environment.timestampServerDiff
+        }
+        return timeDiff
     }
 }
