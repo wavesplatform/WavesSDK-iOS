@@ -16,7 +16,8 @@ public class PublicKeyAccount: Hashable {
 
     public init(publicKey: [UInt8]) {
         self.publicKey = publicKey
-        self.address = Address.addressFromPublicKey(publicKey: publicKey)
+        address = ""
+//        self.address = Address.addressFromPublicKey(publicKey: publicKey)
     }
 
     public convenience init(publicKey: String) {

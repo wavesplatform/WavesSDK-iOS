@@ -29,6 +29,7 @@ public enum WavesCryptoConstants {
     public static let privateKeyLength: Int = 32
     public static let signatureLength: Int = 64
     
+    internal static let keyLength: Int = 32
     internal static let addressVersion: UInt8 = 1
     internal static let checksumLength: Int = 4
     internal static let hashLength: Int = 20
@@ -54,7 +55,7 @@ public protocol WavesCryptoProtocol {
     func address(publicKey: PublicKey, chainId: String?) -> Address?
     func address(seed: Seed, chainId: String?) -> Address?
     
-    func signBytes(bytes: Bytes, privateKey: PrivateKey) -> Bytes
+    func signBytes(bytes: Bytes, privateKey: PrivateKey) -> Bytes?
     func signBytes(bytes: Bytes, seed: Seed) -> Bytes?
 
     func verifySignature(publicKey: PublicKey, bytes: Bytes, signature: Bytes) -> Bool
@@ -86,10 +87,9 @@ public class WavesCrypto: WavesCryptoProtocol {
         return address(publicKey: key, chainId: chainId)
     }
 
-    public func signBytes(bytes: Bytes, privateKey: PrivateKey) -> Bytes {
+    public func signBytes(bytes: Bytes, privateKey: PrivateKey) -> Bytes? {
         
-        //TODO: //
-        guard let privateKeyDecode = base58decode(input: privateKey) else { return [] }
+        guard let privateKeyDecode = base58decode(input: privateKey) else { return nil }
         
         return Array(Curve25519.sign(Data(bytes), withPrivateKey: Data(privateKeyDecode)))
     }
@@ -109,7 +109,10 @@ public class WavesCrypto: WavesCryptoProtocol {
     }
 
     public func verifyPublicKey(publicKey: PublicKey) -> Bool {
-        return true
+        
+        guard let publicKeyDecode = base58decode(input: publicKey) else { return false }
+        
+        return publicKeyDecode.count == WavesCryptoConstants.keyLength
     }
 
     public func verifyAddress(address: Address, chainId: String?, publicKey: PublicKey?) -> Bool {
@@ -175,11 +178,11 @@ extension WavesCrypto {
     
     public func blake2b256(input: Bytes) -> Bytes {
         
-        var data = Data(count: 32)
+        var data = Data(count: WavesCryptoConstants.keyLength)
         var key: UInt8 = 0
         data.withUnsafeMutableBytes { (rawPointer) -> Void in
             guard let bytes = rawPointer.bindMemory(to: UInt8.self).baseAddress else { return }
-            crypto_generichash_blake2b(bytes, 32, input, UInt64(input.count), &key, 0)
+            crypto_generichash_blake2b(bytes, WavesCryptoConstants.keyLength, input, UInt64(input.count), &key, 0)
         }
         
         return Array(data)
@@ -187,7 +190,7 @@ extension WavesCrypto {
     
     public func keccak256(input: Bytes) -> Bytes {
         
-        var data = Data(count: 32)
+        var data = Data(count: WavesCryptoConstants.keyLength)
         
         data.withUnsafeMutableBytes { (rawPointer) -> Void in
             guard let bytes = rawPointer.bindMemory(to: UInt8.self).baseAddress else { return }

@@ -12,8 +12,9 @@
 		7B72BBB322550493004A047F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B72BBB122550493004A047F /* Main.storyboard */; };
 		7B72BBB522550495004A047F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B72BBB422550495004A047F /* Assets.xcassets */; };
 		7B72BBB822550495004A047F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B72BBB622550495004A047F /* LaunchScreen.storyboard */; };
-		7B95114B225E16370030390C /* WavesSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B95114A225E16370030390C /* WavesSDKTests.swift */; };
+		7B95114B225E16370030390C /* WavesCryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B95114A225E16370030390C /* WavesCryptoTest.swift */; };
 		B1D215550487857FD3DB8D1B /* Pods_WavesSDKUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F3F9B3BFF1616BB6421EBB /* Pods_WavesSDKUI.framework */; };
+		B9DD42C8511DC37A65184528 /* Pods_WavesSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B427D3FB77C38954CF773553 /* Pods_WavesSDKTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		24B36808B9D7657954B3022C /* Pods-WavesSDKUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKUI.debug.xcconfig"; path = "Target Support Files/Pods-WavesSDKUI/Pods-WavesSDKUI.debug.xcconfig"; sourceTree = "<group>"; };
+		4F27D6E43822DF0A8A342D76 /* Pods-WavesSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKTests.release.xcconfig"; path = "Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests.release.xcconfig"; sourceTree = "<group>"; };
 		7B42335422563A2100E82730 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		7B42335622563A3200E82730 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7B72BBAA22550493004A047F /* WavesSDKUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WavesSDKUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,8 +40,10 @@
 		7B72BBB722550495004A047F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B72BBB922550495004A047F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B951148225E16370030390C /* WavesSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WavesSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B95114A225E16370030390C /* WavesSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesSDKTests.swift; sourceTree = "<group>"; };
+		7B95114A225E16370030390C /* WavesCryptoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesCryptoTest.swift; sourceTree = "<group>"; };
 		7B95114C225E16370030390C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9483438EDE7763EF247766B4 /* Pods-WavesSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKTests.debug.xcconfig"; path = "Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B427D3FB77C38954CF773553 /* Pods_WavesSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WavesSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC722ADB41BA229B36C20594 /* Pods-WavesSDKUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKUI.release.xcconfig"; path = "Target Support Files/Pods-WavesSDKUI/Pods-WavesSDKUI.release.xcconfig"; sourceTree = "<group>"; };
 		D6F3F9B3BFF1616BB6421EBB /* Pods_WavesSDKUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WavesSDKUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -57,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9DD42C8511DC37A65184528 /* Pods_WavesSDKTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +73,8 @@
 			children = (
 				24B36808B9D7657954B3022C /* Pods-WavesSDKUI.debug.xcconfig */,
 				BC722ADB41BA229B36C20594 /* Pods-WavesSDKUI.release.xcconfig */,
+				9483438EDE7763EF247766B4 /* Pods-WavesSDKTests.debug.xcconfig */,
+				4F27D6E43822DF0A8A342D76 /* Pods-WavesSDKTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -104,7 +111,7 @@
 		7B951149225E16370030390C /* WavesSDKTests */ = {
 			isa = PBXGroup;
 			children = (
-				7B95114A225E16370030390C /* WavesSDKTests.swift */,
+				7B95114A225E16370030390C /* WavesCryptoTest.swift */,
 				7B95114C225E16370030390C /* Info.plist */,
 			);
 			path = WavesSDKTests;
@@ -136,6 +143,7 @@
 				7B42335622563A3200E82730 /* Security.framework */,
 				7B42335422563A2100E82730 /* CoreTelephony.framework */,
 				D6F3F9B3BFF1616BB6421EBB /* Pods_WavesSDKUI.framework */,
+				B427D3FB77C38954CF773553 /* Pods_WavesSDKTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -166,9 +174,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7B95114F225E16370030390C /* Build configuration list for PBXNativeTarget "WavesSDKTests" */;
 			buildPhases = (
+				6E17D9E890E402A8629F90C3 /* [CP] Check Pods Manifest.lock */,
 				7B951144225E16370030390C /* Sources */,
 				7B951145225E16370030390C /* Frameworks */,
 				7B951146225E16370030390C /* Resources */,
+				AF4A9133E277CB39DE88640C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -239,6 +249,66 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		6E17D9E890E402A8629F90C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WavesSDKTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF4A9133E277CB39DE88640C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Base58/Base58.framework",
+				"${BUILT_PRODUCTS_DIR}/Blake2/Blake2.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Curve25519/Curve25519.framework",
+				"${BUILT_PRODUCTS_DIR}/Keccak/Keccak.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/WavesCrypto/WavesCrypto.framework",
+				"${BUILT_PRODUCTS_DIR}/WavesSDKCrypto/WavesSDKCrypto.framework",
+				"${BUILT_PRODUCTS_DIR}/WavesSDKExtension/WavesSDKExtension.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Base58.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Blake2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Curve25519.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keccak.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesCrypto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKCrypto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKExtension.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B54E939CD61EC1EAFA751B7A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -254,6 +324,7 @@
 				"${BUILT_PRODUCTS_DIR}/Curve25519/Curve25519.framework",
 				"${BUILT_PRODUCTS_DIR}/Keccak/Keccak.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/WavesCrypto/WavesCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/WavesSDKCrypto/WavesSDKCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/WavesSDKExtension/WavesSDKExtension.framework",
 			);
@@ -267,6 +338,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Curve25519.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keccak.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKExtension.framework",
 			);
@@ -313,7 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B95114B225E16370030390C /* WavesSDKTests.swift in Sources */,
+				7B95114B225E16370030390C /* WavesCryptoTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,7 +549,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = WV.WavesSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -496,16 +568,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = WV.WavesSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		7B951150225E16370030390C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9483438EDE7763EF247766B4 /* Pods-WavesSDKTests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 96SW78M3KJ;
+				GCC_OPTIMIZATION_LEVEL = 1;
 				INFOPLIST_FILE = WavesSDKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -514,17 +589,20 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = WV.WavesSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WavesSDK.temp_caseinsensitive_rename.temp_caseinsensitive_renameTest.app/WavesSDK.temp_caseinsensitive_rename.temp_caseinsensitive_renameTest";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WavesSDKUI.app/WavesSDKUI";
 			};
 			name = Debug;
 		};
 		7B951151225E16370030390C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F27D6E43822DF0A8A342D76 /* Pods-WavesSDKTests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 96SW78M3KJ;
+				GCC_OPTIMIZATION_LEVEL = 1;
 				INFOPLIST_FILE = WavesSDKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -533,9 +611,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = WV.WavesSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WavesSDK.temp_caseinsensitive_rename.temp_caseinsensitive_renameTest.app/WavesSDK.temp_caseinsensitive_rename.temp_caseinsensitive_renameTest";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WavesSDKUI.app/WavesSDKUI";
 			};
 			name = Release;
 		};

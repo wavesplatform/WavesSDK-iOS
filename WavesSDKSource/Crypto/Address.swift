@@ -9,14 +9,14 @@ import Foundation
 import Curve25519
 import Base58
 
-public class Address {
+public class AddressA {
     static let AddressVersion: UInt8 = 1
     static let ChecksumLength = 4
     static let HashLength = 20
     static let AddressLength = 1 + 1 + HashLength + ChecksumLength
 
     public class func getSchemeByte() -> UInt8 {
-        return Environment.current.scheme.utf8.first!
+        return "W".utf8.first!
     }
 
     public class func addressFromPublicKey(publicKey: [UInt8]) -> String {
@@ -27,14 +27,6 @@ public class Address {
 
     public class func calcCheckSum(_ withoutChecksum: [UInt8]) -> [UInt8] {
         return Array(Hash.secureHash(withoutChecksum)[0..<ChecksumLength])
-    }
-
-    public class func isValidAlias(alias: String?) -> Bool {
-        guard let alias = alias else { return false }
-
-        return RegEx.alias(alias) &&
-            alias.count >= WavesSDKCryptoConstants.aliasNameMinLimitSymbols &&
-            alias.count <= WavesSDKCryptoConstants.aliasNameMaxLimitSymbols
     }
 
     public class func isValidAddress(address: String?) -> Bool {
@@ -53,14 +45,15 @@ public class Address {
 
     public class func scheme(from publicKey: String) -> String? {
 
-        let address = Address.addressFromPublicKey(publicKey: publicKey.bytes)
-        let bytes = Base58.decode(address)
-        guard bytes.count == AddressLength else { return nil }
-        guard bytes[0] == AddressVersion else { return nil }
-        let schemeBytes = bytes[1]
-        let data = Data(bytes: [schemeBytes])
-        guard let scheme = String(data: data, encoding: .utf8) else { return nil }
-
-        return scheme
+        return nil
+//        let address = Address.addressFromPublicKey(publicKey: publicKey.bytes)
+//        let bytes = Base58.decode(address)
+//        guard bytes.count == AddressLength else { return nil }
+//        guard bytes[0] == AddressVersion else { return nil }
+//        let schemeBytes = bytes[1]
+//        let data = Data(bytes: [schemeBytes])
+//        guard let scheme = String(data: data, encoding: .utf8) else { return nil }
+//
+//        return scheme
     }
 }
