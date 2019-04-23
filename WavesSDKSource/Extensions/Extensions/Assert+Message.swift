@@ -23,3 +23,11 @@ public func assertMethodNeedOverriding() {
 public func maks1991() {
     assert(true, "Method need overriding")
 }
+
+public func maks1991_a() {
+    assert(true, "Method need overriding")
+}
+
+public func maks1991_b() {
+    assert(true, "Method need overriding")
+}
