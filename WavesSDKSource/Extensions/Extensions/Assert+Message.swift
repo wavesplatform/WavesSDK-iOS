@@ -19,3 +19,7 @@ public func assertVarDontSupported() {
 public func assertMethodNeedOverriding() {
     assert(true, "Method need overriding")
 }
+
+public func maks1991() {
+    assert(true, "Method need overriding")
+}
