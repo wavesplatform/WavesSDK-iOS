@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension API.DTO {
+public extension DataService.DTO {
 
     enum OrderType: String, Decodable {
         case sell
@@ -52,9 +52,9 @@ extension API.DTO {
     }
 }
 
-extension API.DTO.ExchangeTransaction {
+extension DataService.DTO.ExchangeTransaction {
     
-    var orderType: API.DTO.OrderType {
+    var orderType: DataService.DTO.OrderType {
         let order = order1.timestamp > order2.timestamp ? order1 : order2
         return order.orderType
     }

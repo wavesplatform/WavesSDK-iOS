@@ -9,25 +9,25 @@
 import Foundation
 import Moya
 
-enum API {}
+public enum DataService {}
 
-extension API {
-    enum Service {}
+public extension DataService {
+    internal enum Service {}
     enum DTO {}
     enum Query {}
 }
 
-protocol ApiTargetType: TargetType {
-    var apiUrl: URL { get }
+protocol DataTargetType: TargetType {
+    var dataUrl: URL { get }
 }
 
-extension ApiTargetType {
+extension DataTargetType {
     
-    private var apiVersion: String {
+    private var dataVersion: String {
         return "/v0"
     }
 
-    var baseURL: URL { return URL(string: "\(apiUrl.relativeString)\(apiVersion)")! }
+    var baseURL: URL { return URL(string: "\(dataUrl.relativeString)\(dataVersion)")! }
     
     var sampleData: Data {
         return Data()

@@ -8,9 +8,8 @@
 
 import Foundation
 import Moya
-import WavesSDKCrypto
 
-extension API.Service {
+extension DataService.Service {
 
     struct Transactions {
         enum Kind {
@@ -20,15 +19,15 @@ extension API.Service {
              - API.Response<[API.Response<API.DTO.ExchangeTransaction]>.self
              */
             case getExchange(id: String)
-            case getExchangeWithFilters(API.Query.ExchangeFilters)
+            case getExchangeWithFilters(DataService.Query.ExchangeFilters)
         }
 
         let kind: Kind
-        let environment: Environment
+        let dataUrl: URL
     }
 }
 
-extension API.Service.Transactions: ApiTargetType {
+extension DataService.Service.Transactions: DataTargetType {
 
     private enum Constants {
         static let exchange = "transactions/exchange"

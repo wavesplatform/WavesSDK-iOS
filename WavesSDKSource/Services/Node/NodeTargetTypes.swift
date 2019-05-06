@@ -36,6 +36,7 @@ extension NodeTargetType {
 }
 
 extension MoyaProvider {
+    
     final class func nodeMoyaProvider<Target: TargetType>() -> MoyaProvider<Target> {
         return MoyaProvider<Target>(callbackQueue: nil,
                             plugins: [])
@@ -43,6 +44,27 @@ extension MoyaProvider {
 //        SentryNetworkLoggerPlugin(), NodePlugin()
     }
 }
+
+
+final class ServicesFactory {
+    
+    private let dataServicePlugins: [PluginType]
+    private let nodeServicePlugins: [PluginType]
+    private let matcherrServicePlugins: [PluginType]
+    
+    init(dataServicePlugins: [PluginType],
+         nodeServicePlugins: [PluginType],
+         matcherrServicePlugins: [PluginType]) {
+        
+        self.dataServicePlugins = dataServicePlugins
+        self.nodeServicePlugins = nodeServicePlugins
+        self.matcherrServicePlugins = matcherrServicePlugins
+    }
+    
+    
+    static var shared: ServicesFactory?
+}
+
 
 //TODO: Library
 enum ContentType {

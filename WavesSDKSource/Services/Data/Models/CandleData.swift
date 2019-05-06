@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension API.DTO {
+public extension DataService.DTO {
     struct Chart: Decodable {
         
         struct Candle: Decodable {

@@ -34,4 +34,3 @@ public final class BalanceMatcherService: BalanceMatcherServiceProtocol {
             .asObservable()
     }
 }
-

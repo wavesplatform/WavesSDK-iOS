@@ -9,9 +9,8 @@
 import Foundation
 import Moya
 import WavesSDKExtension
-import WavesSDKCrypto
 
-extension API.Service {
+extension DataService.Service {
 
     struct Assets {
         enum Kind {
@@ -28,11 +27,11 @@ extension API.Service {
         }
 
         let kind: Kind
-        let environment: Environment
+        let dataUrl: URL
     }
 }
 
-extension API.Service.Assets: ApiTargetType {
+extension DataService.Service.Assets: DataTargetType {
     fileprivate enum Constants {
         static let assets = "assets"
         static let ids = "ids"
