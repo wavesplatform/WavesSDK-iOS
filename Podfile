@@ -12,6 +12,9 @@ target 'WavesSDKUI' do
     pod 'WavesSDKExtension',  :path => '.'    
     pod 'WavesSDKCrypto',  :path => '.'    
     pod 'WavesCrypto',  :path => '.'
+    # pod 'OpenAPIClient',  :path => '.'
+    pod 'WavesSDKServices',  :path => '.'
+    
 end
 
 

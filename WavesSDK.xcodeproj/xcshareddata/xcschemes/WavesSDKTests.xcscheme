@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F384B66575138C5B0996CCBBAA981E16"
-               BuildableName = "WavesCrypto.framework"
+               BuildableName = "WavesCrypto"
                BlueprintName = "WavesCrypto"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F384B66575138C5B0996CCBBAA981E16"
-            BuildableName = "WavesCrypto.framework"
+            BuildableName = "WavesCrypto"
             BlueprintName = "WavesCrypto"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F384B66575138C5B0996CCBBAA981E16"
-            BuildableName = "WavesCrypto.framework"
+            BuildableName = "WavesCrypto"
             BlueprintName = "WavesCrypto"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
          </BuildableReference>
@@ -90,7 +90,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F384B66575138C5B0996CCBBAA981E16"
-            BuildableName = "WavesCrypto.framework"
+            BuildableName = "WavesCrypto"
             BlueprintName = "WavesCrypto"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
          </BuildableReference>

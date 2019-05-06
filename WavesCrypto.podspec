@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
   spec.authors      = { 'Mefilt' => 'Mefilt@gmail.com' }
   spec.summary      = 'The library contains method, variable and other entities for development on crypto'  
 
-  spec.source_files =  'WavesSDKSource/WavesCrypto/*.swift'
+  spec.source_files =  'WavesSDKSource/generate/WavesCrypto/*.swift'
   spec.source       = { 'git' => 'https://github.com/wavesplatform/WavesSDK-iOS.git', :tag => 'v' + spec.version.to_s }
   
   spec.swift_version = '5.0'
