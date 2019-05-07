@@ -12,18 +12,22 @@ import Moya
 
 public protocol UtilsNodeServiceProtocol {
     
-    func time(enviroment: EnviromentService) -> Observable<Node.DTO.Utils.Time>
+    func time(serverUrl: URL) -> Observable<Node.DTO.Utils.Time>
 }
 
-public final class UtilsNodeService: UtilsNodeServiceProtocol {
+final class UtilsNodeService: UtilsNodeServiceProtocol {
     
-    private let utilsProvider: MoyaProvider<Node.Service.Utils> = .nodeMoyaProvider()
+    private let utilsProvider: MoyaProvider<Node.Service.Utils>
     
-    public func time(enviroment: EnviromentService) -> Observable<Node.DTO.Utils.Time> {
+    init(utilsProvider: MoyaProvider<Node.Service.Utils>) {
+        self.utilsProvider = utilsProvider
+    }
+    
+    public func time(serverUrl: URL) -> Observable<Node.DTO.Utils.Time> {
     
         return utilsProvider
             .rx
-            .request(.init(nodeUrl: enviroment.serverUrl, kind: .time),
+            .request(.init(nodeUrl: serverUrl, kind: .time),
                      callbackQueue: DispatchQueue.global(qos: .userInteractive))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in

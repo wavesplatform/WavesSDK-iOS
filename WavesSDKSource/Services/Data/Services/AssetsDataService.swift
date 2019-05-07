@@ -16,14 +16,18 @@ public protocol AssetsDataServiceProtocol {
     func asset(id: String, enviroment: EnviromentService) -> Observable<DataService.DTO.Asset>
 }
 
-public final class AssetsDataService: AssetsDataServiceProtocol {
+final class AssetsDataService: AssetsDataServiceProtocol {
     
-    private let apiProvider: MoyaProvider<DataService.Service.Assets> = .nodeMoyaProvider()
+    private let assetsProvider: MoyaProvider<DataService.Service.Assets>
+    
+    init(assetsProvider: MoyaProvider<DataService.Service.Assets>) {
+        self.assetsProvider = assetsProvider
+    }
     
     public func assets(ids: [String], enviroment: EnviromentService) -> Observable<[DataService.DTO.Asset]> {
         
         return self
-            .apiProvider
+            .assetsProvider
             .rx
             .request(.init(kind: .getAssets(ids: ids),
                            dataUrl: enviroment.serverUrl),
@@ -43,7 +47,7 @@ public final class AssetsDataService: AssetsDataServiceProtocol {
     public func asset(id: String, enviroment: EnviromentService) -> Observable<DataService.DTO.Asset> {
         
         return self
-            .apiProvider
+            .assetsProvider
             .rx
             .request(.init(kind: .getAsset(id: id),
                            dataUrl: enviroment.serverUrl),

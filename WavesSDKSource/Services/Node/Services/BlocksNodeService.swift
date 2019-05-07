@@ -14,14 +14,18 @@ public protocol BlocksNodeServiceProtocol {
     func height(address: String, enviroment: EnviromentService) -> Observable<Node.DTO.Block>
 }
 
-public final class BlocksNodeService: BlocksNodeServiceProtocol {
+final class BlocksNodeService: BlocksNodeServiceProtocol {
     
-    private let blockNode: MoyaProvider<Node.Service.Blocks> = .nodeMoyaProvider()
+    private let blocksProvider: MoyaProvider<Node.Service.Blocks>
+    
+    init(blocksProvider: MoyaProvider<Node.Service.Blocks>) {
+        self.blocksProvider = blocksProvider
+    }
     
     public func height(address: String, enviroment: EnviromentService) -> Observable<Node.DTO.Block> {
         
         return self
-            .blockNode
+            .blocksProvider
             .rx
             .request(Node.Service.Blocks(nodeUrl: enviroment.serverUrl,
                                          kind: .height))

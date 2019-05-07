@@ -45,41 +45,22 @@ extension MoyaProvider {
     }
 }
 
-
-final class ServicesFactory {
+public protocol ServicesFactoryProtocol {
     
-    private let dataServicePlugins: [PluginType]
-    private let nodeServicePlugins: [PluginType]
-    private let matcherrServicePlugins: [PluginType]
+    var aliasDataService: AliasDataServiceProtocol { get }
+    var assetsDataService: AssetsDataServiceProtocol { get }
+    var candlesDataService: CandlesDataServiceProtocol { get }
+    var pairsPriceDataService: PairsPriceDataServiceProtocol { get }
+    var transactionsDataService: TransactionsDataServiceProtocol { get }
     
-    init(dataServicePlugins: [PluginType],
-         nodeServicePlugins: [PluginType],
-         matcherrServicePlugins: [PluginType]) {
-        
-        self.dataServicePlugins = dataServicePlugins
-        self.nodeServicePlugins = nodeServicePlugins
-        self.matcherrServicePlugins = matcherrServicePlugins
-    }
+    var balanceMatcherService: BalanceMatcherServiceProtocol { get }
+    var orderBookMatcherService: OrderBookMatcherServiceProtocol { get }
+    var publicKeyMatcherService: PublicKeyMatcherServiceProtocol { get }
     
-    
-    static var shared: ServicesFactory?
-}
-
-
-//TODO: Library
-enum ContentType {
-    case applicationJson
-    case applicationCsv
-}
-
-extension ContentType {
-    var headers: [String: String] {
-        switch self {
-        case .applicationCsv:
-            return ["Content-type": "application/csv"]
-            
-        case .applicationJson:
-            return ["Content-type": "application/json"]
-        }
-    }
+    var addressesNodeService: AddressesNodeServiceProtocol { get }
+    var assetsNodeService: AssetsNodeServiceProtocol { get }
+    var blocksNodeService: BlocksNodeServiceProtocol { get }
+    var leasingNodeService: LeasingNodeServiceProtocol { get }
+    var transactionNodeService: TransactionNodeServiceProtocol { get }
+    var utilsNodeService: UtilsNodeServiceProtocol { get }
 }

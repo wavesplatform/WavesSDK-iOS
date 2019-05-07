@@ -14,14 +14,18 @@ public protocol CandlesDataServiceProtocol {
     func candles(query: DataService.Query.CandleFilters, enviroment: EnviromentService) -> Observable<DataService.DTO.Chart>
 }
 
-public final class CandlesDataService: CandlesDataServiceProtocol {
+final class CandlesDataService: CandlesDataServiceProtocol {
     
-    private let apiProvider: MoyaProvider<DataService.Service.Candles> = .nodeMoyaProvider()
+    private let candlesProvider: MoyaProvider<DataService.Service.Candles>
+    
+    init(candlesProvider: MoyaProvider<DataService.Service.Candles>) {
+        self.candlesProvider = candlesProvider
+    }
     
     public func candles(query: DataService.Query.CandleFilters, enviroment: EnviromentService) -> Observable<DataService.DTO.Chart> {
         
         return self
-            .apiProvider
+            .candlesProvider
             .rx
             .request(.init(query: query,
                            dataUrl: enviroment.serverUrl),

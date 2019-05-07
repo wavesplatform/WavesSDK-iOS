@@ -14,14 +14,18 @@ public protocol PublicKeyMatcherServiceProtocol {
     func publicKey(enviroment: EnviromentService) -> Observable<String>
 }
 
-public final class PublicKeyMatcherService: PublicKeyMatcherServiceProtocol {
+final class PublicKeyMatcherService: PublicKeyMatcherServiceProtocol {
     
-    private let matcherProvider: MoyaProvider<Matcher.Service.MatcherPublicKey> = .nodeMoyaProvider()
+    private let publicKeyProvider: MoyaProvider<Matcher.Service.MatcherPublicKey>
+    
+    init(publicKeyProvider: MoyaProvider<Matcher.Service.MatcherPublicKey>) {
+        self.publicKeyProvider = publicKeyProvider
+    }
     
     public func publicKey(enviroment: EnviromentService) -> Observable<String> {
         
         return self
-            .matcherProvider
+            .publicKeyProvider
             .rx
             .request(.init(matcherUrl: enviroment.serverUrl),
                      callbackQueue: DispatchQueue.global(qos: .userInteractive))

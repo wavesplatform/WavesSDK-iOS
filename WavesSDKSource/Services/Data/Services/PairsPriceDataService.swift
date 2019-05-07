@@ -14,14 +14,18 @@ public protocol PairsPriceDataServiceProtocol {
     func pairsPrice(query: DataService.Query.PairsPrice, enviroment: EnviromentService) -> Observable<[DataService.DTO.PairPrice]>
 }
 
-public final class PairsPriceDataService: PairsPriceDataServiceProtocol {
+final class PairsPriceDataService: PairsPriceDataServiceProtocol {
     
-    private let apiProvider: MoyaProvider<DataService.Service.PairsPrice> = .nodeMoyaProvider()
+    private let pairsPriceProvider: MoyaProvider<DataService.Service.PairsPrice>
+    
+    init(pairsPriceProvider: MoyaProvider<DataService.Service.PairsPrice>) {
+        self.pairsPriceProvider = pairsPriceProvider
+    }
     
     public func pairsPrice(query: DataService.Query.PairsPrice, enviroment: EnviromentService) -> Observable<[DataService.DTO.PairPrice]> {
         
         return self
-            .apiProvider
+            .pairsPriceProvider
             .rx
             .request(.init(query: query,
                            dataUrl: enviroment.serverUrl),

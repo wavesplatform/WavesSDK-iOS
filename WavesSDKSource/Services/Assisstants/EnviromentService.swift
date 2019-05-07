@@ -8,7 +8,15 @@
 import Foundation
 
 public struct EnviromentService {
+    public var serverUrl: URL
+    public var timestampServerDiff: Int64
     
-    var serverUrl: URL
-    var timestampServerDiff: Int64
+    public init(serverUrl: URL) {
+        self.init(serverUrl: serverUrl, timestampServerDiff: 0)
+    }
+    
+    public init(serverUrl: URL, timestampServerDiff: Int64) {
+        self.serverUrl = serverUrl
+        self.timestampServerDiff = timestampServerDiff
+    }
 }

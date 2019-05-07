@@ -14,14 +14,18 @@ public protocol TransactionsDataServiceProtocol {
     func exchangeFilters(query: DataService.Query.ExchangeFilters, enviroment: EnviromentService) -> Observable<[DataService.DTO.ExchangeTransaction]>
 }
 
-public final class TransactionsDataService: TransactionsDataServiceProtocol {
+final class TransactionsDataService: TransactionsDataServiceProtocol {
     
-    private let apiProvider: MoyaProvider<DataService.Service.Transactions> = .nodeMoyaProvider()
+    private let transactionsProvider: MoyaProvider<DataService.Service.Transactions>
+    
+    init(transactionsProvider: MoyaProvider<DataService.Service.Transactions>) {
+        self.transactionsProvider = transactionsProvider
+    }
     
     public func exchangeFilters(query: DataService.Query.ExchangeFilters, enviroment: EnviromentService) -> Observable<[DataService.DTO.ExchangeTransaction]> {
         
         return self
-            .apiProvider
+            .transactionsProvider
             .rx
             .request(.init(kind: .getExchangeWithFilters(query),
                            dataUrl: enviroment.serverUrl),

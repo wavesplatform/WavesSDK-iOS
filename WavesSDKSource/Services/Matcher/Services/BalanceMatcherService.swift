@@ -14,14 +14,18 @@ public protocol BalanceMatcherServiceProtocol {
     func reservedBalances(query: Matcher.Query.ReservedBalances, enviroment: EnviromentService) -> Observable<[String: Int64]>
 }
 
-public final class BalanceMatcherService: BalanceMatcherServiceProtocol {
+final class BalanceMatcherService: BalanceMatcherServiceProtocol {
     
-    private let matcherBalanceProvider: MoyaProvider<Matcher.Service.Balance> = .nodeMoyaProvider()
+    private let balanceProvider: MoyaProvider<Matcher.Service.Balance>
+    
+    init(balanceProvider: MoyaProvider<Matcher.Service.Balance>) {
+        self.balanceProvider = balanceProvider
+    }
     
     public func reservedBalances(query: Matcher.Query.ReservedBalances, enviroment: EnviromentService) -> Observable<[String: Int64]> {
         
         return self
-            .matcherBalanceProvider
+            .balanceProvider
             .rx
             .request(.init(kind: .getReservedBalances(query),
                            matcherUrl: enviroment.serverUrl),

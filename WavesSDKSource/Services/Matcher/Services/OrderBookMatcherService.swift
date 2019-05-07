@@ -22,16 +22,20 @@ public protocol OrderBookMatcherServiceProtocol {
     func createOrder(query: Matcher.Query.CreateOrder, enviroment: EnviromentService) -> Observable<Bool>
 }
 
-public final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
+final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
     
-    private let matcherProvider: MoyaProvider<Matcher.Service.OrderBook> = .nodeMoyaProvider()
+    private let orderBookProvider: MoyaProvider<Matcher.Service.OrderBook>
+    
+    init(orderBookProvider: MoyaProvider<Matcher.Service.OrderBook>) {
+        self.orderBookProvider = orderBookProvider
+    }
     
     public func orderBook(amountAsset: String,
                           priceAsset: String,
                           enviroment: EnviromentService) -> Observable<Matcher.DTO.OrderBook> {
         
         return self
-            .matcherProvider
+            .orderBookProvider
             .rx
             .request(.init(kind: .getOrderBook(amountAsset: amountAsset,
                                                priceAsset: priceAsset),
@@ -51,7 +55,7 @@ public final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
     public func market(amountAsset: String, priceAsset: String, enviroment: EnviromentService) -> Observable<Matcher.DTO.MarketResponse> {
         
         return self
-            .matcherProvider
+            .orderBookProvider
             .rx
             .request(.init(kind: .getMarket,
                            matcherUrl: enviroment.serverUrl),
@@ -66,7 +70,9 @@ public final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
     
     public func myOrders(query: Matcher.Query.GetMyOrders, enviroment: EnviromentService) -> Observable<[Matcher.DTO.Order]> {
         
-        return self.matcherProvider.rx
+        return self
+            .orderBookProvider
+            .rx
             .request(.init(kind: .getMyOrders(query),
                            matcherUrl: enviroment.serverUrl),
                      callbackQueue: DispatchQueue.global(qos: .userInteractive))
@@ -83,7 +89,9 @@ public final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
     
     public func cancelOrder(query: Matcher.Query.CancelOrder, enviroment: EnviromentService) -> Observable<Bool> {
         
-        return self.matcherProvider.rx
+        return self
+            .orderBookProvider
+            .rx
             .request(.init(kind: .cancelOrder(query),
                            matcherUrl: enviroment.serverUrl),
                      callbackQueue: DispatchQueue.global(qos: .userInteractive))
@@ -98,7 +106,7 @@ public final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
     public func createOrder(query: Matcher.Query.CreateOrder, enviroment: EnviromentService) -> Observable<Bool> {
         
         return self
-            .matcherProvider
+            .orderBookProvider
             .rx
             .request(.init(kind: .createOrder(query),
                            matcherUrl: enviroment.serverUrl),

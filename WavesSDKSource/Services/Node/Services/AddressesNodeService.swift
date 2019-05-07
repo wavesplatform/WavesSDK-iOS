@@ -16,9 +16,13 @@ public protocol AddressesNodeServiceProtocol {
     func scriptInfo(address: String, enviroment: EnviromentService) -> Observable<Node.DTO.AddressScriptInfo>
 }
 
-public final class AddressesNodeService: AddressesNodeServiceProtocol {
+final class AddressesNodeService: AddressesNodeServiceProtocol {
     
-    private let addressesProvider: MoyaProvider<Node.Service.Addresses> = .nodeMoyaProvider()
+    private let addressesProvider: MoyaProvider<Node.Service.Addresses>
+    
+    init(addressesProvider: MoyaProvider<Node.Service.Addresses>) {
+        self.addressesProvider = addressesProvider
+    }
     
     public func accountBalance(address: String, enviroment: EnviromentService) -> Observable<Node.DTO.AccountBalance> {
         

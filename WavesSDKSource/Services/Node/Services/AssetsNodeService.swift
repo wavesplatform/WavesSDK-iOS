@@ -18,9 +18,13 @@ public protocol AssetsNodeServiceProtocol {
     func assetDetails(assetId: String, enviroment: EnviromentService) -> Observable<Node.DTO.AssetDetail>
 }
 
-public final class AssetsNodeService: AssetsNodeServiceProtocol {
+final class AssetsNodeService: AssetsNodeServiceProtocol {
     
-    private let assetsProvider: MoyaProvider<Node.Service.Assets> = .nodeMoyaProvider()
+    private let assetsProvider: MoyaProvider<Node.Service.Assets>
+    
+    init(assetsProvider: MoyaProvider<Node.Service.Assets>) {
+        self.assetsProvider = assetsProvider
+    }
     
     public func assetsBalances(address: String, enviroment: EnviromentService) -> Observable<Node.DTO.AccountAssetsBalance> {
       

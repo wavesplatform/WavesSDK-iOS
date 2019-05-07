@@ -15,10 +15,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Override point for customirzation after application launch.
         
         
-        var service: BalanceMatcherService?
+        ServicesFactory.initialization(dataServicePlugins: [],
+                                       nodeServicePlugins: [],
+                                       matcherrServicePlugins: [])
+        
+        ServicesFactory.shared
+            .addressesNodeService
+            .accountBalance(address: "3PCAB4sHXgvtu5NPoen6EXR5yaNbvsEA8Fj",
+                            enviroment: .init(serverUrl: URL(string: "https://nodes.wavesnodes.com/")!))
+            .subscribe(onNext: { (balance) in
+            
+            }, onError: { (error) in
+        
+            }, onCompleted: {
+            
+            }) {
+            
+            }
                 
         return true
     }

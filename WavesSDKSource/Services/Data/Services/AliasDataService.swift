@@ -16,14 +16,18 @@ public protocol AliasDataServiceProtocol {
     func list(address: String, enviroment: EnviromentService) -> Observable<[DataService.DTO.Alias]>
 }
 
-public final class AliasDataService: AliasDataServiceProtocol {
+final class AliasDataService: AliasDataServiceProtocol {
     
-    private let aliasApi: MoyaProvider<DataService.Service.Alias> = .nodeMoyaProvider()
+    private let aliasProvider: MoyaProvider<DataService.Service.Alias>
+    
+    init(aliasProvider: MoyaProvider<DataService.Service.Alias>) {
+        self.aliasProvider = aliasProvider
+    }
     
     public func alias(name: String, enviroment: EnviromentService) -> Observable<DataService.DTO.Alias> {
         
         return self
-            .aliasApi
+            .aliasProvider
             .rx
             .request(DataService.Service.Alias(dataUrl: enviroment.serverUrl,
                                        kind: .alias(name: name)),
@@ -40,7 +44,7 @@ public final class AliasDataService: AliasDataServiceProtocol {
     public func list(address: String, enviroment: EnviromentService) -> Observable<[DataService.DTO.Alias]> {
         
         return self
-            .aliasApi
+            .aliasProvider
             .rx
             .request(DataService.Service.Alias(dataUrl: enviroment.serverUrl,
                                        kind: .list(address: address)),

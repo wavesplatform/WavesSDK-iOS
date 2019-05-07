@@ -16,14 +16,18 @@ public protocol TransactionNodeServiceProtocol {
     func list(address: String, offset: Int, limit: Int, enviroment: EnviromentService) -> Observable<Node.DTO.TransactionContainers>
 }
 
-public final class TransactionNodeService: TransactionNodeServiceProtocol {
+final class TransactionNodeService: TransactionNodeServiceProtocol {
 
-    private let transactions: MoyaProvider<Node.Service.Transaction> = .nodeMoyaProvider()
+    private let transactionsProvider: MoyaProvider<Node.Service.Transaction>
+    
+    init(transactionsProvider: MoyaProvider<Node.Service.Transaction>) {
+        self.transactionsProvider = transactionsProvider
+    }
     
     public func broadcast(query: Node.Query.Broadcast, enviroment: EnviromentService) -> Observable<Node.DTO.Transaction> {
         
         return self
-            .transactions
+            .transactionsProvider
             .rx
             .request(.init(kind: .broadcast(query),
                            nodeUrl: enviroment.serverUrl),
@@ -40,7 +44,7 @@ public final class TransactionNodeService: TransactionNodeServiceProtocol {
     public func list(address: String, offset: Int, limit: Int, enviroment: EnviromentService) -> Observable<Node.DTO.TransactionContainers> {
         
         return self
-            .transactions
+            .transactionsProvider
             .rx
             .request(.init(kind: .list(accountAddress: address,
                                        limit: limit),

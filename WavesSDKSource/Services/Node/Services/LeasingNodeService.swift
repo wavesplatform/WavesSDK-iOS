@@ -15,9 +15,13 @@ public protocol LeasingNodeServiceProtocol {
     func activeLeasingTransactions(by address: String, enviroment: EnviromentService) -> Observable<[Node.DTO.LeaseTransaction]>
 }
 
-public final class LeasingNodeService: LeasingNodeServiceProtocol {
+final class LeasingNodeService: LeasingNodeServiceProtocol {
     
-    private let leasingProvider: MoyaProvider<Node.Service.Leasing> = .nodeMoyaProvider()
+    private let leasingProvider: MoyaProvider<Node.Service.Leasing>
+    
+    init(leasingProvider: MoyaProvider<Node.Service.Leasing>) {
+        self.leasingProvider = leasingProvider
+    }
     
     public func activeLeasingTransactions(by address: String, enviroment: EnviromentService) -> Observable<[Node.DTO.LeaseTransaction]> {
         
