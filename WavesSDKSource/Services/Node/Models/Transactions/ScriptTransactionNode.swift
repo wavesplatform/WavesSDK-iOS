@@ -12,17 +12,17 @@ public extension Node.DTO {
 
     struct ScriptTransaction: Decodable {
 
-        let type: Int
-        let id: String
-        let sender: String
-        let senderPublicKey: String
-        let fee: Int64
-        let timestamp: Date
-        let height: Int64?
-        let signature: String?
-        let proofs: [String]?
-        let chainId: Int?
-        let version: Int
-        let script: String?
+        public let type: Int
+        public let id: String
+        public let sender: String
+        public let senderPublicKey: String
+        public let fee: Int64
+        public let timestamp: Date
+        public let height: Int64?
+        public let signature: String?
+        public let proofs: [String]?
+        public let chainId: Int?
+        public let version: Int
+        public let script: String?
     }
 }

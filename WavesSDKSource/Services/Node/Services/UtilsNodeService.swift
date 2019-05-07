@@ -35,5 +35,10 @@ final class UtilsNodeService: UtilsNodeServiceProtocol {
             })
             .map(Node.DTO.Utils.Time.self)
             .asObservable()
+        .debug("ALAZ", trimOutput: true)
+    }
+    
+    deinit {
+        print("DEINIT")
     }
 }

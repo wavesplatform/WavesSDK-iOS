@@ -10,12 +10,12 @@ import Foundation
 
 public extension Node.DTO {
     struct UnrecognisedTransaction: Decodable {
-        let type: Int
-        let id: String
-        let sender: String
-        let senderPublicKey: String
-        let fee: Int64
-        let timestamp: Date
-        let height: Int64
+        public let type: Int
+        public let id: String
+        public let sender: String
+        public let senderPublicKey: String
+        public let fee: Int64
+        public let timestamp: Date
+        public let height: Int64
     }
 }

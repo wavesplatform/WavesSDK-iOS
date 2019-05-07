@@ -11,8 +11,8 @@ import Foundation
 public extension Node.DTO {
 
     struct AddressScriptInfo: Decodable {
-        let address: String
-        let complexity: Int64
-        let extraFee: Int64?
+        public let address: String
+        public let complexity: Int64
+        public let extraFee: Int64?
     }
 }

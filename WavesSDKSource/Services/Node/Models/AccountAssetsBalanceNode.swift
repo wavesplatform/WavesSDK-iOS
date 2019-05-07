@@ -11,43 +11,43 @@ import Foundation
 public extension Node.DTO {
 
     struct AccountAssetBalance: Decodable {
-        let address: String
-        let assetId: String
-        let balance: Int64
+        public let address: String
+        public let assetId: String
+        public let balance: Int64
     }
 
     struct AccountAssetsBalance: Decodable {
-        let address: String
-        let balances: [AssetBalance]
+        public let address: String
+        public let balances: [AssetBalance]
     }
 
     struct AssetBalance: Decodable {
 
-        struct IssueTransaction: Decodable {
-            let type: Int64
-            let id: String
-            let sender: String
-            let senderPublicKey: String
-            let fee: Int64
-            let timestamp: Date
-            let signature: String?
-            let proofs: [String]??
-            let version: Int64
-            let assetId: String
-            let name: String
-            let quantity: Int64
-            let reissuable: Bool
-            let decimals: Int64
-            let description: String
-            let script: String?
+        public struct IssueTransaction: Decodable {
+            public let type: Int64
+            public let id: String
+            public let sender: String
+            public let senderPublicKey: String
+            public let fee: Int64
+            public let timestamp: Date
+            public let signature: String?
+            public let proofs: [String]?
+            public let version: Int64
+            public let assetId: String
+            public let name: String
+            public let quantity: Int64
+            public let reissuable: Bool
+            public let decimals: Int64
+            public let description: String
+            public let script: String?
         }
         
-        let assetId: String
-        let balance: Int64
-        let reissuable: Bool
-        let minSponsoredAssetFee: Int64?
-        let sponsorBalance: Int64?
-        let quantity: Int64
-        let issueTransaction: IssueTransaction
+        public let assetId: String
+        public let balance: Int64
+        public let reissuable: Bool
+        public let minSponsoredAssetFee: Int64?
+        public let sponsorBalance: Int64?
+        public let quantity: Int64
+        public let issueTransaction: IssueTransaction
     }
 }

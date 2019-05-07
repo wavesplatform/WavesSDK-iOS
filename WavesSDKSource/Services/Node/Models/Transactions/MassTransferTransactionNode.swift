@@ -11,25 +11,25 @@ import Foundation
 public extension Node.DTO {
     struct MassTransferTransaction: Decodable {
 
-        struct Transfer: Decodable {
-            let recipient: String
-            let amount: Int64
+        public struct Transfer: Decodable {
+            public let recipient: String
+            public let amount: Int64
         }
 
-        let type: Int
-        let id: String
-        let sender: String
-        let senderPublicKey: String
-        let fee: Int64
-        let timestamp: Date
-        let version: Int
-        let height: Int64
+        public let type: Int
+        public let id: String
+        public let sender: String
+        public let senderPublicKey: String
+        public let fee: Int64
+        public let timestamp: Date
+        public let version: Int
+        public let height: Int64
 
-        let proofs: [String]?
-        let assetId: String?
-        let attachment: String
-        let transferCount: Int
-        let totalAmount: Int64
-        let transfers: [Transfer]
+        public let proofs: [String]?
+        public let assetId: String?
+        public let attachment: String
+        public let transferCount: Int
+        public let totalAmount: Int64
+        public let transfers: [Transfer]
     }
 }

@@ -35,16 +35,6 @@ extension NodeTargetType {
     }
 }
 
-extension MoyaProvider {
-    
-    final class func nodeMoyaProvider<Target: TargetType>() -> MoyaProvider<Target> {
-        return MoyaProvider<Target>(callbackQueue: nil,
-                            plugins: [])
-        //TODO: Library
-//        SentryNetworkLoggerPlugin(), NodePlugin()
-    }
-}
-
 public protocol ServicesFactoryProtocol {
     
     var aliasDataService: AliasDataServiceProtocol { get }

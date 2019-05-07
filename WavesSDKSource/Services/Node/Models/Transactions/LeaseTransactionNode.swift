@@ -10,18 +10,18 @@ import Foundation
 
 public extension Node.DTO {
     struct LeaseTransaction: Decodable {
-        let type: Int
-        let id: String
-        let sender: String
-        let senderPublicKey: String
-        let fee: Int64
-        let timestamp: Date
-        let version: Int
-        let height: Int64? //I do optional variable for cancel leasing model
+        public let type: Int
+        public let id: String
+        public let sender: String
+        public let senderPublicKey: String
+        public let fee: Int64
+        public let timestamp: Date
+        public let version: Int
+        public let height: Int64? //I do optional variable for cancel leasing model
         
-        let signature: String?
-        let proofs: [String]?
-        let amount: Int64
-        let recipient: String
+        public let signature: String?
+        public let proofs: [String]?
+        public let amount: Int64
+        public let recipient: String
     }
 }

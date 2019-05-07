@@ -10,8 +10,8 @@ import Foundation
 
 public extension Node.DTO {
     struct AccountBalance: Decodable {
-        let address: String
-        let confirmations: Int64
-        let balance: Int64
+        public let address: String
+        public let confirmations: Int64
+        public let balance: Int64
     }
 }

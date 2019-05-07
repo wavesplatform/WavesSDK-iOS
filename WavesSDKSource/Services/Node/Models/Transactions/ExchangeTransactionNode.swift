@@ -11,42 +11,42 @@ import Foundation
 public extension Node.DTO {
 
     struct ExchangeTransaction: Decodable {
-        struct Order: Decodable {
-            let id: String
-            let sender: String
-            let senderPublicKey: String
-            let matcherPublicKey: String
-            let assetPair: AssetPair
-            let orderType: String
-            let price: Int64
-            let amount: Int64
-            let timestamp: Date
-            let expiration: Int64
-            let matcherFee: Int64
-            let signature: String?
-            let proofs: [String]?
+        public struct Order: Decodable {
+            public let id: String
+            public let sender: String
+            public let senderPublicKey: String
+            public let matcherPublicKey: String
+            public let assetPair: AssetPair
+            public let orderType: String
+            public let price: Int64
+            public let amount: Int64
+            public let timestamp: Date
+            public let expiration: Int64
+            public let matcherFee: Int64
+            public let signature: String?
+            public let proofs: [String]?
         }
 
-        struct AssetPair: Decodable {
-            let amountAsset: String?
-            let priceAsset: String?
+        public struct AssetPair: Decodable {
+            public let amountAsset: String?
+            public let priceAsset: String?
         }
         
-        let type: Int
-        let id: String
-        let sender: String
-        let senderPublicKey: String
-        let fee: Int64
-        let timestamp: Date
-        let height: Int64
+        public let type: Int
+        public let id: String
+        public let sender: String
+        public let senderPublicKey: String
+        public let fee: Int64
+        public let timestamp: Date
+        public let height: Int64
 
-        let signature: String?
-        let proofs: [String]?
-        let order1: Order
-        let order2: Order
-        let price: Int64
-        let amount: Int64
-        let buyMatcherFee: Int64
-        let sellMatcherFee: Int64
+        public let signature: String?
+        public let proofs: [String]?
+        public let order1: Order
+        public let order2: Order
+        public let price: Int64
+        public let amount: Int64
+        public let buyMatcherFee: Int64
+        public let sellMatcherFee: Int64
     }
 }

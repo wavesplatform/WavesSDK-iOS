@@ -10,22 +10,22 @@ import Foundation
 
 public extension Node.DTO {
     struct TransferTransaction: Decodable {
-        let type: Int
-        let id: String
-        let sender: String
-        let senderPublicKey: String
-        let fee: Int64
-        let timestamp: Date
-        let version: Int
-        let height: Int64?
+        public let type: Int
+        public let id: String
+        public let sender: String
+        public let senderPublicKey: String
+        public let fee: Int64
+        public let timestamp: Date
+        public let version: Int
+        public let height: Int64?
 
-        let signature: String?
-        let proofs: [String]?
-        let recipient: String
-        let assetId: String?
-        let feeAssetId: String?
-        let feeAsset: String?
-        let amount: Int64
-        let attachment: String?
+        public let signature: String?
+        public let proofs: [String]?
+        public let recipient: String
+        public let assetId: String?
+        public let feeAssetId: String?
+        public let feeAsset: String?
+        public let amount: Int64
+        public let attachment: String?
     }
 }

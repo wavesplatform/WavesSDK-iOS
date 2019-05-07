@@ -10,6 +10,6 @@ import Foundation
 
 public extension Node.DTO {
     struct Block: Decodable {
-        let height: Int64
+        public let height: Int64
     }
 }

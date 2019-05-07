@@ -25,9 +25,10 @@ extension Node.DTO {
         case script = 13
         case sponsorship = 14
         case assetScript = 15
+        case invokeScript = 16
     }
 
-    enum TransactionError: Error {
+    public enum TransactionError: Error {
         case none
     }
 
@@ -46,6 +47,7 @@ extension Node.DTO {
         case script(Node.DTO.ScriptTransaction)
         case sponsorship(Node.DTO.SponsorshipTransaction)
         case assetScript(Node.DTO.AssetScriptTransaction)
+        case invokeScript(Node.DTO.InvokeScriptTransaction)
 
         public init(from decoder: Decoder) throws {
 
@@ -102,6 +104,9 @@ extension Node.DTO {
 
             case .sponsorship:
                 return .sponsorship(try Node.DTO.SponsorshipTransaction(from: decode))
+                
+            case .invokeScript:
+                return .invokeScript(try Node.DTO.InvokeScriptTransaction(from: decode))
             }
         }
     }
@@ -182,7 +187,11 @@ extension Node.DTO {
 
                         case .sponsorship:
                             let tx = try listArray.decode(Node.DTO.SponsorshipTransaction.self)
-                            transactions.append(.sponsorship(tx))                            
+                            transactions.append(.sponsorship(tx))
+                            
+                        case .invokeScript:
+                            let tx = try listArray.decode(Node.DTO.InvokeScriptTransaction.self)
+                            transactions.append(.invokeScript(tx))
                         }
                     } catch let e {
 

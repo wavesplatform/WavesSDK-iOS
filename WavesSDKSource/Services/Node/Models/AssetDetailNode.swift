@@ -11,16 +11,16 @@ import Foundation
 public extension Node.DTO {
 
     struct AssetDetail: Decodable {
-        let assetId: String
-        let issueHeight: Int64
-        let issueTimestamp: Int64
-        let issuer: String
-        let name: String
-        let description: String
-        let decimals: Int64
-        let reissuable: Bool
-        let quantity: Int64
-        let scripted: Bool?
-        let minSponsoredAssetFee: Int64?
+        public let assetId: String
+        public let issueHeight: Int64
+        public let issueTimestamp: Int64
+        public let issuer: String
+        public let name: String
+        public let description: String
+        public let decimals: Int64
+        public let reissuable: Bool
+        public let quantity: Int64
+        public let scripted: Bool?
+        public let minSponsoredAssetFee: Int64?
     }
 }

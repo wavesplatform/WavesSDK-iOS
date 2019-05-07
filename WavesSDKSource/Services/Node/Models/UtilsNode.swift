@@ -12,10 +12,10 @@ public extension Node.DTO {
     enum Utils {}
 }
 
-public  extension Node.DTO.Utils {
+public extension Node.DTO.Utils {
     
     struct Time: Decodable {
-        let system: Int64
-        let NTP: Int64
+        public let system: Int64
+        public let NTP: Int64
     }
 }
