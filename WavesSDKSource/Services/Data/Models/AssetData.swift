@@ -10,17 +10,17 @@ import Foundation
 
 public extension DataService.DTO {
     struct Asset: Decodable {
-        let ticker: String?
-        let id: String
-        let name: String
-        let precision: Int
-        let description: String
-        let height: Int64
-        let timestamp: Date
-        let sender: String
-        let quantity: Int64
-        let reissuable: Bool
-        let hasScript: Bool
-        let minSponsoredFee: Int64?
+        public let ticker: String?
+        public let id: String
+        public let name: String
+        public let precision: Int
+        public let description: String
+        public let height: Int64
+        public let timestamp: Date
+        public let sender: String
+        public let quantity: Int64
+        public let reissuable: Bool
+        public let hasScript: Bool
+        public let minSponsoredFee: Int64?
     }
 }

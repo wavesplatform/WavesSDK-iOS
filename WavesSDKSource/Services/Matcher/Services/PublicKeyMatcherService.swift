@@ -16,9 +16,9 @@ public protocol PublicKeyMatcherServiceProtocol {
 
 final class PublicKeyMatcherService: PublicKeyMatcherServiceProtocol {
     
-    private let publicKeyProvider: MoyaProvider<Matcher.Service.MatcherPublicKey>
+    private let publicKeyProvider: MoyaProvider<MatcherService.Target.MatcherPublicKey>
     
-    init(publicKeyProvider: MoyaProvider<Matcher.Service.MatcherPublicKey>) {
+    init(publicKeyProvider: MoyaProvider<MatcherService.Target.MatcherPublicKey>) {
         self.publicKeyProvider = publicKeyProvider
     }
     

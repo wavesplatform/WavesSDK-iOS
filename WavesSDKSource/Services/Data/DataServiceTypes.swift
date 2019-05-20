@@ -12,9 +12,9 @@ import Moya
 public enum DataService {}
 
 public extension DataService {
-    internal enum Service {}
-    enum DTO {}
-    enum Query {}
+    internal enum Target {}
+    public enum DTO {}
+    public enum Query {}
 }
 
 protocol DataTargetType: TargetType {

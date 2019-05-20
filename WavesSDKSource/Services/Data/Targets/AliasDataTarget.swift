@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 
-extension DataService.Service {
+extension DataService.Target {
     
     struct Alias {
         enum Kind {
@@ -22,7 +22,7 @@ extension DataService.Service {
     }
 }
 
-extension DataService.Service.Alias: DataTargetType {
+extension DataService.Target.Alias: DataTargetType {
 
     private enum Constants {
         static let aliases = "aliases"

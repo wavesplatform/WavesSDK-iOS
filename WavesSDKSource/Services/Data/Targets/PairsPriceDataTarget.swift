@@ -11,7 +11,7 @@ import Moya
 
 public extension DataService.Query {
     
-    struct PairsPrice {
+    public struct PairsPrice {
         
         public struct Pair {
             public let amountAssetId: String
@@ -25,13 +25,13 @@ public extension DataService.Query {
         
         public let pairs: [Pair]
         
-        init(pairs: [Pair]) {
+        public init(pairs: [Pair]) {
             self.pairs = pairs
         }
     }
 }
 
-extension DataService.Service {
+extension DataService.Target {
     
     struct PairsPrice {
         let query: DataService.Query.PairsPrice
@@ -39,7 +39,7 @@ extension DataService.Service {
     }
 }
 
-extension DataService.Service.PairsPrice: DataTargetType {
+extension DataService.Target.PairsPrice: DataTargetType {
 
     private enum Constants {
         static let pairs = "pairs"
@@ -58,7 +58,7 @@ extension DataService.Service.PairsPrice: DataTargetType {
     }
 }
 
-private extension DataService.Service.PairsPrice {
+private extension DataService.Target.PairsPrice {
         
     var parametersString: String {
         

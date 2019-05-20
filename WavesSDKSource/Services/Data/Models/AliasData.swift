@@ -11,7 +11,7 @@ import Foundation
 public extension DataService.DTO {
     
     struct Alias: Decodable {
-        let alias: String
-        let address: String
+        public let alias: String
+        public let address: String
     }
 }

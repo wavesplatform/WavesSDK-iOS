@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Node.DTO {
+extension NodeService.DTO {
     
     public struct InvokeScriptTransaction: Decodable {
         
@@ -50,7 +50,7 @@ extension Node.DTO {
     }
 }
 
-extension Node.DTO.InvokeScriptTransaction.Call.Args {
+extension NodeService.DTO.InvokeScriptTransaction.Call.Args {
     
     enum CodingKeys: String, CodingKey {
         case type

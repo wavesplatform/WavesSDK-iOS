@@ -9,14 +9,14 @@
 import Foundation
 import Moya
 
-extension Matcher.Service {
+extension MatcherService.Target {
     
     struct MatcherPublicKey {
         var matcherUrl: URL
     }
 }
 
-extension Matcher.Service.MatcherPublicKey: MatcherTargetType {
+extension MatcherService.Target.MatcherPublicKey: MatcherTargetType {
     
     private enum Constants {
         static let matcher: String = "matcher"

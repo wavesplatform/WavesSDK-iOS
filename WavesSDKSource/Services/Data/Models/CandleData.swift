@@ -11,15 +11,15 @@ import Foundation
 public extension DataService.DTO {
     struct Chart: Decodable {
         
-        struct Candle: Decodable {
-            let time: Int64
-            let volume: Double?
-            let close: Double?
-            let high: Double?
-            let low: Double?
-            let open: Double?            
+        public struct Candle: Decodable {
+            public let time: Int64
+            public let volume: Double?
+            public let close: Double?
+            public let high: Double?
+            public let low: Double?
+            public let open: Double?
         }
         
-        let candles: [Candle]
+        public let candles: [Candle]
     }
 }

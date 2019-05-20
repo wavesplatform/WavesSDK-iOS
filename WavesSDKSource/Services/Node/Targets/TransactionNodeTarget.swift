@@ -36,7 +36,7 @@ fileprivate enum Constants {
     static let attachment: String = "attachment"
 }
 
-private extension Node.Query.Broadcast {
+private extension NodeService.Query.Broadcast {
     
     public var params: [String: Any] {
         switch self {
@@ -112,7 +112,7 @@ private extension Node.Query.Broadcast {
 
 }
 
-extension Node.Service {
+extension NodeService.Target {
 
     struct Transaction {
 
@@ -128,7 +128,7 @@ extension Node.Service {
              */
             case info(id: String)
 
-            case broadcast(Node.Query.Broadcast)
+            case broadcast(NodeService.Query.Broadcast)
         }
 
         var kind: Kind
@@ -136,7 +136,7 @@ extension Node.Service {
     }
 }
 
-extension Node.Service.Transaction: NodeTargetType {
+extension NodeService.Target.Transaction: NodeTargetType {
     var modelType: Encodable.Type {
         return String.self
     }
@@ -174,7 +174,7 @@ extension Node.Service.Transaction: NodeTargetType {
     }
 }
 
-fileprivate extension Array where Element == Node.Query.Broadcast.Data.Value {
+fileprivate extension Array where Element == NodeService.Query.Broadcast.Data.Value {
 
     var dataByParams: [[String: Any]] {
 
@@ -188,7 +188,7 @@ fileprivate extension Array where Element == Node.Query.Broadcast.Data.Value {
     }
 }
 
-fileprivate extension Node.Query.Broadcast.Data.Value {
+fileprivate extension NodeService.Query.Broadcast.Data.Value {
 
     func params() -> [String: Any] {
 

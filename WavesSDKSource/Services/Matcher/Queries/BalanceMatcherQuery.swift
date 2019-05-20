@@ -8,7 +8,7 @@
 import Foundation
 import WavesSDKExtension
 
-public extension Matcher.Query {
+public extension MatcherService.Query {
     
     fileprivate enum Constants {
         static let senderPublicKey: String = "senderPublicKey"

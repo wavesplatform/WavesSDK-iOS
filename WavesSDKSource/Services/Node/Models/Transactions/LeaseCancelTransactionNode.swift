@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Node.DTO {
+public extension NodeService.DTO {
     struct LeaseCancelTransaction: Decodable {
         public let type: Int
         public let id: String
@@ -22,6 +22,6 @@ public extension Node.DTO {
         public let proofs: [String]?
         public let chainId: Int?
         public let leaseId: String
-        public let lease: Node.DTO.LeaseTransaction?
+        public let lease: NodeService.DTO.LeaseTransaction?
     }
 }

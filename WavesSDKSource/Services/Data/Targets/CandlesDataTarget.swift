@@ -10,7 +10,7 @@ import Foundation
 import Moya
 import WavesSDKExtension
 
-extension DataService.Service {
+extension DataService.Target {
 
     struct Candles {
         let query: DataService.Query.CandleFilters
@@ -22,7 +22,7 @@ private enum Constants {
     static let candles: String = "candles"
 }
 
-extension DataService.Service.Candles: DataTargetType {
+extension DataService.Target.Candles: DataTargetType {
     
     var path: String {
         return "/\(Constants.candles)/\(query.amountAsset)/\(query.priceAsset)"

@@ -10,7 +10,7 @@ import Foundation
 import WavesSDKExtension
 import Moya
 
-extension Node.Service {
+extension NodeService.Target {
 
     struct Addresses {
         enum Kind {
@@ -32,7 +32,7 @@ extension Node.Service {
     }
 }
 
-extension Node.Service.Addresses: NodeTargetType {
+extension NodeService.Target.Addresses: NodeTargetType {
     fileprivate enum Constants {
         static let addresses = "addresses"
         static let balance = "balance"

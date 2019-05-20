@@ -18,9 +18,9 @@ public protocol AliasDataServiceProtocol {
 
 final class AliasDataService: AliasDataServiceProtocol {
     
-    private let aliasProvider: MoyaProvider<DataService.Service.Alias>
+    private let aliasProvider: MoyaProvider<DataService.Target.Alias>
     
-    init(aliasProvider: MoyaProvider<DataService.Service.Alias>) {
+    init(aliasProvider: MoyaProvider<DataService.Target.Alias>) {
         self.aliasProvider = aliasProvider
     }
     
@@ -29,7 +29,7 @@ final class AliasDataService: AliasDataServiceProtocol {
         return self
             .aliasProvider
             .rx
-            .request(DataService.Service.Alias(dataUrl: enviroment.serverUrl,
+            .request(DataService.Target.Alias(dataUrl: enviroment.serverUrl,
                                        kind: .alias(name: name)),
                      callbackQueue: DispatchQueue.global(qos: .userInteractive))
             .filterSuccessfulStatusAndRedirectCodes()
@@ -46,7 +46,7 @@ final class AliasDataService: AliasDataServiceProtocol {
         return self
             .aliasProvider
             .rx
-            .request(DataService.Service.Alias(dataUrl: enviroment.serverUrl,
+            .request(DataService.Target.Alias(dataUrl: enviroment.serverUrl,
                                        kind: .list(address: address)),
                      callbackQueue: DispatchQueue.global(qos: .userInteractive))
             .filterSuccessfulStatusAndRedirectCodes()

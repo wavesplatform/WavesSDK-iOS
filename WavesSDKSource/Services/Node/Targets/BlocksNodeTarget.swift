@@ -10,7 +10,7 @@ import Foundation
 import WavesSDKExtension
 import Moya
 
-extension Node.Service {
+extension NodeService.Target {
         
     struct Blocks {
         enum Kind {
@@ -26,7 +26,7 @@ extension Node.Service {
     }
 }
 
-extension Node.Service.Blocks: NodeTargetType {
+extension NodeService.Target.Blocks: NodeTargetType {
     var modelType: Encodable.Type {
         return String.self
     }

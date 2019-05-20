@@ -18,9 +18,9 @@ public protocol AssetsDataServiceProtocol {
 
 final class AssetsDataService: AssetsDataServiceProtocol {
     
-    private let assetsProvider: MoyaProvider<DataService.Service.Assets>
+    private let assetsProvider: MoyaProvider<DataService.Target.Assets>
     
-    init(assetsProvider: MoyaProvider<DataService.Service.Assets>) {
+    init(assetsProvider: MoyaProvider<DataService.Target.Assets>) {
         self.assetsProvider = assetsProvider
     }
     

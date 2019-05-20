@@ -16,9 +16,9 @@ public protocol TransactionsDataServiceProtocol {
 
 final class TransactionsDataService: TransactionsDataServiceProtocol {
     
-    private let transactionsProvider: MoyaProvider<DataService.Service.Transactions>
+    private let transactionsProvider: MoyaProvider<DataService.Target.Transactions>
     
-    init(transactionsProvider: MoyaProvider<DataService.Service.Transactions>) {
+    init(transactionsProvider: MoyaProvider<DataService.Target.Transactions>) {
         self.transactionsProvider = transactionsProvider
     }
     

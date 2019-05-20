@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Matcher.DTO {
+public extension MatcherService.DTO {
     
     struct Order: Decodable {
         

@@ -12,16 +12,16 @@ import WavesSDKExtension
 
 //TODO: Library Need check AssedId Waves
 
-extension Matcher.Service {
+extension MatcherService.Target {
     
     struct OrderBook {
         
         enum Kind {
             case getOrderBook(amountAsset: String, priceAsset: String)
             case getMarket
-            case getMyOrders(Matcher.Query.GetMyOrders)
-            case cancelOrder(Matcher.Query.CancelOrder)
-            case createOrder(Matcher.Query.CreateOrder)
+            case getMyOrders(MatcherService.Query.GetMyOrders)
+            case cancelOrder(MatcherService.Query.CancelOrder)
+            case createOrder(MatcherService.Query.CreateOrder)
         }
 
         var kind: Kind
@@ -29,7 +29,7 @@ extension Matcher.Service {
     }
 }
 
-extension Matcher.Service.OrderBook: MatcherTargetType {
+extension MatcherService.Target.OrderBook: MatcherTargetType {
     
     fileprivate enum Constants {
         static let matcher = "matcher"

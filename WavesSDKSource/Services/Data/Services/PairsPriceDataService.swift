@@ -16,9 +16,9 @@ public protocol PairsPriceDataServiceProtocol {
 
 final class PairsPriceDataService: PairsPriceDataServiceProtocol {
     
-    private let pairsPriceProvider: MoyaProvider<DataService.Service.PairsPrice>
+    private let pairsPriceProvider: MoyaProvider<DataService.Target.PairsPrice>
     
-    init(pairsPriceProvider: MoyaProvider<DataService.Service.PairsPrice>) {
+    init(pairsPriceProvider: MoyaProvider<DataService.Target.PairsPrice>) {
         self.pairsPriceProvider = pairsPriceProvider
     }
     

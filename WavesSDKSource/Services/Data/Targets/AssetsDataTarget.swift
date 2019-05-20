@@ -10,7 +10,7 @@ import Foundation
 import Moya
 import WavesSDKExtension
 
-extension DataService.Service {
+extension DataService.Target {
 
     struct Assets {
         enum Kind {
@@ -31,7 +31,7 @@ extension DataService.Service {
     }
 }
 
-extension DataService.Service.Assets: DataTargetType {
+extension DataService.Target.Assets: DataTargetType {
     fileprivate enum Constants {
         static let assets = "assets"
         static let ids = "ids"

@@ -8,11 +8,11 @@
 
 import Foundation
 
-public extension Node.DTO {
+public extension NodeService.DTO {
     enum Utils {}
 }
 
-public extension Node.DTO.Utils {
+public extension NodeService.DTO.Utils {
     
     struct Time: Decodable {
         public let system: Int64

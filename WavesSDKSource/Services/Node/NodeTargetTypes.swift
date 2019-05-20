@@ -10,12 +10,12 @@ import Foundation
 import Result
 import Moya
 
-public enum Node {}
+public enum NodeService {}
 
-public extension Node {
-    enum DTO {}
-    enum Query {}
-    internal enum Service {}
+public extension NodeService {
+    public enum DTO {}
+    public enum Query {}
+    internal enum Target {}
 }
 
 protocol NodeTargetType: TargetType {
@@ -33,24 +33,4 @@ extension NodeTargetType {
     var headers: [String: String]? {
         return ContentType.applicationJson.headers
     }
-}
-
-public protocol ServicesFactoryProtocol {
-    
-    var aliasDataService: AliasDataServiceProtocol { get }
-    var assetsDataService: AssetsDataServiceProtocol { get }
-    var candlesDataService: CandlesDataServiceProtocol { get }
-    var pairsPriceDataService: PairsPriceDataServiceProtocol { get }
-    var transactionsDataService: TransactionsDataServiceProtocol { get }
-    
-    var balanceMatcherService: BalanceMatcherServiceProtocol { get }
-    var orderBookMatcherService: OrderBookMatcherServiceProtocol { get }
-    var publicKeyMatcherService: PublicKeyMatcherServiceProtocol { get }
-    
-    var addressesNodeService: AddressesNodeServiceProtocol { get }
-    var assetsNodeService: AssetsNodeServiceProtocol { get }
-    var blocksNodeService: BlocksNodeServiceProtocol { get }
-    var leasingNodeService: LeasingNodeServiceProtocol { get }
-    var transactionNodeService: TransactionNodeServiceProtocol { get }
-    var utilsNodeService: UtilsNodeServiceProtocol { get }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension Node.Query {
+public extension NodeService.Query {
     enum Broadcast {
         case createAlias(Alias)
         case startLease(Lease)
@@ -18,7 +18,7 @@ public extension Node.Query {
     }
 }
 
-public extension Node.Query.Broadcast {
+public extension NodeService.Query.Broadcast {
     
     struct Burn {
         public let version: Int

@@ -10,51 +10,53 @@ import Foundation
 
 public extension DataService.DTO {
 
-    enum OrderType: String, Decodable {
+    public enum OrderType: String, Decodable {
         case sell
         case buy
     }
     
-    struct Pair: Decodable {
-        let amountAsset: String
-        let priceAsset: String
+    public struct Pair: Decodable {
+        public let amountAsset: String
+        public let priceAsset: String
     }
     
     struct Order: Decodable {
-        let id: String
-        let senderPublicKey: String
-        let matcherPublicKey: String
-        let assetPair: Pair
-        let orderType: OrderType
-        let price: Double
-        let sender: String
-        let amount: Double
-        let timestamp: Date
-        let expiration: Date
-        let matcherFee: Double
-        let signature: String
+        public let id: String
+        public let senderPublicKey: String
+        public let matcherPublicKey: String
+        public let assetPair: Pair
+        public let orderType: OrderType
+        public let price: Double
+        public let sender: String
+        public let amount: Double
+        public let timestamp: Date
+        public let expiration: Date
+        public let matcherFee: Double
+        public let signature: String
     }
 
     struct ExchangeTransaction: Decodable {
-        let id: String
-        let timestamp: Date
-        let height: Int64
-        let type: Int
-        let fee: Double
-        let sender: String
-        let senderPublicKey: String
-        let buyMatcherFee: Double
-        let sellMatcherFee: Double
-        let price: Double
-        let amount: Double
-        let order1: Order
-        let order2: Order
+        public let id: String
+        public let timestamp: Date
+        public let height: Int64
+        public let type: Int
+        public let fee: Double
+        public let sender: String
+        public let senderPublicKey: String
+        public let buyMatcherFee: Double
+        public let sellMatcherFee: Double
+        public let price: Double
+        public let amount: Double
+        public let order1: Order
+        public let order2: Order
     }
 }
 
+
+//TODO: Library
 extension DataService.DTO.ExchangeTransaction {
     
-    var orderType: DataService.DTO.OrderType {
+    public var orderType: DataService.DTO.OrderType {
         let order = order1.timestamp > order2.timestamp ? order1 : order2
         return order.orderType
     }

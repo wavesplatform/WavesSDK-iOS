@@ -11,20 +11,20 @@ import Moya
 
 public protocol TransactionNodeServiceProtocol {
     
-    func broadcast(query: Node.Query.Broadcast, enviroment: EnviromentService) -> Observable<Node.DTO.Transaction>
+    func broadcast(query: NodeService.Query.Broadcast, enviroment: EnviromentService) -> Observable<NodeService.DTO.Transaction>
     
-    func list(address: String, offset: Int, limit: Int, enviroment: EnviromentService) -> Observable<Node.DTO.TransactionContainers>
+    func list(address: String, offset: Int, limit: Int, enviroment: EnviromentService) -> Observable<NodeService.DTO.TransactionContainers>
 }
 
 final class TransactionNodeService: TransactionNodeServiceProtocol {
 
-    private let transactionsProvider: MoyaProvider<Node.Service.Transaction>
+    private let transactionsProvider: MoyaProvider<NodeService.Target.Transaction>
     
-    init(transactionsProvider: MoyaProvider<Node.Service.Transaction>) {
+    init(transactionsProvider: MoyaProvider<NodeService.Target.Transaction>) {
         self.transactionsProvider = transactionsProvider
     }
     
-    public func broadcast(query: Node.Query.Broadcast, enviroment: EnviromentService) -> Observable<Node.DTO.Transaction> {
+    public func broadcast(query: NodeService.Query.Broadcast, enviroment: EnviromentService) -> Observable<NodeService.DTO.Transaction> {
         
         return self
             .transactionsProvider
@@ -36,12 +36,12 @@ final class TransactionNodeService: TransactionNodeServiceProtocol {
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
             })
-            .map(Node.DTO.Transaction.self, atKeyPath: nil, using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff), failsOnEmptyData: false)
+            .map(NodeService.DTO.Transaction.self, atKeyPath: nil, using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff), failsOnEmptyData: false)
             .asObservable()
 
     }
     
-    public func list(address: String, offset: Int, limit: Int, enviroment: EnviromentService) -> Observable<Node.DTO.TransactionContainers> {
+    public func list(address: String, offset: Int, limit: Int, enviroment: EnviromentService) -> Observable<NodeService.DTO.TransactionContainers> {
         
         return self
             .transactionsProvider
@@ -54,7 +54,7 @@ final class TransactionNodeService: TransactionNodeServiceProtocol {
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
             })
-            .map(Node.DTO.TransactionContainers.self, atKeyPath: nil, using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff), failsOnEmptyData: false)
+            .map(NodeService.DTO.TransactionContainers.self, atKeyPath: nil, using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff), failsOnEmptyData: false)
             .asObservable()
     }
 }

@@ -11,22 +11,22 @@ import Moya
 
 public protocol AssetsNodeServiceProtocol {
     
-    func assetsBalances(address: String, enviroment: EnviromentService) -> Observable<Node.DTO.AccountAssetsBalance>
+    func assetsBalances(address: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AccountAssetsBalance>
     
-    func assetBalance(address: String, assetId: String, enviroment: EnviromentService) -> Observable<Node.DTO.AccountAssetBalance>
+    func assetBalance(address: String, assetId: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AccountAssetBalance>
     
-    func assetDetails(assetId: String, enviroment: EnviromentService) -> Observable<Node.DTO.AssetDetail>
+    func assetDetails(assetId: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AssetDetail>
 }
 
 final class AssetsNodeService: AssetsNodeServiceProtocol {
     
-    private let assetsProvider: MoyaProvider<Node.Service.Assets>
+    private let assetsProvider: MoyaProvider<NodeService.Target.Assets>
     
-    init(assetsProvider: MoyaProvider<Node.Service.Assets>) {
+    init(assetsProvider: MoyaProvider<NodeService.Target.Assets>) {
         self.assetsProvider = assetsProvider
     }
     
-    public func assetsBalances(address: String, enviroment: EnviromentService) -> Observable<Node.DTO.AccountAssetsBalance> {
+    public func assetsBalances(address: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AccountAssetsBalance> {
       
         return self
             .assetsProvider
@@ -39,11 +39,11 @@ final class AssetsNodeService: AssetsNodeServiceProtocol {
             .catchError({ (error) -> Observable<Response> in
                 return Observable.error(NetworkError.error(by: error))
             })
-            .map(Node.DTO.AccountAssetsBalance.self, atKeyPath: nil, using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff), failsOnEmptyData: false)
+            .map(NodeService.DTO.AccountAssetsBalance.self, atKeyPath: nil, using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff), failsOnEmptyData: false)
             .asObservable()
     }
     
-    public func assetBalance(address: String, assetId: String, enviroment: EnviromentService) -> Observable<Node.DTO.AccountAssetBalance> {
+    public func assetBalance(address: String, assetId: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AccountAssetBalance> {
         
         return self
             .assetsProvider
@@ -55,11 +55,11 @@ final class AssetsNodeService: AssetsNodeServiceProtocol {
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
             })
-            .map(Node.DTO.AccountAssetBalance.self)
+            .map(NodeService.DTO.AccountAssetBalance.self)
             .asObservable()
     }
     
-    public func assetDetails(assetId: String, enviroment: EnviromentService) -> Observable<Node.DTO.AssetDetail> {
+    public func assetDetails(assetId: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AssetDetail> {
         return self
             .assetsProvider
             .rx
@@ -70,7 +70,7 @@ final class AssetsNodeService: AssetsNodeServiceProtocol {
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
             })
-            .map(Node.DTO.AssetDetail.self)
+            .map(NodeService.DTO.AssetDetail.self)
             .asObservable()
     }
 }

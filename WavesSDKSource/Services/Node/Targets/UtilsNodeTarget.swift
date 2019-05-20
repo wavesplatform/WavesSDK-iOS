@@ -9,7 +9,7 @@ import Foundation
 import WavesSDKExtension
 import Moya
 
-extension Node.Service {
+extension NodeService.Target {
     
     struct Utils {
         enum Kind {
@@ -21,7 +21,7 @@ extension Node.Service {
     }
 }
 
-extension Node.Service.Utils: NodeTargetType {
+extension NodeService.Target.Utils: NodeTargetType {
     
     private enum Constants {
         static let utils = "utils"

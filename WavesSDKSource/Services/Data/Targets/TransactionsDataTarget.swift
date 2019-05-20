@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 
-extension DataService.Service {
+extension DataService.Target {
 
     struct Transactions {
         enum Kind {
@@ -27,7 +27,7 @@ extension DataService.Service {
     }
 }
 
-extension DataService.Service.Transactions: DataTargetType {
+extension DataService.Target.Transactions: DataTargetType {
 
     private enum Constants {
         static let exchange = "transactions/exchange"

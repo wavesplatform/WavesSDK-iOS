@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Node.DTO {
+public extension NodeService.DTO {
 
     struct DataTransaction: Decodable {
 
@@ -40,7 +40,7 @@ public extension Node.DTO {
      }
 }
 
-extension Node.DTO.DataTransaction.Data {
+extension NodeService.DTO.DataTransaction.Data {
 
     enum CodingKeys: String, CodingKey {
         case key

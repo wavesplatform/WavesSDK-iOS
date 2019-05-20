@@ -10,7 +10,7 @@ import Foundation
 import Moya
 import WavesSDKExtension
 
-public extension Matcher.Query {
+public extension MatcherService.Query {
     
     fileprivate enum Constants {
         static let senderPublicKey = "senderPublicKey"
@@ -38,14 +38,14 @@ public extension Matcher.Query {
     }
 }
 
-extension Matcher.Service {
+extension MatcherService.Target {
     struct Balance {
         enum Kind {
             /**
              Response:
              - [AssetId: Balance] as [String: Int64]
              */
-            case getReservedBalances(Matcher.Query.ReservedBalances)
+            case getReservedBalances(MatcherService.Query.ReservedBalances)
         }
 
         var kind: Kind
@@ -53,7 +53,7 @@ extension Matcher.Service {
     }
 }
 
-extension Matcher.Service.Balance: MatcherTargetType {
+extension MatcherService.Target.Balance: MatcherTargetType {
     
     fileprivate enum Constants {
         static let matcher = "matcher"

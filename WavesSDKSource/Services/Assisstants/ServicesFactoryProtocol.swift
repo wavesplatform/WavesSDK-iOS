@@ -8,6 +8,26 @@
 import Foundation
 import Moya
 
+public protocol ServicesFactoryProtocol {
+    
+    var aliasDataService: AliasDataServiceProtocol { get }
+    var assetsDataService: AssetsDataServiceProtocol { get }
+    var candlesDataService: CandlesDataServiceProtocol { get }
+    var pairsPriceDataService: PairsPriceDataServiceProtocol { get }
+    var transactionsDataService: TransactionsDataServiceProtocol { get }
+    
+    var balanceMatcherService: BalanceMatcherServiceProtocol { get }
+    var orderBookMatcherService: OrderBookMatcherServiceProtocol { get }
+    var publicKeyMatcherService: PublicKeyMatcherServiceProtocol { get }
+    
+    var addressesNodeService: AddressesNodeServiceProtocol { get }
+    var assetsNodeService: AssetsNodeServiceProtocol { get }
+    var blocksNodeService: BlocksNodeServiceProtocol { get }
+    var leasingNodeService: LeasingNodeServiceProtocol { get }
+    var transactionNodeService: TransactionNodeServiceProtocol { get }
+    var utilsNodeService: UtilsNodeServiceProtocol { get }
+}
+
 public final class ServicesFactory: ServicesFactoryProtocol {
     
     private let dataServicePlugins: [PluginType]

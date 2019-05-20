@@ -9,7 +9,7 @@
 import Foundation
 import WavesSDKExtension
 
-extension Node.DTO {
+extension NodeService.DTO {
 
     fileprivate enum TransactionType: Int, Decodable {
         case issue = 3
@@ -33,21 +33,21 @@ extension Node.DTO {
     }
 
     public enum Transaction: Decodable {
-        case unrecognised(Node.DTO.UnrecognisedTransaction)
-        case issue(Node.DTO.IssueTransaction)
-        case transfer(Node.DTO.TransferTransaction)
-        case reissue(Node.DTO.ReissueTransaction)
-        case burn(Node.DTO.BurnTransaction)
-        case exchange(Node.DTO.ExchangeTransaction)
-        case lease(Node.DTO.LeaseTransaction)
-        case leaseCancel(Node.DTO.LeaseCancelTransaction)
-        case alias(Node.DTO.AliasTransaction)
-        case massTransfer(Node.DTO.MassTransferTransaction)
-        case data(Node.DTO.DataTransaction)
-        case script(Node.DTO.ScriptTransaction)
-        case sponsorship(Node.DTO.SponsorshipTransaction)
-        case assetScript(Node.DTO.AssetScriptTransaction)
-        case invokeScript(Node.DTO.InvokeScriptTransaction)
+        case unrecognised(NodeService.DTO.UnrecognisedTransaction)
+        case issue(NodeService.DTO.IssueTransaction)
+        case transfer(NodeService.DTO.TransferTransaction)
+        case reissue(NodeService.DTO.ReissueTransaction)
+        case burn(NodeService.DTO.BurnTransaction)
+        case exchange(NodeService.DTO.ExchangeTransaction)
+        case lease(NodeService.DTO.LeaseTransaction)
+        case leaseCancel(NodeService.DTO.LeaseCancelTransaction)
+        case alias(NodeService.DTO.AliasTransaction)
+        case massTransfer(NodeService.DTO.MassTransferTransaction)
+        case data(NodeService.DTO.DataTransaction)
+        case script(NodeService.DTO.ScriptTransaction)
+        case sponsorship(NodeService.DTO.SponsorshipTransaction)
+        case assetScript(NodeService.DTO.AssetScriptTransaction)
+        case invokeScript(NodeService.DTO.InvokeScriptTransaction)
 
         public init(from decoder: Decoder) throws {
 
@@ -67,46 +67,46 @@ extension Node.DTO {
 
             switch type {
             case .issue:
-                return .issue( try Node.DTO.IssueTransaction(from: decode))
+                return .issue( try NodeService.DTO.IssueTransaction(from: decode))
 
             case .transfer:
-                return .transfer( try Node.DTO.TransferTransaction(from: decode))
+                return .transfer( try NodeService.DTO.TransferTransaction(from: decode))
 
             case .reissue:
-                return .reissue( try Node.DTO.ReissueTransaction(from: decode))
+                return .reissue( try NodeService.DTO.ReissueTransaction(from: decode))
 
             case .burn:
-                return .burn( try Node.DTO.BurnTransaction(from: decode))
+                return .burn( try NodeService.DTO.BurnTransaction(from: decode))
 
             case .exchange:
-                return .exchange( try Node.DTO.ExchangeTransaction(from: decode))
+                return .exchange( try NodeService.DTO.ExchangeTransaction(from: decode))
 
             case .lease:
-                return .lease( try Node.DTO.LeaseTransaction(from: decode))
+                return .lease( try NodeService.DTO.LeaseTransaction(from: decode))
 
             case .leaseCancel:
-                return .leaseCancel( try Node.DTO.LeaseCancelTransaction(from: decode))
+                return .leaseCancel( try NodeService.DTO.LeaseCancelTransaction(from: decode))
 
             case .alias:
-                return .alias( try Node.DTO.AliasTransaction(from: decode))
+                return .alias( try NodeService.DTO.AliasTransaction(from: decode))
 
             case .massTransfer:
-                return .massTransfer( try Node.DTO.MassTransferTransaction(from: decode))
+                return .massTransfer( try NodeService.DTO.MassTransferTransaction(from: decode))
 
             case .data:
-                return .data(try Node.DTO.DataTransaction(from: decode))
+                return .data(try NodeService.DTO.DataTransaction(from: decode))
 
             case .script:
-                return .script(try Node.DTO.ScriptTransaction(from: decode))
+                return .script(try NodeService.DTO.ScriptTransaction(from: decode))
 
             case .assetScript:
-                return .assetScript(try Node.DTO.AssetScriptTransaction(from: decode))
+                return .assetScript(try NodeService.DTO.AssetScriptTransaction(from: decode))
 
             case .sponsorship:
-                return .sponsorship(try Node.DTO.SponsorshipTransaction(from: decode))
+                return .sponsorship(try NodeService.DTO.SponsorshipTransaction(from: decode))
                 
             case .invokeScript:
-                return .invokeScript(try Node.DTO.InvokeScriptTransaction(from: decode))
+                return .invokeScript(try NodeService.DTO.InvokeScriptTransaction(from: decode))
             }
         }
     }
@@ -138,64 +138,64 @@ extension Node.DTO {
 
                         switch type {
                         case .issue:
-                            let tx = try listArray.decode(Node.DTO.IssueTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.IssueTransaction.self)
                             transactions.append(.issue(tx))
 
                         case .transfer:
-                            let tx = try listArray.decode(Node.DTO.TransferTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.TransferTransaction.self)
                             transactions.append(.transfer(tx))
 
                         case .reissue:
-                            let tx = try listArray.decode(Node.DTO.ReissueTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.ReissueTransaction.self)
                             transactions.append(.reissue(tx))
 
                         case .burn:
-                            let tx = try listArray.decode(Node.DTO.BurnTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.BurnTransaction.self)
                             transactions.append(.burn(tx))
 
                         case .exchange:
-                            let tx = try listArray.decode(Node.DTO.ExchangeTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.ExchangeTransaction.self)
                             transactions.append(.exchange(tx))
 
                         case .lease:
-                            let tx = try listArray.decode(Node.DTO.LeaseTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.LeaseTransaction.self)
                             transactions.append(.lease(tx))
 
                         case .leaseCancel:
-                            let tx = try listArray.decode(Node.DTO.LeaseCancelTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.LeaseCancelTransaction.self)
                             transactions.append(.leaseCancel(tx))
 
                         case .alias:
-                            let tx = try listArray.decode(Node.DTO.AliasTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.AliasTransaction.self)
                             transactions.append(.alias(tx))
 
                         case .massTransfer:
-                            let tx = try listArray.decode(Node.DTO.MassTransferTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.MassTransferTransaction.self)
                             transactions.append(.massTransfer(tx))
 
                         case .data:
-                            let tx = try listArray.decode(Node.DTO.DataTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.DataTransaction.self)
                             transactions.append(.data(tx))
 
                         case .script:
-                            let tx = try listArray.decode(Node.DTO.ScriptTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.ScriptTransaction.self)
                             transactions.append(.script(tx))
 
                         case .assetScript:
-                            let tx = try listArray.decode(Node.DTO.AssetScriptTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.AssetScriptTransaction.self)
                             transactions.append(.assetScript(tx))
 
                         case .sponsorship:
-                            let tx = try listArray.decode(Node.DTO.SponsorshipTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.SponsorshipTransaction.self)
                             transactions.append(.sponsorship(tx))
                             
                         case .invokeScript:
-                            let tx = try listArray.decode(Node.DTO.InvokeScriptTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.InvokeScriptTransaction.self)
                             transactions.append(.invokeScript(tx))
                         }
                     } catch let e {
 
-                        if let tx = try? listArray.decode(Node.DTO.UnrecognisedTransaction.self) {
+                        if let tx = try? listArray.decode(NodeService.DTO.UnrecognisedTransaction.self) {
                             transactions.append(.unrecognised(tx))
                             SweetLogger.error("Unrecognised \(e)")
                         } else {

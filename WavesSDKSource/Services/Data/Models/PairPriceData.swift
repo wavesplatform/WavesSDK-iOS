@@ -11,12 +11,12 @@ import Foundation
 public extension DataService.DTO {
     
     struct PairPrice: Decodable {
-        let firstPrice: Double
-        let lastPrice: Double
-        let volume: Double
-        let volumeWaves: Double?
+        public let firstPrice: Double
+        public let lastPrice: Double
+        public let volume: Double
+        public let volumeWaves: Double?
     
-        static var empty: PairPrice {
+        public static var empty: PairPrice {
             return PairPrice(firstPrice: 0,
                             lastPrice: 0,
                             volume: 0,

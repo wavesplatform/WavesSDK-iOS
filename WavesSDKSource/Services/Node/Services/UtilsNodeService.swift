@@ -12,18 +12,18 @@ import Moya
 
 public protocol UtilsNodeServiceProtocol {
     
-    func time(serverUrl: URL) -> Observable<Node.DTO.Utils.Time>
+    func time(serverUrl: URL) -> Observable<NodeService.DTO.Utils.Time>
 }
 
 final class UtilsNodeService: UtilsNodeServiceProtocol {
     
-    private let utilsProvider: MoyaProvider<Node.Service.Utils>
+    private let utilsProvider: MoyaProvider<NodeService.Target.Utils>
     
-    init(utilsProvider: MoyaProvider<Node.Service.Utils>) {
+    init(utilsProvider: MoyaProvider<NodeService.Target.Utils>) {
         self.utilsProvider = utilsProvider
     }
     
-    public func time(serverUrl: URL) -> Observable<Node.DTO.Utils.Time> {
+    public func time(serverUrl: URL) -> Observable<NodeService.DTO.Utils.Time> {
     
         return utilsProvider
             .rx
@@ -33,7 +33,7 @@ final class UtilsNodeService: UtilsNodeServiceProtocol {
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
             })
-            .map(Node.DTO.Utils.Time.self)
+            .map(NodeService.DTO.Utils.Time.self)
             .asObservable()
         .debug("ALAZ", trimOutput: true)
     }

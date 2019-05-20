@@ -16,9 +16,9 @@ public protocol CandlesDataServiceProtocol {
 
 final class CandlesDataService: CandlesDataServiceProtocol {
     
-    private let candlesProvider: MoyaProvider<DataService.Service.Candles>
+    private let candlesProvider: MoyaProvider<DataService.Target.Candles>
     
-    init(candlesProvider: MoyaProvider<DataService.Service.Candles>) {
+    init(candlesProvider: MoyaProvider<DataService.Target.Candles>) {
         self.candlesProvider = candlesProvider
     }
     

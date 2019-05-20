@@ -11,29 +11,29 @@ import Moya
 
 public protocol BlocksNodeServiceProtocol {
     
-    func height(address: String, enviroment: EnviromentService) -> Observable<Node.DTO.Block>
+    func height(address: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.Block>
 }
 
 final class BlocksNodeService: BlocksNodeServiceProtocol {
     
-    private let blocksProvider: MoyaProvider<Node.Service.Blocks>
+    private let blocksProvider: MoyaProvider<NodeService.Target.Blocks>
     
-    init(blocksProvider: MoyaProvider<Node.Service.Blocks>) {
+    init(blocksProvider: MoyaProvider<NodeService.Target.Blocks>) {
         self.blocksProvider = blocksProvider
     }
     
-    public func height(address: String, enviroment: EnviromentService) -> Observable<Node.DTO.Block> {
+    public func height(address: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.Block> {
         
         return self
             .blocksProvider
             .rx
-            .request(Node.Service.Blocks(nodeUrl: enviroment.serverUrl,
+            .request(NodeService.Target.Blocks(nodeUrl: enviroment.serverUrl,
                                          kind: .height))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
             })
-            .map(Node.DTO.Block.self)
+            .map(NodeService.DTO.Block.self)
             .asObservable()
     }
 }

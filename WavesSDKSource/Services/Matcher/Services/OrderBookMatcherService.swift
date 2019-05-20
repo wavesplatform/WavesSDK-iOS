@@ -11,28 +11,28 @@ import Moya
 
 public protocol OrderBookMatcherServiceProtocol {
     
-    func orderBook(amountAsset: String, priceAsset: String, enviroment: EnviromentService) -> Observable<Matcher.DTO.OrderBook>
+    func orderBook(amountAsset: String, priceAsset: String, enviroment: EnviromentService) -> Observable<MatcherService.DTO.OrderBook>
     
-    func market(amountAsset: String, priceAsset: String, enviroment: EnviromentService) -> Observable<Matcher.DTO.MarketResponse>
+    func market(enviroment: EnviromentService) -> Observable<MatcherService.DTO.MarketResponse>
     
-    func myOrders(query: Matcher.Query.GetMyOrders, enviroment: EnviromentService) -> Observable<[Matcher.DTO.Order]>
+    func myOrders(query: MatcherService.Query.GetMyOrders, enviroment: EnviromentService) -> Observable<[MatcherService.DTO.Order]>
 
-    func cancelOrder(query: Matcher.Query.CancelOrder, enviroment: EnviromentService) -> Observable<Bool>
+    func cancelOrder(query: MatcherService.Query.CancelOrder, enviroment: EnviromentService) -> Observable<Bool>
 
-    func createOrder(query: Matcher.Query.CreateOrder, enviroment: EnviromentService) -> Observable<Bool>
+    func createOrder(query: MatcherService.Query.CreateOrder, enviroment: EnviromentService) -> Observable<Bool>
 }
 
 final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
     
-    private let orderBookProvider: MoyaProvider<Matcher.Service.OrderBook>
+    private let orderBookProvider: MoyaProvider<MatcherService.Target.OrderBook>
     
-    init(orderBookProvider: MoyaProvider<Matcher.Service.OrderBook>) {
+    init(orderBookProvider: MoyaProvider<MatcherService.Target.OrderBook>) {
         self.orderBookProvider = orderBookProvider
     }
     
     public func orderBook(amountAsset: String,
                           priceAsset: String,
-                          enviroment: EnviromentService) -> Observable<Matcher.DTO.OrderBook> {
+                          enviroment: EnviromentService) -> Observable<MatcherService.DTO.OrderBook> {
         
         return self
             .orderBookProvider
@@ -45,14 +45,14 @@ final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
             })
-            .map(Matcher.DTO.OrderBook.self,
+            .map(MatcherService.DTO.OrderBook.self,
                  atKeyPath: nil,
                  using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff),
                  failsOnEmptyData: false)
             .asObservable()
     }
     
-    public func market(amountAsset: String, priceAsset: String, enviroment: EnviromentService) -> Observable<Matcher.DTO.MarketResponse> {
+    public func market(enviroment: EnviromentService) -> Observable<MatcherService.DTO.MarketResponse> {
         
         return self
             .orderBookProvider
@@ -64,11 +64,11 @@ final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
             })
-            .map(Matcher.DTO.MarketResponse.self)
+            .map(MatcherService.DTO.MarketResponse.self)
             .asObservable()
     }
     
-    public func myOrders(query: Matcher.Query.GetMyOrders, enviroment: EnviromentService) -> Observable<[Matcher.DTO.Order]> {
+    public func myOrders(query: MatcherService.Query.GetMyOrders, enviroment: EnviromentService) -> Observable<[MatcherService.DTO.Order]> {
         
         return self
             .orderBookProvider
@@ -80,14 +80,14 @@ final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
             })
-            .map([Matcher.DTO.Order].self,
+            .map([MatcherService.DTO.Order].self,
                  atKeyPath: nil,
                  using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff),
                  failsOnEmptyData: false)
             .asObservable()
     }
     
-    public func cancelOrder(query: Matcher.Query.CancelOrder, enviroment: EnviromentService) -> Observable<Bool> {
+    public func cancelOrder(query: MatcherService.Query.CancelOrder, enviroment: EnviromentService) -> Observable<Bool> {
         
         return self
             .orderBookProvider
@@ -103,7 +103,7 @@ final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
             .asObservable()
     }
     
-    public func createOrder(query: Matcher.Query.CreateOrder, enviroment: EnviromentService) -> Observable<Bool> {
+    public func createOrder(query: MatcherService.Query.CreateOrder, enviroment: EnviromentService) -> Observable<Bool> {
         
         return self
             .orderBookProvider

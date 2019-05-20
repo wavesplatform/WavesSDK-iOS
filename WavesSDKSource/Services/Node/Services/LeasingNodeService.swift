@@ -12,18 +12,18 @@ import Moya
 
 public protocol LeasingNodeServiceProtocol {
     
-    func activeLeasingTransactions(by address: String, enviroment: EnviromentService) -> Observable<[Node.DTO.LeaseTransaction]>
+    func activeLeasingTransactions(by address: String, enviroment: EnviromentService) -> Observable<[NodeService.DTO.LeaseTransaction]>
 }
 
 final class LeasingNodeService: LeasingNodeServiceProtocol {
     
-    private let leasingProvider: MoyaProvider<Node.Service.Leasing>
+    private let leasingProvider: MoyaProvider<NodeService.Target.Leasing>
     
-    init(leasingProvider: MoyaProvider<Node.Service.Leasing>) {
+    init(leasingProvider: MoyaProvider<NodeService.Target.Leasing>) {
         self.leasingProvider = leasingProvider
     }
     
-    public func activeLeasingTransactions(by address: String, enviroment: EnviromentService) -> Observable<[Node.DTO.LeaseTransaction]> {
+    public func activeLeasingTransactions(by address: String, enviroment: EnviromentService) -> Observable<[NodeService.DTO.LeaseTransaction]> {
         
         return self
             .leasingProvider
@@ -35,7 +35,7 @@ final class LeasingNodeService: LeasingNodeServiceProtocol {
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
             })
-            .map([Node.DTO.LeaseTransaction].self, atKeyPath: nil, using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff), failsOnEmptyData: false)
+            .map([NodeService.DTO.LeaseTransaction].self, atKeyPath: nil, using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff), failsOnEmptyData: false)
             .asObservable()
     }
 }

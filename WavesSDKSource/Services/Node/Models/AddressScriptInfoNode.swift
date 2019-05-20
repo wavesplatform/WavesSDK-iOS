@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Node.DTO {
+public extension NodeService.DTO {
 
     struct AddressScriptInfo: Decodable {
         public let address: String

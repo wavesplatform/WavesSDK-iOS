@@ -11,18 +11,18 @@ import Moya
 
 public protocol BalanceMatcherServiceProtocol {
     
-    func reservedBalances(query: Matcher.Query.ReservedBalances, enviroment: EnviromentService) -> Observable<[String: Int64]>
+    func reservedBalances(query: MatcherService.Query.ReservedBalances, enviroment: EnviromentService) -> Observable<[String: Int64]>
 }
 
 final class BalanceMatcherService: BalanceMatcherServiceProtocol {
     
-    private let balanceProvider: MoyaProvider<Matcher.Service.Balance>
+    private let balanceProvider: MoyaProvider<MatcherService.Target.Balance>
     
-    init(balanceProvider: MoyaProvider<Matcher.Service.Balance>) {
+    init(balanceProvider: MoyaProvider<MatcherService.Target.Balance>) {
         self.balanceProvider = balanceProvider
     }
     
-    public func reservedBalances(query: Matcher.Query.ReservedBalances, enviroment: EnviromentService) -> Observable<[String: Int64]> {
+    public func reservedBalances(query: MatcherService.Query.ReservedBalances, enviroment: EnviromentService) -> Observable<[String: Int64]> {
         
         return self
             .balanceProvider

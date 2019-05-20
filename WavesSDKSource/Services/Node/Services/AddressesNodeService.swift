@@ -11,20 +11,20 @@ import Moya
 
 public protocol AddressesNodeServiceProtocol {
     
-    func accountBalance(address: String, enviroment: EnviromentService) -> Observable<Node.DTO.AccountBalance>
+    func accountBalance(address: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AccountBalance>
     
-    func scriptInfo(address: String, enviroment: EnviromentService) -> Observable<Node.DTO.AddressScriptInfo>
+    func scriptInfo(address: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AddressScriptInfo>
 }
 
 final class AddressesNodeService: AddressesNodeServiceProtocol {
     
-    private let addressesProvider: MoyaProvider<Node.Service.Addresses>
+    private let addressesProvider: MoyaProvider<NodeService.Target.Addresses>
     
-    init(addressesProvider: MoyaProvider<Node.Service.Addresses>) {
+    init(addressesProvider: MoyaProvider<NodeService.Target.Addresses>) {
         self.addressesProvider = addressesProvider
     }
     
-    public func accountBalance(address: String, enviroment: EnviromentService) -> Observable<Node.DTO.AccountBalance> {
+    public func accountBalance(address: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AccountBalance> {
         
         return self
             .addressesProvider
@@ -36,11 +36,11 @@ final class AddressesNodeService: AddressesNodeServiceProtocol {
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
             })
-            .map(Node.DTO.AccountBalance.self)
+            .map(NodeService.DTO.AccountBalance.self)
             .asObservable()
     }
     
-    public func scriptInfo(address: String, enviroment: EnviromentService) -> Observable<Node.DTO.AddressScriptInfo> {
+    public func scriptInfo(address: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AddressScriptInfo> {
         return self
             .addressesProvider
             .rx
@@ -51,7 +51,7 @@ final class AddressesNodeService: AddressesNodeServiceProtocol {
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
             })
-            .map(Node.DTO.AddressScriptInfo.self)
+            .map(NodeService.DTO.AddressScriptInfo.self)
             .asObservable()
     }
 }

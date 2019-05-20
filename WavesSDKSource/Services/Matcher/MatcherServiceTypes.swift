@@ -9,12 +9,12 @@
 import Foundation
 import Moya
 
-public enum Matcher {}
+public enum MatcherService {}
 
-public extension Matcher {
+public extension MatcherService {
     enum DTO {}
     enum Query {}
-    internal enum Service {}
+    internal enum Target {}
 }
 
 protocol MatcherTargetType: TargetType {

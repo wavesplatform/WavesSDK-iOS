@@ -10,11 +10,14 @@ import Foundation
 import Moya
 
 private enum Constants {
-    static let scriptErrorCode = 307
-    static let assetScriptErrorCode = 308
+    static let scriptErrorCode: Int = 307
+    static let assetScriptErrorCode: Int = 308
+    static let notFound: Int = 404
 }
 
 public enum NetworkError: Error, Equatable {
+    
+    case none
     
     case message(String)
     case notFound
@@ -79,22 +82,25 @@ extension MoyaError {
     }
 }
 
-extension NetworkError {
+public extension NetworkError {
     
-    static func error(by error: Error) -> NetworkError {
+    public static func error(by error: Error) -> NetworkError {
         
         switch error {
+        case let error as NetworkError:
+            return error
             
         case let moyaError as MoyaError:
             guard let response = moyaError.response else {
                 
                 if let error = moyaError.error {
                     return NetworkError.error(by: error)
-                }   else {
+                } else {
                     return NetworkError.notFound
                 }
             }
-            return NetworkError.error(data: response.data)
+            
+            return NetworkError.error(response: response)
             
         case let urlError as NSError where urlError.domain == NSURLErrorDomain:
             
@@ -133,15 +139,31 @@ extension NetworkError {
                 return NetworkError.serverError
                 
             default:
-                return NetworkError.notFound
+                return NetworkError.none
             }
             
         default:
-            return NetworkError.notFound
+            return NetworkError.none
         }
     }
     
-    static func error(data: Data) -> NetworkError {
+    static func error(response: Moya.Response) -> NetworkError {
+        
+        if let error = error(data: response.data) {
+            return error
+        }
+        
+        switch response.statusCode {
+        case Constants.notFound:
+            return NetworkError.notFound
+            
+        default:
+            return NetworkError.none
+        }
+    }
+    
+    
+    static func error(data: Data) -> NetworkError? {
         
         var message: String? = nil
         let anyObject = try? JSONSerialization.jsonObject(with: data, options: [])
@@ -151,6 +173,7 @@ extension NetworkError {
             if anyObject["error"] as? Int == Constants.scriptErrorCode {
                 return NetworkError.scriptError
             }
+            
             message = anyObject["message"] as? String
             
             if message == nil {
@@ -162,6 +185,7 @@ extension NetworkError {
             return NetworkError.message(message)
         }
         
-        return NetworkError.notFound
+        return nil
     }
+    
 }

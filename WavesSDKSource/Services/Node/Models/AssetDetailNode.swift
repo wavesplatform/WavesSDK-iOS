@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Node.DTO {
+public extension NodeService.DTO {
 
     struct AssetDetail: Decodable {
         public let assetId: String

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Node.DTO {
+public extension NodeService.DTO {
     struct TransferTransaction: Decodable {
         public let type: Int
         public let id: String
