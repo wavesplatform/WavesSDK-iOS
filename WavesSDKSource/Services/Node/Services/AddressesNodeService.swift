@@ -9,13 +9,6 @@ import Foundation
 import RxSwift
 import Moya
 
-public protocol AddressesNodeServiceProtocol {
-    
-    func accountBalance(address: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AccountBalance>
-    
-    func scriptInfo(address: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AddressScriptInfo>
-}
-
 final class AddressesNodeService: AddressesNodeServiceProtocol {
     
     private let addressesProvider: MoyaProvider<NodeService.Target.Addresses>

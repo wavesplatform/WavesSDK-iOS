@@ -9,13 +9,6 @@ import Foundation
 import RxSwift
 import Moya
 
-public protocol TransactionNodeServiceProtocol {
-    
-    func broadcast(query: NodeService.Query.Broadcast, enviroment: EnviromentService) -> Observable<NodeService.DTO.Transaction>
-    
-    func list(address: String, offset: Int, limit: Int, enviroment: EnviromentService) -> Observable<NodeService.DTO.TransactionContainers>
-}
-
 final class TransactionNodeService: TransactionNodeServiceProtocol {
 
     private let transactionsProvider: MoyaProvider<NodeService.Target.Transaction>

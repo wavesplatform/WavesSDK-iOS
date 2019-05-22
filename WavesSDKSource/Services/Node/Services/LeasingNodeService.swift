@@ -10,11 +10,6 @@ import Foundation
 import RxSwift
 import Moya
 
-public protocol LeasingNodeServiceProtocol {
-    
-    func activeLeasingTransactions(by address: String, enviroment: EnviromentService) -> Observable<[NodeService.DTO.LeaseTransaction]>
-}
-
 final class LeasingNodeService: LeasingNodeServiceProtocol {
     
     private let leasingProvider: MoyaProvider<NodeService.Target.Leasing>

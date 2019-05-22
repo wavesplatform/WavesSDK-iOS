@@ -9,13 +9,6 @@ import Foundation
 import RxSwift
 import Moya
 
-public protocol AssetsDataServiceProtocol {
-    
-    func assets(ids: [String], enviroment: EnviromentService) -> Observable<[DataService.DTO.Asset]>
-    
-    func asset(id: String, enviroment: EnviromentService) -> Observable<DataService.DTO.Asset>
-}
-
 final class AssetsDataService: AssetsDataServiceProtocol {
     
     private let assetsProvider: MoyaProvider<DataService.Target.Assets>

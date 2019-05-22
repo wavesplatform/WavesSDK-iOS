@@ -9,11 +9,6 @@ import Foundation
 import RxSwift
 import Moya
 
-public protocol BalanceMatcherServiceProtocol {
-    
-    func reservedBalances(query: MatcherService.Query.ReservedBalances, enviroment: EnviromentService) -> Observable<[String: Int64]>
-}
-
 final class BalanceMatcherService: BalanceMatcherServiceProtocol {
     
     private let balanceProvider: MoyaProvider<MatcherService.Target.Balance>

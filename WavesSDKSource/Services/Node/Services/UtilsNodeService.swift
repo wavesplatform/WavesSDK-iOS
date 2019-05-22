@@ -10,11 +10,6 @@ import Foundation
 import RxSwift
 import Moya
 
-public protocol UtilsNodeServiceProtocol {
-    
-    func time(serverUrl: URL) -> Observable<NodeService.DTO.Utils.Time>
-}
-
 final class UtilsNodeService: UtilsNodeServiceProtocol {
     
     private let utilsProvider: MoyaProvider<NodeService.Target.Utils>
@@ -35,10 +30,5 @@ final class UtilsNodeService: UtilsNodeServiceProtocol {
             })
             .map(NodeService.DTO.Utils.Time.self)
             .asObservable()
-        .debug("ALAZ", trimOutput: true)
-    }
-    
-    deinit {
-        print("DEINIT")
     }
 }

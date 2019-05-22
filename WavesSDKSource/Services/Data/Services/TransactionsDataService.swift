@@ -9,11 +9,6 @@ import Foundation
 import RxSwift
 import Moya
 
-public protocol TransactionsDataServiceProtocol {
-    
-    func exchangeFilters(query: DataService.Query.ExchangeFilters, enviroment: EnviromentService) -> Observable<[DataService.DTO.ExchangeTransaction]>
-}
-
 final class TransactionsDataService: TransactionsDataServiceProtocol {
     
     private let transactionsProvider: MoyaProvider<DataService.Target.Transactions>

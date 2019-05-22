@@ -9,11 +9,6 @@ import Foundation
 import RxSwift
 import Moya
 
-public protocol CandlesDataServiceProtocol {
-    
-    func candles(query: DataService.Query.CandleFilters, enviroment: EnviromentService) -> Observable<DataService.DTO.Chart>
-}
-
 final class CandlesDataService: CandlesDataServiceProtocol {
     
     private let candlesProvider: MoyaProvider<DataService.Target.Candles>

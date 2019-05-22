@@ -9,11 +9,6 @@ import Foundation
 import RxSwift
 import Moya
 
-public protocol PublicKeyMatcherServiceProtocol {
-    
-    func publicKey(enviroment: EnviromentService) -> Observable<String>
-}
-
 final class PublicKeyMatcherService: PublicKeyMatcherServiceProtocol {
     
     private let publicKeyProvider: MoyaProvider<MatcherService.Target.MatcherPublicKey>
@@ -31,11 +26,19 @@ final class PublicKeyMatcherService: PublicKeyMatcherServiceProtocol {
                      callbackQueue: DispatchQueue.global(qos: .userInteractive))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
-                return Single.error(NetworkError.error(by: error))
+                return Single<Response>.error(NetworkError.error(by: error))
             })
-            .map(String.self)
+            .flatMap({ (response) -> Single<String> in
+                
+                do {
+                    guard let key = try JSONSerialization.jsonObject(with: response.data, options: .allowFragments) as? String else {
+                        return Single.error(NetworkError.none)
+                    }
+                    return Single.just(key)
+                } catch let error {
+                    return Single.error(error)
+                }
+            })
             .asObservable()
     }
 }
-
-

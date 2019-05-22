@@ -42,8 +42,8 @@ public extension MatcherService.Query {
             public let priceAssetId: String
             
             internal var paramenters: [String : String] {
-                return [Constants.amountAsset : amountAssetId,
-                        Constants.priceAsset : priceAssetId]
+                return [Constants.amountAsset : amountAssetId.normalizeWavesAssetId,
+                        Constants.priceAsset : priceAssetId.normalizeWavesAssetId]
             }
             
             public init(amountAssetId: String,

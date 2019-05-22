@@ -9,13 +9,6 @@ import Foundation
 import RxSwift
 import Moya
 
-public protocol AliasDataServiceProtocol {
-    
-    func alias(name: String, enviroment: EnviromentService) -> Observable<DataService.DTO.Alias>
-    
-    func list(address: String, enviroment: EnviromentService) -> Observable<[DataService.DTO.Alias]>
-}
-
 final class AliasDataService: AliasDataServiceProtocol {
     
     private let aliasProvider: MoyaProvider<DataService.Target.Alias>

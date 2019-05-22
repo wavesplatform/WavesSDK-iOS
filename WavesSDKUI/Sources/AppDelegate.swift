@@ -22,16 +22,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                        nodeServicePlugins: [],
                                        matcherrServicePlugins: [])
         
+        
         ServicesFactory.shared
             .addressesNodeService
             .accountBalance(address: "3PCAB4sHXgvtu5NPoen6EXR5yaNbvsEA8Fj",
-                            enviroment: .init(serverUrl: URL(string: "https://nodes.wavesnodes.com/")!))
+                            enviroment: .init(serverUrl: URL(string: "https://nodes.wavesnodes.com/")!,
+                                                             timestampServerDiff: 0))
             .subscribe(onNext: { (balance) in
-            
+                
             }, onError: { (error) in
-        
+                
             }, onCompleted: {
-            
+                
             }) {
             
             }

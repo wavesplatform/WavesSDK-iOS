@@ -46,7 +46,7 @@ extension DataService.Target.PairsPrice: DataTargetType {
     }
     
     var path: String {
-        return parametersString
+        return Constants.pairs
     }
     
     var method: Moya.Method {
@@ -54,26 +54,7 @@ extension DataService.Target.PairsPrice: DataTargetType {
     }
     
     var task: Task {
-        return .requestPlain
-    }
-}
-
-private extension DataService.Target.PairsPrice {
-        
-    var parametersString: String {
-        
-        var url = ""
-        
-        for pair in query.pairs {
-            if (url as NSString).range(of: "?").location == NSNotFound {
-                url.append("?")
-            }
-            if url.last != "?" {
-                url.append("&")
-            }
-            url.append("\(Constants.pairs)=" + pair.amountAssetId + "/" + pair.priceAssetId)
-        }
-
-        return url
+        return .requestParameters(parameters: [Constants.pairs: query.pairs.map { $0.amountAssetId + "/" + $0.priceAssetId } ],
+                                  encoding: URLEncoding.default)
     }
 }

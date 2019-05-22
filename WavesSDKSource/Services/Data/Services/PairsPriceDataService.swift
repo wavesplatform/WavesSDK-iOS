@@ -9,11 +9,6 @@ import Foundation
 import RxSwift
 import Moya
 
-public protocol PairsPriceDataServiceProtocol {
-    
-    func pairsPrice(query: DataService.Query.PairsPrice, enviroment: EnviromentService) -> Observable<[DataService.DTO.PairPrice]>
-}
-
 final class PairsPriceDataService: PairsPriceDataServiceProtocol {
     
     private let pairsPriceProvider: MoyaProvider<DataService.Target.PairsPrice>

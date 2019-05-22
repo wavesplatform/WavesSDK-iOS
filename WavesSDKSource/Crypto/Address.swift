@@ -8,6 +8,7 @@
 import Foundation
 import Curve25519
 import Base58
+import WavesSDKExtension
 
 public class Address {
     static let AddressVersion: UInt8 = 1

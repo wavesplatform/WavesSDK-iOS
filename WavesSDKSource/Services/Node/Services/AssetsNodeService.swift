@@ -9,15 +9,6 @@ import Foundation
 import RxSwift
 import Moya
 
-public protocol AssetsNodeServiceProtocol {
-    
-    func assetsBalances(address: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AccountAssetsBalance>
-    
-    func assetBalance(address: String, assetId: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AccountAssetBalance>
-    
-    func assetDetails(assetId: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.AssetDetail>
-}
-
 final class AssetsNodeService: AssetsNodeServiceProtocol {
     
     private let assetsProvider: MoyaProvider<NodeService.Target.Assets>

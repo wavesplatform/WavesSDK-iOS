@@ -9,11 +9,6 @@ import Foundation
 import RxSwift
 import Moya
 
-public protocol BlocksNodeServiceProtocol {
-    
-    func height(address: String, enviroment: EnviromentService) -> Observable<NodeService.DTO.Block>
-}
-
 final class BlocksNodeService: BlocksNodeServiceProtocol {
     
     private let blocksProvider: MoyaProvider<NodeService.Target.Blocks>
