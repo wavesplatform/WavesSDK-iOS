@@ -16,7 +16,7 @@ public class Address {
     static let HashLength = 20
     static let AddressLength = 1 + 1 + HashLength + ChecksumLength
     
-    public class func getSchemeByte() -> UInt8 {
+    private class func getSchemeByte() -> UInt8 {
         return Environment.current.scheme.utf8.first!
     }
     

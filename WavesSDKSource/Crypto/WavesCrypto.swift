@@ -66,6 +66,8 @@ public protocol WavesCryptoProtocol {
 public class WavesCrypto: WavesCryptoProtocol {
 
     public init() {}
+    
+    public static let shared: WavesCrypto  = WavesCrypto()
 
     public func address(publicKey: PublicKey, chainId: String?) -> Address? {
         

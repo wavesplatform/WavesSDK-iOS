@@ -11,8 +11,7 @@ target 'WavesSDKUI' do
     inherit! :search_paths
     pod 'WavesSDKExtension',  :path => '.'    
     pod 'WavesSDKCrypto',  :path => '.'    
-    pod 'WavesCrypto',  :path => '.'
-    # pod 'OpenAPIClient',  :path => '.'
+    pod 'WavesSDKClientCrypto',  :path => '.'    
     pod 'WavesSDKServices',  :path => '.'
     
 end
@@ -22,6 +21,6 @@ target 'WavesSDKTests' do
 
     inherit! :search_paths
     pod 'WavesSDKExtension',  :path => '.'    
-    pod 'WavesSDKCrypto',  :path => '.'    
-    pod 'WavesCrypto',  :path => '.'
+    pod 'WavesSDKCrypto',  :path => '.'
+    pod 'WavesSDKClientCrypto',  :path => '.' 
 end

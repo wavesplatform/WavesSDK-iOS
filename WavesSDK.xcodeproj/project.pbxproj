@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B32A8E22296EC1D004789E7 /* TransactionSignatureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B32A8E12296EC1C004789E7 /* TransactionSignatureProtocol.swift */; };
+		7B32A8E42296EC2F004789E7 /* TransactionSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B32A8E32296EC2F004789E7 /* TransactionSignature.swift */; };
 		7B72BBAE22550493004A047F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B72BBAD22550493004A047F /* AppDelegate.swift */; };
 		7B72BBB022550493004A047F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B72BBAF22550493004A047F /* ViewController.swift */; };
 		7B72BBB322550493004A047F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B72BBB122550493004A047F /* Main.storyboard */; };
 		7B72BBB522550495004A047F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B72BBB422550495004A047F /* Assets.xcassets */; };
 		7B72BBB822550495004A047F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B72BBB622550495004A047F /* LaunchScreen.storyboard */; };
+		7B8A1C8A22969E4A00082D47 /* SignatureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8A1C8922969E4A00082D47 /* SignatureProtocol.swift */; };
 		7B95114B225E16370030390C /* WavesCryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B95114A225E16370030390C /* WavesCryptoTest.swift */; };
 		B1D215550487857FD3DB8D1B /* Pods_WavesSDKUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F3F9B3BFF1616BB6421EBB /* Pods_WavesSDKUI.framework */; };
 		B9DD42C8511DC37A65184528 /* Pods_WavesSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B427D3FB77C38954CF773553 /* Pods_WavesSDKTests.framework */; };
@@ -30,6 +33,8 @@
 /* Begin PBXFileReference section */
 		24B36808B9D7657954B3022C /* Pods-WavesSDKUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKUI.debug.xcconfig"; path = "Target Support Files/Pods-WavesSDKUI/Pods-WavesSDKUI.debug.xcconfig"; sourceTree = "<group>"; };
 		4F27D6E43822DF0A8A342D76 /* Pods-WavesSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKTests.release.xcconfig"; path = "Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests.release.xcconfig"; sourceTree = "<group>"; };
+		7B32A8E12296EC1C004789E7 /* TransactionSignatureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSignatureProtocol.swift; sourceTree = "<group>"; };
+		7B32A8E32296EC2F004789E7 /* TransactionSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSignature.swift; sourceTree = "<group>"; };
 		7B42335422563A2100E82730 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		7B42335622563A3200E82730 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7B72BBAA22550493004A047F /* WavesSDKUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WavesSDKUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +44,7 @@
 		7B72BBB422550495004A047F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B72BBB722550495004A047F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B72BBB922550495004A047F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B8A1C8922969E4A00082D47 /* SignatureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureProtocol.swift; sourceTree = "<group>"; };
 		7B951148225E16370030390C /* WavesSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WavesSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B95114A225E16370030390C /* WavesCryptoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesCryptoTest.swift; sourceTree = "<group>"; };
 		7B95114C225E16370030390C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,6 +129,9 @@
 				7B72BBAD22550493004A047F /* AppDelegate.swift */,
 				7B72BBAF22550493004A047F /* ViewController.swift */,
 				7B72BBB122550493004A047F /* Main.storyboard */,
+				7B8A1C8922969E4A00082D47 /* SignatureProtocol.swift */,
+				7B32A8E12296EC1C004789E7 /* TransactionSignatureProtocol.swift */,
+				7B32A8E32296EC2F004789E7 /* TransactionSignature.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -286,6 +295,7 @@
 				"${BUILT_PRODUCTS_DIR}/Curve25519/Curve25519.framework",
 				"${BUILT_PRODUCTS_DIR}/Keccak/Keccak.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/WavesSDKClientCrypto/WavesSDKClientCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/WavesSDKCrypto/WavesSDKCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/WavesSDKExtension/WavesSDKExtension.framework",
 			);
@@ -299,6 +309,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Curve25519.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keccak.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKClientCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKExtension.framework",
 			);
@@ -325,6 +336,7 @@
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/WavesSDKClientCrypto/WavesSDKClientCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/WavesSDKCrypto/WavesSDKCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/WavesSDKExtension/WavesSDKExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/WavesSDKServices/WavesSDKServices.framework",
@@ -342,6 +354,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKClientCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKServices.framework",
@@ -382,6 +395,9 @@
 			files = (
 				7B72BBB022550493004A047F /* ViewController.swift in Sources */,
 				7B72BBAE22550493004A047F /* AppDelegate.swift in Sources */,
+				7B8A1C8A22969E4A00082D47 /* SignatureProtocol.swift in Sources */,
+				7B32A8E22296EC1D004789E7 /* TransactionSignatureProtocol.swift in Sources */,
+				7B32A8E42296EC2F004789E7 /* TransactionSignature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
