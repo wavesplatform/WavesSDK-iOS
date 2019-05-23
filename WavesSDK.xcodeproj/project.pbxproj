@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7B32A8E22296EC1D004789E7 /* TransactionSignatureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B32A8E12296EC1C004789E7 /* TransactionSignatureProtocol.swift */; };
-		7B32A8E42296EC2F004789E7 /* TransactionSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B32A8E32296EC2F004789E7 /* TransactionSignature.swift */; };
+		7B32A8E42296EC2F004789E7 /* TransactionSignatureV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B32A8E32296EC2F004789E7 /* TransactionSignatureV2.swift */; };
 		7B72BBAE22550493004A047F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B72BBAD22550493004A047F /* AppDelegate.swift */; };
 		7B72BBB022550493004A047F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B72BBAF22550493004A047F /* ViewController.swift */; };
 		7B72BBB322550493004A047F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B72BBB122550493004A047F /* Main.storyboard */; };
@@ -34,7 +34,7 @@
 		24B36808B9D7657954B3022C /* Pods-WavesSDKUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKUI.debug.xcconfig"; path = "Target Support Files/Pods-WavesSDKUI/Pods-WavesSDKUI.debug.xcconfig"; sourceTree = "<group>"; };
 		4F27D6E43822DF0A8A342D76 /* Pods-WavesSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKTests.release.xcconfig"; path = "Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests.release.xcconfig"; sourceTree = "<group>"; };
 		7B32A8E12296EC1C004789E7 /* TransactionSignatureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSignatureProtocol.swift; sourceTree = "<group>"; };
-		7B32A8E32296EC2F004789E7 /* TransactionSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSignature.swift; sourceTree = "<group>"; };
+		7B32A8E32296EC2F004789E7 /* TransactionSignatureV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSignatureV2.swift; sourceTree = "<group>"; };
 		7B42335422563A2100E82730 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		7B42335622563A3200E82730 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7B72BBAA22550493004A047F /* WavesSDKUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WavesSDKUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,7 +131,7 @@
 				7B72BBB122550493004A047F /* Main.storyboard */,
 				7B8A1C8922969E4A00082D47 /* SignatureProtocol.swift */,
 				7B32A8E12296EC1C004789E7 /* TransactionSignatureProtocol.swift */,
-				7B32A8E32296EC2F004789E7 /* TransactionSignature.swift */,
+				7B32A8E32296EC2F004789E7 /* TransactionSignatureV2.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -397,7 +397,7 @@
 				7B72BBAE22550493004A047F /* AppDelegate.swift in Sources */,
 				7B8A1C8A22969E4A00082D47 /* SignatureProtocol.swift in Sources */,
 				7B32A8E22296EC1D004789E7 /* TransactionSignatureProtocol.swift in Sources */,
-				7B32A8E42296EC2F004789E7 /* TransactionSignature.swift in Sources */,
+				7B32A8E42296EC2F004789E7 /* TransactionSignatureV2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
