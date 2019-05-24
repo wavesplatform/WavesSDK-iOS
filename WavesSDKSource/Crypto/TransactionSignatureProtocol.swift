@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol TransactionSignatureProtocol: SignatureProtocol {
+public protocol TransactionSignatureProtocol: SignatureProtocol {
     
     var version: Int { get }
 }

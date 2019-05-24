@@ -27,7 +27,7 @@ enum TransactionType: Int8 {
     case invokeScript = 16
 }
 
-extension TransactionSignatureV2 {
+public extension TransactionSignatureV2 {
     
     struct Alias {
         let alias: String
@@ -52,8 +52,8 @@ extension TransactionSignatureV2 {
     }
     
     struct Data {
-        struct Value {
-            enum Kind {
+        public struct Value {
+            public enum Kind {
                 case integer(Int64)
                 case boolean(Bool)
                 case string(String)
@@ -81,7 +81,7 @@ extension TransactionSignatureV2 {
     }
 }
 
-enum TransactionSignatureV2: TransactionSignatureProtocol {
+public enum TransactionSignatureV2: TransactionSignatureProtocol {
     
     case createAlias(Alias)
     case lease(Lease)
@@ -95,7 +95,7 @@ enum TransactionSignatureV2: TransactionSignatureProtocol {
     }
 }
 
-extension TransactionSignatureV2 {
+public extension TransactionSignatureV2 {
     
     var bytesOrder: WavesSDKCrypto.Bytes {
         
