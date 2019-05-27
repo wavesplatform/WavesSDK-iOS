@@ -10,6 +10,6 @@ import Foundation
 
 public protocol TransactionSignatureProtocol: SignatureProtocol {
     
-    var version: Int { get }
+    var version: Int { get }        
 }
 

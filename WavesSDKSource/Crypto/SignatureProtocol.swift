@@ -13,7 +13,7 @@ import Base58
 
 public protocol SignatureProtocol {
     
-    var bytesOrder: WavesSDKCrypto.Bytes { get }
+    var bytesStructure: WavesSDKCrypto.Bytes { get }
     
     func signature(privateKey: WavesSDKCrypto.PrivateKey) -> WavesSDKCrypto.Bytes?
     
@@ -23,7 +23,7 @@ public protocol SignatureProtocol {
 public extension SignatureProtocol {
     
     func signature(privateKey: WavesSDKCrypto.PrivateKey) -> WavesSDKCrypto.Bytes? {
-        return WavesCrypto.shared.signBytes(bytes: bytesOrder, privateKey: privateKey)
+        return WavesCrypto.shared.signBytes(bytes: bytesStructure, privateKey: privateKey)
     }
     
     func signature(privateKey: WavesSDKCrypto.PrivateKey) -> String? {

@@ -29,6 +29,7 @@ PODS:
     - CryptoSwift
     - Curve25519
     - Keccak
+    - WavesSDKExtension
   - WavesSDKExtension (0.1.1):
     - RxSwift (~> 4.0)
   - WavesSDKServices (0.1.1):
@@ -77,7 +78,7 @@ SPEC CHECKSUMS:
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   WavesSDKClientCrypto: aa049f55adc83d6e9174df4304863fbd4a7afe0f
-  WavesSDKCrypto: 95b9d5943096956f2054d195606722b59fc2752d
+  WavesSDKCrypto: e440df3d82dbd2bd60a6a1433240f7b7a199b9e8
   WavesSDKExtension: 2e972e3090a981d80932912f341f381aa2880b84
   WavesSDKServices: 2baa285d817be47b519c1720af7df9f174207143
 

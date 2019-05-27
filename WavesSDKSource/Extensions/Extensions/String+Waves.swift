@@ -8,7 +8,7 @@
 import Foundation
 import WavesSDKExtension
 
-extension String {
+public extension String {
     
     var normalizeWavesAssetId: String {
         if self == WavesSDKCryptoConstants.wavesAssetId {

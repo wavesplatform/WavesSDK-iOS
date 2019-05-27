@@ -24,4 +24,6 @@ Pod::Spec.new do |spec|
   spec.dependency 'Base58'
   spec.dependency 'Keccak'
   spec.dependency 'Blake2'
+
+  spec.dependency 'WavesSDKExtension'
 end
