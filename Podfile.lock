@@ -15,6 +15,12 @@ PODS:
     - RxSwift (~> 4.0)
   - Result (4.1.0)
   - RxSwift (4.5.0)
+  - WavesSDK (0.1.1):
+    - Moya (~> 12.0.1)
+    - Moya/RxSwift (~> 12.0.1)
+    - RxSwift (~> 4.0)
+    - WavesSDKCrypto
+    - WavesSDKExtension
   - WavesSDKClientCrypto (0.1.2):
     - Base58
     - Blake2
@@ -32,17 +38,12 @@ PODS:
     - WavesSDKExtension
   - WavesSDKExtension (0.1.1):
     - RxSwift (~> 4.0)
-  - WavesSDKServices (0.1.1):
-    - Moya (~> 12.0.1)
-    - Moya/RxSwift (~> 12.0.1)
-    - RxSwift (~> 4.0)
-    - WavesSDKExtension
 
 DEPENDENCIES:
+  - WavesSDK (from `.`)
   - WavesSDKClientCrypto (from `.`)
   - WavesSDKCrypto (from `.`)
   - WavesSDKExtension (from `.`)
-  - WavesSDKServices (from `.`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -58,13 +59,13 @@ SPEC REPOS:
     - Keccak
 
 EXTERNAL SOURCES:
+  WavesSDK:
+    :path: "."
   WavesSDKClientCrypto:
     :path: "."
   WavesSDKCrypto:
     :path: "."
   WavesSDKExtension:
-    :path: "."
-  WavesSDKServices:
     :path: "."
 
 SPEC CHECKSUMS:
@@ -77,11 +78,11 @@ SPEC CHECKSUMS:
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  WavesSDK: 25ce6d414f09a852c3e8bd92d5ee5c13b3db9ae8
   WavesSDKClientCrypto: aa049f55adc83d6e9174df4304863fbd4a7afe0f
   WavesSDKCrypto: e440df3d82dbd2bd60a6a1433240f7b7a199b9e8
   WavesSDKExtension: 2e972e3090a981d80932912f341f381aa2880b84
-  WavesSDKServices: 2baa285d817be47b519c1720af7df9f174207143
 
-PODFILE CHECKSUM: 0c926f9f55f4308a2c941aebfce4136e48ecf465
+PODFILE CHECKSUM: d36af411c48b4ca85809e568e1d7f3b646ebfd9a
 
 COCOAPODS: 1.6.1

@@ -10,10 +10,8 @@ target 'WavesSDKUI' do
 
     inherit! :search_paths
     pod 'WavesSDKExtension',  :path => '.'    
-    pod 'WavesSDKCrypto',  :path => '.'    
-    pod 'WavesSDKClientCrypto',  :path => '.'    
-    pod 'WavesSDKServices',  :path => '.'
-    
+    pod 'WavesSDK',  :path => '.'   
+    pod 'WavesSDKCrypto',  :path => '.'        
 end
 
 

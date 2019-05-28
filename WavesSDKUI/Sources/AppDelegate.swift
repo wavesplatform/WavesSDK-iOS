@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import WavesSDKServices
+import WavesSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,25 +18,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customirzation after application launch.
         
         
-        ServicesFactory.initialization(dataServicePlugins: [],
-                                       nodeServicePlugins: [],
-                                       matcherrServicePlugins: [])
+        WavesSDK.initialization(servicesPlugins: .init(data: [], node: [], matcher: []), enviroment: .init(server: .mainNet, timestampServerDiff: 0))
         
         
-        ServicesFactory.shared
-            .addressesNodeService
-            .accountBalance(address: "3PCAB4sHXgvtu5NPoen6EXR5yaNbvsEA8Fj",
-                            enviroment: .init(serverUrl: URL(string: "https://nodes.wavesnodes.com/")!,
-                                                             timestampServerDiff: 0))
-            .subscribe(onNext: { (balance) in
-                
-            }, onError: { (error) in
-                
-            }, onCompleted: {
-                
-            }) {
+        WavesSDK.shared.services.nodeServices.addressesNodeService.addressBalance(address: "3PCAB4sHXgvtu5NPoen6EXR5yaNbvsEA8Fj").subscribe(onNext: { (bql) in
             
-            }
+        }, onError: nil, onCompleted: nil, onDisposed: nil)
+        
+//        ServicesFactory.initialization(dataServicePlugins: [],
+//                                       nodeServicePlugins: [],
+//                                       matcherrServicePlugins: [])
+//        
+//        
+//        ServicesFactory.shared
+//            .addressesNodeService
+//            .accountBalance(address: "3PCAB4sHXgvtu5NPoen6EXR5yaNbvsEA8Fj",
+//                            enviroment: .init(serverUrl: URL(string: "https://nodes.wavesnodes.com/")!,
+//                                                             timestampServerDiff: 0))
+//            .subscribe(onNext: { (balance) in
+//                
+//            }, onError: { (error) in
+//                
+//            }, onCompleted: {
+//                
+//            }) {
+//            
+//            }
                 
         return true
     }
