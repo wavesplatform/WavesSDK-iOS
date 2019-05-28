@@ -8,44 +8,6 @@
 import Foundation
 import Moya
 
-public protocol ServicesProtocol {
-    var enviroment: Enviroment { get set }
-}
-
-public protocol NodeServicesProtocol: ServicesProtocol {
-    
-    var addressesNodeService: AddressesNodeServiceProtocol { get }
-    var assetsNodeService: AssetsNodeServiceProtocol { get }
-    var blocksNodeService: BlocksNodeServiceProtocol { get }
-    var leasingNodeService: LeasingNodeServiceProtocol { get }
-    var transactionNodeService: TransactionNodeServiceProtocol { get }
-    var utilsNodeService: UtilsNodeServiceProtocol { get }
-}
-
-public protocol MatcherServicesProtocol: ServicesProtocol {
-    
-    var balanceMatcherService: BalanceMatcherServiceProtocol { get }
-    var orderBookMatcherService: OrderBookMatcherServiceProtocol { get }
-    var publicKeyMatcherService: PublicKeyMatcherServiceProtocol { get }
-}
-
-public protocol DataServicesProtocol: ServicesProtocol {
-    
-    var aliasDataService: AliasDataServiceProtocol { get }
-    var assetsDataService: AssetsDataServiceProtocol { get }
-    var candlesDataService: CandlesDataServiceProtocol { get }
-    var pairsPriceDataService: PairsPriceDataServiceProtocol { get }
-    var transactionsDataService: TransactionsDataServiceProtocol { get }
-}
-
-public protocol WavesServicesProtocol {
-    
-    var enviroment: Enviroment { get set }
-        
-    var nodeServices: NodeServicesProtocol { get }
-    var dataServices: DataServicesProtocol { get }
-    var matcherServices: MatcherServicesProtocol { get }
-}
 
 final class WavesServices: WavesServicesProtocol {
     
@@ -79,13 +41,6 @@ final class WavesServices: WavesServicesProtocol {
     }
 }
 
-extension ServicesProtocol {
-    
-    static func moyaProvider<Target: TargetType>(plugins: [PluginType]) -> MoyaProvider<Target> {
-        return MoyaProvider<Target>(callbackQueue: nil,
-                                    plugins: plugins)
-    }
-}
 
 private final class NodeServices: ServicesProtocol, NodeServicesProtocol {
     
