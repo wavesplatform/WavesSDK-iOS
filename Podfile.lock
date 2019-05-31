@@ -5,15 +5,13 @@ PODS:
   - Curve25519 (2.0.3)
   - Keccak (0.2)
   - RxSwift (4.5.0)
-  - WavesCrypto (0.1.1):
+  - WavesCrypto (0.1.2):
     - Base58
     - Blake2
     - CryptoSwift
     - Curve25519
     - Keccak
-    - RxSwift (~> 4.0)
-    - WavesSDKExtension
-  - WavesSDKCrypto (0.1.1):
+  - WavesSDKCrypto (0.1.2):
     - Base58
     - Blake2
     - CryptoSwift
@@ -54,8 +52,8 @@ SPEC CHECKSUMS:
   Curve25519: 4c9483171010b27488a3bac6ee327588a1182fb4
   Keccak: 746b8f26ac04386f165f55998ca7c81666b8721d
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
-  WavesCrypto: 6568a95a0b293a79fbf34584b46f3b1b60c24523
-  WavesSDKCrypto: 8ab5f55677b6bbb787bae194074e96ebc60df96d
+  WavesCrypto: d0fa149c91b3fce7b928fc4d59498a24783fba44
+  WavesSDKCrypto: 3d85ce5a1a1c9d4b93b4717c474cba923f99f21d
   WavesSDKExtension: 2e972e3090a981d80932912f341f381aa2880b84
 
 PODFILE CHECKSUM: 5a0ea166f21a98074e821df84eaccf75853a0951

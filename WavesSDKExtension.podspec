@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   
   spec.name         = 'WavesSDKExtension'  
-  spec.version      = '0.1.1'
+  spec.version      = '0.1.3'
   spec.ios.deployment_target = '10.0'
   spec.requires_arc = true
   spec.license      = { :type => 'MIT' }
