@@ -19,6 +19,5 @@ target 'WavesSDKTests' do
 
     inherit! :search_paths
     pod 'WavesSDKExtension',  :path => '.'    
-    pod 'WavesSDKCrypto',  :path => '.'
-    pod 'WavesSDKClientCrypto',  :path => '.' 
+    pod 'WavesSDKCrypto',  :path => '.'    
 end

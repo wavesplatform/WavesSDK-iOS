@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import WavesSDKExtension
 
 public enum WavesSDKCryptoConstants {
     public static let aliasNameMinLimitSymbols: Int = 4

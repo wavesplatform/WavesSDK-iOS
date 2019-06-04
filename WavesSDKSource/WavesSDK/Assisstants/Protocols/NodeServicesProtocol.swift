@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol NodeServicesProtocol: ServicesProtocol {
+public protocol NodeServicesProtocol {
     
     var addressesNodeService: AddressesNodeServiceProtocol { get }
     var assetsNodeService: AssetsNodeServiceProtocol { get }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol MatcherServicesProtocol: ServicesProtocol {
+public protocol MatcherServicesProtocol {
     
     var balanceMatcherService: BalanceMatcherServiceProtocol { get }
     var orderBookMatcherService: OrderBookMatcherServiceProtocol { get }

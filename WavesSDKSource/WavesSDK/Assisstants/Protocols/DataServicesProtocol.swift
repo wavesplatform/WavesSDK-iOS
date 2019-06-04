@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol DataServicesProtocol: ServicesProtocol {
+public protocol DataServicesProtocol {
     
     var aliasDataService: AliasDataServiceProtocol { get }
     var assetsDataService: AssetsDataServiceProtocol { get }

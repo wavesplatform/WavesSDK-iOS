@@ -21,14 +21,6 @@ PODS:
     - RxSwift (~> 4.0)
     - WavesSDKCrypto
     - WavesSDKExtension
-  - WavesSDKClientCrypto (0.1.2):
-    - Base58
-    - Blake2
-    - CryptoSwift
-    - Curve25519
-    - Keccak
-    - RxSwift (~> 4.0)
-    - WavesSDKExtension
   - WavesSDKCrypto (0.1.2):
     - Base58
     - Blake2
@@ -41,7 +33,6 @@ PODS:
 
 DEPENDENCIES:
   - WavesSDK (from `.`)
-  - WavesSDKClientCrypto (from `.`)
   - WavesSDKCrypto (from `.`)
   - WavesSDKExtension (from `.`)
 
@@ -61,8 +52,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   WavesSDK:
     :path: "."
-  WavesSDKClientCrypto:
-    :path: "."
   WavesSDKCrypto:
     :path: "."
   WavesSDKExtension:
@@ -79,10 +68,9 @@ SPEC CHECKSUMS:
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   WavesSDK: 25ce6d414f09a852c3e8bd92d5ee5c13b3db9ae8
-  WavesSDKClientCrypto: aa049f55adc83d6e9174df4304863fbd4a7afe0f
   WavesSDKCrypto: e440df3d82dbd2bd60a6a1433240f7b7a199b9e8
   WavesSDKExtension: 2e972e3090a981d80932912f341f381aa2880b84
 
-PODFILE CHECKSUM: d36af411c48b4ca85809e568e1d7f3b646ebfd9a
+PODFILE CHECKSUM: e0076e43e8813a8a02a80cc57c8d0bc1b60314c9
 
 COCOAPODS: 1.6.1

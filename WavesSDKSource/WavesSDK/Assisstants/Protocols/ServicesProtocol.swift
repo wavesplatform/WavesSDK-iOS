@@ -8,11 +8,7 @@
 import Foundation
 import Moya
 
-public protocol ServicesProtocol {
-    var enviroment: Enviroment { get set }
-}
-
-extension ServicesProtocol {
+extension InternalWavesService {
     
     static func moyaProvider<Target: TargetType>(plugins: [PluginType]) -> MoyaProvider<Target> {
         return MoyaProvider<Target>(callbackQueue: nil,

@@ -9,14 +9,14 @@ import Foundation
 import RxSwift
 import Moya
 
-final class AddressesNodeService: AddressesNodeServiceProtocol {
+final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProtocol {
     
     private let addressesProvider: MoyaProvider<NodeService.Target.Addresses>
-    var enviroment: Enviroment
     
     init(addressesProvider: MoyaProvider<NodeService.Target.Addresses>, enviroment: Enviroment) {
+        
         self.addressesProvider = addressesProvider
-        self.enviroment = enviroment
+        super.init(enviroment: enviroment)
     }
     
     public func addressBalance(address: String) -> Observable<NodeService.DTO.AddressBalance> {
