@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Moya
 
 internal final class DataServices: InternalWavesService, DataServicesProtocol {
     
@@ -18,6 +19,21 @@ internal final class DataServices: InternalWavesService, DataServicesProtocol {
     public var pairsPriceDataService: PairsPriceDataServiceProtocol
     
     public var transactionsDataService: TransactionsDataServiceProtocol
+    
+    override var enviroment: Enviroment {
+        
+        didSet {
+            
+            [aliasDataService,
+             assetsDataService,
+             candlesDataService,
+             pairsPriceDataService,
+             transactionsDataService]
+                .map { $0 as? InternalWavesService }
+                .compactMap { $0 }
+                .forEach { $0.enviroment = enviroment }
+        }
+    }
     
     init(plugins: [PluginType],
          enviroment: Enviroment) {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Moya
 
 internal final class WavesServices: InternalWavesService, WavesServicesProtocol {
     
@@ -16,9 +17,13 @@ internal final class WavesServices: InternalWavesService, WavesServicesProtocol 
     override var enviroment: Enviroment {
         
         didSet {
-//            self.nodeServices.enviroment = enviroment
-//            self.matcherServices.enviroment = enviroment
-//            self.dataServices.enviroment = enviroment
+            
+            [nodeServices,
+             dataServices,
+             matcherServices]
+                .map { $0 as? InternalWavesService }
+                .compactMap { $0 }
+                .forEach { $0.enviroment = enviroment }
         }
     }
     
@@ -35,32 +40,6 @@ internal final class WavesServices: InternalWavesService, WavesServicesProtocol 
         
         self.matcherServices = MatcherServices(plugins: matcherServicePlugins,
                                                enviroment: enviroment)
-        
-        super.init(enviroment: enviroment)
-    }
-}
-
-
-private final class DataServices: InternalWavesService, DataServicesProtocol {
-    
-    public var aliasDataService: AliasDataServiceProtocol
-    
-    public var assetsDataService: AssetsDataServiceProtocol
-    
-    public var candlesDataService: CandlesDataServiceProtocol
-    
-    public var pairsPriceDataService: PairsPriceDataServiceProtocol
-    
-    public var transactionsDataService: TransactionsDataServiceProtocol
-    
-    init(plugins: [PluginType],
-         enviroment: Enviroment) {
-        
-        aliasDataService = AliasDataService(aliasProvider: DataServices.moyaProvider(plugins: plugins), enviroment: enviroment)
-        assetsDataService = AssetsDataService(assetsProvider: DataServices.moyaProvider(plugins: plugins), enviroment: enviroment)
-        candlesDataService = CandlesDataService(candlesProvider: DataServices.moyaProvider(plugins: plugins), enviroment: enviroment)
-        pairsPriceDataService = PairsPriceDataService(pairsPriceProvider: DataServices.moyaProvider(plugins: plugins), enviroment: enviroment)
-        transactionsDataService = TransactionsDataService(transactionsProvider: DataServices.moyaProvider(plugins: plugins), enviroment: enviroment)
         
         super.init(enviroment: enviroment)
     }

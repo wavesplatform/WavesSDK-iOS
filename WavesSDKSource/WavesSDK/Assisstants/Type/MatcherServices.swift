@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Moya
 
 internal final class MatcherServices: InternalWavesService, MatcherServicesProtocol {
     
@@ -14,6 +15,19 @@ internal final class MatcherServices: InternalWavesService, MatcherServicesProto
     private(set) var orderBookMatcherService: OrderBookMatcherServiceProtocol
     
     private(set) var publicKeyMatcherService: PublicKeyMatcherServiceProtocol
+    
+    override var enviroment: Enviroment {
+        
+        didSet {
+            
+            [balanceMatcherService,
+             orderBookMatcherService,
+             publicKeyMatcherService]
+                .map { $0 as? InternalWavesService }
+                .compactMap { $0 }
+                .forEach { $0.enviroment = enviroment }
+        }
+    }
     
     init(plugins: [PluginType],
          enviroment: Enviroment) {

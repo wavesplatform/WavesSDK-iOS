@@ -22,6 +22,22 @@ internal final class NodeServices: InternalWavesService, NodeServicesProtocol {
     
     private(set) var utilsNodeService: UtilsNodeServiceProtocol
     
+    override var enviroment: Enviroment {
+        
+        didSet {
+            
+            [addressesNodeService,
+             assetsNodeService,
+             blocksNodeService,
+             leasingNodeService,
+             transactionNodeService,
+             utilsNodeService]
+                .map { $0 as? InternalWavesService }
+                .compactMap { $0 }
+                .forEach { $0.enviroment = enviroment }
+        }
+    }
+    
     init(plugins: [PluginType],
          enviroment: Enviroment) {
         

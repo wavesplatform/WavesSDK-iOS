@@ -26,34 +26,35 @@ public final class WavesSDK {
     
     private(set) public var services: WavesServicesProtocol
     
-    private var internalServices: InternalWavesServiceProtocol
-    
     public let crypto: WavesCrypto = WavesCrypto.shared
     
-    private var internalEenviroment: Enviroment
+    private var internalEnviroment: Enviroment
     
     public var enviroment: Enviroment {
         
         get {
             objc_sync_enter(self)
             defer { objc_sync_exit(self) }
-            return internalEenviroment
+            return internalEnviroment
         }
         
         set {
             objc_sync_enter(self)
             defer { objc_sync_exit(self) }
-            internalEenviroment = newValue
-            internalServices.enviroment = newValue
+            internalEnviroment = newValue
+            
+            if var internalServices = services as? InternalWavesServiceProtocol {
+                internalServices.enviroment = newValue
+            }
         }
     }
     
     static private(set) public var shared: WavesSDK!
     
-    init(services: WavesServicesProtocol & InternalWavesServiceProtocol, enviroment: Enviroment) {
+    init(services: WavesServicesProtocol, enviroment: Enviroment) {
         self.services = services
-        self.internalEenviroment = enviroment
-        self.internalServices = services
+        self.internalEnviroment = enviroment
+        
     }
     
     public class func isInitialized() -> Bool {
