@@ -79,13 +79,18 @@ public extension UIDevice {
 }
 
 public extension Bundle {
-
+    
     var version: String {
-
+        let dictionary = Bundle.main.infoDictionary!
+        return (dictionary["CFBundleShortVersionString"] as? String) ?? ""
+    }
+    
+    var versionAndBuild: String {
+        
         let dictionary = Bundle.main.infoDictionary!
         let version = (dictionary["CFBundleShortVersionString"] as? String) ?? ""
         let build = (dictionary["CFBundleVersion"] as? String) ?? ""
-
+        
         return "\(version) (\(build))"
     }
 }

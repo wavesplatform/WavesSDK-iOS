@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'WavesSDKCrypto'  
-  spec.version      = '0.1.2'
+  spec.version      = '0.1.3'
   spec.ios.deployment_target = '10.0'
   spec.requires_arc = true
   spec.license      = { :type => 'MIT' }
