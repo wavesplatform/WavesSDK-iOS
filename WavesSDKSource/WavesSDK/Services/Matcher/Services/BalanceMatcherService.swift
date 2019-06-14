@@ -25,7 +25,7 @@ final class BalanceMatcherService: BalanceMatcherServiceProtocol {
             .balanceProvider
             .rx
             .request(.init(kind: .getReservedBalances(query),
-                           matcherUrl: enviroment.dataUrl),
+                           matcherUrl: enviroment.matcherUrl),
                      callbackQueue: DispatchQueue.global(qos: .userInteractive))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in

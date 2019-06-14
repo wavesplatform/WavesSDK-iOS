@@ -42,5 +42,7 @@ internal final class WavesServices: InternalWavesService, WavesServicesProtocol 
                                                enviroment: enviroment)
         
         super.init(enviroment: enviroment)
+        
+        self.enviroment = enviroment
     }
 }

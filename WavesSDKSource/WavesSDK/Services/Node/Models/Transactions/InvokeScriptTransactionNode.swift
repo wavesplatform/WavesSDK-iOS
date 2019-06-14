@@ -43,8 +43,8 @@ extension NodeService.DTO {
         public let timestamp: Date
         public let proofs: [String]?
         public let version: Int
-        public let dappAddress: String
-        public let call: Call
+        public let dApp: String
+        public let call: Call?
         public let payment: [Payment]
         public let height: Int64
     }

@@ -10,7 +10,6 @@ import Foundation
 import Moya
 import WavesSDKExtension
 
-//TODO: Library Need check AssedId Waves
 
 extension MatcherService.Target {
     

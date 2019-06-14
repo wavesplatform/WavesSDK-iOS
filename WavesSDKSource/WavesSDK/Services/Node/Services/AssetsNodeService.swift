@@ -33,6 +33,9 @@ final class AssetsNodeService: AssetsNodeServiceProtocol {
                 return Observable.error(NetworkError.error(by: error))
             })
             .map(NodeService.DTO.AddressAssetsBalance.self, atKeyPath: nil, using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff), failsOnEmptyData: false)
+            .catchError({ (error) -> Observable<NodeService.DTO.AddressAssetsBalance> in
+                return Observable.error(NetworkError.error(by: error))
+            })
             .asObservable()
     }
     

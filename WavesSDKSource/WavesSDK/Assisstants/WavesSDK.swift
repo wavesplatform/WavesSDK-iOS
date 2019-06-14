@@ -10,6 +10,7 @@ import WavesSDKExtension
 import WavesSDKCrypto
 import Moya
 
+//TODO: set log level
 public final class WavesSDK {
     
     public struct ServicesPlugins {
@@ -25,8 +26,6 @@ public final class WavesSDK {
     }
     
     private(set) public var services: WavesServicesProtocol
-    
-    public let crypto: WavesCrypto = WavesCrypto.shared
     
     private var internalEnviroment: Enviroment
     
@@ -58,7 +57,7 @@ public final class WavesSDK {
     }
     
     public class func isInitialized() -> Bool {
-        return true
+        return WavesSDK.shared != nil
     }
     
     public class func initialization(servicesPlugins: ServicesPlugins,

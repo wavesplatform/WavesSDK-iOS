@@ -52,8 +52,6 @@ public extension DataService.DTO {
     }
 }
 
-
-//TODO: Library
 extension DataService.DTO.ExchangeTransaction {
     
     public var orderType: DataService.DTO.OrderType {
