@@ -10,7 +10,7 @@ import Foundation
 
 public extension DataService.DTO {
     
-    struct PairPrice: Decodable {
+    public struct PairPrice: Decodable {
         public let firstPrice: Double
         public let lastPrice: Double
         public let volume: Double
@@ -24,3 +24,4 @@ public extension DataService.DTO {
         }
     }
 }
+

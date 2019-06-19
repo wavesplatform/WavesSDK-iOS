@@ -10,7 +10,6 @@ import WavesSDKExtension
 import WavesSDKCrypto
 import Moya
 
-//TODO: set log level
 public final class WavesSDK {
     
     public struct ServicesPlugins {

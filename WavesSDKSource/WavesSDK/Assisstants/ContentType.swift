@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum ContentType {
+public enum ContentType {
     case applicationJson
     case applicationCsv
 }
 
-extension ContentType {
-    var headers: [String: String] {
+public extension ContentType {
+    public var headers: [String: String] {
         switch self {
         case .applicationCsv:
             return ["Content-type": "application/csv"]

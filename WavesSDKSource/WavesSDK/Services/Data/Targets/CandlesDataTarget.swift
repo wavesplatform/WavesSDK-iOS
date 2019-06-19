@@ -34,9 +34,5 @@ extension DataService.Target.Candles: DataTargetType {
     
     var task: Task {
         return .requestParameters(parameters: query.dictionary, encoding: URLEncoding.default)
-    }
-    
-//    var baseURL: URL {
-//        return URL(string: environment.servers.dataUrl.relativeString)!
-//    }    
+    }    
 }
