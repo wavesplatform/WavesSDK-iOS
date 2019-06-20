@@ -7,6 +7,19 @@
 
 import Foundation
 
+private struct Constants {
+    
+    static let dataUrlMainnet: URL = URL(string: "https://api.wavesplatform.com")!
+    static let nodeUrlMainnet: URL = URL(string: "https://nodes.wavesnodes.com")!
+    static let matcherUrlMainnet: URL = URL(string: "https://matcher.wavesplatform.com")!
+    static let schemeMainnet: String = "W"
+    
+    static let dataUrlTestnet: URL = URL(string: "https://api.testnet.wavesplatform.com")!
+    static let nodeUrlTestnet: URL = URL(string: "https://pool.testnet.wavesnodes.com")!
+    static let matcherUrlTestnet: URL = URL(string: "https://matcher.testnet.wavesnodes.com")!
+    static let schemeTestnet: String = "T"
+}
+
 public struct Enviroment {
     
     public enum Server {
@@ -26,16 +39,16 @@ public struct Enviroment {
                 self.matcherUrl = matcher
                 
             case .mainNet:
-                self.scheme = "W"
-                self.dataUrl = URL(string: "https://api.wavesplatform.com")!
-                self.nodeUrl = URL(string: "https://nodes.wavesnodes.com")!
-                self.matcherUrl = URL(string: "https://matcher.wavesplatform.com")!
+                self.scheme = Constants.schemeMainnet
+                self.dataUrl = Constants.dataUrlMainnet
+                self.nodeUrl = Constants.nodeUrlMainnet
+                self.matcherUrl = Constants.matcherUrlMainnet
                 
             case .testNet:
-                self.scheme = "T"
-                self.dataUrl = URL(string: "https://api.testnet.wavesplatform.com")!
-                self.nodeUrl = URL(string: "https://pool.testnet.wavesnodes.com")!
-                self.matcherUrl = URL(string: "https://matcher.testnet.wavesnodes.com")!
+                self.scheme = Constants.schemeTestnet
+                self.dataUrl = Constants.dataUrlTestnet
+                self.nodeUrl = Constants.nodeUrlTestnet
+                self.matcherUrl = Constants.matcherUrlTestnet
             }
         }
     }
@@ -60,16 +73,16 @@ public struct Enviroment {
             self.matcherUrl = matcher
             
         case .mainNet:
-            self.scheme = "W"
-            self.dataUrl = URL(string: "https://api.wavesplatform.com")!
-            self.nodeUrl = URL(string: "https://nodes.wavesnodes.com")!
-            self.matcherUrl = URL(string: "https://matcher.wavesplatform.com")!
+            self.scheme = Constants.schemeMainnet
+            self.dataUrl = Constants.dataUrlMainnet
+            self.nodeUrl = Constants.nodeUrlMainnet
+            self.matcherUrl = Constants.matcherUrlMainnet
             
         case .testNet:
-            self.scheme = "T"
-            self.dataUrl = URL(string: "https://api.testnet.wavesplatform.com")!
-            self.nodeUrl = URL(string: "https://pool.testnet.wavesnodes.com")!
-            self.matcherUrl = URL(string: "https://matcher.testnet.wavesnodes.com")!
+            self.scheme = Constants.schemeTestnet
+            self.dataUrl = Constants.dataUrlTestnet
+            self.nodeUrl = Constants.nodeUrlTestnet
+            self.matcherUrl = Constants.matcherUrlTestnet        
         }
     }
 }
