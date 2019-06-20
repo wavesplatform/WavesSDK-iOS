@@ -9,17 +9,17 @@
 import Foundation
 import RxSwift
 
-public var myDefaultScheduler: SchedulerType = MainScheduler.asyncInstance
-public var myWorkScheduler: SchedulerType = ConcurrentDispatchQueueScheduler(qos: .default)
-
-public extension ObservableType {
-
-    /**
-     Makes the observable Subscribe to io thread and Observe on main thread
-     */
-    public func composeIoToMainThreads() -> Observable<E> {
-        return self.subscribeOn(myWorkScheduler)
-            .observeOn(myDefaultScheduler)
-    }
-
-}
+//public var myDefaultScheduler: SchedulerType = MainScheduler.asyncInstance
+//public var myWorkScheduler: SchedulerType = ConcurrentDispatchQueueScheduler(qos: .default)
+//
+//public extension ObservableType {
+//
+//    /**
+//     Makes the observable Subscribe to io thread and Observe on main thread
+//     */
+//    public func composeIoToMainThreads() -> Observable<E> {
+//        return self.subscribeOn(myWorkScheduler)
+//            .observeOn(myDefaultScheduler)
+//    }
+//
+//}

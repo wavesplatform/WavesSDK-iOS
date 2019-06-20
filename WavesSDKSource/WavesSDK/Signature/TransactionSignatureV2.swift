@@ -252,7 +252,7 @@ public extension TransactionSignatureV2 {
         case .startLease(let model):
             
             var recipient: [UInt8] = []
-            if model.recipient.count <= WavesSDKCryptoConstants.aliasNameMaxLimitSymbols {
+            if model.recipient.count <= WavesSDKConstants.aliasNameMaxLimitSymbols {
                 recipient += toByteArray(Int8(self.version))
                 recipient += model.scheme.utf8
                 recipient += model.recipient.arrayWithSize()
@@ -315,7 +315,7 @@ public extension TransactionSignatureV2 {
         case .transfer(let model):
             
             var recipient: [UInt8] = []
-            if model.recipient.count <= WavesSDKCryptoConstants.aliasNameMaxLimitSymbols {
+            if model.recipient.count <= WavesSDKConstants.aliasNameMaxLimitSymbols {
                 recipient += toByteArray(Int8(self.version))
                 recipient += model.scheme.utf8
                 recipient += model.recipient.arrayWithSize()

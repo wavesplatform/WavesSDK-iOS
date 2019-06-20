@@ -11,7 +11,7 @@ import WavesSDKExtension
 public extension String {
     
     var normalizeWavesAssetId: String {
-        if self == WavesSDKCryptoConstants.wavesAssetId {
+        if self == WavesSDKConstants.wavesAssetId {
             return ""
         } else {
             return self
