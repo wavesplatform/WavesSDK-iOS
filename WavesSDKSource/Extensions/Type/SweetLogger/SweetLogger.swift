@@ -76,7 +76,15 @@ public class SweetLogger: SweetLoggerProtocol {
     public static let current: SweetLogger = SweetLogger()
     
     public var visibleLevels: [SweetLoggerLevel] = []
-    public var plugins: [SweetLoggerProtocol] = []
+    public private(set) var plugins: [SweetLoggerProtocol] = []
+    
+    public func add(plugin: SweetLoggerProtocol) {
+        self.plugins.append(plugin)
+    }
+    
+    public func add(plugins: [SweetLoggerProtocol]) {
+        self.plugins.append(contentsOf: plugins)
+    }
     
     public func send(message: @escaping @autoclosure () -> Any,
               level: SweetLoggerLevel,

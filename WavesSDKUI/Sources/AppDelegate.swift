@@ -7,16 +7,44 @@
 //
 
 import UIKit
+import WavesSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Override point for customirzation after application launch.
         
+        
+        WavesSDK.initialization(servicesPlugins: .init(data: [], node: [], matcher: []), enviroment: .init(server: .mainNet, timestampServerDiff: 0))
+        
+        
+        WavesSDK.shared.services.nodeServices.addressesNodeService.addressBalance(address: "3PCAB4sHXgvtu5NPoen6EXR5yaNbvsEA8Fj").subscribe(onNext: { (bql) in
+            
+        }, onError: nil, onCompleted: nil, onDisposed: nil)
+        
+//        ServicesFactory.initialization(dataServicePlugins: [],
+//                                       nodeServicePlugins: [],
+//                                       matcherrServicePlugins: [])
+//        
+//        
+//        ServicesFactory.shared
+//            .addressesNodeService
+//            .accountBalance(address: "3PCAB4sHXgvtu5NPoen6EXR5yaNbvsEA8Fj",
+//                            enviroment: .init(serverUrl: URL(string: "https://nodes.wavesnodes.com/")!,
+//                                                             timestampServerDiff: 0))
+//            .subscribe(onNext: { (balance) in
+//                
+//            }, onError: { (error) in
+//                
+//            }, onCompleted: {
+//                
+//            }) {
+//            
+//            }
+                
         return true
     }
 
@@ -41,7 +69,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-

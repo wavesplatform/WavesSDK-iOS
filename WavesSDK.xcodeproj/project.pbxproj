@@ -277,32 +277,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Base58/Base58.framework",
-				"${BUILT_PRODUCTS_DIR}/Blake2/Blake2.framework",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Curve25519/Curve25519.framework",
-				"${BUILT_PRODUCTS_DIR}/Keccak/Keccak.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/WavesCrypto/WavesCrypto.framework",
-				"${BUILT_PRODUCTS_DIR}/WavesSDKCrypto/WavesSDKCrypto.framework",
-				"${BUILT_PRODUCTS_DIR}/WavesSDKExtension/WavesSDKExtension.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Base58.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Blake2.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Curve25519.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keccak.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesCrypto.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKCrypto.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKExtension.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -315,32 +294,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WavesSDKUI/Pods-WavesSDKUI-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Base58/Base58.framework",
-				"${BUILT_PRODUCTS_DIR}/Blake2/Blake2.framework",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Curve25519/Curve25519.framework",
-				"${BUILT_PRODUCTS_DIR}/Keccak/Keccak.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/WavesCrypto/WavesCrypto.framework",
-				"${BUILT_PRODUCTS_DIR}/WavesSDKCrypto/WavesSDKCrypto.framework",
-				"${BUILT_PRODUCTS_DIR}/WavesSDKExtension/WavesSDKExtension.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-WavesSDKUI/Pods-WavesSDKUI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Base58.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Blake2.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Curve25519.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keccak.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesCrypto.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKCrypto.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WavesSDKExtension.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-WavesSDKUI/Pods-WavesSDKUI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
