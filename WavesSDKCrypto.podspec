@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'WavesSDKCrypto'  
-  spec.version      = '0.1.3'
+  spec.version      = '0.1.4'
   spec.ios.deployment_target = '10.0'
   spec.requires_arc = true
   spec.license      = { :type => 'MIT' }
@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.summary      = 'The library contains method, variable and other entities for development on crypto'  
 
 
-  spec.source_files =  'WavesSDKSource/Crypto/*.swift'
+  spec.source_files =  'WavesSDKCrypto/Sources/*.swift'
   spec.source       = { 'git' => 'https://github.com/wavesplatform/WavesSDK-iOS.git', :tag => 'v' + spec.version.to_s }
   
   spec.swift_version = '5.0'
@@ -24,6 +24,5 @@ Pod::Spec.new do |spec|
   spec.dependency 'Base58'
   spec.dependency 'Keccak'
   spec.dependency 'Blake2'
-
   spec.dependency 'WavesSDKExtension'
 end

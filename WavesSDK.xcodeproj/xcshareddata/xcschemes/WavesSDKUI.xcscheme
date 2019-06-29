@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7B72BBA922550493004A047F"
-               BuildableName = "WavesSDKUI.app"
-               BlueprintName = "WavesSDKUI"
+               BuildableName = "WavesSDKExample.app"
+               BlueprintName = "WavesSDKExample"
                ReferencedContainer = "container:WavesSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7B72BBA922550493004A047F"
-            BuildableName = "WavesSDKUI.app"
-            BlueprintName = "WavesSDKUI"
+            BuildableName = "WavesSDKExample.app"
+            BlueprintName = "WavesSDKExample"
             ReferencedContainer = "container:WavesSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,11 +66,18 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7B72BBA922550493004A047F"
-            BuildableName = "WavesSDKUI.app"
-            BlueprintName = "WavesSDKUI"
+            BuildableName = "WavesSDKExample.app"
+            BlueprintName = "WavesSDKExample"
             ReferencedContainer = "container:WavesSDK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "OS_ACTIVITY_MODE "
+            value = "disable"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -85,8 +92,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7B72BBA922550493004A047F"
-            BuildableName = "WavesSDKUI.app"
-            BlueprintName = "WavesSDKUI"
+            BuildableName = "WavesSDKExample.app"
+            BlueprintName = "WavesSDKExample"
             ReferencedContainer = "container:WavesSDK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

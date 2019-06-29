@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import WavesCrypto
+import WavesSDKCrypto
 
 /*
     All mocks (base64) taken from https://8gwifi.org/MessageDigest.jsp
@@ -156,7 +156,7 @@ final class WavesCryptoTest: XCTestCase {
     
     func testAddressInvalid() {
         
-        let address = wavesCrypto.verifyAddress(address: Constants.mockSeedInvalidAddress, chainId: Constants.chainId, publicKey: Constants.mockSeedPublicKey)
+        let address = wavesCrypto.verifyAddress(address: Constants.mockSeedInvalidAddress, chainId: Constants.chainId, publicKey: nil)
         XCTAssertTrue(address == false)
     }
     
