@@ -8,7 +8,12 @@
 import Foundation
 
 extension NodeService.DTO {
-    
+
+    /**
+      Invoke script transaction is a transaction that invokes functions of the dApp script.
+      dApp contains compiled functions  developed with [Waves Ride IDE]({https://ide.wavesplatform.com/)
+      You can invoke one of them by name with some arguments.
+     */
     public struct InvokeScriptTransaction: Decodable {
         
         public struct Call: Decodable {
@@ -39,12 +44,24 @@ extension NodeService.DTO {
         public let sender: String
         public let senderPublicKey: String
         public let fee: Int64
+        /**
+          Asset id instead Waves for transaction commission withdrawal
+         */
         public let feeAssetId: String?
         public let timestamp: Date
         public let proofs: [String]?
         public let version: Int
+        /**
+          dApp – address or alias of contract with function on RIDE language
+         */
         public let dApp: String
+        /**
+          Function name in dApp with array of arguments
+         */
         public let call: Call?
+        /**
+          Payments for function of dApp. Now it works with only one payment.
+         */
         public let payment: [Payment]
         public let height: Int64
     }

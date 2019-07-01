@@ -9,6 +9,12 @@
 import Foundation
 
 public extension NodeService.DTO {
+
+    /**
+      Transfer transaction sends amount of asset on address.
+      It is used to transfer a specific amount of an asset (WAVES by default)
+      to the recipient (by address or alias).
+     */
     struct TransferTransaction: Decodable {
         public let type: Int
         public let id: String
@@ -21,11 +27,26 @@ public extension NodeService.DTO {
 
         public let signature: String?
         public let proofs: [String]?
+        /**
+          Address or alias of Waves blockchain
+         */
         public let recipient: String
+        /**
+          Id of transferable asset in Waves blockchain, different for main and test net
+         */
         public let assetId: String?
+        /**
+          Asset id instead Waves for transaction commission withdrawal
+         */
         public let feeAssetId: String?
         public let feeAsset: String?
+        /**
+          Amount of asset in satoshi
+         */
         public let amount: Int64
+        /**
+          Additional info [0,140] bytes of string encoded in Base58
+         */
         public let attachment: String?
     }
 }
