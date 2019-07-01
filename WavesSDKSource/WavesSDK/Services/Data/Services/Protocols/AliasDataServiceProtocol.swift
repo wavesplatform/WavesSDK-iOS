@@ -9,8 +9,14 @@ import Foundation
 import RxSwift
 
 public protocol AliasDataServiceProtocol {
-    
+
+    /**
+      Get address for alias
+     */
     func alias(name: String) -> Observable<DataService.DTO.Alias>
-    
+
+    /**
+      Get a list of aliases for a given address
+     */
     func list(address: String) -> Observable<[DataService.DTO.Alias]>
 }

@@ -9,6 +9,9 @@ import Foundation
 import RxSwift
 
 public protocol CandlesDataServiceProtocol {
-    
+
+    /**
+      Get candles by amount and price assets. Maximum amount of candles in response – 1440.
+     */
     func candles(query: DataService.Query.CandleFilters) -> Observable<DataService.DTO.Chart>
 }
