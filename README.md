@@ -19,6 +19,7 @@
 * [Explorer Mainnet](https://wavesexplorer.com) – Waves platform transactions explorer
 * [Client Testnet](https://testnet.wavesplatform.com) – client for testing in copy of real Waves blockchain, it also called Test Net
 * [Explorer Testnet](https://wavesexplorer.com/testnet) – Waves platform transactions explorer
+* [Waves Ride IDE](https://ide.wavesplatform.com/) – IDE for RIDE smart contracts
 
 ## Testing
 You can use [Explorer Testnet](https://wavesexplorer.com/testnet) for testing your app with libs. You can add test-Waves to your balance at the explorer in side menu from Faucet. And you can check any sent transactions on Wavesexplorer in Main or Test Net
@@ -27,9 +28,9 @@ You can use [Explorer Testnet](https://wavesexplorer.com/testnet) for testing yo
 
 Keep up with the latest news and articles, and find out all about events happening on the [Waves Platform](https://wavesplatform.com/).
 
+* [Waves Wiki](https://docs.wavesplatform.com/)
 * [Community Forum](https://forum.wavesplatform.com/)
 * [Community Portal](https://wavescommunity.com/)
-* [Waves Wiki](https://docs.wavesplatform.com/)
 * [Waves Blog](https://blog.wavesplatform.com/)
 * [Support](https://support.wavesplatform.com/)
 
