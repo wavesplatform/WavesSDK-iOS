@@ -10,5 +10,7 @@ import RxSwift
 
 public protocol PairsPriceDataServiceProtocol {
     
+    //TODO: PairsPriceDataServiceProtocol.pairs()
+    
     func pairsPrice(query: DataService.Query.PairsPrice) -> Observable<[DataService.DTO.PairPrice]>
 }

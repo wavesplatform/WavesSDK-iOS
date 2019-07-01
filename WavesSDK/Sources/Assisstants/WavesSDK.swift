@@ -10,7 +10,7 @@
  */
 
 import Foundation
-import WavesSDKExtension
+import WavesSDKExtensions
 import WavesSDKCrypto
 import Moya
 

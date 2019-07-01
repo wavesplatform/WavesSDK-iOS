@@ -19,6 +19,9 @@ public typealias PrivateKey = String
 public typealias Seed = String
 public typealias Address = String
 
+//public typealias Base58 = String
+//public typealias Base64 = String
+
 public struct KeyPair {
     public let publicKey: PublicKey
     public let privateKey: PrivateKey
@@ -249,7 +252,13 @@ extension WavesCrypto {
     
     public func base64decode(input: String) -> Bytes? {
         
-        guard let data = Data(base64Encoded: input) else { return nil }
+        var clearInput = input
+        
+        if let range = input.range(of: "base64:") {
+            clearInput.removeSubrange(range)
+        }
+        
+        guard let data = Data(base64Encoded: clearInput) else { return nil }
         
         return Array(data)
     }

@@ -8,8 +8,7 @@
 
 import Foundation
 import Moya
-import WavesSDKExtension
-
+import WavesSDKExtensions
 
 extension MatcherService.Target {
     

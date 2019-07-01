@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import WavesSDKExtension
+import WavesSDKExtensions
 
 extension NodeService.DTO {
 

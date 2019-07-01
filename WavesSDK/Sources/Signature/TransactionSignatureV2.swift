@@ -8,28 +8,7 @@
 
 import Foundation
 import WavesSDKCrypto
-import WavesSDKExtension
-
-public enum TransactionType: Int8 {
-    case issue = 3
-    case transfer = 4
-    case reissue = 5
-    case burn = 6
-    case exchange = 7
-    case createLease = 8
-    case cancelLease = 9
-    case createAlias = 10
-    case massTransfer = 11
-    case data = 12
-    case script = 13
-    case sponsorship = 14
-    case assetScript = 15
-    case invokeScript = 16
-    
-    var int: Int {
-        return Int(self.rawValue)
-    }
-}
+import WavesSDKExtensions
 
 public extension TransactionSignatureV2 {
     
@@ -102,40 +81,7 @@ public extension TransactionSignatureV2 {
                 self.timestamp = timestamp
             }
         }
-        
-        public struct Data {
-            public struct Value {
-                public enum Kind {
-                    case integer(Int64)
-                    case boolean(Bool)
-                    case string(String)
-                    case binary([UInt8])
-                }
                 
-                public let key: String
-                public let value: Kind
-
-                public init(key: String, value: Kind) {
-                    self.key = key
-                    self.value = value
-                }
-            }
-            
-            public let fee: Int64
-            public let data: [Value]
-            public let scheme: String
-            public let senderPublicKey: String
-            public let timestamp: Int64
-            
-            public init(fee: Int64, data: [Value], scheme: String, senderPublicKey: String, timestamp: Int64) {
-                self.fee = fee
-                self.data = data
-                self.scheme = scheme
-                self.senderPublicKey = senderPublicKey
-                self.timestamp = timestamp
-            }
-        }
-        
         public struct Transfer {
             public let senderPublicKey: WavesSDKCrypto.PublicKey
             public let recipient: String
@@ -158,42 +104,9 @@ public extension TransactionSignatureV2 {
                 self.scheme = scheme
                 self.timestamp = timestamp
             }
-        }
+        }            
     }
 }
-
-private extension TransactionSignatureV2.Structure.Data {
-    
-    var bytesForSignature: [UInt8] {
-        
-        var signature: [UInt8] = []
-        signature += toByteArray(Int16(self.data.count))
-        
-        for value in self.data {
-            signature += value.key.arrayWithSize()
-            
-            switch value.value {
-            case .binary(let data):
-                signature += toByteArray(Int8(2))
-                signature += data.arrayWithSize()
-                
-            case .integer(let number):
-                signature += toByteArray(Int8(0))
-                signature += toByteArray(number)
-                
-            case .boolean(let flag):
-                signature += toByteArray(Int8(1))
-                signature += toByteArray(flag)
-                
-            case .string(let str):
-                signature += toByteArray(Int8(3))
-                signature += str.arrayWithSize()
-            }
-        }
-        return signature
-    }
-}
-
 
 public enum TransactionSignatureV2: TransactionSignatureProtocol {
     
@@ -201,33 +114,28 @@ public enum TransactionSignatureV2: TransactionSignatureProtocol {
     case startLease(Structure.Lease)
     case burn(Structure.Burn)
     case cancelLease(Structure.CancelLease)
-    case data(Structure.Data)
     case transfer(Structure.Transfer)
     
     public var version: Int {
         return 2
     }
     
-    public var typeByte: Int8 {
+    public var type: TransactionType {
         switch self {
         case .burn:
-            return TransactionType.burn.rawValue
-        
+            return TransactionType.burn
+            
         case .createAlias:
-            return TransactionType.createAlias.rawValue
+            return TransactionType.createAlias
             
         case .cancelLease:
-            return TransactionType.cancelLease.rawValue
-            
-        case .data:
-            return TransactionType.data.rawValue
+            return TransactionType.cancelLease
             
         case .startLease:
-            return TransactionType.createLease.rawValue
+            return TransactionType.createLease
             
         case .transfer:
-            return TransactionType.transfer.rawValue
-            
+            return TransactionType.transfer
         }
     }
 }
@@ -304,18 +212,7 @@ public extension TransactionSignatureV2 {
             signature += toByteArray(model.timestamp)
             signature += leaseId
             return signature
-        
-        case .data(let model):
-            //TODO: check size
-            var signature: [UInt8] = []
-            signature += toByteArray(self.typeByte)
-            signature += toByteArray(Int8(self.version))
-            signature += WavesCrypto.shared.base58decode(input: model.senderPublicKey) ?? []
-            signature += model.bytesForSignature
-            signature += toByteArray(model.timestamp)
-            signature += toByteArray(model.fee)
-            return signature
-            
+         
         case .transfer(let model):
             
             var recipient: [UInt8] = []
@@ -343,8 +240,7 @@ public extension TransactionSignatureV2 {
             signature += model.attachment.arrayWithSize()
             
             
-            return signature
+            return signature            
         }
-
     }
 }

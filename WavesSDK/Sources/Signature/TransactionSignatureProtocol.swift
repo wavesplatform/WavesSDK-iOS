@@ -10,6 +10,14 @@ import Foundation
 
 public protocol TransactionSignatureProtocol: SignatureProtocol {
     
-    var version: Int { get }        
+    var version: Int { get }
+    
+    var type: TransactionType { get }
 }
 
+extension TransactionSignatureProtocol {
+
+    public var typeByte: Int8 {
+        return type.rawValue
+    }
+}

@@ -8,6 +8,7 @@
 import Foundation
 
 public enum TransferVersion: Int {
+    case version_1 = 1
     case version_2 = 2
 }
 
@@ -19,6 +20,7 @@ public extension NodeService.Query {
         case burn(Burn)
         case data(Data)
         case transfer(Transfer)
+        case invokeScript(InvokeScript)
         
         var type: Int {
             switch self {
@@ -39,12 +41,81 @@ public extension NodeService.Query {
                 
             case .transfer:
                 return TransactionType.transfer.int
+                
+            case .invokeScript:
+                return TransactionType.invokeScript.int
             }
         }
     }
 }
 
 public extension NodeService.Query.Broadcast {
+    
+    struct InvokeScript {
+        
+        public struct Arg {
+            public enum Value {
+                case bool(Bool) //boolean
+                case integer(Int) // integer
+                case string(String) // string
+                case binary(String) // binary
+            }
+            
+            public let value: Value
+
+            public init(value: Value) {
+                self.value = value
+            }
+        }
+        
+        public struct Call {
+            public let function: String
+            public let args: [Arg]
+
+            public init(function: String, args: [Arg]) {
+                self.function = function
+                self.args = args
+            }
+        }
+        
+        public struct Payment {
+            public let amount: Int64
+            public let assetId: String
+
+            public init(amount: Int64, assetId: String) {
+                self.amount = amount
+                self.assetId = assetId
+            }
+        }
+        
+        public let version: Int
+        public let type: Int
+        public let scheme: String
+        public let fee: Int64
+        public let timestamp: Int64
+        public let senderPublicKey: String
+        public internal(set) var proofs: [String]
+        
+        public let feeAssetId: String
+        public let dApp: String
+        public let call: Call?
+        public let payment: [Payment]
+
+        public init(version: Int, type: Int, scheme: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String], feeAssetId: String, dApp: String, call: Call?, payment: [Payment]) {
+            self.version = version
+            self.type = type
+            self.scheme = scheme
+            self.fee = fee
+            self.timestamp = timestamp
+            self.senderPublicKey = senderPublicKey
+            self.proofs = proofs
+            self.feeAssetId = feeAssetId
+            self.dApp = dApp
+            self.call = call
+            self.payment = payment
+        }
+        
+    }
     
     struct Burn {
         public let version: Int
@@ -162,7 +233,7 @@ public extension NodeService.Query.Broadcast {
         public internal(set) var proofs: [String]
         public let data: [Value]
 
-        public init(version: Int = TransferVersion.version_2.rawValue, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], data: [Value]) {
+        public init(version: Int = TransferVersion.version_1.rawValue, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], data: [Value]) {
             self.type = TransactionType.data.int
             self.version = version
             self.fee = fee

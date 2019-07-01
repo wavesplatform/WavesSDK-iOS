@@ -8,6 +8,7 @@
 
 import Foundation
 import WavesSDKCrypto
+import WavesSDKExtensions
 
 public protocol TransactionSign {
     
@@ -53,6 +54,68 @@ extension NodeService.Query.Broadcast.Transfer: TransactionSign {
     }
 }
 
+extension NodeService.Query.Broadcast.Data.Value {
+
+    var kindForSignatureV1Value: TransactionSignatureV1.Structure.Data.Value.Kind {
+        switch self.value {
+        case .binary(let value):
+            return .binary(value)
+            
+        case .boolean(let value):
+            return .boolean(value)
+            
+        case .integer(let value):
+            return .integer(value)
+            
+        case .string(let value):
+            return .string(value)
+            
+        }
+    }
+}
+
+extension NodeService.Query.Broadcast.Data: TransactionSign {
+    
+    private static var DATA_TX_SIZE_WITHOUT_ENTRIES: Int = 52
+    private static var DATA_ENTRIES_BYTE_LIMIT = 100 * 1024 - DATA_TX_SIZE_WITHOUT_ENTRIES
+    
+    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?, chainId: String) {
+        
+            
+        let signature = TransactionSignatureV1.data(.init(fee: fee,
+                                                          data: data.map { TransactionSignatureV1.Structure.Data.Value(key: $0.key,
+                                                                                                                       value: $0.kindForSignatureV1Value) },
+                                                          scheme: chainId,
+                                                          senderPublicKey: senderPublicKey,
+                                                          timestamp: timestamp))
+        
+        print("a - \(signature.bytesStructure.count) - max \(NodeService.Query.Broadcast.Data.DATA_ENTRIES_BYTE_LIMIT)")
+        if signature.bytesStructure.count > NodeService.Query.Broadcast.Data.DATA_ENTRIES_BYTE_LIMIT {
+            print("aasd")
+            return
+        }
+        
+            
+        
+        if let privateKey = privateKey, let proof: String = signature.signature(privateKey: privateKey) {
+            proofs = [proof]
+            
+            let bytes: Bytes = (signature.signature(privateKey: privateKey))!
+            print("b - \(bytes.count)")
+            
+        }
+        
+        if let seed = seed, let proof: String = signature.signature(seed: seed) {
+            proofs = [proof]
+            
+            let bytes: Bytes = (signature.signature(seed: seed)!)
+            print("b - \(bytes.count)")
+            
+        }
+        
+        
+    }
+}
 
 //extension NodeService.Query.Broadcast.Transfer: TransactionSign {
 //

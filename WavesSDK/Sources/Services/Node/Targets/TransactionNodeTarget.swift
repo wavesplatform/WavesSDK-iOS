@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import WavesSDKExtension
+import WavesSDKExtensions
 import Moya
 
 fileprivate enum Constants {
@@ -106,6 +106,23 @@ extension NodeService.Query.Broadcast {
                     Constants.feeAssetId: model.feeAssetId,                    
                     Constants.amount: model.amount,
                     Constants.attachment: model.attachment]
+        case .invokeScript(let model):
+            
+            var params = [Constants.version: model.version,
+                          Constants.senderPublicKey: model.senderPublicKey,
+                          Constants.fee: model.fee,
+                          Constants.timestamp: model.timestamp,
+                          Constants.proofs: model.proofs,
+                          Constants.type: model.type,
+                          "dApp": model.dApp] as [String : Any]
+            
+            if let call = model.call {
+                params["call"] = call.params()
+            }
+            
+            params["payment"] = model.payment.map { $0.params() }
+            
+            return params
         }
     }
 
@@ -214,6 +231,56 @@ fileprivate extension NodeService.Query.Broadcast.Data.Value {
                 params["value"] = binary
         }
 
+        return params
+    }
+}
+
+fileprivate extension NodeService.Query.Broadcast.InvokeScript.Call {
+    
+    func params() -> [String: Any] {
+        
+        var params: [String: Any] = .init()
+        
+        params["function"] = self.function
+        params["args"] = self.args.map { $0.params() }
+        
+        return params
+    }
+}
+
+fileprivate extension NodeService.Query.Broadcast.InvokeScript.Arg {
+    
+    func params() -> [String: Any] {
+        
+        var params: [String: Any] = .init()
+
+        switch self.value {
+        case .binary(let value):
+            params["binary"] = value
+            
+        case .bool(let value):
+            params["boolean"] = value
+            
+        case .integer(let value):
+            params["integer"] = value
+            
+        case .string(let value):
+            params["string"] = value
+        }
+        
+        return params
+    }
+}
+
+fileprivate extension NodeService.Query.Broadcast.InvokeScript.Payment {
+    
+    func params() -> [String: Any] {
+        
+        var params: [String: Any] = .init()
+        
+        params["amount"] = self.amount
+        params["assetId"] = self.assetId ?? ""
+        
         return params
     }
 }

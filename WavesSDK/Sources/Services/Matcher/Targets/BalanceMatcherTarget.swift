@@ -8,7 +8,7 @@
 
 import Foundation
 import Moya
-import WavesSDKExtension
+import WavesSDKExtensions
 
 public extension MatcherService.Query {
     

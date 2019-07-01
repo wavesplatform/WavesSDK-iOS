@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import WavesSDKExtension
+import WavesSDKExtensions
 
 public extension MatcherService.Query {
     
