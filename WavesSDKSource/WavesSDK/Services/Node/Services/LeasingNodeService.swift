@@ -20,10 +20,6 @@ final class LeasingNodeService: LeasingNodeServiceProtocol {
         self.enviroment = enviroment
     }
 
-    /**
-      Active leasing transactions of account
-      address Address
-     */
     public func activeLeasingTransactions(by address: String) -> Observable<[NodeService.DTO.LeaseTransaction]> {
         
         return self
