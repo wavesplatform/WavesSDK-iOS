@@ -18,7 +18,11 @@ final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProt
         self.addressesProvider = addressesProvider
         super.init(enviroment: enviroment)
     }
-    
+
+    /**
+      Account's Waves balance
+      - Parameter: address Address
+     */
     public func addressBalance(address: String) -> Observable<NodeService.DTO.AddressBalance> {
         
         return self
@@ -34,7 +38,11 @@ final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProt
             .map(NodeService.DTO.AddressBalance.self)
             .asObservable()
     }
-    
+
+    /**
+      Account's script additional info
+      - Parameter: address Address
+      */
     public func scriptInfo(address: String) -> Observable<NodeService.DTO.AddressScriptInfo> {
         return self
             .addressesProvider

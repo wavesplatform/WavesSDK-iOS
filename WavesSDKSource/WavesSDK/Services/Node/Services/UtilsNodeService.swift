@@ -19,7 +19,10 @@ final class UtilsNodeService: UtilsNodeServiceProtocol {
         self.utilsProvider = utilsProvider
         self.enviroment = enviroment
     }
-    
+
+    /**
+      Current Node time (UTC)
+      */
     public func time() -> Observable<NodeService.DTO.Utils.Time> {
     
         return utilsProvider

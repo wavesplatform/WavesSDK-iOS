@@ -18,7 +18,7 @@
 * [Client Mainnet](https://client.wavesplatform.com) – client of Waves blockchain on Main Net
 * [Explorer Mainnet](https://wavesexplorer.com) – Waves platform transactions explorer
 * [Client Testnet](https://testnet.wavesplatform.com) – client for testing in copy of real Waves blockchain, it also called Test Net
-* [Explorer Testnet](https://wavesexplorer.com/testnet) – Waves platform transactions explorer
+* [Explorer Testnet](https://wavesexplorer.com/testnet) – Waves platform transactions test explorer
 * [Waves Ride IDE](https://ide.wavesplatform.com/) – IDE for RIDE smart contracts
 
 ## Testing
