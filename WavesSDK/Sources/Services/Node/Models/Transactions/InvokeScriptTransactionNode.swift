@@ -46,7 +46,7 @@ extension NodeService.DTO {
         public let dApp: String
         public let call: Call?
         public let payment: [Payment]
-        public let height: Int64
+        public let height: Int64?
     }
 }
 

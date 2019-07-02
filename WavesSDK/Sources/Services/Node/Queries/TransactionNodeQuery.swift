@@ -21,6 +21,7 @@ public extension NodeService.Query {
         case data(Data)
         case transfer(Transfer)
         case invokeScript(InvokeScript)
+        case reissue(Reissue)
         
         var type: Int {
             switch self {
@@ -44,21 +45,54 @@ public extension NodeService.Query {
                 
             case .invokeScript:
                 return TransactionType.invokeScript.int
+                
+            case .reissue:
+                return TransactionType.reissue.int
             }
         }
     }
 }
 
+
 public extension NodeService.Query.Broadcast {
+    
+    struct Reissue {
+        public let version: Int
+        public let type: Int
+        public let scheme: String
+        public let fee: Int64
+        public let feeAssetId: String
+        public let timestamp: Int64
+        public let senderPublicKey: String
+        public internal(set) var proofs: [String]
+        
+        public let assetId: String
+        public let quantity: Int64
+        public let isReissuable: Bool
+
+        public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, fee: Int64, feeAssetId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], assetId: String, quantity: Int64, isReissuable: Bool) {
+            self.version = version
+            self.type = TransactionType.reissue.int
+            self.scheme = scheme
+            self.fee = fee
+            self.feeAssetId = feeAssetId
+            self.timestamp = timestamp
+            self.senderPublicKey = senderPublicKey
+            self.proofs = proofs
+            self.assetId = assetId
+            self.quantity = quantity
+            self.isReissuable = isReissuable
+        }
+    }
     
     struct InvokeScript {
         
         public struct Arg {
             public enum Value {
-                case bool(Bool) //boolean
-                case integer(Int) // integer
-                case string(String) // string
-                case binary(String) // binary
+                case bool(Bool)
+                case integer(Int)
+                case string(String)
+                case binary(String)
             }
             
             public let value: Value
@@ -92,18 +126,18 @@ public extension NodeService.Query.Broadcast {
         public let type: Int
         public let scheme: String
         public let fee: Int64
+        public let feeAssetId: String
         public let timestamp: Int64
         public let senderPublicKey: String
         public internal(set) var proofs: [String]
         
-        public let feeAssetId: String
         public let dApp: String
         public let call: Call?
         public let payment: [Payment]
 
-        public init(version: Int, type: Int, scheme: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String], feeAssetId: String, dApp: String, call: Call?, payment: [Payment]) {
+        public init(version: Int = TransferVersion.version_1.rawValue, scheme: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], feeAssetId: String, dApp: String, call: Call?, payment: [Payment]) {
             self.version = version
-            self.type = type
+            self.type = TransactionType.invokeScript.int
             self.scheme = scheme
             self.fee = fee
             self.timestamp = timestamp
@@ -128,7 +162,7 @@ public extension NodeService.Query.Broadcast {
         public let senderPublicKey: String
         public internal(set) var proofs: [String]
 
-        public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, fee: Int64, assetId: String, quantity: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String]) {
+        public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, fee: Int64, assetId: String, quantity: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
             self.version = version
             self.type = TransactionType.burn.int
             self.scheme = scheme
@@ -230,10 +264,11 @@ public extension NodeService.Query.Broadcast {
         public let fee: Int64
         public let timestamp: Int64
         public let senderPublicKey: String
+        public let scheme: String
         public internal(set) var proofs: [String]
         public let data: [Value]
 
-        public init(version: Int = TransferVersion.version_1.rawValue, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], data: [Value]) {
+        public init(version: Int = TransferVersion.version_1.rawValue, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], data: [Value], scheme: String) {
             self.type = TransactionType.data.int
             self.version = version
             self.fee = fee
@@ -241,12 +276,14 @@ public extension NodeService.Query.Broadcast {
             self.senderPublicKey = senderPublicKey
             self.proofs = proofs
             self.data = data
+            self.scheme = scheme
         }
     }
     
     struct Transfer {
         public let type: Int
         public let version: Int
+        public let scheme: String
         public let recipient: String
         public let assetId: String
         public let amount: Int64
@@ -257,13 +294,14 @@ public extension NodeService.Query.Broadcast {
         public let senderPublicKey: String
         public var proofs: [String]
 
-        public init(version: Int = TransferVersion.version_2.rawValue, recipient: String, assetId: String, amount: Int64, fee: Int64, attachment: String, feeAssetId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
+        public init(version: Int = TransferVersion.version_2.rawValue, recipient: String, assetId: String, amount: Int64, fee: Int64, attachment: String, feeAssetId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], scheme: String) {
             self.type = TransactionType.transfer.int
             self.version = version
             self.recipient = recipient
             self.assetId = assetId
             self.amount = amount
             self.fee = fee
+            self.scheme = scheme
             self.attachment = attachment
             self.feeAssetId = feeAssetId
             self.timestamp = timestamp

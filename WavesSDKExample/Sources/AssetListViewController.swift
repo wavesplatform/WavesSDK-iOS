@@ -68,8 +68,9 @@ final class AssetListViewController: UIViewController {
                                                               attachment: attachment,
                                                               feeAssetId: feeAssetId,
                                                               timestamp: timestamp,
-                                                              senderPublicKey: senderPublicKey)
-        queryModel.sign(seed: seed, chainId: chainId)
+                                                              senderPublicKey: senderPublicKey,
+                                                              scheme: chainId)
+        queryModel.sign(seed: seed)
         
         let send = NodeService.Query.Broadcast.transfer(queryModel)
         

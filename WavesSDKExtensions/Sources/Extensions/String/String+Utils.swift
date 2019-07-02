@@ -26,8 +26,13 @@ public extension String {
 }
 
 public extension String {
+    
     func arrayWithSize() -> [UInt8] {
         return Array(utf8).arrayWithSize()
+    }
+    
+    func arrayWithSize32() -> [UInt8] {
+        return Array(utf8).arrayWithSize32()
     }
 }
 
@@ -35,6 +40,11 @@ public extension Array where Element == UInt8 {
 
     func arrayWithSize() -> [UInt8] {
         let b: [UInt8] = self
-        return toByteArray(Int16(b.count)) + b
+        return toByteArray(Int16(Swift.min(Int(Int16.max), b.count))) + b
+    } 
+    
+    func arrayWithSize32() -> [UInt8] {
+        let b: [UInt8] = self
+        return toByteArray(Int32(b.count)) + b
     }
 }

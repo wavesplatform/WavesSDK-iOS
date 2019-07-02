@@ -14,6 +14,27 @@ public extension TransactionSignatureV2 {
     
     enum Structure {
 
+        public struct Reissue {
+            
+            public let fee: Int64
+            public let scheme: String
+            public let senderPublicKey: String
+            public let timestamp: Int64
+            public let quantity: Int64
+            public let assetId: String
+            public let isReissuable: Bool
+            
+            public init(assetId: String, fee: Int64, scheme: String, senderPublicKey: String, timestamp: Int64, quantity: Int64, isReissuable: Bool) {
+                self.assetId = assetId
+                self.fee = fee
+                self.scheme = scheme
+                self.senderPublicKey = senderPublicKey
+                self.timestamp = timestamp
+                self.quantity = quantity
+                self.isReissuable = isReissuable
+            }
+        }
+        
         public struct Alias {
             public let alias: String
             public let fee: Int64
@@ -115,6 +136,7 @@ public enum TransactionSignatureV2: TransactionSignatureProtocol {
     case burn(Structure.Burn)
     case cancelLease(Structure.CancelLease)
     case transfer(Structure.Transfer)
+    case reissue(Structure.Reissue)
     
     public var version: Int {
         return 2
@@ -136,6 +158,10 @@ public enum TransactionSignatureV2: TransactionSignatureProtocol {
             
         case .transfer:
             return TransactionType.transfer
+        
+        case .reissue:
+            return TransactionType.reissue
+        
         }
     }
 }
@@ -239,8 +265,22 @@ public extension TransactionSignatureV2 {
             signature += recipient
             signature += model.attachment.arrayWithSize()
             
+            return signature
             
-            return signature            
+        case .reissue(let model):
+            
+            var signature: [UInt8] = []
+            signature += toByteArray(self.typeByte)
+            signature += toByteArray(Int8(self.version))
+            signature += model.scheme.utf8
+            signature += WavesCrypto.shared.base58decode(input: model.senderPublicKey) ?? []
+            signature += (WavesCrypto.shared.base58decode(input: model.assetId) ?? [])
+            signature += toByteArray(model.quantity)
+            signature += model.isReissuable == true ? [1] : [0]
+            signature += toByteArray(model.fee)
+            signature += toByteArray(model.timestamp)
+            
+            return signature
         }
     }
 }

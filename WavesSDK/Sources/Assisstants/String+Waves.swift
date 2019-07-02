@@ -17,4 +17,12 @@ public extension String {
             return self
         }
     }
+    
+    var ifNeeeNull: Any {
+        if self.isEmpty {
+            return NSNull()
+        } else {
+            return self
+        }
+    }
 }

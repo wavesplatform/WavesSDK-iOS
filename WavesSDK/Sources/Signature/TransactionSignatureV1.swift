@@ -12,7 +12,7 @@ import WavesSDKExtensions
 
 public extension TransactionSignatureV1 {
     
-    enum Structure {
+    public enum Structure {
 
         public struct Data {
             public struct Value {
@@ -57,17 +57,31 @@ public extension TransactionSignatureV1 {
                     case binary(String) // binary
                 }
                 
-                var value: Value
+                public let value: Value
+
+                public init(value: Value) {
+                    self.value = value
+                }
             }
             
             public struct Call {
-                var function: String
-                var args: String
+                public let function: String
+                public let args: [Arg]
+
+                public init(function: String, args: [Arg]) {
+                    self.function = function
+                    self.args = args
+                }
             }
             
             public struct Payment {
-                let amount: Int64
-                let assetId: String
+                public let amount: Int64
+                public let assetId: String
+
+                public init(amount: Int64, assetId: String) {
+                    self.amount = amount
+                    self.assetId = assetId
+                }
             }
             
             public let senderPublicKey: WavesSDKCrypto.PublicKey
@@ -78,6 +92,17 @@ public extension TransactionSignatureV1 {
             public let dApp: String
             public let call: Call?
             public let payment: [Payment]
+
+            public init(senderPublicKey: WavesSDKCrypto.PublicKey, fee: Int64, scheme: String, timestamp: Int64, feeAssetId: String, dApp: String, call: Call?, payment: [Payment]) {
+                self.senderPublicKey = senderPublicKey
+                self.fee = fee
+                self.scheme = scheme
+                self.timestamp = timestamp
+                self.feeAssetId = feeAssetId
+                self.dApp = dApp
+                self.call = call
+                self.payment = payment
+            }
         }
     }
 }
@@ -164,9 +189,7 @@ public extension TransactionSignatureV1 {
             } else {
                 dApp += WavesCrypto.shared.base58decode(input: model.dApp) ?? []
             }
-
-            
-            
+                        
             var signature: [UInt8] = []
             signature += toByteArray(self.typeByte)
             signature += toByteArray(Int8(self.version))
@@ -184,30 +207,66 @@ public extension TransactionSignatureV1 {
     }
 }
 
+extension TransactionSignatureV1.Structure.InvokeScript.Call {
+    
+    var argsBytes: [UInt8] {
+        var bytes: [UInt8] = []
+        
+        for arg in self.args {
+            switch arg.value {
+            case .binary(let value):
+                
+                bytes += [1] + (WavesCrypto.shared.base64decode(input: value) ?? []).arrayWithSize32()
+                
+            case .string(let value):
+                
+                bytes += [2] + value.arrayWithSize32()
+                
+            case .integer(let value):
+                bytes += [0] + toByteArray(value)
+                
+            case .bool(let value):
+                
+                if value {
+                    bytes += [6]
+                } else {
+                    bytes += [7]
+                }
+            }
+        }
+        
+        
+        bytes = toByteArray(Int32(args.count)) + bytes
+        
+        return bytes
+    }
+
+}
+
 extension TransactionSignatureV1.Structure.InvokeScript {
     
     var callBytes: [UInt8] {
         if let call = self.call {
-            return [1, 9, 1] + call.function.arrayWithSize() + call.args.arrayWithSize()
+            return [1, 9, 1] + call.function.arrayWithSize32() + call.argsBytes
         } else {
             return [0]
         }
     }
 
     var paymentBytes: [UInt8] {
-        var signature: [UInt8] = []
+        var bytes: [UInt8] = []
         
         for paymentItem in self.payment {
             let amount = toByteArray(paymentItem.amount)
             
             let assetId = paymentItem.assetId.isEmpty ? [UInt8(0)] : ([UInt8(1)] + (WavesCrypto.shared.base58decode(input: paymentItem.assetId) ?? []))
             
-            signature += amount
-            signature += assetId
+            bytes += amount
+            bytes += assetId
         }
         
-        signature = toByteArray(self.payment.count) + signature.arrayWithSize()
+        bytes = toByteArray(Int16(self.payment.count)) + bytes.arrayWithSize()
         
-        return signature
+        return bytes
     }
 }

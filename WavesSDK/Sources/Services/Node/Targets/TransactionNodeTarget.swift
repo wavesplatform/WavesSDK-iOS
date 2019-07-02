@@ -49,7 +49,7 @@ extension NodeService.Query.Broadcast {
                      Constants.timestamp: burn.timestamp,
                      Constants.proofs: burn.proofs,
                      Constants.type: burn.type,
-                     Constants.assetId: burn.assetId]
+                     Constants.assetId: burn.assetId.normalizeWavesAssetId]
             
         case .createAlias(let alias):
             return [Constants.version: alias.version,
@@ -114,13 +114,31 @@ extension NodeService.Query.Broadcast {
                           Constants.timestamp: model.timestamp,
                           Constants.proofs: model.proofs,
                           Constants.type: model.type,
-                          "dApp": model.dApp] as [String : Any]
+                          Constants.feeAssetId: model.feeAssetId] as [String : Any]
+            
+            params["dApp"] = model.dApp
             
             if let call = model.call {
                 params["call"] = call.params()
             }
             
             params["payment"] = model.payment.map { $0.params() }
+            
+            return params
+        
+        case .reissue(let model):
+            
+            var params = [Constants.version: model.version,
+                          Constants.senderPublicKey: model.senderPublicKey,
+                          Constants.fee: model.fee,
+                          Constants.timestamp: model.timestamp,
+                          Constants.proofs: model.proofs,
+                          Constants.type: model.type,
+                          Constants.feeAssetId: model.feeAssetId] as [String : Any]
+            
+            params["assetId"] = model.assetId
+            params["quantity"] = model.quantity
+            params["reissuable"] = model.isReissuable
             
             return params
         }
@@ -255,17 +273,21 @@ fileprivate extension NodeService.Query.Broadcast.InvokeScript.Arg {
         var params: [String: Any] = .init()
 
         switch self.value {
-        case .binary(let value):
-            params["binary"] = value
+        case .binary(let value):            
+            params["type"] = "binary"
+            params["value"] = value
             
         case .bool(let value):
-            params["boolean"] = value
+            params["type"] = "boolean"
+            params["value"] = value
             
         case .integer(let value):
-            params["integer"] = value
+            params["type"] = "integer"
+            params["value"] = value
             
         case .string(let value):
-            params["string"] = value
+            params["type"] = "string"
+            params["value"] = value
         }
         
         return params
@@ -279,7 +301,7 @@ fileprivate extension NodeService.Query.Broadcast.InvokeScript.Payment {
         var params: [String: Any] = .init()
         
         params["amount"] = self.amount
-        params["assetId"] = self.assetId ?? ""
+        params["assetId"] = self.assetId.isEmpty == true ? NSNull() : self.assetId
         
         return params
     }
