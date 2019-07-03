@@ -435,7 +435,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
                                                                                  script: "AwZd0cYf",
                                                                                  assetId: txIssue.assetId)
                 
-                queryModel.sign(seed: self.seed)
+                queryModel.sign(seed: self .seed)
                 
                 let send = NodeService.Query.Transaction.setAssetScript(queryModel)
                 return  WavesSDK.shared.services

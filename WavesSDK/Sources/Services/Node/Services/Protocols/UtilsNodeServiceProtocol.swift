@@ -9,7 +9,10 @@ import Foundation
 import RxSwift
 
 public protocol UtilsNodeServiceProtocol {
-    
+
+    /**
+      Current Node time (UTC)
+     */
     func time() -> Observable<NodeService.DTO.Utils.Time>
     
     func transactionSerialize(query: NodeService.Query.Transaction)-> Observable<[Int]>

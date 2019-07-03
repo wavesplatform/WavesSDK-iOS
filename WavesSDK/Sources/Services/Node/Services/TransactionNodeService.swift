@@ -34,8 +34,9 @@ final class TransactionNodeService: TransactionNodeServiceProtocol {
             .map(NodeService.DTO.Transaction.self, atKeyPath: nil, using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff), failsOnEmptyData: false)
             .asObservable()
     }
-    
+
     //TODO: rename TransactionsByAddress
+
     public func list(address: String, offset: Int, limit: Int) -> Observable<NodeService.DTO.TransactionContainers> {
         
         return self

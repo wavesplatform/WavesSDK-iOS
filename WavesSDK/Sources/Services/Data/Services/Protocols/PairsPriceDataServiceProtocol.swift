@@ -9,8 +9,8 @@ import Foundation
 import RxSwift
 
 public protocol PairsPriceDataServiceProtocol {
-    
-    //TODO: PairsPriceDataServiceProtocol.pairs()
-    
+    /**
+      Get pair info by amount and price assets
+     */
     func pairsPrice(query: DataService.Query.PairsPrice) -> Observable<[DataService.DTO.PairPrice]>
 }

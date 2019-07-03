@@ -9,8 +9,14 @@ import RxSwift
 import Moya
 
 public protocol BalanceMatcherServiceProtocol {
+
+
+    /**
+            Get non-zero balance of open orders
+        */
     
     func balanceReserved(query: MatcherService.Query.ReservedBalances) -> Observable<[String: Int64]>
+
 }
 
 

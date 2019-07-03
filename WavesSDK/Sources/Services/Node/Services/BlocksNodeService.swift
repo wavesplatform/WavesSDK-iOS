@@ -18,7 +18,7 @@ final class BlocksNodeService: BlocksNodeServiceProtocol {
         self.blocksProvider = blocksProvider
         self.enviroment = enviroment
     }
-    
+
     public func height(address: String) -> Observable<NodeService.DTO.Block> {
         
         return self
