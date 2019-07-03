@@ -7,13 +7,23 @@
 
 import Foundation
 
-public enum TransferVersion: Int {
+public enum TransactionVersion: Int {
     case version_1 = 1
     case version_2 = 2
 }
 
+public protocol BaseTransactionQueryProtocol {
+    var type: Int { get }
+    var version: Int { get }
+    var chainId: String { get }
+    var fee: Int64 { get }
+    var timestamp: Int64 { get }
+    var senderPublicKey: String { get }
+    var proofs: [String] { get }
+}
+
 public extension NodeService.Query {
-    enum Broadcast {
+    enum Transaction {
         case createAlias(Alias)
         case startLease(Lease)
         case cancelLease(LeaseCancel)
@@ -74,24 +84,26 @@ public extension NodeService.Query {
 }
 
 
-public extension NodeService.Query.Broadcast {
+public extension NodeService.Query.Transaction {
     
-    struct Sponsorship {
-        public let type: Int
-        public let version: Int
-        public let scheme: String
-        public let fee: Int64
-        public let timestamp: Int64
-        public let senderPublicKey: String
-        public var proofs: [String]
+    struct Sponsorship: BaseTransactionQueryProtocol {
+        
+        public private(set) var type: Int
+        public private(set) var version: Int
+        public private(set) var chainId: String
+        public private(set) var fee: Int64
+        public private(set) var timestamp: Int64
+        public private(set) var senderPublicKey: String
+        public internal(set) var proofs: [String]
+        
         public let minSponsoredAssetFee: Int64?
         public let assetId: String
         
-        public init(version: Int = TransferVersion.version_1.rawValue, scheme: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], minSponsoredAssetFee: Int64?, assetId: String) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], minSponsoredAssetFee: Int64?, assetId: String) {
             self.type = TransactionType.sponsorship.int
             self.assetId = assetId
             self.version = version
-            self.scheme = scheme
+            self.chainId = chainId
             self.fee = fee
             self.timestamp = timestamp
             self.senderPublicKey = senderPublicKey
@@ -100,22 +112,24 @@ public extension NodeService.Query.Broadcast {
         }
     }
     
-    struct SetAssetScript {
-        public let type: Int
-        public let version: Int
-        public let scheme: String
-        public let fee: Int64
-        public let timestamp: Int64
-        public let senderPublicKey: String
-        public var proofs: [String]
+    struct SetAssetScript: BaseTransactionQueryProtocol {
+        
+        public private(set) var type: Int
+        public private(set) var version: Int
+        public private(set) var chainId: String
+        public private(set) var fee: Int64
+        public private(set) var timestamp: Int64
+        public private(set) var senderPublicKey: String
+        public internal(set) var proofs: [String]
+        
         public let script: String?
         public let assetId: String
         
-        public init(version: Int = TransferVersion.version_1.rawValue, scheme: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], script: String?, assetId: String) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], script: String?, assetId: String) {
             self.type = TransactionType.assetScript.int
             self.assetId = assetId
             self.version = version
-            self.scheme = scheme
+            self.chainId = chainId
             self.fee = fee
             self.timestamp = timestamp
             self.senderPublicKey = senderPublicKey
@@ -124,20 +138,22 @@ public extension NodeService.Query.Broadcast {
         }
     }
     
-    struct SetScript {
-        public let type: Int
-        public let version: Int
-        public let scheme: String
-        public let fee: Int64
-        public let timestamp: Int64
-        public let senderPublicKey: String
-        public var proofs: [String]
+    struct SetScript: BaseTransactionQueryProtocol {
+        
+        public private(set) var type: Int
+        public private(set) var version: Int
+        public private(set) var chainId: String
+        public private(set) var fee: Int64
+        public private(set) var timestamp: Int64
+        public private(set) var senderPublicKey: String
+        public internal(set) var proofs: [String]
+        
         public let script: String?
 
-        public init(version: Int = TransferVersion.version_1.rawValue, scheme: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], script: String?) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], script: String?) {
             self.type = TransactionType.script.int
             self.version = version
-            self.scheme = scheme
+            self.chainId = chainId
             self.fee = fee
             self.timestamp = timestamp
             self.senderPublicKey = senderPublicKey
@@ -146,7 +162,7 @@ public extension NodeService.Query.Broadcast {
         }
     }
     
-    struct MassTransfer {
+    struct MassTransfer: BaseTransactionQueryProtocol {
         
         public struct Transfer {
             public let recipient: String
@@ -158,25 +174,23 @@ public extension NodeService.Query.Broadcast {
             }
         }
         
-        public let type: Int
-        public let version: Int
-        public let scheme: String
-        public let fee: Int64
-        public let feeAssetId: String
-        public let timestamp: Int64
-        public let senderPublicKey: String
-        public var proofs: [String]
+        public private(set) var type: Int
+        public private(set) var version: Int
+        public private(set) var chainId: String
+        public private(set) var fee: Int64
+        public private(set) var timestamp: Int64
+        public private(set) var senderPublicKey: String
+        public internal(set) var proofs: [String]
         
         public let assetId: String
         public let attachment: String
         public let transfers: [Transfer]
 
-        public init(version: Int = TransferVersion.version_1.rawValue, scheme: String, fee: Int64, feeAssetId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], assetId: String, attachment: String, transfers: [Transfer]) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], assetId: String, attachment: String, transfers: [Transfer]) {
             self.type = TransactionType.massTransfer.int
             self.version = version
-            self.scheme = scheme
+            self.chainId = chainId
             self.fee = fee
-            self.feeAssetId = feeAssetId
             self.timestamp = timestamp
             self.senderPublicKey = senderPublicKey
             self.proofs = proofs
@@ -186,14 +200,14 @@ public extension NodeService.Query.Broadcast {
         }
     }
     
-    struct Issue {
-        public let version: Int
-        public let type: Int
-        public let scheme: String
-        public let fee: Int64
-        public let feeAssetId: String
-        public let timestamp: Int64
-        public let senderPublicKey: String
+    struct Issue: BaseTransactionQueryProtocol {
+        
+        public private(set) var type: Int
+        public private(set) var version: Int
+        public private(set) var chainId: String
+        public private(set) var fee: Int64
+        public private(set) var timestamp: Int64
+        public private(set) var senderPublicKey: String
         public internal(set) var proofs: [String]
         
         public let name: String
@@ -203,10 +217,9 @@ public extension NodeService.Query.Broadcast {
         public let decimals: UInt8
         public let isReissuable: Bool
 
-        public init(version: Int = TransferVersion.version_2.rawValue,
-                    scheme: String,
+        public init(version: Int = TransactionVersion.version_2.rawValue,
+                    chainId: String,
                     fee: Int64,
-                    feeAssetId: String,
                     timestamp: Int64,
                     senderPublicKey: String,
                     proofs: [String] = [],
@@ -216,11 +229,11 @@ public extension NodeService.Query.Broadcast {
                     description: String,
                     script: String?,
                     decimals: UInt8) {
+            
             self.version = version
             self.type = TransactionType.issue.int
-            self.scheme = scheme
+            self.chainId = chainId
             self.fee = fee
-            self.feeAssetId = feeAssetId
             self.timestamp = timestamp
             self.senderPublicKey = senderPublicKey
             self.proofs = proofs
@@ -234,26 +247,25 @@ public extension NodeService.Query.Broadcast {
         }
     }
     
-    struct Reissue {
-        public let version: Int
-        public let type: Int
-        public let scheme: String
-        public let fee: Int64
-        public let feeAssetId: String
-        public let timestamp: Int64
-        public let senderPublicKey: String
+    struct Reissue: BaseTransactionQueryProtocol {
+        
+        public private(set) var type: Int
+        public private(set) var version: Int
+        public private(set) var chainId: String
+        public private(set) var fee: Int64
+        public private(set) var timestamp: Int64
+        public private(set) var senderPublicKey: String
         public internal(set) var proofs: [String]
         
         public let assetId: String
         public let quantity: Int64
         public let isReissuable: Bool
         
-        public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, fee: Int64, feeAssetId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], assetId: String, quantity: Int64, isReissuable: Bool) {
+        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], assetId: String, quantity: Int64, isReissuable: Bool) {
             self.version = version
             self.type = TransactionType.reissue.int
-            self.scheme = scheme
+            self.chainId = chainId
             self.fee = fee
-            self.feeAssetId = feeAssetId
             self.timestamp = timestamp
             self.senderPublicKey = senderPublicKey
             self.proofs = proofs
@@ -263,7 +275,7 @@ public extension NodeService.Query.Broadcast {
         }
     }
     
-    struct InvokeScript {
+    struct InvokeScript: BaseTransactionQueryProtocol {
         
         public struct Arg {
             public enum Value {
@@ -300,28 +312,30 @@ public extension NodeService.Query.Broadcast {
             }
         }
         
-        public let version: Int
-        public let type: Int
-        public let scheme: String
-        public let fee: Int64
-        public let feeAssetId: String
-        public let timestamp: Int64
-        public let senderPublicKey: String
+        public private(set) var type: Int
+        public private(set) var version: Int
+        public private(set) var chainId: String
+        public private(set) var fee: Int64
+        public private(set) var timestamp: Int64
+        public private(set) var senderPublicKey: String
         public internal(set) var proofs: [String]
         
         public let dApp: String
         public let call: Call?
         public let payment: [Payment]
+        public let feeAssetId: String
 
-        public init(version: Int = TransferVersion.version_1.rawValue, scheme: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], feeAssetId: String, dApp: String, call: Call?, payment: [Payment]) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64,
+                    senderPublicKey: String, feeAssetId: String, proofs: [String] = [], dApp: String, call: Call?, payment: [Payment]) {
+            
             self.version = version
+            self.feeAssetId = feeAssetId
             self.type = TransactionType.invokeScript.int
-            self.scheme = scheme
+            self.chainId = chainId
             self.fee = fee
             self.timestamp = timestamp
             self.senderPublicKey = senderPublicKey
             self.proofs = proofs
-            self.feeAssetId = feeAssetId
             self.dApp = dApp
             self.call = call
             self.payment = payment
@@ -329,21 +343,23 @@ public extension NodeService.Query.Broadcast {
         
     }
     
-    struct Burn {
-        public let version: Int
-        public let type: Int
-        public let scheme: String
-        public let fee: Int64
+    struct Burn: BaseTransactionQueryProtocol {
+        
+        public private(set) var type: Int
+        public private(set) var version: Int
+        public private(set) var chainId: String
+        public private(set) var fee: Int64
+        public private(set) var timestamp: Int64
+        public private(set) var senderPublicKey: String
+        public internal(set) var proofs: [String]
+        
         public let assetId: String
         public let quantity: Int64
-        public let timestamp: Int64
-        public let senderPublicKey: String
-        public internal(set) var proofs: [String]
 
-        public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, fee: Int64, assetId: String, quantity: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
+        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: String, fee: Int64, assetId: String, quantity: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
             self.version = version
             self.type = TransactionType.burn.int
-            self.scheme = scheme
+            self.chainId = chainId
             self.fee = fee
             self.assetId = assetId
             self.quantity = quantity
@@ -353,18 +369,20 @@ public extension NodeService.Query.Broadcast {
         }
     }
     
-    struct Alias {
-        public let version: Int
-        public let scheme: String
-        public let name: String
-        public let fee: Int64
-        public let timestamp: Int64
-        public let type: Int
-        public let senderPublicKey: String
-        public internal(set) var proofs: [String]
+    struct Alias: BaseTransactionQueryProtocol {
 
-        public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, name: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
-            self.scheme = scheme
+        public private(set) var type: Int
+        public private(set) var version: Int
+        public private(set) var chainId: String
+        public private(set) var fee: Int64
+        public private(set) var timestamp: Int64
+        public private(set) var senderPublicKey: String
+        public internal(set) var proofs: [String]
+        
+        public let name: String
+        
+        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: String, name: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
+            self.chainId = chainId
             self.version = version
             self.name = name
             self.fee = fee
@@ -375,20 +393,22 @@ public extension NodeService.Query.Broadcast {
         }
     }
     
-    struct Lease {
-        public let version: Int
-        public let scheme: String
-        public let fee: Int64
+    struct Lease: BaseTransactionQueryProtocol {
+        
+        public private(set) var type: Int
+        public private(set) var version: Int
+        public private(set) var chainId: String
+        public private(set) var fee: Int64
+        public private(set) var timestamp: Int64
+        public private(set) var senderPublicKey: String
+        public internal(set) var proofs: [String]
+        
         public let recipient: String
         public let amount: Int64
-        public let timestamp: Int64
-        public let type: Int
-        public let senderPublicKey: String
-        public internal(set) var proofs: [String]
 
-        public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, fee: Int64, recipient: String, amount: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
+        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: String, fee: Int64, recipient: String, amount: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
             self.version = version
-            self.scheme = scheme
+            self.chainId = chainId
             self.fee = fee
             self.recipient = recipient
             self.amount = amount
@@ -399,19 +419,21 @@ public extension NodeService.Query.Broadcast {
         }
     }
     
-    struct LeaseCancel {
-        public let version: Int
-        public let scheme: String
-        public let fee: Int64
-        public let leaseId: String
-        public let timestamp: Int64
-        public let type: Int
-        public let senderPublicKey: String
+    struct LeaseCancel: BaseTransactionQueryProtocol {
+        
+        public private(set) var type: Int
+        public private(set) var version: Int
+        public private(set) var chainId: String
+        public private(set) var fee: Int64
+        public private(set) var timestamp: Int64
+        public private(set) var senderPublicKey: String
         public internal(set) var proofs: [String]
-
-        public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, fee: Int64, leaseId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
+        
+        public let leaseId: String
+        
+        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: String, fee: Int64, leaseId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
             self.version = version
-            self.scheme = scheme
+            self.chainId = chainId
             self.fee = fee
             self.leaseId = leaseId
             self.timestamp = timestamp
@@ -421,7 +443,7 @@ public extension NodeService.Query.Broadcast {
         }
     }
     
-    struct Data {
+    struct Data: BaseTransactionQueryProtocol {
         public struct Value {
             public enum Kind {
                 case integer(Int64)
@@ -439,16 +461,17 @@ public extension NodeService.Query.Broadcast {
             }
         }
         
-        public let type: Int
-        public let version: Int
-        public let fee: Int64
-        public let timestamp: Int64
-        public let senderPublicKey: String
-        public let scheme: String
+        public private(set) var type: Int
+        public private(set) var version: Int
+        public private(set) var chainId: String
+        public private(set) var fee: Int64
+        public private(set) var timestamp: Int64
+        public private(set) var senderPublicKey: String
         public internal(set) var proofs: [String]
+        
         public let data: [Value]
 
-        public init(version: Int = TransferVersion.version_1.rawValue, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], data: [Value], scheme: String) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], data: [Value], chainId: String) {
             self.type = TransactionType.data.int
             self.version = version
             self.fee = fee
@@ -456,32 +479,35 @@ public extension NodeService.Query.Broadcast {
             self.senderPublicKey = senderPublicKey
             self.proofs = proofs
             self.data = data
-            self.scheme = scheme
+            self.chainId = chainId
         }
     }
     
     struct Transfer {
-        public let type: Int
-        public let version: Int
-        public let scheme: String
+        
+        public private(set) var type: Int
+        public private(set) var version: Int
+        public private(set) var chainId: String
+        public private(set) var fee: Int64
+        public private(set) var timestamp: Int64
+        public private(set) var senderPublicKey: String
+        public internal(set) var proofs: [String]
+        
+        
         public let recipient: String
         public let assetId: String
         public let amount: Int64
-        public let fee: Int64
         public let attachment: String
         public let feeAssetId: String
-        public let timestamp: Int64
-        public let senderPublicKey: String
-        public var proofs: [String]
 
-        public init(version: Int = TransferVersion.version_2.rawValue, recipient: String, assetId: String, amount: Int64, fee: Int64, attachment: String, feeAssetId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], scheme: String) {
+        public init(version: Int = TransactionVersion.version_2.rawValue, recipient: String, assetId: String, amount: Int64, fee: Int64, attachment: String, feeAssetId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], chainId: String) {
             self.type = TransactionType.transfer.int
             self.version = version
             self.recipient = recipient
             self.assetId = assetId
             self.amount = amount
             self.fee = fee
-            self.scheme = scheme
+            self.chainId = chainId
             self.attachment = attachment
             self.feeAssetId = feeAssetId
             self.timestamp = timestamp

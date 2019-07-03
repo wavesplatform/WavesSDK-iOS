@@ -11,10 +11,8 @@ import RxSwift
 public protocol OrderBookMatcherServiceProtocol {
     
     func orderBook(amountAsset: String, priceAsset: String) -> Observable<MatcherService.DTO.OrderBook>
-    
-    //TODO: OrderBookMatcherServiceProtocol.orderbook()
-    
-    func market() -> Observable<MatcherService.DTO.MarketResponse>
+        
+    func orderbook() -> Observable<MatcherService.DTO.MarketResponse>
     
     func myOrders(query: MatcherService.Query.GetMyOrders) -> Observable<[MatcherService.DTO.Order]>
     

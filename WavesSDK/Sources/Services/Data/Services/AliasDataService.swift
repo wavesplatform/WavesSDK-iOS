@@ -37,7 +37,7 @@ final class AliasDataService: AliasDataServiceProtocol {
             .asObservable()
     }
     
-    public func list(address: String) -> Observable<[DataService.DTO.Alias]> {
+    public func aliases(address: String) -> Observable<[DataService.DTO.Alias]> {
         
         return self
             .aliasProvider

@@ -10,5 +10,5 @@ import RxSwift
 
 public protocol LeasingNodeServiceProtocol {
     
-    func activeLeasingTransactions(by address: String) -> Observable<[NodeService.DTO.LeaseTransaction]>
+    func leasingActiveTransactions(by address: String) -> Observable<[NodeService.DTO.LeaseTransaction]>
 }

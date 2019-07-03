@@ -17,17 +17,17 @@ public extension TransactionSignatureV1 {
         public struct Sponsorship {
             
             public let fee: Int64
-            public let scheme: String
+            public let chainId: String
             public let senderPublicKey: String
             public let timestamp: Int64
             public let assetId: String
             public let minSponsoredAssetFee: Int64?
             
             
-            public init(fee: Int64, scheme: String, senderPublicKey: String, timestamp: Int64, assetId: String, minSponsoredAssetFee: Int64?) {
+            public init(fee: Int64, chainId: String, senderPublicKey: String, timestamp: Int64, assetId: String, minSponsoredAssetFee: Int64?) {
                 self.fee = fee
                 self.minSponsoredAssetFee = minSponsoredAssetFee
-                self.scheme = scheme
+                self.chainId = chainId
                 self.senderPublicKey = senderPublicKey
                 self.timestamp = timestamp
                 self.assetId = assetId
@@ -37,15 +37,15 @@ public extension TransactionSignatureV1 {
         public struct SetScript {
     
             public let fee: Int64
-            public let scheme: String
+            public let chainId: String
             public let senderPublicKey: String
             public let timestamp: Int64
             public let script: String?
             
             
-            public init(fee: Int64, scheme: String, senderPublicKey: String, timestamp: Int64, script: String?) {
+            public init(fee: Int64, chainId: String, senderPublicKey: String, timestamp: Int64, script: String?) {
                 self.fee = fee
-                self.scheme = scheme
+                self.chainId = chainId
                 self.senderPublicKey = senderPublicKey
                 self.timestamp = timestamp
                 self.script = script
@@ -55,15 +55,15 @@ public extension TransactionSignatureV1 {
         public struct SetAssetScript {
             
             public let fee: Int64
-            public let scheme: String
+            public let chainId: String
             public let senderPublicKey: String
             public let timestamp: Int64
             public let assetId: String
             public let script: String?
             
-            public init(fee: Int64, scheme: String, senderPublicKey: String, timestamp: Int64, assetId: String, script: String?) {
+            public init(fee: Int64, chainId: String, senderPublicKey: String, timestamp: Int64, assetId: String, script: String?) {
                 self.fee = fee
-                self.scheme = scheme
+                self.chainId = chainId
                 self.assetId = assetId
                 self.senderPublicKey = senderPublicKey
                 self.timestamp = timestamp
@@ -84,16 +84,16 @@ public extension TransactionSignatureV1 {
             }
             
             public let fee: Int64
-            public let scheme: String
+            public let chainId: String
             public let senderPublicKey: String
             public let timestamp: Int64
             public let assetId: String
             public let attachment: String
             public let transfers: [Transfer]
 
-            public init(fee: Int64, scheme: String, senderPublicKey: String, timestamp: Int64, assetId: String, attachment: String, transfers: [Transfer]) {
+            public init(fee: Int64, chainId: String, senderPublicKey: String, timestamp: Int64, assetId: String, attachment: String, transfers: [Transfer]) {
                 self.fee = fee
-                self.scheme = scheme
+                self.chainId = chainId
                 self.senderPublicKey = senderPublicKey
                 self.timestamp = timestamp
                 self.assetId = assetId
@@ -122,14 +122,14 @@ public extension TransactionSignatureV1 {
             
             public let fee: Int64
             public let data: [Value]
-            public let scheme: String
+            public let chainId: String
             public let senderPublicKey: String
             public let timestamp: Int64
             
-            public init(fee: Int64, data: [Value], scheme: String, senderPublicKey: String, timestamp: Int64) {
+            public init(fee: Int64, data: [Value], chainId: String, senderPublicKey: String, timestamp: Int64) {
                 self.fee = fee
                 self.data = data
-                self.scheme = scheme
+                self.chainId = chainId
                 self.senderPublicKey = senderPublicKey
                 self.timestamp = timestamp
             }
@@ -174,17 +174,17 @@ public extension TransactionSignatureV1 {
             
             public let senderPublicKey: WavesSDKCrypto.PublicKey
             public let fee: Int64
-            public let scheme: String
+            public let chainId: String
             public let timestamp: Int64
             public let feeAssetId: String
             public let dApp: String
             public let call: Call?
             public let payment: [Payment]
 
-            public init(senderPublicKey: WavesSDKCrypto.PublicKey, fee: Int64, scheme: String, timestamp: Int64, feeAssetId: String, dApp: String, call: Call?, payment: [Payment]) {
+            public init(senderPublicKey: WavesSDKCrypto.PublicKey, fee: Int64, chainId: String, timestamp: Int64, feeAssetId: String, dApp: String, call: Call?, payment: [Payment]) {
                 self.senderPublicKey = senderPublicKey
                 self.fee = fee
-                self.scheme = scheme
+                self.chainId = chainId
                 self.timestamp = timestamp
                 self.feeAssetId = feeAssetId
                 self.dApp = dApp
@@ -254,33 +254,36 @@ public extension TransactionSignatureV1 {
             var dApp: [UInt8] = []
             if model.dApp.count <= WavesSDKConstants.aliasNameMaxLimitSymbols {
                 dApp += toByteArray(Int8(self.version))
-                dApp += model.scheme.utf8
+                dApp += model.chainId.utf8
                 dApp += model.dApp.arrayWithSize()
             } else {
                 dApp += WavesCrypto.shared.base58decode(input: model.dApp) ?? []
             }
+            
+            let feeAssetId = model.feeAssetId.normalizeWavesAssetId
                         
             var signature: [UInt8] = []
             signature += toByteArray(self.typeByte)
             signature += toByteArray(Int8(self.version))
-            signature += model.scheme.utf8
+            signature += model.chainId.utf8
             signature += WavesCrypto.shared.base58decode(input: model.senderPublicKey) ?? []
             signature += dApp
             signature += model.callBytes
             signature += model.paymentBytes
             signature += toByteArray(model.fee)
-            signature += model.feeAssetId.isEmpty ? [UInt8(0)] : ([UInt8(1)] + (WavesCrypto.shared.base58decode(input: model.feeAssetId) ?? []))
+            signature += feeAssetId.isEmpty ? [UInt8(0)] : ([UInt8(1)] + (WavesCrypto.shared.base58decode(input: feeAssetId) ?? []))
             signature += toByteArray(model.timestamp)
             return signature
             
         case .massTransfer(let model):
             
+            let assetId = model.assetId.normalizeWavesAssetId
             var signature: [UInt8] = []
             signature += toByteArray(self.typeByte)
             signature += toByteArray(Int8(self.version))
             signature += WavesCrypto.shared.base58decode(input: model.senderPublicKey) ?? []
-            signature += model.assetId.isEmpty ? [UInt8(0)] : ([UInt8(1)] + (WavesCrypto.shared.base58decode(input: model.assetId) ?? []))
-            signature += model.transfersBytes(version: self.version, scheme: model.scheme)            
+            signature += assetId.isEmpty ? [UInt8(0)] : ([UInt8(1)] + (WavesCrypto.shared.base58decode(input: assetId) ?? []))
+            signature += model.transfersBytes(version: self.version, chainId: model.chainId)
             signature += toByteArray(model.timestamp)
             signature += toByteArray(model.fee)
             signature += WavesCrypto.shared.base58decode(input: model.attachment)?.arrayWithSize() ?? []
@@ -291,7 +294,7 @@ public extension TransactionSignatureV1 {
             var signature: [UInt8] = []
             signature += toByteArray(self.typeByte)
             signature += toByteArray(Int8(self.version))
-            signature += model.scheme.utf8
+            signature += model.chainId.utf8
             signature += WavesCrypto.shared.base58decode(input: model.senderPublicKey) ?? []
             signature += (model.script?.isEmpty ?? true) ? [UInt8(0)] : ([UInt8(1)] + (WavesCrypto.shared.base64decode(input: model.script ?? "") ?? []).arrayWithSize())
             signature += toByteArray(model.fee)
@@ -303,7 +306,7 @@ public extension TransactionSignatureV1 {
             var signature: [UInt8] = []
             signature += toByteArray(self.typeByte)
             signature += toByteArray(Int8(self.version))
-            signature += model.scheme.utf8
+            signature += model.chainId.utf8
             signature += WavesCrypto.shared.base58decode(input: model.senderPublicKey) ?? []
             signature += WavesCrypto.shared.base58decode(input: model.assetId) ?? []
             signature += toByteArray(model.fee)
@@ -328,7 +331,7 @@ public extension TransactionSignatureV1 {
 
 private extension TransactionSignatureV1.Structure.MassTransfer {
  
-    func transfersBytes(version: Int, scheme: String) -> [UInt8] {
+    func transfersBytes(version: Int, chainId: String) -> [UInt8] {
         var bytes: [UInt8] = []
         
         for transfer in transfers {
@@ -336,7 +339,7 @@ private extension TransactionSignatureV1.Structure.MassTransfer {
             var recipient: [UInt8] = []
             if transfer.recipient.count <= WavesSDKConstants.aliasNameMaxLimitSymbols {
                 recipient += toByteArray(Int8(version))
-                recipient += scheme.utf8
+                recipient += chainId.utf8
                 recipient += transfer.recipient.arrayWithSize()
             } else {
                 recipient += WavesCrypto.shared.base58decode(input: transfer.recipient) ?? []
@@ -402,7 +405,9 @@ private extension TransactionSignatureV1.Structure.InvokeScript {
         for paymentItem in self.payment {
             let amount = toByteArray(paymentItem.amount)
             
-            let assetId = paymentItem.assetId.isEmpty ? [UInt8(0)] : ([UInt8(1)] + (WavesCrypto.shared.base58decode(input: paymentItem.assetId) ?? []))
+            let assetIdTrue = paymentItem.assetId.normalizeWavesAssetId
+            
+            let assetId = assetIdTrue.isEmpty ? [UInt8(0)] : ([UInt8(1)] + (WavesCrypto.shared.base58decode(input: assetIdTrue) ?? []))
             
             bytes += amount
             bytes += assetId

@@ -10,7 +10,7 @@ import RxSwift
 
 public protocol TransactionNodeServiceProtocol {
     
-    func broadcast(query: NodeService.Query.Broadcast) -> Observable<NodeService.DTO.Transaction>
+    func transactions(query: NodeService.Query.Transaction) -> Observable<NodeService.DTO.Transaction>
         
     func list(address: String, offset: Int, limit: Int) -> Observable<NodeService.DTO.TransactionContainers>
 }

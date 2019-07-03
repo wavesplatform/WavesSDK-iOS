@@ -24,7 +24,7 @@ final class UtilsNodeService: UtilsNodeServiceProtocol {
         let bytes: [Int]
     }
     
-    func transactionSerialize(query: NodeService.Query.Broadcast)-> Observable<[Int]> {
+    func transactionSerialize(query: NodeService.Query.Transaction)-> Observable<[Int]> {
         
         return self
             .utilsProvider

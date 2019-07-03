@@ -19,9 +19,8 @@ final class LeasingNodeService: LeasingNodeServiceProtocol {
         self.leasingProvider = leasingProvider
         self.enviroment = enviroment
     }
-    
-    //TODO: rename to leasingActive
-    public func activeLeasingTransactions(by address: String) -> Observable<[NodeService.DTO.LeaseTransaction]> {
+        
+    public func leasingActiveTransactions(by address: String) -> Observable<[NodeService.DTO.LeaseTransaction]> {
         
         return self
             .leasingProvider

@@ -10,8 +10,6 @@ import RxSwift
 
 public protocol TransactionsDataServiceProtocol {
     
-    //TODO: TransactionsDataServiceProtocol.transactionsExchange()
-
-    func exchangeFilters(query: DataService.Query.ExchangeFilters) -> Observable<[DataService.DTO.ExchangeTransaction]>
+    func transactionsExchange(query: DataService.Query.ExchangeFilters) -> Observable<[DataService.DTO.ExchangeTransaction]>
 }
 

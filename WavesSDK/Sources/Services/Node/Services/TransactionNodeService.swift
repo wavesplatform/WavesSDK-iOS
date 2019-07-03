@@ -19,7 +19,7 @@ final class TransactionNodeService: TransactionNodeServiceProtocol {
         self.enviroment = enviroment
     }
     
-    public func broadcast(query: NodeService.Query.Broadcast) -> Observable<NodeService.DTO.Transaction> {
+    public func transactions(query: NodeService.Query.Transaction) -> Observable<NodeService.DTO.Transaction> {
         
         return self
             .transactionsProvider

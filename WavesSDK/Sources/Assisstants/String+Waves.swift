@@ -18,11 +18,14 @@ public extension String {
         }
     }
     
-    var ifNeeeNull: Any {
-        if self.isEmpty {
+    var normalizeToNullWavesAssetId: Any {
+        
+        let assetId = self.normalizeWavesAssetId
+        
+        if assetId.isEmpty {
             return NSNull()
         } else {
-            return self
+            return assetId
         }
     }
 }

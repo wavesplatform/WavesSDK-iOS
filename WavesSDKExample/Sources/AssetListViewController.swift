@@ -56,30 +56,30 @@ final class AssetListViewController: UIViewController {
         let recipient = address
         let fee: Int64 = 100000
         let amount: Int64 = 100000
-        let feeAssetId = ""
-        let assetId = ""
+        let feeAssetId = "WAVES"
+        let assetId = "WAVES"
         let attachment = ""
         let timestamp = Int64(Date().timeIntervalSince1970) * 1000
         
-        var queryModel = NodeService.Query.Broadcast.Transfer(recipient: recipient,
-                                                              assetId: assetId,
-                                                              amount: amount,
-                                                              fee: fee,
-                                                              attachment: attachment,
-                                                              feeAssetId: feeAssetId,
-                                                              timestamp: timestamp,
-                                                              senderPublicKey: senderPublicKey,
-                                                              scheme: chainId)
-        queryModel.sign(seed: seed)
+        var queryModel = NodeService.Query.Transaction.Transfer(recipient: recipient,
+                                                                assetId: assetId,
+                                                                amount: amount,
+                                                                fee: fee,
+                                                                attachment: attachment,
+                                                                feeAssetId: feeAssetId,
+                                                                timestamp: timestamp,
+                                                                senderPublicKey: senderPublicKey,
+                                                                chainId: chainId)
+            queryModel.sign(seed: seed)
         
-        let send = NodeService.Query.Broadcast.transfer(queryModel)
+        let send = NodeService.Query.Transaction.transfer(queryModel)
         
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: send)
+            .transactions(query: send)
             .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { [weak self] (tx) in
+            .subscribe(onNext: { (tx) in
                 print(tx)
             })
             .disposed(by: disposeBag)

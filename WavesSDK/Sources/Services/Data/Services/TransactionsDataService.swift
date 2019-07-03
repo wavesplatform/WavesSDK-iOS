@@ -20,7 +20,7 @@ final class TransactionsDataService: TransactionsDataServiceProtocol {
         self.enviroment = enviroment
     }
     
-    public func exchangeFilters(query: DataService.Query.ExchangeFilters) -> Observable<[DataService.DTO.ExchangeTransaction]> {
+    public func transactionsExchange(query: DataService.Query.ExchangeFilters) -> Observable<[DataService.DTO.ExchangeTransaction]> {
         
         return self
             .transactionsProvider

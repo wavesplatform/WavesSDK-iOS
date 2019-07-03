@@ -80,12 +80,12 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         let recipient = address!
         let fee: Int64 = 500000
         let amount: Int64 = 100000
-        let feeAssetId = ""
-        let assetId = ""
+        let feeAssetId = "WAVES"
+        let assetId = "WAVES"
         let attachment = ""
         let timestamp = Int64(Date().timeIntervalSince1970) * 1000
 
-        var queryModel = NodeService.Query.Broadcast.Transfer(recipient: recipient,
+        var queryModel = NodeService.Query.Transaction.Transfer(recipient: recipient,
                                                               assetId: assetId,
                                                               amount: amount,
                                                               fee: fee,
@@ -93,15 +93,15 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
                                                               feeAssetId: feeAssetId,
                                                               timestamp: timestamp,
                                                               senderPublicKey: senderPublicKey,
-                                                              scheme: chainId)
+                                                              chainId: chainId)
         queryModel.sign(seed: seed)
 
-        let send = NodeService.Query.Broadcast.transfer(queryModel)
+        let send = NodeService.Query.Transaction.transfer(queryModel)
 
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: send)
+            .transactions(query: send)
             .observeOn(MainScheduler.asyncInstance)
             .executionDebug(expectation: expectation)
         
@@ -113,28 +113,28 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         let fee: Int64 = 900000
         let timestamp = Int64(Date().timeIntervalSince1970) * 1000
         
-        let data = NodeService.Query.Broadcast.Data.Value.init(key: "size", value: .integer(10))
+        let data = NodeService.Query.Transaction.Data.Value.init(key: "size", value: .integer(10))
         
-        let data1 = NodeService.Query.Broadcast.Data.Value.init(key: "name", value: .string("Maks"))
+        let data1 = NodeService.Query.Transaction.Data.Value.init(key: "name", value: .string("Maks"))
         
-        let data2 = NodeService.Query.Broadcast.Data.Value.init(key: "isGay", value: .boolean(true))
+        let data2 = NodeService.Query.Transaction.Data.Value.init(key: "isMan", value: .boolean(true))
         
-        let data3 = NodeService.Query.Broadcast.Data.Value.init(key: "secret", value: .binary("base64:SGVsbG8h"))
+        let data3 = NodeService.Query.Transaction.Data.Value.init(key: "secret", value: .binary("base64:SGVsbG8h"))
 
-        var queryModel = NodeService.Query.Broadcast.Data.init(fee: fee,
+        var queryModel = NodeService.Query.Transaction.Data.init(fee: fee,
                                                                timestamp: timestamp,
                                                                senderPublicKey: senderPublicKey,
                                                                data: [data, data1, data2, data3],
-                                                               scheme: chainId)
+                                                               chainId: chainId)
         
         queryModel.sign(seed: seed)
         
-        let send = NodeService.Query.Broadcast.data(queryModel)
+        let send = NodeService.Query.Transaction.data(queryModel)
         
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: send)
+            .transactions(query: send)
             .observeOn(MainScheduler.asyncInstance)
             .executionDebug(expectation: expectation)
         
@@ -147,31 +147,31 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         let timestamp = Int64(Date().timeIntervalSince1970) * 1000
         let dApp: String = "3Mv9XDntij4ZRE1XiNZed6J74rncBpiYNDV"
         
-        let arg1 = NodeService.Query.Broadcast.InvokeScript.Arg.init(value: .string("Some string!"))
-        let arg2 = NodeService.Query.Broadcast.InvokeScript.Arg.init(value: .integer(128))
-        let arg3 = NodeService.Query.Broadcast.InvokeScript.Arg.init(value: .integer(-127))
-        let arg4 = NodeService.Query.Broadcast.InvokeScript.Arg.init(value: .bool(true))
-        let arg5 = NodeService.Query.Broadcast.InvokeScript.Arg.init(value: .bool(false))
-        let arg6 = NodeService.Query.Broadcast.InvokeScript.Arg.init(value: .binary("base64:VGVzdA=="))
+        let arg1 = NodeService.Query.Transaction.InvokeScript.Arg.init(value: .string("Some string!"))
+        let arg2 = NodeService.Query.Transaction.InvokeScript.Arg.init(value: .integer(128))
+        let arg3 = NodeService.Query.Transaction.InvokeScript.Arg.init(value: .integer(-127))
+        let arg4 = NodeService.Query.Transaction.InvokeScript.Arg.init(value: .bool(true))
+        let arg5 = NodeService.Query.Transaction.InvokeScript.Arg.init(value: .bool(false))
+        let arg6 = NodeService.Query.Transaction.InvokeScript.Arg.init(value: .binary("base64:VGVzdA=="))
         
-        var queryModel = NodeService.Query.Broadcast.InvokeScript.init(scheme: chainId,
-                                                                       fee: fee,
-                                                                       timestamp: timestamp,
-                                                                       senderPublicKey: senderPublicKey,
-                                                                       feeAssetId: "",
-                                                                       dApp: dApp,
-                                                                       call: .init(function: "testarg", args: [arg1, arg2, arg3,
-                                                                                                               arg4, arg5, arg6]),
-                                                                       payment: [.init(amount: 1, assetId: "")])
+        var queryModel = NodeService.Query.Transaction.InvokeScript.init(chainId: chainId,
+                                                                           fee: fee,
+                                                                           timestamp: timestamp,
+                                                                           senderPublicKey: senderPublicKey,
+                                                                           feeAssetId: "WAVES",
+                                                                           dApp: dApp,
+                                                                           call: .init(function: "testarg", args: [arg1, arg2, arg3,
+                                                                                                                   arg4, arg5, arg6]),
+                                                                           payment: [.init(amount: 1, assetId: "WAVES")])
         
         queryModel.sign(seed: seed)
         
-        let send = NodeService.Query.Broadcast.invokeScript(queryModel)
+        let send = NodeService.Query.Transaction.invokeScript(queryModel)
 
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: send)
+            .transactions(query: send)
             .observeOn(MainScheduler.asyncInstance)
             .executionDebug(expectation: expectation)
         
@@ -183,7 +183,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         let fee: Int64 = 500000
         let timestamp = Int64(Date().timeIntervalSince1970) * 1000
 
-        var queryModel = NodeService.Query.Broadcast.Burn.init(scheme: chainId,
+        var queryModel = NodeService.Query.Transaction.Burn.init(chainId: chainId,
                                                                fee: fee,
                                                                assetId: "C5XD7iTdyx868yRE7DS9BmqonF1TBcM5W2hfTEWW5Dfm",
                                                                quantity: 1,
@@ -193,12 +193,12 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         
         queryModel.sign(seed: seed)
         
-        let send = NodeService.Query.Broadcast.burn(queryModel)
+        let send = NodeService.Query.Transaction.burn(queryModel)
         
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: send)
+            .transactions(query: send)
             .observeOn(MainScheduler.asyncInstance)
             .executionDebug(expectation: expectation)
         
@@ -210,9 +210,8 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         let fee: Int64 = 150000000
         let timestamp = Int64(Date().timeIntervalSince1970) * 1000
         
-        var queryModel = NodeService.Query.Broadcast.Reissue.init(scheme: chainId,
+        var queryModel = NodeService.Query.Transaction.Reissue.init(chainId: chainId,
                                                                   fee: fee,
-                                                                  feeAssetId: "",
                                                                   timestamp: timestamp,
                                                                   senderPublicKey: senderPublicKey,
                                                                   assetId: "C5XD7iTdyx868yRE7DS9BmqonF1TBcM5W2hfTEWW5Dfm",
@@ -221,12 +220,12 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         
         queryModel.sign(seed: seed)
         
-        let send = NodeService.Query.Broadcast.reissue(queryModel)
+        let send = NodeService.Query.Transaction.reissue(queryModel)
         
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: send)
+            .transactions(query: send)
             .observeOn(MainScheduler.asyncInstance)
             .executionDebug(expectation: expectation)
         
@@ -240,7 +239,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: send)
+            .transactions(query: send)
             .observeOn(MainScheduler.asyncInstance)
             .executionDebug(expectation: expectation)
         
@@ -252,9 +251,8 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         let fee: Int64 = 900000
         let timestamp = Int64(Date().timeIntervalSince1970) * 1000
         
-        var queryModel = NodeService.Query.Broadcast.MassTransfer.init(scheme: chainId,
+        var queryModel = NodeService.Query.Transaction.MassTransfer.init(chainId: chainId,
                                                                        fee: fee,
-                                                                       feeAssetId: "",
                                                                        timestamp: timestamp,
                                                                        senderPublicKey: senderPublicKey,
                                                                        assetId: "",
@@ -266,12 +264,12 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         
         queryModel.sign(seed: seed)
         
-        let send = NodeService.Query.Broadcast.massTransfer(queryModel)
+        let send = NodeService.Query.Transaction.massTransfer(queryModel)
         
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: send)
+            .transactions(query: send)
             .observeOn(MainScheduler.asyncInstance)
             .executionDebug(expectation: expectation)
         
@@ -287,7 +285,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         
         let number = String.random(length: 29, letters: "-.0123456789@_abcdefghijklmnopqrstuvwxyz")
         
-        var queryModel = NodeService.Query.Broadcast.Alias.init(scheme: chainId,
+        var queryModel = NodeService.Query.Transaction.Alias.init(chainId: chainId,
                                                                 name: number,
                                                                 fee: fee,
                                                                 timestamp: timestamp,
@@ -295,12 +293,12 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         
         queryModel.sign(seed: seed)
         
-        let send = NodeService.Query.Broadcast.createAlias(queryModel)
+        let send = NodeService.Query.Transaction.createAlias(queryModel)
         
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: send)
+            .transactions(query: send)
             .observeOn(MainScheduler.asyncInstance)
             .executionDebug(expectation: expectation)
         
@@ -315,7 +313,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: send)
+            .transactions(query: send)
             .observeOn(MainScheduler.asyncInstance)
             .executionDebug(expectation: expectation)
         
@@ -329,7 +327,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: send)
+            .transactions(query: send)
             .flatMap({ (tx) -> Observable<NodeService.DTO.Transaction> in
                 
                 return Observable<Int>.timer(10, scheduler: MainScheduler.asyncInstance).map { _ in tx }
@@ -343,7 +341,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
                 let fee: Int64 = 500000
                 let timestamp = Int64(Date().timeIntervalSince1970) * 1000
                 
-                var queryModel = NodeService.Query.Broadcast.LeaseCancel.init(scheme: self.chainId,
+                var queryModel = NodeService.Query.Transaction.LeaseCancel.init(chainId: self.chainId,
                                                                               fee: fee,
                                                                               leaseId: txLease.id,
                                                                               timestamp: timestamp,
@@ -354,7 +352,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
                 return WavesSDK.shared.services
                     .nodeServices
                     .transactionNodeService
-                    .broadcast(query: NodeService.Query.Broadcast.cancelLease(queryModel))
+                    .transactions(query: NodeService.Query.Transaction.cancelLease(queryModel))
             })
             .observeOn(MainScheduler.asyncInstance)
             .executionDebug(expectation: expectation)
@@ -367,7 +365,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         let fee: Int64 = 1500000
         let timestamp = Int64(Date().timeIntervalSince1970) * 1000
         
-        var queryModel = NodeService.Query.Broadcast.SetScript.init(scheme: chainId,
+        var queryModel = NodeService.Query.Transaction.SetScript.init(chainId: chainId,
                                                                      fee: fee,
                                                                      timestamp: timestamp,
                                                                      senderPublicKey: senderPublicKey,
@@ -375,12 +373,12 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         
         queryModel.sign(seed: seed)
         
-        let send = NodeService.Query.Broadcast.setScript(queryModel)
+        let send = NodeService.Query.Transaction.setScript(queryModel)
         
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: send)
+            .transactions(query: send)
             .observeOn(MainScheduler.asyncInstance)
             .executionDebug(expectation: expectation)
         
@@ -392,7 +390,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         let fee: Int64 = 1400000
         let timestamp = Int64(Date().timeIntervalSince1970) * 1000
         
-        var queryModel = NodeService.Query.Broadcast.SetScript.init(scheme: chainId,
+        var queryModel = NodeService.Query.Transaction.SetScript.init(chainId: chainId,
                                                                     fee: fee,
                                                                     timestamp: timestamp,
                                                                     senderPublicKey: senderPublicKey,
@@ -400,12 +398,12 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         
         queryModel.sign(seed: seed)
         
-        let send = NodeService.Query.Broadcast.setScript(queryModel)
+        let send = NodeService.Query.Transaction.setScript(queryModel)
         
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: send)
+            .transactions(query: send)
             .observeOn(MainScheduler.asyncInstance)
             .executionDebug(expectation: expectation)
         
@@ -417,7 +415,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: issueTx(script: "AwZd0cYf"))
+            .transactions(query: issueTx(script: "AwZd0cYf"))
             .flatMap({ (tx) -> Observable<NodeService.DTO.Transaction> in
                 return Observable<Int>.timer(10, scheduler: MainScheduler.asyncInstance).map { _ in tx }
             })
@@ -430,7 +428,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
                 let fee: Int64 = 100400000
                 let timestamp = Int64(Date().timeIntervalSince1970) * 1000
                 
-                var queryModel = NodeService.Query.Broadcast.SetAssetScript.init(scheme: self.chainId,
+                var queryModel = NodeService.Query.Transaction.SetAssetScript.init(chainId: self.chainId,
                                                                                  fee: fee,
                                                                                  timestamp: timestamp,
                                                                                  senderPublicKey: self.senderPublicKey,
@@ -439,11 +437,11 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
                 
                 queryModel.sign(seed: self.seed)
                 
-                let send = NodeService.Query.Broadcast.setAssetScript(queryModel)
+                let send = NodeService.Query.Transaction.setAssetScript(queryModel)
                 return  WavesSDK.shared.services
                     .nodeServices
                     .transactionNodeService
-                    .broadcast(query: send)
+                    .transactions(query: send)
             })
             .observeOn(MainScheduler.asyncInstance)
             .executionDebug(expectation: expectation)
@@ -456,9 +454,9 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         WavesSDK.shared.services
             .nodeServices
             .transactionNodeService
-            .broadcast(query: issueTx())
+            .transactions(query: issueTx())
             .flatMap({ (tx) -> Observable<NodeService.DTO.Transaction> in
-                return Observable<Int>.timer(15, scheduler: MainScheduler.asyncInstance).map { _ in tx }
+                return Observable<Int>.timer(20, scheduler: MainScheduler.asyncInstance).map { _ in tx }
             })
             .flatMap({ (tx) -> Observable<NodeService.DTO.Transaction> in
                 
@@ -469,7 +467,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
                 let fee: Int64 = 100400000
                 let timestamp = Int64(Date().timeIntervalSince1970) * 1000
                 
-                var queryModel = NodeService.Query.Broadcast.Sponsorship.init(scheme: self.chainId,
+                var queryModel = NodeService.Query.Transaction.Sponsorship.init(chainId: self.chainId,
                                                                               fee: fee,
                                                                               timestamp: timestamp,
                                                                               senderPublicKey: self.senderPublicKey,
@@ -478,12 +476,12 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
                 
                 queryModel.sign(seed: self.seed)
                 
-                let send = NodeService.Query.Broadcast.sponsorship(queryModel)
+                let send = NodeService.Query.Transaction.sponsorship(queryModel)
                 
                 return WavesSDK.shared.services
                     .nodeServices
                     .transactionNodeService
-                    .broadcast(query: send)
+                    .transactions(query: send)
                 
             })
             .executionDebug(expectation: expectation)
@@ -492,65 +490,15 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
     }
 }
 
-
-//case issue = 3 // ok
-//case transfer = 4 // ok
-//case reissue = 5 // ok
-//case burn = 6 // ok
-//case massTransfer = 11
-//case data = 12
-//case createAlias = 10
-//case invokeScript = 16
-//case script = 13
-
-//case exchange = 7
-
-
-//case sponsorship = 14
-//case assetScript = 15
-
-
-//WavesSDK.shared.services
-//    .nodeServices
-//    .utilsNodeService
-//    .transactionSerialize(query: send)
-//    .observeOn(MainScheduler.asyncInstance)
-//    .do(onNext: { (map) in
-//
-//
-//        let signature = TransactionSignatureV1.massTransfer(.init(fee: fee,
-//                                                                  scheme: self.chainId,
-//                                                                  senderPublicKey: self.senderPublicKey,
-//                                                                  timestamp: timestamp,
-//                                                                  assetId: "",
-//                                                                  attachment: "Vas9",
-//                                                                  transfers: [.init(recipient: "3N44AAuDdk86roSvuURuKez4Br5wrccxfhy",
-//                                                                                    amount: 10000),
-//                                                                              .init(recipient: "3N44AAuDdk86roSvuURuKez4Br5wrccxfhy",
-//                                                                                    amount: 200000)]))
-//
-//        signature.bytesStructure.enumerated().elementsEqual(map, by: { (one, two) -> Bool in
-//
-//            if one.element != two {
-//
-//                print("one \(one.element) != \(two)  index \(one.offset)")
-//            }
-//
-//            return one.element == two
-//        })
-//
-//    })
-//    .executionDebug(expectation: expectation)
-
 private extension WavesServicesBroadcastTransactionsTest {
     
-    func leaseTx() -> NodeService.Query.Broadcast {
+    func leaseTx() -> NodeService.Query.Transaction {
         
         let fee: Int64 = 500000
         let timestamp = Int64(Date().timeIntervalSince1970) * 1000
         
         
-        var queryModel = NodeService.Query.Broadcast.Lease(scheme: chainId,
+        var queryModel = NodeService.Query.Transaction.Lease(chainId: chainId,
                                                            fee: fee,
                                                            recipient: "3MsqCHCg5pkdPCk2nvfjzddcXeZFaPR8qYS",
                                                            amount: 1,
@@ -559,28 +507,27 @@ private extension WavesServicesBroadcastTransactionsTest {
         
         queryModel.sign(seed: seed)
         
-        return NodeService.Query.Broadcast.startLease(queryModel)
+        return NodeService.Query.Transaction.startLease(queryModel)
     }
     
-    func issueTx(script: String? = nil) -> NodeService.Query.Broadcast {
+    func issueTx(script: String? = nil) -> NodeService.Query.Transaction {
         
         let fee: Int64 = 100400000
         let timestamp = Int64(Date().timeIntervalSince1970) * 1000
         
-        var queryModel = NodeService.Query.Broadcast.Issue.init(scheme: chainId,
+        var queryModel = NodeService.Query.Transaction.Issue.init(chainId: chainId,
                                                                 fee: fee,
-                                                                feeAssetId: "",
                                                                 timestamp: timestamp,
                                                                 senderPublicKey: senderPublicKey,
                                                                 quantity: 100,
                                                                 isReissuable: true,
                                                                 name: "Maks",
-                                                                description: "Maks anton",
+                                                                description: "Mega token",
                                                                 script: script,
                                                                 decimals: 2)
         
         queryModel.sign(seed: seed)
         
-        return NodeService.Query.Broadcast.issue(queryModel)
+        return NodeService.Query.Transaction.issue(queryModel)
     }
 }

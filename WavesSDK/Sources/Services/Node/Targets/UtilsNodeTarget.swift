@@ -15,7 +15,7 @@ extension NodeService.Target {
         enum Kind {
             case time
             
-            case transactionSerialize(NodeService.Query.Broadcast)
+            case transactionSerialize(NodeService.Query.Transaction)
         }
         
         var nodeUrl: URL

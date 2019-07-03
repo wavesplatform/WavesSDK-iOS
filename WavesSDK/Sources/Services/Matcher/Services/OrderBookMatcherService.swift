@@ -41,7 +41,7 @@ final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
             .asObservable()
     }
     
-    public func market() -> Observable<MatcherService.DTO.MarketResponse> {
+    public func orderbook() -> Observable<MatcherService.DTO.MarketResponse> {
         
         return self
             .orderBookProvider

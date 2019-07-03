@@ -12,5 +12,5 @@ public protocol AliasDataServiceProtocol {
     
     func alias(name: String) -> Observable<DataService.DTO.Alias>
     
-    func list(address: String) -> Observable<[DataService.DTO.Alias]>
+    func aliases(address: String) -> Observable<[DataService.DTO.Alias]>
 }

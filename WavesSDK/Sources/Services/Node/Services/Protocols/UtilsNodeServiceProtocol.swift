@@ -12,5 +12,5 @@ public protocol UtilsNodeServiceProtocol {
     
     func time() -> Observable<NodeService.DTO.Utils.Time>
     
-    func transactionSerialize(query: NodeService.Query.Broadcast)-> Observable<[Int]>
+    func transactionSerialize(query: NodeService.Query.Transaction)-> Observable<[Int]>
 }

@@ -36,13 +36,13 @@ fileprivate enum Constants {
     static let attachment: String = "attachment"
 }
 
-extension NodeService.Query.Broadcast {
+extension NodeService.Query.Transaction {
     
     var params: [String: Any] {
         switch self {
         case .burn(let burn):
             return  [Constants.version: burn.version,
-                     Constants.chainId: burn.scheme,
+                     Constants.chainId: burn.chainId,
                      Constants.senderPublicKey: burn.senderPublicKey,
                      Constants.quantity: burn.quantity,
                      Constants.fee: burn.fee,
@@ -58,12 +58,12 @@ extension NodeService.Query.Broadcast {
                     Constants.timestamp: alias.timestamp,
                     Constants.type: alias.type,
                     Constants.senderPublicKey: alias.senderPublicKey,
-                    Constants.proofs: alias.proofs ?? []]
+                    Constants.proofs: alias.proofs]
             
         case .startLease(let lease):
-            let scheme: UInt8 = lease.scheme.utf8.last ?? UInt8(0)
+            let chainId: UInt8 = lease.chainId.utf8.last ?? UInt8(0)
             return  [Constants.version: lease.version,
-                     Constants.chainId: scheme,
+                     Constants.chainId: chainId,
                      Constants.senderPublicKey: lease.senderPublicKey,
                      Constants.recipient: lease.recipient,
                      Constants.amount: lease.amount,
@@ -73,7 +73,7 @@ extension NodeService.Query.Broadcast {
                      Constants.type: lease.type]
             
         case .cancelLease(let lease):
-            let scheme: UInt8 = lease.scheme.utf8.last ?? UInt8(0)
+            let scheme: UInt8 = lease.chainId.utf8.last ?? UInt8(0)
             return  [Constants.version: lease.version,
                      Constants.chainId: scheme,
                      Constants.senderPublicKey: lease.senderPublicKey,
@@ -102,8 +102,8 @@ extension NodeService.Query.Broadcast {
                     Constants.proofs: model.proofs,
                     Constants.version: model.version,
                     Constants.recipient: model.recipient,
-                    Constants.assetId: model.assetId,
-                    Constants.feeAssetId: model.feeAssetId,                    
+                    Constants.assetId: model.assetId.normalizeWavesAssetId,
+                    Constants.feeAssetId: model.feeAssetId.normalizeWavesAssetId,                    
                     Constants.amount: model.amount,
                     Constants.attachment: model.attachment]
         case .invokeScript(let model):
@@ -113,9 +113,9 @@ extension NodeService.Query.Broadcast {
                           Constants.fee: model.fee,
                           Constants.timestamp: model.timestamp,
                           Constants.proofs: model.proofs,
-                          Constants.type: model.type,
-                          Constants.feeAssetId: model.feeAssetId] as [String : Any]
+                          Constants.type: model.type] as [String : Any]
             
+            params["feeAssetId"] = model.feeAssetId.normalizeWavesAssetId
             params["dApp"] = model.dApp
             
             if let call = model.call {
@@ -133,10 +133,9 @@ extension NodeService.Query.Broadcast {
                           Constants.fee: model.fee,
                           Constants.timestamp: model.timestamp,
                           Constants.proofs: model.proofs,
-                          Constants.type: model.type,
-                          Constants.feeAssetId: model.feeAssetId] as [String : Any]
+                          Constants.type: model.type] as [String : Any]
             
-            params["assetId"] = model.assetId
+            params["assetId"] = model.assetId.normalizeWavesAssetId
             params["quantity"] = model.quantity
             params["reissuable"] = model.isReissuable
             
@@ -149,8 +148,7 @@ extension NodeService.Query.Broadcast {
                           Constants.fee: model.fee,
                           Constants.timestamp: model.timestamp,
                           Constants.proofs: model.proofs,
-                          Constants.type: model.type,
-                          Constants.feeAssetId: model.feeAssetId] as [String : Any]
+                          Constants.type: model.type] as [String : Any]
             
             params["name"] = model.name
             params["description"] = model.description
@@ -165,15 +163,14 @@ extension NodeService.Query.Broadcast {
             
             var params = [Constants.type: model.type,
                     Constants.senderPublicKey : model.senderPublicKey,
-                    Constants.fee: model.fee,
-                    Constants.feeAssetId: model.feeAssetId,
+                    Constants.fee: model.fee,                    
                     Constants.timestamp: model.timestamp,
                     Constants.proofs: model.proofs,
                     Constants.version: model.version] as [String : Any]
             
             params[Constants.attachment] = model.attachment
             
-            params["assetId"] = model.assetId
+            params["assetId"] = model.assetId.normalizeWavesAssetId
             params["transfers"] = model.transfers.map {
                 return ["recipient": $0.recipient, "amount": $0.amount]
             }
@@ -203,7 +200,7 @@ extension NodeService.Query.Broadcast {
                           Constants.version: model.version] as [String : Any]
         
             params["script"] = model.script
-            params["assetId"] = model.assetId
+            params["assetId"] = model.assetId.normalizeWavesAssetId
         
             return params
             
@@ -217,7 +214,7 @@ extension NodeService.Query.Broadcast {
                           Constants.version: model.version] as [String : Any]
             
             params["minSponsoredAssetFee"] = model.minSponsoredAssetFee
-            params["assetId"] = model.assetId
+            params["assetId"] = model.assetId.normalizeWavesAssetId
             
             return params
         }
@@ -230,18 +227,12 @@ extension NodeService.Target {
     struct Transaction {
 
         public enum Kind {
-            /**
-             Response:
-             - Node.DTO.TransactionContainers.self
-             */
+    
             case list(address: String, limit: Int)
-            /**
-             Response:
-             - ?
-             */
+   
             case info(id: String)
 
-            case broadcast(NodeService.Query.Broadcast)                        
+            case broadcast(NodeService.Query.Transaction)                        
         }
 
         var kind: Kind
@@ -288,7 +279,7 @@ extension NodeService.Target.Transaction: NodeTargetType {
     }
 }
 
-fileprivate extension Array where Element == NodeService.Query.Broadcast.Data.Value {
+fileprivate extension Array where Element == NodeService.Query.Transaction.Data.Value {
 
     var dataByParams: [[String: Any]] {
 
@@ -302,7 +293,7 @@ fileprivate extension Array where Element == NodeService.Query.Broadcast.Data.Va
     }
 }
 
-fileprivate extension NodeService.Query.Broadcast.Data.Value {
+fileprivate extension NodeService.Query.Transaction.Data.Value {
 
     func params() -> [String: Any] {
 
@@ -332,7 +323,7 @@ fileprivate extension NodeService.Query.Broadcast.Data.Value {
     }
 }
 
-fileprivate extension NodeService.Query.Broadcast.InvokeScript.Call {
+fileprivate extension NodeService.Query.Transaction.InvokeScript.Call {
     
     func params() -> [String: Any] {
         
@@ -345,7 +336,7 @@ fileprivate extension NodeService.Query.Broadcast.InvokeScript.Call {
     }
 }
 
-fileprivate extension NodeService.Query.Broadcast.InvokeScript.Arg {
+fileprivate extension NodeService.Query.Transaction.InvokeScript.Arg {
     
     func params() -> [String: Any] {
         
@@ -373,14 +364,14 @@ fileprivate extension NodeService.Query.Broadcast.InvokeScript.Arg {
     }
 }
 
-fileprivate extension NodeService.Query.Broadcast.InvokeScript.Payment {
+fileprivate extension NodeService.Query.Transaction.InvokeScript.Payment {
     
     func params() -> [String: Any] {
         
         var params: [String: Any] = .init()
         
         params["amount"] = self.amount
-        params["assetId"] = self.assetId.isEmpty == true ? NSNull() : self.assetId
+        params["assetId"] = self.assetId.isEmpty == true ? NSNull() : self.assetId.normalizeToNullWavesAssetId
         
         return params
     }

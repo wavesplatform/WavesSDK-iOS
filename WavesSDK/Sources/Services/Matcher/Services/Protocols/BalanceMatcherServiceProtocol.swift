@@ -10,8 +10,7 @@ import Moya
 
 public protocol BalanceMatcherServiceProtocol {
     
-    //TODO: balanceReserved()
-    func reservedBalances(query: MatcherService.Query.ReservedBalances) -> Observable<[String: Int64]>
+    func balanceReserved(query: MatcherService.Query.ReservedBalances) -> Observable<[String: Int64]>
 }
 
 

@@ -19,7 +19,7 @@ final class BalanceMatcherService: BalanceMatcherServiceProtocol {
         self.enviroment = enviroment
     }
     
-    public func reservedBalances(query: MatcherService.Query.ReservedBalances) -> Observable<[String: Int64]> {
+    public func balanceReserved(query: MatcherService.Query.ReservedBalances) -> Observable<[String: Int64]> {
         
         return self
             .balanceProvider
