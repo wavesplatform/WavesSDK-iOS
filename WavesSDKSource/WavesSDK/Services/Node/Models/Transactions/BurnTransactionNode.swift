@@ -9,6 +9,11 @@
 import Foundation
 
 public extension NodeService.DTO {
+
+    /**
+      The Burn transaction irreversible deletes amount of some asset
+      It's impossible to burn WAVES with the burn transaction.
+     */
     struct BurnTransaction: Decodable {
         public let type: Int
         public let id: String
@@ -22,7 +27,14 @@ public extension NodeService.DTO {
         public let signature: String?
         public let proofs: [String]?
         public let chainId: Int?
+
+        /**
+          Id of burnable asset in Waves blockchain, different for main and test net
+          */
         public let assetId: String
+        /**
+          Amount of asset to burn in satoshi
+          */
         public let amount: Int64
     }
 }

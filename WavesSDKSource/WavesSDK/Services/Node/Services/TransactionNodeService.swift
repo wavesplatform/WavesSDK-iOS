@@ -18,7 +18,7 @@ final class TransactionNodeService: TransactionNodeServiceProtocol {
         self.transactionsProvider = transactionsProvider
         self.enviroment = enviroment
     }
-    
+
     public func broadcast(query: NodeService.Query.Broadcast) -> Observable<NodeService.DTO.Transaction> {
         
         return self
@@ -35,7 +35,7 @@ final class TransactionNodeService: TransactionNodeServiceProtocol {
             .asObservable()
 
     }
-    
+
     public func list(address: String, offset: Int, limit: Int) -> Observable<NodeService.DTO.TransactionContainers> {
         
         return self

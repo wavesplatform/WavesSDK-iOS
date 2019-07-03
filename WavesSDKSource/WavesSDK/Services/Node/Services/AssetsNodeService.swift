@@ -18,7 +18,7 @@ final class AssetsNodeService: AssetsNodeServiceProtocol {
         self.assetsProvider = assetsProvider
         self.enviroment = enviroment
     }
-    
+
     public func assetsBalances(address: String) -> Observable<NodeService.DTO.AddressAssetsBalance> {
       
         return self
@@ -38,7 +38,7 @@ final class AssetsNodeService: AssetsNodeServiceProtocol {
             })
             .asObservable()
     }
-    
+
     public func assetBalance(address: String, assetId: String) -> Observable<NodeService.DTO.AddressAssetBalance> {
         
         return self
@@ -54,7 +54,7 @@ final class AssetsNodeService: AssetsNodeServiceProtocol {
             .map(NodeService.DTO.AddressAssetBalance.self)
             .asObservable()
     }
-    
+
     public func assetDetails(assetId: String) -> Observable<NodeService.DTO.AssetDetail> {
         return self
             .assetsProvider

@@ -10,6 +10,17 @@ import Foundation
 
 public extension NodeService.DTO {
 
+    /**
+      Not available now!
+
+      Exchange transaction matches a sell and buy orders
+      for exchange by specifying the following:
+
+      The asset.
+      The price of asset to sell(1) or buy(0).
+      The amount which the user is offering.
+      The asset and the amount which the user requests in return.
+     */
     struct ExchangeTransaction: Decodable {
         public struct Order: Decodable {
             public let id: String

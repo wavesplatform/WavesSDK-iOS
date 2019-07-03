@@ -19,7 +19,7 @@ final class LeasingNodeService: LeasingNodeServiceProtocol {
         self.leasingProvider = leasingProvider
         self.enviroment = enviroment
     }
-    
+
     public func activeLeasingTransactions(by address: String) -> Observable<[NodeService.DTO.LeaseTransaction]> {
         
         return self

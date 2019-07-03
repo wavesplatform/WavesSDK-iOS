@@ -9,6 +9,9 @@ import Foundation
 import RxSwift
 
 public protocol PublicKeyMatcherServiceProtocol {
-    
+
+    /**
+      Get matcher public key
+     */
     func publicKey() -> Observable<String>
 }
