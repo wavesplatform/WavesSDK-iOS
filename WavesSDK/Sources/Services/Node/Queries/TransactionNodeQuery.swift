@@ -22,6 +22,11 @@ public extension NodeService.Query {
         case transfer(Transfer)
         case invokeScript(InvokeScript)
         case reissue(Reissue)
+        case issue(Issue)
+        case massTransfer(MassTransfer)
+        case setScript(SetScript)
+        case setAssetScript(SetAssetScript)
+        case sponsorship(Sponsorship)
         
         var type: Int {
             switch self {
@@ -48,6 +53,21 @@ public extension NodeService.Query {
                 
             case .reissue:
                 return TransactionType.reissue.int
+            
+            case .issue:
+                return TransactionType.issue.int
+                
+            case .massTransfer:
+                return TransactionType.massTransfer.int
+                
+            case .setScript:
+                return TransactionType.script.int
+                
+            case .setAssetScript:
+                return TransactionType.assetScript.int
+                
+            case .sponsorship:
+                return TransactionType.invokeScript.int
             }
         }
     }
@@ -55,6 +75,164 @@ public extension NodeService.Query {
 
 
 public extension NodeService.Query.Broadcast {
+    
+    struct Sponsorship {
+        public let type: Int
+        public let version: Int
+        public let scheme: String
+        public let fee: Int64
+        public let timestamp: Int64
+        public let senderPublicKey: String
+        public var proofs: [String]
+        public let minSponsoredAssetFee: Int64?
+        public let assetId: String
+        
+        public init(version: Int = TransferVersion.version_1.rawValue, scheme: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], minSponsoredAssetFee: Int64?, assetId: String) {
+            self.type = TransactionType.sponsorship.int
+            self.assetId = assetId
+            self.version = version
+            self.scheme = scheme
+            self.fee = fee
+            self.timestamp = timestamp
+            self.senderPublicKey = senderPublicKey
+            self.proofs = proofs
+            self.minSponsoredAssetFee = minSponsoredAssetFee
+        }
+    }
+    
+    struct SetAssetScript {
+        public let type: Int
+        public let version: Int
+        public let scheme: String
+        public let fee: Int64
+        public let timestamp: Int64
+        public let senderPublicKey: String
+        public var proofs: [String]
+        public let script: String?
+        public let assetId: String
+        
+        public init(version: Int = TransferVersion.version_1.rawValue, scheme: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], script: String?, assetId: String) {
+            self.type = TransactionType.assetScript.int
+            self.assetId = assetId
+            self.version = version
+            self.scheme = scheme
+            self.fee = fee
+            self.timestamp = timestamp
+            self.senderPublicKey = senderPublicKey
+            self.proofs = proofs
+            self.script = script
+        }
+    }
+    
+    struct SetScript {
+        public let type: Int
+        public let version: Int
+        public let scheme: String
+        public let fee: Int64
+        public let timestamp: Int64
+        public let senderPublicKey: String
+        public var proofs: [String]
+        public let script: String?
+
+        public init(version: Int = TransferVersion.version_1.rawValue, scheme: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], script: String?) {
+            self.type = TransactionType.script.int
+            self.version = version
+            self.scheme = scheme
+            self.fee = fee
+            self.timestamp = timestamp
+            self.senderPublicKey = senderPublicKey
+            self.proofs = proofs
+            self.script = script
+        }
+    }
+    
+    struct MassTransfer {
+        
+        public struct Transfer {
+            public let recipient: String
+            public let amount: Int64
+
+            public init(recipient: String, amount: Int64) {
+                self.recipient = recipient
+                self.amount = amount
+            }
+        }
+        
+        public let type: Int
+        public let version: Int
+        public let scheme: String
+        public let fee: Int64
+        public let feeAssetId: String
+        public let timestamp: Int64
+        public let senderPublicKey: String
+        public var proofs: [String]
+        
+        public let assetId: String
+        public let attachment: String
+        public let transfers: [Transfer]
+
+        public init(version: Int = TransferVersion.version_1.rawValue, scheme: String, fee: Int64, feeAssetId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], assetId: String, attachment: String, transfers: [Transfer]) {
+            self.type = TransactionType.massTransfer.int
+            self.version = version
+            self.scheme = scheme
+            self.fee = fee
+            self.feeAssetId = feeAssetId
+            self.timestamp = timestamp
+            self.senderPublicKey = senderPublicKey
+            self.proofs = proofs
+            self.assetId = assetId
+            self.attachment = attachment
+            self.transfers = transfers
+        }
+    }
+    
+    struct Issue {
+        public let version: Int
+        public let type: Int
+        public let scheme: String
+        public let fee: Int64
+        public let feeAssetId: String
+        public let timestamp: Int64
+        public let senderPublicKey: String
+        public internal(set) var proofs: [String]
+        
+        public let name: String
+        public let description: String
+        public let script: String?
+        public let quantity: Int64
+        public let decimals: UInt8
+        public let isReissuable: Bool
+
+        public init(version: Int = TransferVersion.version_2.rawValue,
+                    scheme: String,
+                    fee: Int64,
+                    feeAssetId: String,
+                    timestamp: Int64,
+                    senderPublicKey: String,
+                    proofs: [String] = [],
+                    quantity: Int64,
+                    isReissuable: Bool,
+                    name: String,
+                    description: String,
+                    script: String?,
+                    decimals: UInt8) {
+            self.version = version
+            self.type = TransactionType.issue.int
+            self.scheme = scheme
+            self.fee = fee
+            self.feeAssetId = feeAssetId
+            self.timestamp = timestamp
+            self.senderPublicKey = senderPublicKey
+            self.proofs = proofs
+            
+            self.name = name
+            self.description = description
+            self.script = script
+            self.decimals = decimals            
+            self.quantity = quantity
+            self.isReissuable = isReissuable
+        }
+    }
     
     struct Reissue {
         public let version: Int
@@ -69,7 +247,7 @@ public extension NodeService.Query.Broadcast {
         public let assetId: String
         public let quantity: Int64
         public let isReissuable: Bool
-
+        
         public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, fee: Int64, feeAssetId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], assetId: String, quantity: Int64, isReissuable: Bool) {
             self.version = version
             self.type = TransactionType.reissue.int
@@ -177,14 +355,16 @@ public extension NodeService.Query.Broadcast {
     
     struct Alias {
         public let version: Int
+        public let scheme: String
         public let name: String
         public let fee: Int64
         public let timestamp: Int64
         public let type: Int
         public let senderPublicKey: String
-        public internal(set) var proofs: [String]?
+        public internal(set) var proofs: [String]
 
-        public init(version: Int = TransferVersion.version_2.rawValue, name: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String]?) {
+        public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, name: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
+            self.scheme = scheme
             self.version = version
             self.name = name
             self.fee = fee
@@ -206,7 +386,7 @@ public extension NodeService.Query.Broadcast {
         public let senderPublicKey: String
         public internal(set) var proofs: [String]
 
-        public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, fee: Int64, recipient: String, amount: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String]) {
+        public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, fee: Int64, recipient: String, amount: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
             self.version = version
             self.scheme = scheme
             self.fee = fee
@@ -229,7 +409,7 @@ public extension NodeService.Query.Broadcast {
         public let senderPublicKey: String
         public internal(set) var proofs: [String]
 
-        public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, fee: Int64, leaseId: String, timestamp: Int64, senderPublicKey: String, proofs: [String]) {
+        public init(version: Int = TransferVersion.version_2.rawValue, scheme: String, fee: Int64, leaseId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
             self.version = version
             self.scheme = scheme
             self.fee = fee

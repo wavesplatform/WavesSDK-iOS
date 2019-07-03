@@ -20,4 +20,5 @@ extension TransactionSignatureProtocol {
     public var typeByte: Int8 {
         return type.rawValue
     }
+    
 }

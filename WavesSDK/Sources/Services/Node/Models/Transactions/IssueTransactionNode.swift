@@ -17,7 +17,7 @@ public extension NodeService.DTO {
         public let fee: Int64
         public let timestamp: Date
         public let version: Int
-        public let height: Int64
+        public let height: Int64?
         
         public let signature: String?
         public let proofs: [String]?

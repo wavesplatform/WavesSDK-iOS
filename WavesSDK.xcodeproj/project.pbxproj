@@ -605,9 +605,9 @@
 			children = (
 				7B4E1EE422C4DD2D00854BAB /* SignatureProtocol.swift */,
 				7B4E1EE522C4DD2D00854BAB /* TransactionSignatureProtocol.swift */,
+				7BBB232E22CA2A940057095D /* TransactionSignatureV1.swift */,
 				7B4E1EE622C4DD2D00854BAB /* TransactionSignatureV2.swift */,
 				7B74597322C637A50047A005 /* TransactionSign.swift */,
-				7BBB232E22CA2A940057095D /* TransactionSignatureV1.swift */,
 				7BBB233122CA2C600057095D /* TransactionType.swift */,
 			);
 			path = Signature;

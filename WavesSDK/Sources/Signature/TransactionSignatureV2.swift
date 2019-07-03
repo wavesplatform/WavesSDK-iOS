@@ -35,6 +35,34 @@ public extension TransactionSignatureV2 {
             }
         }
         
+        public struct Issue {
+            
+            public let fee: Int64
+            public let scheme: String
+            public let senderPublicKey: String
+            public let timestamp: Int64
+            public let quantity: Int64
+            public let name: String
+            public let description: String
+            public let script: String?
+            public let decimals: UInt8
+            public let isReissuable: Bool
+            
+            public init(script: String?, fee: Int64, scheme: String, senderPublicKey: String, timestamp: Int64, quantity: Int64, isReissuable: Bool, name: String, description: String, decimals: UInt8) {
+                self.script = script
+                self.fee = fee
+                self.scheme = scheme
+                self.senderPublicKey = senderPublicKey
+                self.timestamp = timestamp
+                self.quantity = quantity
+                self.isReissuable = isReissuable
+                self.name = name
+                self.description = description
+                self.decimals = decimals
+            }
+        }
+
+        
         public struct Alias {
             public let alias: String
             public let fee: Int64
@@ -137,6 +165,7 @@ public enum TransactionSignatureV2: TransactionSignatureProtocol {
     case cancelLease(Structure.CancelLease)
     case transfer(Structure.Transfer)
     case reissue(Structure.Reissue)
+    case issue(Structure.Issue)
     
     public var version: Int {
         return 2
@@ -162,6 +191,8 @@ public enum TransactionSignatureV2: TransactionSignatureProtocol {
         case .reissue:
             return TransactionType.reissue
         
+        case .issue:
+            return TransactionType.issue
         }
     }
 }
@@ -280,6 +311,23 @@ public extension TransactionSignatureV2 {
             signature += toByteArray(model.fee)
             signature += toByteArray(model.timestamp)
             
+            return signature
+            
+        case .issue(let model):
+            
+            var signature: [UInt8] = []
+            signature += toByteArray(self.typeByte)
+            signature += toByteArray(Int8(self.version))
+            signature += model.scheme.utf8
+            signature += WavesCrypto.shared.base58decode(input: model.senderPublicKey) ?? []
+            signature += model.name.arrayWithSize()
+            signature += model.description.arrayWithSize()
+            signature += toByteArray(model.quantity)
+            signature += [model.decimals]
+            signature += model.isReissuable == true ? [1] : [0]
+            signature += toByteArray(model.fee)
+            signature += toByteArray(model.timestamp)
+            signature += (model.script?.isEmpty ?? true) ? [UInt8(0)] : ([UInt8(1)] + (WavesCrypto.shared.base64decode(input: model.script ?? "") ?? []).arrayWithSize())
             return signature
         }
     }

@@ -141,6 +141,85 @@ extension NodeService.Query.Broadcast {
             params["reissuable"] = model.isReissuable
             
             return params
+            
+        case .issue(let model):
+            
+            var params = [Constants.version: model.version,
+                          Constants.senderPublicKey: model.senderPublicKey,
+                          Constants.fee: model.fee,
+                          Constants.timestamp: model.timestamp,
+                          Constants.proofs: model.proofs,
+                          Constants.type: model.type,
+                          Constants.feeAssetId: model.feeAssetId] as [String : Any]
+            
+            params["name"] = model.name
+            params["description"] = model.description
+            params["quantity"] = model.quantity
+            params["decimals"] = model.decimals
+            params["reissuable"] = model.isReissuable
+            params["script"] = model.script
+            
+            return params
+        
+        case .massTransfer(let model):
+            
+            var params = [Constants.type: model.type,
+                    Constants.senderPublicKey : model.senderPublicKey,
+                    Constants.fee: model.fee,
+                    Constants.feeAssetId: model.feeAssetId,
+                    Constants.timestamp: model.timestamp,
+                    Constants.proofs: model.proofs,
+                    Constants.version: model.version] as [String : Any]
+            
+            params[Constants.attachment] = model.attachment
+            
+            params["assetId"] = model.assetId
+            params["transfers"] = model.transfers.map {
+                return ["recipient": $0.recipient, "amount": $0.amount]
+            }
+
+            return params
+            
+        case .setScript(let model):
+            
+            var params = [Constants.type: model.type,
+                          Constants.senderPublicKey : model.senderPublicKey,
+                          Constants.fee: model.fee,
+                          Constants.timestamp: model.timestamp,
+                          Constants.proofs: model.proofs,
+                          Constants.version: model.version] as [String : Any]
+                        
+            params["script"] = model.script
+            
+            return params
+            
+        case .setAssetScript(let model):
+            
+            var params = [Constants.type: model.type,
+                          Constants.senderPublicKey : model.senderPublicKey,
+                          Constants.fee: model.fee,
+                          Constants.timestamp: model.timestamp,
+                          Constants.proofs: model.proofs,
+                          Constants.version: model.version] as [String : Any]
+        
+            params["script"] = model.script
+            params["assetId"] = model.assetId
+        
+            return params
+            
+        case .sponsorship(let model):
+            
+            var params = [Constants.type: model.type,
+                          Constants.senderPublicKey : model.senderPublicKey,
+                          Constants.fee: model.fee,
+                          Constants.timestamp: model.timestamp,
+                          Constants.proofs: model.proofs,
+                          Constants.version: model.version] as [String : Any]
+            
+            params["minSponsoredAssetFee"] = model.minSponsoredAssetFee
+            params["assetId"] = model.assetId
+            
+            return params
         }
     }
 
