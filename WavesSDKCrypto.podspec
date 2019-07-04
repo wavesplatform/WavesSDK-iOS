@@ -19,9 +19,9 @@ Pod::Spec.new do |spec|
   spec.ios.framework = 'UIKit'
   spec.ios.framework = 'Security'  
 
-  spec.dependency 'CryptoSwift'
+  # spec.dependency 'CryptoSwift'
   spec.dependency 'Curve25519'
-  spec.dependency 'Base58'
+  spec.dependency 'Base58Encoder'
   spec.dependency 'Keccak'
   spec.dependency 'Blake2'
   spec.dependency 'WavesSDKExtensions'

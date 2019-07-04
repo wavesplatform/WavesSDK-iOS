@@ -36,9 +36,9 @@ end
 target 'InternalWavesSDKCrypto' do
 
     inherit! :search_paths
-    pod 'CryptoSwift'
+    # pod 'CryptoSwift'
     pod 'Curve25519'
-    pod 'Base58'
+    pod 'Base58Encoder'
     pod 'Keccak'
     pod 'Blake2'    
     pod 'WavesSDKExtensions',  :path => '.'        

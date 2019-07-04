@@ -435,6 +435,7 @@ public extension NodeService.Query.Transaction {
     
     struct Data: BaseTransactionQueryProtocol {
         public struct Value {
+            
             public enum Kind {
                 case integer(Int64)
                 case boolean(Bool)

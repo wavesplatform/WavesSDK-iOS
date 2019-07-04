@@ -11,6 +11,7 @@ import XCTest
 import RxSwift
 import RxTest
 import WavesSDK
+import WavesSDKCrypto
 import WavesSDKExtensions
 import Nimble
 import Fakery
@@ -119,7 +120,9 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         
         let data2 = NodeService.Query.Transaction.Data.Value.init(key: "isMan", value: .boolean(true))
         
-        let data3 = NodeService.Query.Transaction.Data.Value.init(key: "secret", value: .binary("base64:SGVsbG8h"))
+        let binary = WavesCrypto.shared.base64encode(input: "Hello!".bytes)
+        
+        let data3 = NodeService.Query.Transaction.Data.Value.init(key: "secret", value: .binary(binary))
 
         var queryModel = NodeService.Query.Transaction.Data.init(fee: fee,
                                                                timestamp: timestamp,
