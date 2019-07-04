@@ -286,7 +286,7 @@ public extension TransactionSignatureV1 {
             signature += model.transfersBytes(version: self.version, chainId: model.chainId)
             signature += toByteArray(model.timestamp)
             signature += toByteArray(model.fee)
-            signature += WavesCrypto.shared.base58decode(input: model.attachment)?.arrayWithSize() ?? []
+            signature += model.attachment.isEmpty == true ? [0, 0] : (WavesCrypto.shared.base58decode(input: model.attachment)?.arrayWithSize() ?? [])
             return signature
             
         case .setScript(let model):

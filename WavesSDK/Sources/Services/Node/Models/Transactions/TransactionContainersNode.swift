@@ -44,9 +44,9 @@ extension NodeService.DTO {
         case alias(NodeService.DTO.AliasTransaction)
         case massTransfer(NodeService.DTO.MassTransferTransaction)
         case data(NodeService.DTO.DataTransaction)
-        case script(NodeService.DTO.ScriptTransaction)
+        case script(NodeService.DTO.SetScriptTransaction)
         case sponsorship(NodeService.DTO.SponsorshipTransaction)
-        case assetScript(NodeService.DTO.AssetScriptTransaction)
+        case assetScript(NodeService.DTO.SetAssetScriptTransaction)
         case invokeScript(NodeService.DTO.InvokeScriptTransaction)
 
         public init(from decoder: Decoder) throws {
@@ -97,10 +97,10 @@ extension NodeService.DTO {
                 return .data(try NodeService.DTO.DataTransaction(from: decode))
 
             case .script:
-                return .script(try NodeService.DTO.ScriptTransaction(from: decode))
+                return .script(try NodeService.DTO.SetScriptTransaction(from: decode))
 
             case .assetScript:
-                return .assetScript(try NodeService.DTO.AssetScriptTransaction(from: decode))
+                return .assetScript(try NodeService.DTO.SetAssetScriptTransaction(from: decode))
 
             case .sponsorship:
                 return .sponsorship(try NodeService.DTO.SponsorshipTransaction(from: decode))
@@ -178,11 +178,11 @@ extension NodeService.DTO {
                             transactions.append(.data(tx))
 
                         case .script:
-                            let tx = try listArray.decode(NodeService.DTO.ScriptTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.SetScriptTransaction.self)
                             transactions.append(.script(tx))
 
                         case .assetScript:
-                            let tx = try listArray.decode(NodeService.DTO.AssetScriptTransaction.self)
+                            let tx = try listArray.decode(NodeService.DTO.SetAssetScriptTransaction.self)
                             transactions.append(.assetScript(tx))
 
                         case .sponsorship:

@@ -26,7 +26,7 @@ public extension NodeService.DTO {
 
       Only the issuer of that asset can change the asset's script.
      */
-    struct AssetScriptTransaction: Decodable {
+    struct SetAssetScriptTransaction: Decodable {
 
         public let type: Int
         public let id: String

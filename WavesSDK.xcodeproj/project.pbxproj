@@ -96,7 +96,7 @@
 		7B4E1F8A22C4DD2D00854BAB /* AccountBalanceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F1D22C4DD2D00854BAB /* AccountBalanceNode.swift */; };
 		7B4E1F8B22C4DD2D00854BAB /* MassTransferTransactionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F1F22C4DD2D00854BAB /* MassTransferTransactionNode.swift */; };
 		7B4E1F8C22C4DD2D00854BAB /* IssueTransactionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F2022C4DD2D00854BAB /* IssueTransactionNode.swift */; };
-		7B4E1F8D22C4DD2D00854BAB /* AssetScriptTransactionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F2122C4DD2D00854BAB /* AssetScriptTransactionNode.swift */; };
+		7B4E1F8D22C4DD2D00854BAB /* SetAssetScriptTransactionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F2122C4DD2D00854BAB /* SetAssetScriptTransactionNode.swift */; };
 		7B4E1F8E22C4DD2D00854BAB /* DataTransactionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F2222C4DD2D00854BAB /* DataTransactionNode.swift */; };
 		7B4E1F8F22C4DD2D00854BAB /* AliasTransactionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F2322C4DD2D00854BAB /* AliasTransactionNode.swift */; };
 		7B4E1F9022C4DD2D00854BAB /* TransferTransactionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F2422C4DD2D00854BAB /* TransferTransactionNode.swift */; };
@@ -109,7 +109,7 @@
 		7B4E1F9722C4DD2D00854BAB /* UnrecognisedTransactionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F2B22C4DD2D00854BAB /* UnrecognisedTransactionNode.swift */; };
 		7B4E1F9822C4DD2D00854BAB /* InvokeScriptTransactionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F2C22C4DD2D00854BAB /* InvokeScriptTransactionNode.swift */; };
 		7B4E1F9922C4DD2D00854BAB /* TransactionContainersNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F2D22C4DD2D00854BAB /* TransactionContainersNode.swift */; };
-		7B4E1F9A22C4DD2D00854BAB /* ScriptTransactionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F2E22C4DD2D00854BAB /* ScriptTransactionNode.swift */; };
+		7B4E1F9A22C4DD2D00854BAB /* SetScriptTransactionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F2E22C4DD2D00854BAB /* SetScriptTransactionNode.swift */; };
 		7B4E1F9B22C4DD2D00854BAB /* AssetDetailNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F2F22C4DD2D00854BAB /* AssetDetailNode.swift */; };
 		7B4E1F9C22C4DD2D00854BAB /* AccountAssetsBalanceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F3022C4DD2D00854BAB /* AccountAssetsBalanceNode.swift */; };
 		7B4E1F9D22C4DD2D00854BAB /* UtilsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F3122C4DD2D00854BAB /* UtilsNode.swift */; };
@@ -309,7 +309,7 @@
 		7B4E1F1D22C4DD2D00854BAB /* AccountBalanceNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountBalanceNode.swift; sourceTree = "<group>"; };
 		7B4E1F1F22C4DD2D00854BAB /* MassTransferTransactionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MassTransferTransactionNode.swift; sourceTree = "<group>"; };
 		7B4E1F2022C4DD2D00854BAB /* IssueTransactionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueTransactionNode.swift; sourceTree = "<group>"; };
-		7B4E1F2122C4DD2D00854BAB /* AssetScriptTransactionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetScriptTransactionNode.swift; sourceTree = "<group>"; };
+		7B4E1F2122C4DD2D00854BAB /* SetAssetScriptTransactionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetAssetScriptTransactionNode.swift; sourceTree = "<group>"; };
 		7B4E1F2222C4DD2D00854BAB /* DataTransactionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransactionNode.swift; sourceTree = "<group>"; };
 		7B4E1F2322C4DD2D00854BAB /* AliasTransactionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AliasTransactionNode.swift; sourceTree = "<group>"; };
 		7B4E1F2422C4DD2D00854BAB /* TransferTransactionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferTransactionNode.swift; sourceTree = "<group>"; };
@@ -322,7 +322,7 @@
 		7B4E1F2B22C4DD2D00854BAB /* UnrecognisedTransactionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnrecognisedTransactionNode.swift; sourceTree = "<group>"; };
 		7B4E1F2C22C4DD2D00854BAB /* InvokeScriptTransactionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvokeScriptTransactionNode.swift; sourceTree = "<group>"; };
 		7B4E1F2D22C4DD2D00854BAB /* TransactionContainersNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionContainersNode.swift; sourceTree = "<group>"; };
-		7B4E1F2E22C4DD2D00854BAB /* ScriptTransactionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptTransactionNode.swift; sourceTree = "<group>"; };
+		7B4E1F2E22C4DD2D00854BAB /* SetScriptTransactionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetScriptTransactionNode.swift; sourceTree = "<group>"; };
 		7B4E1F2F22C4DD2D00854BAB /* AssetDetailNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDetailNode.swift; sourceTree = "<group>"; };
 		7B4E1F3022C4DD2D00854BAB /* AccountAssetsBalanceNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountAssetsBalanceNode.swift; sourceTree = "<group>"; };
 		7B4E1F3122C4DD2D00854BAB /* UtilsNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsNode.swift; sourceTree = "<group>"; };
@@ -778,7 +778,7 @@
 			children = (
 				7B4E1F1F22C4DD2D00854BAB /* MassTransferTransactionNode.swift */,
 				7B4E1F2022C4DD2D00854BAB /* IssueTransactionNode.swift */,
-				7B4E1F2122C4DD2D00854BAB /* AssetScriptTransactionNode.swift */,
+				7B4E1F2122C4DD2D00854BAB /* SetAssetScriptTransactionNode.swift */,
 				7B4E1F2222C4DD2D00854BAB /* DataTransactionNode.swift */,
 				7B4E1F2322C4DD2D00854BAB /* AliasTransactionNode.swift */,
 				7B4E1F2422C4DD2D00854BAB /* TransferTransactionNode.swift */,
@@ -791,7 +791,7 @@
 				7B4E1F2B22C4DD2D00854BAB /* UnrecognisedTransactionNode.swift */,
 				7B4E1F2C22C4DD2D00854BAB /* InvokeScriptTransactionNode.swift */,
 				7B4E1F2D22C4DD2D00854BAB /* TransactionContainersNode.swift */,
-				7B4E1F2E22C4DD2D00854BAB /* ScriptTransactionNode.swift */,
+				7B4E1F2E22C4DD2D00854BAB /* SetScriptTransactionNode.swift */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -1383,7 +1383,7 @@
 				7B4E1FAC22C4DD2D00854BAB /* CandlesDataTarget.swift in Sources */,
 				7B4E1FBE22C4DD2D00854BAB /* AliasDataServiceProtocol.swift in Sources */,
 				7B4E1F6C22C4DD2D00854BAB /* ServicesProtocol.swift in Sources */,
-				7B4E1F8D22C4DD2D00854BAB /* AssetScriptTransactionNode.swift in Sources */,
+				7B4E1F8D22C4DD2D00854BAB /* SetAssetScriptTransactionNode.swift in Sources */,
 				7B4E1FB922C4DD2D00854BAB /* PairsPriceDataService.swift in Sources */,
 				7B4E1FB822C4DD2D00854BAB /* CandlesDataService.swift in Sources */,
 				7B4E1F7422C4DD2D00854BAB /* BalanceMatcherTarget.swift in Sources */,
@@ -1398,7 +1398,7 @@
 				7B4E1F6922C4DD2D00854BAB /* NodeServices.swift in Sources */,
 				7B4E1F8122C4DD2D00854BAB /* AssetsNodeTarget.swift in Sources */,
 				7B4E1F8622C4DD2D00854BAB /* AddressesNodeTarget.swift in Sources */,
-				7B4E1F9A22C4DD2D00854BAB /* ScriptTransactionNode.swift in Sources */,
+				7B4E1F9A22C4DD2D00854BAB /* SetScriptTransactionNode.swift in Sources */,
 				7B4E1F9D22C4DD2D00854BAB /* UtilsNode.swift in Sources */,
 				7B4E1FB422C4DD2D00854BAB /* CandleData.swift in Sources */,
 				7BBB233022CA2B8D0057095D /* TransactionSignatureV1.swift in Sources */,

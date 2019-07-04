@@ -83,7 +83,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
         let amount: Int64 = 100000
         let feeAssetId = "WAVES"
         let assetId = "WAVES"
-        let attachment = ""
+        let attachment = "asdasd"
         let timestamp = Int64(Date().timeIntervalSince1970) * 1000
 
         var queryModel = NodeService.Query.Transaction.Transfer(recipient: recipient,
