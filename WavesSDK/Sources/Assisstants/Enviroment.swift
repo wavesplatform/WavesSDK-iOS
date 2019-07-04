@@ -33,19 +33,19 @@ public struct Enviroment {
         didSet {
             switch server {
             case .custom(let node, let matcher, let data, let scheme):
-                self.scheme = scheme
+                self.chainId = scheme
                 self.dataUrl = data
                 self.nodeUrl = node
                 self.matcherUrl = matcher
                 
             case .mainNet:
-                self.scheme = Constants.schemeMainnet
+                self.chainId = Constants.schemeMainnet
                 self.dataUrl = Constants.dataUrlMainnet
                 self.nodeUrl = Constants.nodeUrlMainnet
                 self.matcherUrl = Constants.matcherUrlMainnet
                 
             case .testNet:
-                self.scheme = Constants.schemeTestnet
+                self.chainId = Constants.schemeTestnet
                 self.dataUrl = Constants.dataUrlTestnet
                 self.nodeUrl = Constants.nodeUrlTestnet
                 self.matcherUrl = Constants.matcherUrlTestnet
@@ -55,7 +55,7 @@ public struct Enviroment {
     
     public var timestampServerDiff: Int64
     //TODO: Rename chainId
-    public var scheme: String!
+    public var chainId: String!
     
     public var nodeUrl: URL
     public var matcherUrl: URL
@@ -67,20 +67,20 @@ public struct Enviroment {
         self.timestampServerDiff = timestampServerDiff
         
         switch server {
-        case .custom(let node, let matcher, let data, let scheme):
-            self.scheme = scheme
+        case .custom(let node, let matcher, let data, let chainId):
+            self.chainId = chainId
             self.dataUrl = data
             self.nodeUrl = node
             self.matcherUrl = matcher
             
         case .mainNet:
-            self.scheme = Constants.schemeMainnet
+            self.chainId = Constants.schemeMainnet
             self.dataUrl = Constants.dataUrlMainnet
             self.nodeUrl = Constants.nodeUrlMainnet
             self.matcherUrl = Constants.matcherUrlMainnet
             
         case .testNet:
-            self.scheme = Constants.schemeTestnet
+            self.chainId = Constants.schemeTestnet
             self.dataUrl = Constants.dataUrlTestnet
             self.nodeUrl = Constants.nodeUrlTestnet
             self.matcherUrl = Constants.matcherUrlTestnet        

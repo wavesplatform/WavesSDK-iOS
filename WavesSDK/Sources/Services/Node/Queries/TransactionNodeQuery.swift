@@ -12,16 +12,6 @@ public enum TransactionVersion: Int {
     case version_2 = 2
 }
 
-public protocol BaseTransactionQueryProtocol {
-    var type: Int { get }
-    var version: Int { get }
-    var chainId: String { get }
-    var fee: Int64 { get }
-    var timestamp: Int64 { get }
-    var senderPublicKey: String { get }
-    var proofs: [String] { get }
-}
-
 public extension NodeService.Query {
     enum Transaction {
         case createAlias(Alias)

@@ -32,7 +32,7 @@ class WavesServicesTest: XCTestCase {
         //TODO: Loading Seed
         self.seed = "great ivory wealth decide crowd devote fiction wool net ethics dog hurry cost aunt daring"
                 
-        guard let chainId = WavesSDK.shared.enviroment.scheme else { return }
+        guard let chainId = WavesSDK.shared.enviroment.chainId else { return }
         guard let address = WavesCrypto.shared.address(seed: seed, chainId: chainId) else { return }
         guard let senderPublicKey = WavesCrypto.shared.publicKey(seed: seed) else { return }
         

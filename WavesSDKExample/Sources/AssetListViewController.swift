@@ -48,7 +48,7 @@ final class AssetListViewController: UIViewController {
     func sendTransaction() {
         
         let seed = "My seed"
-        guard let chainId = WavesSDK.shared.enviroment.scheme else { return }
+        guard let chainId = WavesSDK.shared.enviroment.chainId else { return }
         guard let address = WavesCrypto.shared.address(seed: seed, chainId: chainId) else { return }
         guard let senderPublicKey = WavesCrypto.shared.publicKey(seed: seed) else { return }
         

@@ -22,5 +22,5 @@ public protocol TransactionNodeServiceProtocol {
       - Parameter: limit Number of transactions to be returned. Max is last 1000.
      */
 
-    func list(address: String, offset: Int, limit: Int) -> Observable<NodeService.DTO.TransactionContainers>
+    func transactions(by address: String, offset: Int, limit: Int) -> Observable<NodeService.DTO.TransactionContainers>
 }
