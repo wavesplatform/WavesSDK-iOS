@@ -26,11 +26,15 @@ public extension NodeService.DTO {
      */
     struct MassTransferTransaction: Decodable {
 
+        /**
+          * The item of the Mass-transfer transaction
+         */
         public struct Transfer: Decodable {
             /**
               Address or alias of Waves blockchain
              */
             public let recipient: String
+
             /**
               Amount of asset in satoshi
               */
@@ -45,25 +49,29 @@ public extension NodeService.DTO {
         public let timestamp: Date
         public let version: Int
         public let height: Int64?
-
         public let proofs: [String]?
+
         /**
           Id of transferable asset in Waves blockchain, different for main and test net
          */
         public let assetId: String?
+
         /**
           Additional info in Base58 converted string
           [0,140] bytes of string encoded in Base58
          */
         public let attachment: String
+
         /**
           Not necessary
          */
         public let transferCount: Int
+
         /**
           Not necessary
          */
         public let totalAmount: Int64
+
         /**
           Collection of recipients with amount each
          */

@@ -28,18 +28,20 @@ public extension NodeService.DTO {
         public let timestamp: Date
         public let version: Int
         public let height: Int64?
-        
         public let signature: String?
         public let proofs: [String]?
         public let assetId: String
+
         /**
           Name of your new asset byte length must be in [4,16]
          */
         public let name: String
+
         /**
           Quantity defines the total tokens supply that your asset will contain.
          */
         public let quantity: Int64
+
         /**
           Reissuability allows for additional tokens creation that will be added
           to the total token supply of asset.
@@ -47,15 +49,18 @@ public extension NodeService.DTO {
           defined during the transaction.
          */
         public let reissuable: Bool
+
         /**
           Decimals defines the number of decimals that your asset token will be divided in.
           Max decimals is 8
          */
         public let decimals: Int
+
         /**
           Description of your new asset byte length must be in [0;1000]
          */
         public let description: String
+
         /**
           A Smart Asset is an asset with an attached script that places conditions
           on every transaction made for the token in question.

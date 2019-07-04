@@ -23,17 +23,17 @@ public extension NodeService.DTO {
         public let timestamp: Date
         public let version: Int
         public let height: Int64?
-
         public let signature: String?
         public let proofs: [String]?
         public let chainId: Int?
+
         /**
-                 * Id of asset that should be changed
-                 */
+          Id of asset that should be changed
+         */
         public let assetId: String
         /**
-                 * Quantity defines the total tokens supply that your asset will contain
-                 */
+          Quantity defines the total tokens supply that your asset will contain
+         */
         public let quantity: Int64
         /**
           Reissuability allows for additional tokens creation that will be added
