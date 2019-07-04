@@ -15,9 +15,15 @@ extension NodeService.DTO {
       You can invoke one of them by name with some arguments.
      */
     public struct InvokeScriptTransaction: Decodable {
-        
+
+        /**
+          Call the function from dApp (address or alias) with typed arguments
+         */
         public struct Call: Decodable {
-            
+
+            /**
+              Arguments for the function call
+             */
             public struct Args: Decodable {
                 public enum Value {
                     case bool(Bool)
@@ -29,13 +35,29 @@ extension NodeService.DTO {
                 public let type: String
                 public let value: Value
             }
-            
+
+            /**
+              Function unique name
+              */
             public let function: String
+
+            /**
+              List of arguments
+              */
             public let args: [Args]
         }
-        
+
+        /**
+          Payment for function of dApp. Now it works with only one payment.
+         */
         public struct Payment: Decodable {
+            /**
+              Amount in satoshi
+             */
             public let amount: Int64
+            /**
+              Asset Id in Waves blockchain
+             */
             public let assetId: String?
         }
         
@@ -44,26 +66,32 @@ extension NodeService.DTO {
         public let sender: String
         public let senderPublicKey: String
         public let fee: Int64
+
+        public let timestamp: Date
+        public let proofs: [String]?
+        public let version: Int
+
+        public let height: Int64?
+
         /**
           Asset id instead Waves for transaction commission withdrawal
          */
         public let feeAssetId: String?
-        public let timestamp: Date
-        public let proofs: [String]?
-        public let version: Int
+
         /**
           dApp – address or alias of contract with function on RIDE language
          */
         public let dApp: String
+
         /**
           Function name in dApp with array of arguments
          */
         public let call: Call?
+
         /**
           Payments for function of dApp. Now it works with only one payment.
          */
         public let payment: [Payment]
-        public let height: Int64?
     }
 }
 

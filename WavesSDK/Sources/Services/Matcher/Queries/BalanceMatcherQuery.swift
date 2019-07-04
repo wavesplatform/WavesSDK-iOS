@@ -29,7 +29,12 @@ public extension MatcherService.Query {
         static let sender: String = "sender"
         static let orderId: String = "orderId"        
     }
-    
+
+    /**
+      Create Order Request to DEX-matcher, decentralized exchange of Waves.
+      It collects orders from users who created CreateOrderRequest,
+      matches and sends it to blockchain it by Exchange transactions.
+     */
     struct CreateOrder {
         
         public enum OrderType: String {
@@ -52,16 +57,58 @@ public extension MatcherService.Query {
                 self.priceAssetId = priceAssetId
             }
         }
-    
+
+        /**
+          Matcher Public Key, available in MatcherService.matcherPublicKey() for DEX
+         */
         public let matcherPublicKey: String
+
+        /**
+          Account public key of the sender in Base58
+         */
         public let senderPublicKey: String
+
+        /**
+          Exchangeable pair. We sell or buy always amount asset and we always give price asset
+         */
         public let assetPair: AssetPair
+
+        /**
+          Amount of asset in satoshi
+         */
         public let amount: Int64
+
+        /**
+          Price for amount
+         */
         public let price: Int64
+
+        /**
+          Order type "buy" or "sell"
+         */
         public let orderType: OrderType
+
+        /**
+          Amount matcher fee of Waves in satoshi
+         */
         public let matcherFee: Int64
+
+        /**
+          Unix time of sending of transaction to blockchain, must be in current time +/- half of hour
+         */
         public let timestamp: Int64
+
+        /**
+          Unix time of expiration of transaction to blockchain
+         */
         public let expirationTimestamp: Int64
+
+        /**
+          If the array is empty, then S= 3. If the array is not empty,
+          then S = 3 + 2 × N + (P1 + P2 + ... + Pn), where N is the number of proofs in the array,
+          Pn is the size on N-th proof in bytes.
+          The maximum number of proofs in the array is 8. The maximum size of each proof is 64 bytes
+          */
         public let proofs: [String]
 
         public init(matcherPublicKey: String, senderPublicKey: String, assetPair: AssetPair, amount: Int64, price: Int64, orderType: OrderType, matcherFee: Int64, timestamp: Int64, expirationTimestamp: Int64, proofs: [String]) {
@@ -92,13 +139,31 @@ public extension MatcherService.Query {
                     Constants.version: Constants.versionCreateOrder]
         }
     }
-    
+
+    /**
+      Cancel Order Request in DEX-matcher, decentralized exchange of Waves.
+
+      It collects orders from users who created CreateOrderRequest,
+      matches and sends it to blockchain it by Exchange transactions.
+     */
     struct CancelOrder {
+        /**
+          Order Id of order to cancel
+         */
         public let orderId: String
+
+        /**
+          Order signature by account private key
+         */
+        public let signature: String
+
+        /**
+          Account public key of the sender in Base58
+         */
+        public let senderPublicKey: String
+
         public let amountAsset: String
         public let priceAsset: String
-        public let signature: String
-        public let senderPublicKey: String
 
         public init(orderId: String, amountAsset: String, priceAsset: String, signature: String, senderPublicKey: String) {
             self.orderId = orderId

@@ -24,13 +24,14 @@ public extension NodeService.DTO {
         public let timestamp: Date
         public let version: Int
         public let height: Int64?
-        
         public let signature: String?
         public let proofs: [String]?
+
         /**
           Amount to lease of Waves in satoshi
          */
         public let amount: Int64
+
         /**
           Address or alias of Waves blockchain to lease
          */

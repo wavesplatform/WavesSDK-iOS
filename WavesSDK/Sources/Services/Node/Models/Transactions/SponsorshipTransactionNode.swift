@@ -58,15 +58,14 @@ public extension NodeService.DTO {
         public let height: Int64?
         public let signature: String?
         public let proofs: [String]?
+        public let version: Int
         /**
-          Selected asset Id
+          Selected your asset Id for sponsorship
          */
         public let assetId: String
         /**
           Min sponsored asset fee. If "0" Sponsorship will be cancelled
          */
         public let minSponsoredAssetFee: Int64?
-        public let version: Int
-        public let script: String?
     }
 }
