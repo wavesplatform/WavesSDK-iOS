@@ -1,18 +1,41 @@
-//
-//  WavesSDK.swift
-//  Alamofire
-//
-//  Created by rprokofev on 27/05/2019.
-//
-
-/**
-
- */
+/*
+* ██╗    ██╗ █████╗ ██╗   ██╗███████╗███████╗
+* ██║    ██║██╔══██╗██║   ██║██╔════╝██╔════╝
+* ██║ █╗ ██║███████║██║   ██║█████╗  ███████╗
+* ██║███╗██║██╔══██║╚██╗ ██╔╝██╔══╝  ╚════██║
+* ╚███╔███╔╝██║  ██║ ╚████╔╝ ███████╗███████║
+* ╚══╝╚══╝ ╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚══════╝
+*
+* ██████╗ ██╗      █████╗ ████████╗███████╗ ██████╗ ██████╗ ███╗   ███╗
+* ██╔══██╗██║     ██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██╔══██╗████╗ ████║
+* ██████╔╝██║     ███████║   ██║   █████╗  ██║   ██║██████╔╝██╔████╔██║
+* ██╔═══╝ ██║     ██╔══██║   ██║   ██╔══╝  ██║   ██║██╔══██╗██║╚██╔╝██║
+* ██║     ███████╗██║  ██║   ██║   ██║     ╚██████╔╝██║  ██║██║ ╚═╝ ██║
+* ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝
+*
+*/
 
 import Foundation
 import WavesSDKExtensions
 import WavesSDKCrypto
 import Moya
+
+/**
+ *
+ * WavesSDK is library for easy and simple co-working Waves blockchain platform and app based on Rx.
+ *
+ * Library contains 3 parts:
+ *
+ * Waves Crypto – collection of functions to work with Waves basic types
+ * and crypto primitives used by Waves.
+ *
+ * Waves Models – data transfer objects collection of transactions and other models
+ * for work with Waves net services.
+ * The models release signification with private key
+ *
+ * Waves Services – net-services for sending transactions and getting data from blockchain
+ * and other Waves services
+ */
 
 public final class WavesSDK {
     

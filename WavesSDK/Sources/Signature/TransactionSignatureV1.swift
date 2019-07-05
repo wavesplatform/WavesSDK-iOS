@@ -40,10 +40,10 @@ public extension TransactionSignatureV1 {
             public let chainId: String
             public let senderPublicKey: String
             public let timestamp: Int64
-            public let script: String?
+            public let script: Base64?
             
             
-            public init(fee: Int64, chainId: String, senderPublicKey: String, timestamp: Int64, script: String?) {
+            public init(fee: Int64, chainId: String, senderPublicKey: String, timestamp: Int64, script: Base64?) {
                 self.fee = fee
                 self.chainId = chainId
                 self.senderPublicKey = senderPublicKey
@@ -59,9 +59,9 @@ public extension TransactionSignatureV1 {
             public let senderPublicKey: String
             public let timestamp: Int64
             public let assetId: String
-            public let script: String?
+            public let script: Base64?
             
-            public init(fee: Int64, chainId: String, senderPublicKey: String, timestamp: Int64, assetId: String, script: String?) {
+            public init(fee: Int64, chainId: String, senderPublicKey: String, timestamp: Int64, assetId: String, script: Base64?) {
                 self.fee = fee
                 self.chainId = chainId
                 self.assetId = assetId
@@ -108,7 +108,7 @@ public extension TransactionSignatureV1 {
                     case integer(Int64)
                     case boolean(Bool)
                     case string(String)
-                    case binary(String)
+                    case binary(Base64)
                 }
                 
                 public let key: String
@@ -286,7 +286,7 @@ public extension TransactionSignatureV1 {
             signature += model.transfersBytes(version: self.version, chainId: model.chainId)
             signature += toByteArray(model.timestamp)
             signature += toByteArray(model.fee)
-            signature += WavesCrypto.shared.base58decode(input: model.attachment)?.arrayWithSize() ?? []
+            signature += model.attachment.isEmpty == true ? [0, 0] : (WavesCrypto.shared.base58decode(input: model.attachment)?.arrayWithSize() ?? [])
             return signature
             
         case .setScript(let model):

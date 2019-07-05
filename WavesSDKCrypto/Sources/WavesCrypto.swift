@@ -9,18 +9,16 @@ import Foundation
 import Keccak
 import Blake2
 import Curve25519
-import Base58
+import Base58Encoder
 import CommonCrypto
-import CryptoSwift
 
+public typealias Base58 = String
+public typealias Base64 = String
 public typealias Bytes = [UInt8]
 public typealias PublicKey = String
 public typealias PrivateKey = String
 public typealias Seed = String
 public typealias Address = String
-
-//public typealias Base58 = String
-//public typealias Base64 = String
 
 public struct KeyPair {
     public let publicKey: PublicKey
@@ -330,7 +328,7 @@ extension WavesCrypto {
     
     public func base58encode(input: Bytes) -> String? {
         
-        let result = Base58.encode(input)
+        let result = Base58Encoder.Base58.encode(input)
         
         if result.count == 0 {
             return nil
@@ -341,7 +339,7 @@ extension WavesCrypto {
     
     public func base58decode(input: String) -> Bytes? {
         
-        let result = Base58.decode(input)
+        let result = Base58Encoder.Base58.decode(input)
         
         if result.count == 0 {
             return nil
@@ -444,5 +442,12 @@ private extension WavesCrypto {
         }
         
         return words.joined(separator: " ")
+    }
+}
+
+public extension String {
+    
+    var bytes: Bytes {
+        return [UInt8](self.utf8)
     }
 }

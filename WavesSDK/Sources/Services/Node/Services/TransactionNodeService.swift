@@ -35,9 +35,7 @@ final class TransactionNodeService: TransactionNodeServiceProtocol {
             .asObservable()
     }
 
-    //TODO: rename TransactionsByAddress
-
-    public func list(address: String, offset: Int, limit: Int) -> Observable<NodeService.DTO.TransactionContainers> {
+    public func transactions(by address: String, offset: Int, limit: Int) -> Observable<NodeService.DTO.TransactionContainers> {
         
         return self
             .transactionsProvider

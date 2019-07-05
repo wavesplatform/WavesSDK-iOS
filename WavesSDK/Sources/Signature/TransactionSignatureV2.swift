@@ -44,11 +44,11 @@ public extension TransactionSignatureV2 {
             public let quantity: Int64
             public let name: String
             public let description: String
-            public let script: String?
+            public let script: Base64?
             public let decimals: UInt8
             public let isReissuable: Bool
             
-            public init(script: String?, fee: Int64, chainId: String, senderPublicKey: String, timestamp: Int64, quantity: Int64, isReissuable: Bool, name: String, description: String, decimals: UInt8) {
+            public init(script: Base64?, fee: Int64, chainId: String, senderPublicKey: String, timestamp: Int64, quantity: Int64, isReissuable: Bool, name: String, description: String, decimals: UInt8) {
                 self.script = script
                 self.fee = fee
                 self.chainId = chainId
@@ -294,7 +294,7 @@ public extension TransactionSignatureV2 {
             signature += toByteArray(model.amount)
             signature += toByteArray(model.fee)
             signature += recipient
-            signature += model.attachment.arrayWithSize()
+            signature += model.attachment.isEmpty == true ? [UInt8(0), UInt8(0)] : (WavesCrypto.shared.base58decode(input: model.attachment)?.arrayWithSize() ?? [])
             
             return signature
             

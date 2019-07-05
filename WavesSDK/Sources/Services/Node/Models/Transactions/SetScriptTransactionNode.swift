@@ -34,7 +34,7 @@ public extension NodeService.DTO {
       the new set script transaction to process. The set script transaction can be changed
       by another set script transaction call unless it’s prohibited by a previous set script.
      */
-    struct ScriptTransaction: Decodable {
+    struct SetScriptTransaction: Decodable {
 
         public let type: Int
         public let id: String

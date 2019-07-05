@@ -26,7 +26,7 @@ public extension NodeService.DTO {
 
       Only the issuer of that asset can change the asset's script.
      */
-    struct AssetScriptTransaction: Decodable {
+    struct SetAssetScriptTransaction: Decodable {
 
         public let type: Int
         public let id: String
@@ -38,11 +38,13 @@ public extension NodeService.DTO {
         public let signature: String?
         public let proofs: [String]?
         public let chainId: Int?
+        public let version: Int
+
         /**
           Selected for script asset Id
           */
         public let assetId: String
-        public let version: Int
+
         /**
           Base64 binary string with Waves Ride script
           You can use "base64:compiledScriptStringInBase64" and just "compiledScriptStringInBase64".

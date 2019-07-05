@@ -27,25 +27,29 @@ public extension NodeService.DTO {
 
         public let signature: String?
         public let proofs: [String]?
+
         /**
           Address or alias of Waves blockchain
          */
         public let recipient: String
+
         /**
           Id of transferable asset in Waves blockchain, different for main and test net
          */
         public let assetId: String?
+
         /**
           Asset id instead Waves for transaction commission withdrawal
          */
         public let feeAssetId: String?
-        public let feeAsset: String?
+
         /**
           Amount of asset in satoshi
          */
         public let amount: Int64
+
         /**
-          Additional info [0,140] bytes of string encoded in Base58
+          Additional info [0,140] bytes of string
          */
         public let attachment: String?
     }
