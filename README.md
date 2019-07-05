@@ -5,8 +5,8 @@
 <img src="https://cdn-images-1.medium.com/max/1600/1*zrXgB0XYRjOWfFk8vk8dkQ.png" width="700" height="366" border="0" />
 
 ## Easy start with WavesSDK
-* [iOS](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Easy-start-with-WavesSDK-for-iOS)
-* [Android](https://github.com/wavesplatform/WavesSDK-android/wiki/Easy-start-with-WavesSDK-for-Android)
+* [Android](https://github.com/wavesplatform/WavesSDK-android/wiki/Get-started-with-WavesSDK-for-Android)
+* [iOS](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Get-started-with-WavesSDK-for-iOS)
 
 ## Library contains 3 main parts:
 
