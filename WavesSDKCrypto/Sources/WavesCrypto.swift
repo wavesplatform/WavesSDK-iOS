@@ -1,15 +1,21 @@
-//
-//  СRypto.swift
-//  Base58
-//
-//  Created by rprokofev on 17/04/2019.
-//
+/*
+ * ██╗    ██╗ █████╗ ██╗   ██╗███████╗███████╗
+ * ██║    ██║██╔══██╗██║   ██║██╔════╝██╔════╝
+ * ██║ █╗ ██║███████║██║   ██║█████╗  ███████╗
+ * ██║███╗██║██╔══██║╚██╗ ██╔╝██╔══╝  ╚════██║
+ * ╚███╔███╔╝██║  ██║ ╚████╔╝ ███████╗███████║
+ * ╚══╝╚══╝ ╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚══════╝
+ *
+ * ██████╗ ██╗      █████╗ ████████╗███████╗ ██████╗ ██████╗ ███╗   ███╗
+ * ██╔══██╗██║     ██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██╔══██╗████╗ ████║
+ * ██████╔╝██║     ███████║   ██║   █████╗  ██║   ██║██████╔╝██╔████╔██║
+ * ██╔═══╝ ██║     ██╔══██║   ██║   ██╔══╝  ██║   ██║██╔══██╗██║╚██╔╝██║
+ * ██║     ███████╗██║  ██║   ██║   ██║     ╚██████╔╝██║  ██║██║ ╚═╝ ██║
+ * ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝
+ *
+ */
 
 import Foundation
-import Keccak
-import Blake2
-import Curve25519
-import Base58Encoder
 import CommonCrypto
 
 public typealias Base58 = String
@@ -305,7 +311,7 @@ extension WavesCrypto {
         
         data.withUnsafeMutableBytes { (rawPointer) -> Void in
             guard let bytes = rawPointer.bindMemory(to: UInt8.self).baseAddress else { return }
-            Keccak.keccak(Array(input), Int32(input.count), bytes, 32)
+            keccak(Array(input), Int32(input.count), bytes, 32)
         }
         
         return Array(data)
@@ -328,7 +334,7 @@ extension WavesCrypto {
     
     public func base58encode(input: Bytes) -> String? {
         
-        let result = Base58Encoder.Base58.encode(input)
+        let result = Base58Encoder.encode(input)
         
         if result.count == 0 {
             return nil
@@ -339,7 +345,7 @@ extension WavesCrypto {
     
     public func base58decode(input: String) -> Bytes? {
         
-        let result = Base58Encoder.Base58.decode(input)
+        let result = Base58Encoder.decode(input)
         
         if result.count == 0 {
             return nil

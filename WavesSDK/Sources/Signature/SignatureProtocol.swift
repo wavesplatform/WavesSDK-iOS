@@ -9,7 +9,6 @@
 import Foundation
 import WavesSDKCrypto
 import WavesSDKExtensions
-import Base58Encoder
 
 public protocol SignatureProtocol {
     
