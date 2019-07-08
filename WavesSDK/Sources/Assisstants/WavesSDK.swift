@@ -89,11 +89,59 @@ public final class WavesSDK {
     public class func initialization(servicesPlugins: ServicesPlugins,
                                      enviroment: Enviroment) {
         
+        
+        var dataPlugins = servicesPlugins.data
+        var nodePlugins = servicesPlugins.node
+        var matcherPlugins = servicesPlugins.matcher
+        
+        dataPlugins.append(DebugServicePlugin())
+        nodePlugins.append(DebugServicePlugin())
+        matcherPlugins.append(DebugServicePlugin())
+        
         let services = WavesServices(enviroment: enviroment,
-                                     dataServicePlugins: servicesPlugins.data,
-                                     nodeServicePlugins: servicesPlugins.node,
-                                     matcherServicePlugins: servicesPlugins.matcher)
+                                     dataServicePlugins: dataPlugins,
+                                     nodeServicePlugins: nodePlugins,
+                                     matcherServicePlugins: matcherPlugins)
         
         WavesSDK.shared = WavesSDK(services: services, enviroment: enviroment)
+    }
+}
+
+private final class DebugServicePlugin: PluginType {
+    
+    func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+        
+        var mRq = request
+        
+        let version = Bundle(for: DebugServicePlugin.self).version
+        let build = Bundle(for: DebugServicePlugin.self).build
+        
+        
+        var userAgent = mRq.value(forHTTPHeaderField: "User-Agent") ?? ""
+        
+        if userAgent.isEmpty {
+            userAgent = UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent") ?? ""
+        }
+        
+        userAgent = "\(userAgent) WavesSDK/\(version)(\(build))"
+        
+        mRq.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+        
+        return mRq
+    }
+    
+    /// Called immediately before a request is sent over the network (or stubbed).
+    func willSend(_ request: RequestType, target: TargetType) {
+        
+    }
+    
+    /// Called after a response has been received, but before the MoyaProvider has invoked its completion handler.
+    func didReceive(_ result: Result<Moya.Response, MoyaError>, target: TargetType) {
+        
+    }
+    
+    /// Called to modify a result before completion.
+    func process(_ result: Result<Moya.Response, MoyaError>, target: TargetType) -> Result<Moya.Response, MoyaError> {
+        return result
     }
 }

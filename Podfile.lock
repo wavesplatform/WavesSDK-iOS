@@ -1,10 +1,6 @@
 PODS:
   - Alamofire (4.8.2)
-  - Base58Encoder (0.3.1)
-  - Blake2 (0.1)
-  - Curve25519 (2.0.3)
   - Fakery (4.0.0)
-  - Keccak (0.2)
   - Moya (12.0.1):
     - Moya/Core (= 12.0.1)
   - Moya/Core (12.0.1):
@@ -18,35 +14,14 @@ PODS:
   - RxSwift (4.5.0)
   - RxTest (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
-  - WavesSDK (0.1.4):
-    - Moya (~> 12.0.1)
-    - Moya/RxSwift (~> 12.0.1)
-    - RxSwift (~> 4.0)
-    - WavesSDKCrypto
-    - WavesSDKExtensions
-  - WavesSDKCrypto (0.1.4):
-    - Base58Encoder
-    - Blake2
-    - Curve25519
-    - Keccak
-    - WavesSDKExtensions
-  - WavesSDKExtensions (0.1.4):
-    - RxSwift (~> 4.0)
 
 DEPENDENCIES:
-  - Base58Encoder
-  - Blake2
-  - Curve25519
   - Fakery
-  - Keccak
   - Moya (~> 12.0.1)
   - Moya/RxSwift (~> 12.0.1)
   - Nimble
   - RxSwift (~> 4.0)
   - RxTest
-  - WavesSDK (from `.`)
-  - WavesSDKCrypto (from `.`)
-  - WavesSDKExtensions (from `.`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -57,36 +32,16 @@ SPEC REPOS:
     - Result
     - RxSwift
     - RxTest
-  https://github.com/wavesplatform/Specs.git:
-    - Base58Encoder
-    - Blake2
-    - Curve25519
-    - Keccak
-
-EXTERNAL SOURCES:
-  WavesSDK:
-    :path: "."
-  WavesSDKCrypto:
-    :path: "."
-  WavesSDKExtensions:
-    :path: "."
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Base58Encoder: 395b356869023f069fd0769fca3d0477b8a70f30
-  Blake2: 682a2367efad6a4c85ecc691acfa3f9dfceeceb0
-  Curve25519: 4c9483171010b27488a3bac6ee327588a1182fb4
   Fakery: 476f6d947de432f84703acc830a1e7166330299b
-  Keccak: 746b8f26ac04386f165f55998ca7c81666b8721d
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
-  WavesSDK: 0becf997b388a627d12e16eb18094776594837f7
-  WavesSDKCrypto: 6aceda6fd92549aeeca6204d21a397dab6b5f604
-  WavesSDKExtensions: 576c5d631b0cb535b45680de770579960be81d2e
 
-PODFILE CHECKSUM: 2f8a18624692445ee6b1ca6368c8caa3442ee01e
+PODFILE CHECKSUM: f2ecd2af0b5923cfb9d29c12c1bbc3443b72aeb6
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.7.3

@@ -10,7 +10,7 @@ import Foundation
 
 #if swift(>=4.2)
 #else
-public extension Optional: Sequence where Wrapped: Sequence {
+extension Optional: Sequence where Wrapped: Sequence {
     public typealias Element = Wrapped.Iterator.Element
     public typealias Iterator = AnyIterator<Wrapped.Iterator.Element>
 
