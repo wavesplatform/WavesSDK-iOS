@@ -1,9 +1,10 @@
 Pod::Spec.new do |spec|
   
   spec.name         = 'WavesSDKExtensions'  
-  spec.version      = '0.1.4'
+  spec.version      = '0.1.5'
   spec.ios.deployment_target = '10.0'
   spec.requires_arc = true
+  spec.swift_version = '5.0'
 
   spec.license      = { :type => 'MIT License', :file => 'LICENSE' }
   spec.homepage     = 'https://wavesplatform.com'
@@ -12,11 +13,10 @@ Pod::Spec.new do |spec|
   
   spec.source_files =  'WavesSDKExtensions/Sources/**/*.{swift}'
   spec.source =  {  :git => 'https://github.com/wavesplatform/WavesSDK-iOS.git', :tag => 'v' + spec.version.to_s}
-  
-  spec.swift_version = '5.0'
-
+    
   spec.ios.framework = 'Foundation'
   spec.ios.framework = 'UIKit'
 
   spec.dependency 'RxSwift', '~> 4.0'
+  
 end
