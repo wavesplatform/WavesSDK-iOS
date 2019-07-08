@@ -4,12 +4,14 @@ Pod::Spec.new do |spec|
   spec.version      = '0.1.4'
   spec.ios.deployment_target = '10.0'
   spec.requires_arc = true
-  spec.license      = { :type => 'MIT' }
+  spec.license      = { :type => 'MIT License', :file => 'LICENSE' }
   spec.homepage     = 'https://wavesplatform.com'
-  spec.authors      = { 'Mefilt' => 'Mefilt@gmail.com' }
-  spec.summary      = 'The library contains method, variable and other entities for development on crypto'  
+  spec.authors      = { 'Mefilt' => 'mefilt@gmail.com', }
+  spec.summary      = 'WavesSDK – it is mobile libraries for easy and simple co-working Waves blockchain platform and any mobile app'  
 
   spec.source       = { 'git' => 'https://github.com/wavesplatform/WavesSDK-iOS.git', :tag => 'v' + spec.version.to_s }
+
+  spec.swift_version = '5.0'
 
   spec.source_files = 
    'WavesSDKCrypto/Sources/*.{swift}',
@@ -31,8 +33,6 @@ Pod::Spec.new do |spec|
   'WavesSDKCrypto/Vendors/Base58Encoder/Sources/*.{h}',
   'WavesSDKCrypto/Vendors/Keccak/Sources/*{h}'  
   
-  spec.swift_version = '5.0'
-
   spec.ios.framework = 'Foundation'
   spec.ios.framework = 'UIKit'
   spec.ios.framework = 'Security'
