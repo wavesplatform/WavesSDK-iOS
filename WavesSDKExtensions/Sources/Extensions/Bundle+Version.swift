@@ -85,6 +85,14 @@ public extension Bundle {
         return (dictionary["CFBundleShortVersionString"] as? String) ?? ""
     }
     
+    var build: String {
+        
+        let dictionary = Bundle.main.infoDictionary!
+        let build = (dictionary["CFBundleVersion"] as? String) ?? ""
+        
+        return "\(build)"
+    }
+    
     var versionAndBuild: String {
         
         let dictionary = Bundle.main.infoDictionary!
