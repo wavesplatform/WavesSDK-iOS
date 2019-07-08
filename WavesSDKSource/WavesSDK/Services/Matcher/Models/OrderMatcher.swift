@@ -32,4 +32,9 @@ public extension MatcherService.DTO {
         public let status: Status
         public let timestamp: Date
     }
+    
+    struct OrderRateFee {
+        public let assetId: String
+        public let rate: Double
+    }
 }

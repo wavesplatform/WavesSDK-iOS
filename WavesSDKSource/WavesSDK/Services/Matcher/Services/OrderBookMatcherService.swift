@@ -107,6 +107,40 @@ final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
             .map { _ in true }
             .asObservable()
     }
+    
+    public func orderRatesFee() -> Observable<[MatcherService.DTO.OrderRateFee]> {
+        
+        return self
+            .orderBookProvider
+            .rx
+            .request(.init(kind: .settingsFee,
+                           matcherUrl: enviroment.matcherUrl),
+                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+            .filterSuccessfulStatusAndRedirectCodes()
+            .catchError({ (error) -> Single<Response> in
+                return Single.error(NetworkError.error(by: error))
+            })
+            .asObservable()
+            .map({ (response) -> [MatcherService.DTO.OrderRateFee] in
+                
+                guard let data = try? JSONSerialization.jsonObject(with: response.data, options: []),
+                    let json = data as? [String: Double] else {
+                    return []
+                }
+                
+                var settingsFee: [MatcherService.DTO.OrderRateFee] = []
+                
+                let keys = Array(json.keys)
+                for key in keys {
+                    if let value = json[key] {
+                        settingsFee.append(.init(assetId: key, rate: value))
+                    }
+                }
+                
+                return settingsFee
+            })
+    }
+
 }
 
 

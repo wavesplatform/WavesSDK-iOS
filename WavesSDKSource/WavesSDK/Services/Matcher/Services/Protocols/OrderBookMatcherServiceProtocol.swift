@@ -19,4 +19,6 @@ public protocol OrderBookMatcherServiceProtocol {
     func cancelOrder(query: MatcherService.Query.CancelOrder) -> Observable<Bool>
     
     func createOrder(query: MatcherService.Query.CreateOrder) -> Observable<Bool>
+    
+    func orderRatesFee() -> Observable<[MatcherService.DTO.OrderRateFee]>
 }
