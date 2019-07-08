@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.authors      = { 'Mefilt' => 'mefilt@gmail.com', }
   spec.summary      = 'Extensions are helping for developer fast write code'  
 
-  spec.source_files =  'WavesSDK/**/*.{swift}'
+  spec.source_files =  'WavesSDK/Sources/**/*.{swift}'
   spec.source =  {  :git => 'https://github.com/wavesplatform/WavesSDK-iOS.git', :tag => 'v' + spec.version.to_s}
   
   spec.ios.framework = 'Foundation'
