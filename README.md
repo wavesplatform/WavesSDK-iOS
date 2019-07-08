@@ -2,7 +2,7 @@
 
 [**Website**](https://wavesplatform.com/) | [**Discord**](https://discord.gg/cnFmDyA) | [**Forum**](https://forum.wavesplatform.com/) | [**Support**](https://support.wavesplatform.com/) | [**Documentation**](https://docs.wavesplatform.com)
 
-<img src="https://s3.eu-central-1.amazonaws.com/it-1639.waves.mobile.pictures/social/v1/bannerSDKiOS.png" width="800" height="400" border="0" />
+<img src="https://s3.eu-central-1.amazonaws.com/it-1639.waves.mobile.pictures/social/v1/bannerSDKiOS.png" />
 
 ## Easy start with WavesSDK
 * [Waves SDK for Android](https://github.com/wavesplatform/WavesSDK-android/wiki/Get-started-with-WavesSDK-for-Android)
