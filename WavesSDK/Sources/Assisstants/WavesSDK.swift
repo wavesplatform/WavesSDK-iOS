@@ -109,6 +109,39 @@ public final class WavesSDK {
 
 private final class DebugServicePlugin: PluginType {
     
+    static var _userAgentDefault: String? = nil
+
+    static var _webView: UIWebView? = nil
+    
+    static var webView: UIWebView =  {
+       
+        serialQueueWebView.sync {
+            if let localWebView = _webView {
+                return localWebView
+            } else {
+                DispatchQueue.main.async {
+                    let webView = UIWebView()
+                    _webView = webView
+                }
+                return _webView!
+            }
+        }
+    }()
+    
+    static let serialQueue = DispatchQueue(label: "DebugServicePlugin")
+    static let serialQueueWebView = DispatchQueue(label: "DebugServicePlugin.webView")
+    
+    static var userAgentDefault: String = {
+        serialQueue.sync {
+            if _userAgentDefault?.isEmpty ?? false {
+                _userAgentDefault = DebugServicePlugin.webView.stringByEvaluatingJavaScript(from: "navigator.userAgent")                
+            }
+            
+            return _userAgentDefault ?? ""
+        }
+    }()
+    
+    
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
         
         var mRq = request
@@ -120,7 +153,7 @@ private final class DebugServicePlugin: PluginType {
         var userAgent = mRq.value(forHTTPHeaderField: "User-Agent") ?? ""
         
         if userAgent.isEmpty {
-            userAgent = UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent") ?? ""
+            userAgent = DebugServicePlugin.userAgentDefault
         }
         
         userAgent = "\(userAgent) WavesSDK/\(version)(\(build))"
