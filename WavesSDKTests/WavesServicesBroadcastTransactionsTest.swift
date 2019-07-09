@@ -122,7 +122,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
 
         let data2 = NodeService.Query.Transaction.Data.Value.init(key: "isMan", value: .boolean(true))
 
-        let binary = WavesCrypto.shared.base64encode(input: "Hello!".bytes)
+        let binary = WavesCrypto.shared.base64encode(input: "Hello!".toBytes)
 
         let data3 = NodeService.Query.Transaction.Data.Value.init(key: "secret", value: .binary(binary))
 
