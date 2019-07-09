@@ -36,7 +36,9 @@ fileprivate enum Constants {
     static let attachment: String = "attachment"
 }
 
-extension NodeService.Query.Transaction {
+//TODO: - need take parameter name from Constants
+
+public extension NodeService.Query.Transaction {
     
     var params: [String: Any] {
         switch self {
