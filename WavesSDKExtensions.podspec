@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   
   spec.name         = 'WavesSDKExtensions'  
-  spec.version      = '0.1.5'
+  spec.version      = '0.1.6'
   spec.ios.deployment_target = '10.0'
   spec.requires_arc = true
   spec.swift_version = '5.0'
