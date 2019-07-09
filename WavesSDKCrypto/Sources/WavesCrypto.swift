@@ -450,10 +450,3 @@ private extension WavesCrypto {
         return words.joined(separator: " ")
     }
 }
-
-public extension String {
-    
-    var bytes: Bytes {
-        return [UInt8](self.utf8)
-    }
-}
