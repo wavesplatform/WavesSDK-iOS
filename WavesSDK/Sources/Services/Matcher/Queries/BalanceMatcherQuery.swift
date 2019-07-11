@@ -23,11 +23,12 @@ public extension MatcherService.Query {
         static let proofs: String = "proofs"
         static let signature: String = "signature"
         static let timestamp: String = "timestamp"
-        static let versionCreateOrder: Int = 2
+        static let versionCreateOrder: Int = 3
         static let amountAsset: String = "amountAsset"
         static let priceAsset: String = "priceAsset"
         static let sender: String = "sender"
-        static let orderId: String = "orderId"        
+        static let orderId: String = "orderId"
+        static let matcherFeeAssetId: String = "matcherFeeAssetId"
     }
 
     /**
@@ -111,7 +112,9 @@ public extension MatcherService.Query {
           */
         public let proofs: [String]
 
-        public init(matcherPublicKey: String, senderPublicKey: String, assetPair: AssetPair, amount: Int64, price: Int64, orderType: OrderType, matcherFee: Int64, timestamp: Int64, expirationTimestamp: Int64, proofs: [String]) {
+        public let matcherFeeAsset: String
+        
+        public init(matcherPublicKey: String, senderPublicKey: String, assetPair: AssetPair, amount: Int64, price: Int64, orderType: OrderType, matcherFee: Int64, timestamp: Int64, expirationTimestamp: Int64, proofs: [String], matcherFeeAsset: String) {
             self.matcherPublicKey = matcherPublicKey
             self.senderPublicKey = senderPublicKey
             self.assetPair = assetPair
@@ -122,6 +125,7 @@ public extension MatcherService.Query {
             self.timestamp = timestamp
             self.expirationTimestamp = expirationTimestamp
             self.proofs = proofs
+            self.matcherFeeAsset = matcherFeeAsset
         }
         
         internal var parameters: [String : Any] {
@@ -136,7 +140,8 @@ public extension MatcherService.Query {
                     Constants.expiration : expirationTimestamp,
                     Constants.matcherFee : matcherFee,
                     Constants.proofs : proofs,
-                    Constants.version: Constants.versionCreateOrder]
+                    Constants.version: Constants.versionCreateOrder,
+                    Constants.matcherFeeAssetId: matcherFeeAsset]
         }
     }
 
