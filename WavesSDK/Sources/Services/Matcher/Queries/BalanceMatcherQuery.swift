@@ -129,7 +129,6 @@ public extension MatcherService.Query {
         }
         
         internal var parameters: [String : Any] {
-    
             return [Constants.senderPublicKey :  senderPublicKey,
                     Constants.matcherPublicKey : matcherPublicKey,
                     Constants.assetPair : assetPair.paramenters,
@@ -141,7 +140,7 @@ public extension MatcherService.Query {
                     Constants.matcherFee : matcherFee,
                     Constants.proofs : proofs,
                     Constants.version: Constants.versionCreateOrder,
-                    Constants.matcherFeeAssetId: matcherFeeAsset]
+                    Constants.matcherFeeAssetId: matcherFeeAsset.normalizeToNullWavesAssetId]
         }
     }
 
