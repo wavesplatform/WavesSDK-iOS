@@ -43,7 +43,7 @@ public extension MatcherService.Query {
             case buy
         }
         
-        public enum Version: Int {
+        private enum Version: Int {
             case V2 = 2
             case V3 = 3
         }
@@ -119,9 +119,9 @@ public extension MatcherService.Query {
 
         public let matcherFeeAsset: String
         
-        public let version: Version
+        private let version: Version
         
-        public init(matcherPublicKey: String, senderPublicKey: String, assetPair: AssetPair, amount: Int64, price: Int64, orderType: OrderType, matcherFee: Int64, timestamp: Int64, expirationTimestamp: Int64, proofs: [String], matcherFeeAsset: String, version: Version) {
+        public init(matcherPublicKey: String, senderPublicKey: String, assetPair: AssetPair, amount: Int64, price: Int64, orderType: OrderType, matcherFee: Int64, timestamp: Int64, expirationTimestamp: Int64, proofs: [String], matcherFeeAsset: String) {
             self.matcherPublicKey = matcherPublicKey
             self.senderPublicKey = senderPublicKey
             self.assetPair = assetPair
@@ -133,7 +133,7 @@ public extension MatcherService.Query {
             self.expirationTimestamp = expirationTimestamp
             self.proofs = proofs
             self.matcherFeeAsset = matcherFeeAsset
-            self.version = version
+            self.version = matcherFeeAsset == WavesSDKConstants.wavesAssetId ? .V2 : .V3
         }
         
         internal var parameters: [String : Any] {
