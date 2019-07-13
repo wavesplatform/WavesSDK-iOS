@@ -43,6 +43,11 @@ public extension MatcherService.Query {
             case buy
         }
         
+        public enum Version: Int {
+            case V2 = 2
+            case V3 = 3
+        }
+        
         public struct AssetPair {
             public let amountAssetId: String
             public let priceAssetId: String
@@ -114,7 +119,9 @@ public extension MatcherService.Query {
 
         public let matcherFeeAsset: String
         
-        public init(matcherPublicKey: String, senderPublicKey: String, assetPair: AssetPair, amount: Int64, price: Int64, orderType: OrderType, matcherFee: Int64, timestamp: Int64, expirationTimestamp: Int64, proofs: [String], matcherFeeAsset: String) {
+        public let version: Version
+        
+        public init(matcherPublicKey: String, senderPublicKey: String, assetPair: AssetPair, amount: Int64, price: Int64, orderType: OrderType, matcherFee: Int64, timestamp: Int64, expirationTimestamp: Int64, proofs: [String], matcherFeeAsset: String, version: Version) {
             self.matcherPublicKey = matcherPublicKey
             self.senderPublicKey = senderPublicKey
             self.assetPair = assetPair
@@ -126,21 +133,29 @@ public extension MatcherService.Query {
             self.expirationTimestamp = expirationTimestamp
             self.proofs = proofs
             self.matcherFeeAsset = matcherFeeAsset
+            self.version = version
         }
         
         internal var parameters: [String : Any] {
-            return [Constants.senderPublicKey :  senderPublicKey,
-                    Constants.matcherPublicKey : matcherPublicKey,
-                    Constants.assetPair : assetPair.paramenters,
-                    Constants.orderType : orderType.rawValue,
-                    Constants.price : price,
-                    Constants.amount : amount,
-                    Constants.timestamp : timestamp,
-                    Constants.expiration : expirationTimestamp,
-                    Constants.matcherFee : matcherFee,
-                    Constants.proofs : proofs,
-                    Constants.version: Constants.versionCreateOrder,
-                    Constants.matcherFeeAssetId: matcherFeeAsset.normalizeToNullWavesAssetId]
+            
+            
+            var params: [String: Any] = [Constants.senderPublicKey :  senderPublicKey,
+                                         Constants.matcherPublicKey : matcherPublicKey,
+                                         Constants.assetPair : assetPair.paramenters,
+                                         Constants.orderType : orderType.rawValue,
+                                         Constants.price : price,
+                                         Constants.amount : amount,
+                                         Constants.timestamp : timestamp,
+                                         Constants.expiration : expirationTimestamp,
+                                         Constants.matcherFee : matcherFee,
+                                         Constants.proofs : proofs,
+                                         Constants.version: version.rawValue]
+            
+            if version == .V3 {
+                params[Constants.matcherFeeAssetId] = matcherFeeAsset.normalizeToNullWavesAssetId
+            }
+            
+            return params
         }
     }
 
