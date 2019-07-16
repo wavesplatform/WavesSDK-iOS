@@ -11,7 +11,7 @@ import RxSwift
 public protocol OrderBookMatcherServiceProtocol {
 
     /**
-      Get orderbook for a given Asset Pair
+    Get orderbook for a given Asset Pair
       */
     func orderBook(amountAsset: String, priceAsset: String) -> Observable<MatcherService.DTO.OrderBook>
 

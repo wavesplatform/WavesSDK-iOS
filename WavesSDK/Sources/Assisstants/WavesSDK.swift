@@ -111,29 +111,14 @@ private final class DebugServicePlugin: PluginType {
     
     static var _userAgentDefault: String? = nil
 
-    static var _webView: UIWebView? = nil
-    
-    static var webView: UIWebView =  {
-       
-        serialQueueWebView.sync {
-            if let localWebView = _webView {
-                return localWebView
-            } else {
-                DispatchQueue.main.async {
-                    let webView = UIWebView()
-                    _webView = webView
-                }
-                return _webView!
-            }
-        }
-    }()
+    static let webView: UIWebView = UIWebView()
     
     static let serialQueue = DispatchQueue(label: "DebugServicePlugin")
     static let serialQueueWebView = DispatchQueue(label: "DebugServicePlugin.webView")
     
     static var userAgentDefault: String = {
         serialQueue.sync {
-            if _userAgentDefault?.isEmpty ?? false {
+            if _userAgentDefault?.isEmpty ?? true {
                 _userAgentDefault = DebugServicePlugin.webView.stringByEvaluatingJavaScript(from: "navigator.userAgent")                
             }
             
@@ -146,17 +131,13 @@ private final class DebugServicePlugin: PluginType {
         
         var mRq = request
         
-        let version = Bundle(for: DebugServicePlugin.self).version
-        let build = Bundle(for: DebugServicePlugin.self).build
-        
-        
         var userAgent = mRq.value(forHTTPHeaderField: "User-Agent") ?? ""
         
         if userAgent.isEmpty {
             userAgent = DebugServicePlugin.userAgentDefault
         }
         
-        userAgent = "\(userAgent) WavesSDK/\(version)(\(build))"
+        userAgent = "\(userAgent) WavesSDK/\(WavesSDKVersionNumber) DeviceId/\(UIDevice.uuid)"
         
         mRq.setValue(userAgent, forHTTPHeaderField: "User-Agent")
         
