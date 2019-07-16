@@ -108,7 +108,7 @@ final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
             .asObservable()
     }
     
-    public func orderRatesFee() -> Observable<[MatcherService.DTO.OrderRateFee]> {
+    public func settingsRatesFee() -> Observable<[MatcherService.DTO.SettingRateFee]> {
         
         return self
             .orderBookProvider
@@ -121,14 +121,14 @@ final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
                 return Single.error(NetworkError.error(by: error))
             })
             .asObservable()
-            .map({ (response) -> [MatcherService.DTO.OrderRateFee] in
+            .map({ (response) -> [MatcherService.DTO.SettingRateFee] in
                 
                 guard let data = try? JSONSerialization.jsonObject(with: response.data, options: []),
                     let json = data as? [String: Double] else {
                     return []
                 }
                 
-                var settingsFee: [MatcherService.DTO.OrderRateFee] = []
+                var settingsFee: [MatcherService.DTO.SettingRateFee] = []
                 
                 let keys = Array(json.keys)
                 for key in keys {
