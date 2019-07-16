@@ -23,7 +23,6 @@ public extension MatcherService.Query {
         static let proofs: String = "proofs"
         static let signature: String = "signature"
         static let timestamp: String = "timestamp"
-        static let versionCreateOrder: Int = 3
         static let amountAsset: String = "amountAsset"
         static let priceAsset: String = "priceAsset"
         static let sender: String = "sender"
