@@ -112,7 +112,7 @@
 		7B3DCBF922D3647D00FC973D /* WavesSDKExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4E1E0622C4DC3400854BAB /* WavesSDKExtensions.framework */; };
 		7B3DCBFA22D366AB00FC973D /* WavesSDKCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4E1DF522C4DC2800854BAB /* WavesSDKCrypto.framework */; };
 		7B3DCBFB22D366AB00FC973D /* WavesSDKExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4E1E0622C4DC3400854BAB /* WavesSDKExtensions.framework */; };
-		7B4E1DE722C4DBDA00854BAB /* InternalWavesSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B4E1DE522C4DBDA00854BAB /* InternalWavesSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7B4E1DE722C4DBDA00854BAB /* WavesSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B4E1DE522C4DBDA00854BAB /* WavesSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B4E1DEA22C4DBDA00854BAB /* WavesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4E1DE322C4DBD900854BAB /* WavesSDK.framework */; };
 		7B4E1DEB22C4DBDA00854BAB /* WavesSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4E1DE322C4DBD900854BAB /* WavesSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B4E1DF922C4DC2800854BAB /* WavesSDKCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B4E1DF722C4DC2800854BAB /* WavesSDKCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -446,7 +446,7 @@
 		7B42335422563A2100E82730 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		7B42335622563A3200E82730 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7B4E1DE322C4DBD900854BAB /* WavesSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WavesSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B4E1DE522C4DBDA00854BAB /* InternalWavesSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InternalWavesSDK.h; sourceTree = "<group>"; };
+		7B4E1DE522C4DBDA00854BAB /* WavesSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WavesSDK.h; sourceTree = "<group>"; };
 		7B4E1DE622C4DBDA00854BAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B4E1DF522C4DC2800854BAB /* WavesSDKCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WavesSDKCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B4E1DF722C4DC2800854BAB /* WavesSDKCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WavesSDKCrypto.h; sourceTree = "<group>"; };
@@ -913,7 +913,7 @@
 			isa = PBXGroup;
 			children = (
 				7B4E1EE222C4DD2D00854BAB /* Sources */,
-				7B4E1DE522C4DBDA00854BAB /* InternalWavesSDK.h */,
+				7B4E1DE522C4DBDA00854BAB /* WavesSDK.h */,
 				7B4E1DE622C4DBDA00854BAB /* Info.plist */,
 			);
 			path = WavesSDK;
@@ -1423,7 +1423,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B4E1DE722C4DBDA00854BAB /* InternalWavesSDK.h in Headers */,
+				7B4E1DE722C4DBDA00854BAB /* WavesSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2063,7 +2063,7 @@
 					"@loader_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = WV.InternalWavesSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavesplatform.sdk.main;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2096,7 +2096,7 @@
 					"@loader_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = WV.InternalWavesSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavesplatform.sdk.main;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2135,7 +2135,7 @@
 				);
 				MACH_O_TYPE = mh_dylib;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
-				PRODUCT_BUNDLE_IDENTIFIER = WV.WavesSDKCrypto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavesplatform.sdk.crypto;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2175,7 +2175,7 @@
 				);
 				MACH_O_TYPE = mh_dylib;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
-				PRODUCT_BUNDLE_IDENTIFIER = WV.WavesSDKCrypto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavesplatform.sdk.crypto;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -2211,7 +2211,7 @@
 				);
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = WV.InternalWavesSDKExtensions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavesplatform.sdk.extensions;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -2246,7 +2246,7 @@
 				);
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = WV.InternalWavesSDKExtensions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavesplatform.sdk.extensions;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2387,7 +2387,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = WV.WavesSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavesplatform.sdk.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2409,7 +2409,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = WV.WavesSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wavesplatform.sdk.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
