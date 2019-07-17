@@ -36,6 +36,7 @@ public extension NodeService.DTO {
             public let matcherFee: Int64
             public let signature: String?
             public let proofs: [String]?
+            public let matcherFeeAssetId: String?
         }
 
         public struct AssetPair: Decodable {
@@ -50,6 +51,7 @@ public extension NodeService.DTO {
         public let fee: Int64
         public let timestamp: Date
         public let height: Int64
+        public let version: Int
 
         public let signature: String?
         public let proofs: [String]?

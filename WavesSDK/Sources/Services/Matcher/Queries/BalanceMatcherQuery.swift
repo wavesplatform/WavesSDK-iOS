@@ -23,11 +23,11 @@ public extension MatcherService.Query {
         static let proofs: String = "proofs"
         static let signature: String = "signature"
         static let timestamp: String = "timestamp"
-        static let versionCreateOrder: Int = 2
         static let amountAsset: String = "amountAsset"
         static let priceAsset: String = "priceAsset"
         static let sender: String = "sender"
-        static let orderId: String = "orderId"        
+        static let orderId: String = "orderId"
+        static let matcherFeeAssetId: String = "matcherFeeAssetId"
     }
 
     /**
@@ -40,6 +40,11 @@ public extension MatcherService.Query {
         public enum OrderType: String {
             case sell
             case buy
+        }
+        
+        private enum Version: Int {
+            case V2 = 2
+            case V3 = 3
         }
         
         public struct AssetPair {
@@ -111,7 +116,11 @@ public extension MatcherService.Query {
           */
         public let proofs: [String]
 
-        public init(matcherPublicKey: String, senderPublicKey: String, assetPair: AssetPair, amount: Int64, price: Int64, orderType: OrderType, matcherFee: Int64, timestamp: Int64, expirationTimestamp: Int64, proofs: [String]) {
+        public let matcherFeeAsset: String
+        
+        private let version: Version
+        
+        public init(matcherPublicKey: String, senderPublicKey: String, assetPair: AssetPair, amount: Int64, price: Int64, orderType: OrderType, matcherFee: Int64, timestamp: Int64, expirationTimestamp: Int64, proofs: [String], matcherFeeAsset: String) {
             self.matcherPublicKey = matcherPublicKey
             self.senderPublicKey = senderPublicKey
             self.assetPair = assetPair
@@ -122,21 +131,30 @@ public extension MatcherService.Query {
             self.timestamp = timestamp
             self.expirationTimestamp = expirationTimestamp
             self.proofs = proofs
+            self.matcherFeeAsset = matcherFeeAsset
+            self.version = matcherFeeAsset == WavesSDKConstants.wavesAssetId ? .V2 : .V3
         }
         
         internal var parameters: [String : Any] {
-    
-            return [Constants.senderPublicKey :  senderPublicKey,
-                    Constants.matcherPublicKey : matcherPublicKey,
-                    Constants.assetPair : assetPair.paramenters,
-                    Constants.orderType : orderType.rawValue,
-                    Constants.price : price,
-                    Constants.amount : amount,
-                    Constants.timestamp : timestamp,
-                    Constants.expiration : expirationTimestamp,
-                    Constants.matcherFee : matcherFee,
-                    Constants.proofs : proofs,
-                    Constants.version: Constants.versionCreateOrder]
+            
+            
+            var params: [String: Any] = [Constants.senderPublicKey :  senderPublicKey,
+                                         Constants.matcherPublicKey : matcherPublicKey,
+                                         Constants.assetPair : assetPair.paramenters,
+                                         Constants.orderType : orderType.rawValue,
+                                         Constants.price : price,
+                                         Constants.amount : amount,
+                                         Constants.timestamp : timestamp,
+                                         Constants.expiration : expirationTimestamp,
+                                         Constants.matcherFee : matcherFee,
+                                         Constants.proofs : proofs,
+                                         Constants.version: version.rawValue]
+            
+            if version == .V3 {
+                params[Constants.matcherFeeAssetId] = matcherFeeAsset.normalizeToNullWavesAssetId
+            }
+            
+            return params
         }
     }
 

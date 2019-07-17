@@ -35,5 +35,8 @@ public protocol OrderBookMatcherServiceProtocol {
       Place a new limit order (buy or sell)
      */
     func createOrder(query: MatcherService.Query.CreateOrder) -> Observable<Bool>
+    
+    //TODO: need documents
+    func settingsRatesFee() -> Observable<[MatcherService.DTO.SettingRateFee]>
 }
 
