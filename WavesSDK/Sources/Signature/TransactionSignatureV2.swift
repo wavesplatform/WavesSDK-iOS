@@ -294,7 +294,7 @@ public extension TransactionSignatureV2 {
             signature += toByteArray(model.amount)
             signature += toByteArray(model.fee)
             signature += recipient
-            signature += model.attachment.isEmpty == true ? [UInt8(0), UInt8(0)] : (WavesCrypto.shared.base58decode(input: model.attachment)?.arrayWithSize() ?? [])
+            signature += model.attachment.isEmpty == true ? [UInt8(0), UInt8(0)] : model.attachment.arrayWithSize()
             
             return signature
             
