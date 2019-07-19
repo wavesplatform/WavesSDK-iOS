@@ -1,7 +1,5 @@
 ## WavesSDK is a collection of libraries used to integrate Waves blockchain features into your iOS application
 
-[**Website**](https://wavesplatform.com/) | [**Discord**](https://discord.gg/cnFmDyA) | [**Forum**](https://forum.wavesplatform.com/) | [**Support**](https://support.wavesplatform.com/) | [**Documentation**](https://docs.wavesplatform.com)
-
 ## What is Waves?
 Waves is an open-source [blockchain platform](https://wavesplatform.com).
 
@@ -45,3 +43,5 @@ _Please see the [issues](https://github.com/wavesplatform/WavesSDK-iOS/issues) s
 
 <a href="https://wavesplatform.com/" target="_blank"><img src="https://cdn.worldvectorlogo.com/logos/waves-6.svg"
 alt="wavesplatform" width="113" height="24" border="0" /></a>
+
+[**Website**](https://wavesplatform.com/) | [**Discord**](https://discord.gg/cnFmDyA) | [**Forum**](https://forum.wavesplatform.com/) | [**Support**](https://support.wavesplatform.com/) | [**Documentation**](https://docs.wavesplatform.com)
