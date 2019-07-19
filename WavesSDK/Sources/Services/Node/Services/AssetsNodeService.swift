@@ -9,14 +9,13 @@ import Foundation
 import RxSwift
 import Moya
 
-final class AssetsNodeService: AssetsNodeServiceProtocol {
+final class AssetsNodeService: InternalWavesService, AssetsNodeServiceProtocol {
     
     private let assetsProvider: MoyaProvider<NodeService.Target.Assets>
-    var enviroment: Enviroment
     
     init(assetsProvider: MoyaProvider<NodeService.Target.Assets>, enviroment: Enviroment) {
         self.assetsProvider = assetsProvider
-        self.enviroment = enviroment
+        super.init(enviroment: enviroment)
     }
 
     public func assetsBalances(address: String) -> Observable<NodeService.DTO.AddressAssetsBalance> {

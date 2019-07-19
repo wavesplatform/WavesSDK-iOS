@@ -9,14 +9,13 @@ import Foundation
 import RxSwift
 import Moya
 
-final class BalanceMatcherService: BalanceMatcherServiceProtocol {
+final class BalanceMatcherService: InternalWavesService, BalanceMatcherServiceProtocol {
     
     private let balanceProvider: MoyaProvider<MatcherService.Target.Balance>
-    var enviroment: Enviroment
     
     init(balanceProvider: MoyaProvider<MatcherService.Target.Balance>, enviroment: Enviroment) {
         self.balanceProvider = balanceProvider
-        self.enviroment = enviroment
+        super.init(enviroment: enviroment)
     }
     
     public func balanceReserved(query: MatcherService.Query.ReservedBalances) -> Observable<[String: Int64]> {

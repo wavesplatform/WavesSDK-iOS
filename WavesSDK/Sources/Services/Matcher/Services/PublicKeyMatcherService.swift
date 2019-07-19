@@ -9,15 +9,13 @@ import Foundation
 import RxSwift
 import Moya
 
-final class PublicKeyMatcherService: PublicKeyMatcherServiceProtocol {
+final class PublicKeyMatcherService: InternalWavesService, PublicKeyMatcherServiceProtocol {
     
     private let publicKeyProvider: MoyaProvider<MatcherService.Target.MatcherPublicKey>
     
-    var enviroment: Enviroment
-    
     init(publicKeyProvider: MoyaProvider<MatcherService.Target.MatcherPublicKey>, enviroment: Enviroment) {
         self.publicKeyProvider = publicKeyProvider
-        self.enviroment = enviroment
+        super.init(enviroment: enviroment)
     }
     
     public func publicKey() -> Observable<String> {

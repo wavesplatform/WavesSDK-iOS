@@ -9,15 +9,13 @@ import Foundation
 import RxSwift
 import Moya
 
-final class AliasDataService: AliasDataServiceProtocol {
+final class AliasDataService: InternalWavesService, AliasDataServiceProtocol {
     
     private let aliasProvider: MoyaProvider<DataService.Target.Alias>
-    
-    var enviroment: Enviroment
-    
+        
     init(aliasProvider: MoyaProvider<DataService.Target.Alias>, enviroment: Enviroment) {
         self.aliasProvider = aliasProvider
-        self.enviroment = enviroment
+        super.init(enviroment: enviroment)
     }
     
     public func alias(name: String) -> Observable<DataService.DTO.Alias> {
