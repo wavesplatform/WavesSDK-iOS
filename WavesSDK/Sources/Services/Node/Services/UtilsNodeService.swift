@@ -10,14 +10,13 @@ import Foundation
 import RxSwift
 import Moya
 
-final class UtilsNodeService: UtilsNodeServiceProtocol {
+final class UtilsNodeService: InternalWavesService, UtilsNodeServiceProtocol {
     
     private let utilsProvider: MoyaProvider<NodeService.Target.Utils>
-    var enviroment: Enviroment
     
     init(utilsProvider: MoyaProvider<NodeService.Target.Utils>, enviroment: Enviroment) {
         self.utilsProvider = utilsProvider
-        self.enviroment = enviroment
+        super.init(enviroment: enviroment)
     }
     
     private struct Utils: Decodable {

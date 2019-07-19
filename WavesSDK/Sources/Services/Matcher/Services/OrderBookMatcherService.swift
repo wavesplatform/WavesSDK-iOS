@@ -9,15 +9,13 @@ import Foundation
 import RxSwift
 import Moya
 
-final class OrderBookMatcherService: OrderBookMatcherServiceProtocol {
+final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServiceProtocol {
     
     private let orderBookProvider: MoyaProvider<MatcherService.Target.OrderBook>
-    
-    var enviroment: Enviroment
-    
+        
     init(orderBookProvider: MoyaProvider<MatcherService.Target.OrderBook>, enviroment: Enviroment) {
         self.orderBookProvider = orderBookProvider
-        self.enviroment = enviroment
+        super.init(enviroment: enviroment)
     }
     
     public func orderBook(amountAsset: String,

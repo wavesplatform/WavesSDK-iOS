@@ -9,15 +9,13 @@ import Foundation
 import RxSwift
 import Moya
 
-final class PairsPriceDataService: PairsPriceDataServiceProtocol {
+final class PairsPriceDataService: InternalWavesService, PairsPriceDataServiceProtocol {
     
     private let pairsPriceProvider: MoyaProvider<DataService.Target.PairsPrice>
-    
-    var enviroment: Enviroment
-    
+        
     init(pairsPriceProvider: MoyaProvider<DataService.Target.PairsPrice>, enviroment: Enviroment) {
         self.pairsPriceProvider = pairsPriceProvider
-        self.enviroment = enviroment
+        super.init(enviroment: enviroment)
     }
     
     public func pairsPrice(query: DataService.Query.PairsPrice) -> Observable<[DataService.DTO.PairPrice]> {

@@ -9,14 +9,13 @@ import Foundation
 import RxSwift
 import Moya
 
-final class BlocksNodeService: BlocksNodeServiceProtocol {
+final class BlocksNodeService: InternalWavesService, BlocksNodeServiceProtocol {
     
     private let blocksProvider: MoyaProvider<NodeService.Target.Blocks>
-    var enviroment: Enviroment
     
     init(blocksProvider: MoyaProvider<NodeService.Target.Blocks>, enviroment: Enviroment) {
         self.blocksProvider = blocksProvider
-        self.enviroment = enviroment
+        super.init(enviroment: enviroment)
     }
 
     public func height(address: String) -> Observable<NodeService.DTO.Block> {

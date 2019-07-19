@@ -9,15 +9,13 @@ import Foundation
 import RxSwift
 import Moya
 
-final class AssetsDataService: AssetsDataServiceProtocol {
+final class AssetsDataService: InternalWavesService, AssetsDataServiceProtocol {
     
     private let assetsProvider: MoyaProvider<DataService.Target.Assets>
     
-    var enviroment: Enviroment
-    
     init(assetsProvider: MoyaProvider<DataService.Target.Assets>, enviroment: Enviroment) {
         self.assetsProvider = assetsProvider
-        self.enviroment = enviroment
+        super.init(enviroment: enviroment)
     }
     
     public func assets(ids: [String]) -> Observable<[DataService.DTO.Asset]> {

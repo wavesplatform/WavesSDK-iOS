@@ -10,14 +10,13 @@ import Foundation
 import RxSwift
 import Moya
 
-final class LeasingNodeService: LeasingNodeServiceProtocol {
+final class LeasingNodeService: InternalWavesService, LeasingNodeServiceProtocol {
     
     private let leasingProvider: MoyaProvider<NodeService.Target.Leasing>
-    var enviroment: Enviroment
     
     init(leasingProvider: MoyaProvider<NodeService.Target.Leasing>, enviroment: Enviroment) {
         self.leasingProvider = leasingProvider
-        self.enviroment = enviroment
+        super.init(enviroment: enviroment)
     }
 
     public func leasingActiveTransactions(by address: String) -> Observable<[NodeService.DTO.LeaseTransaction]> {

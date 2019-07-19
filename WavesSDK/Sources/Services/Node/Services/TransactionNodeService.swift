@@ -9,14 +9,13 @@ import Foundation
 import RxSwift
 import Moya
 
-final class TransactionNodeService: TransactionNodeServiceProtocol {
+final class TransactionNodeService: InternalWavesService, TransactionNodeServiceProtocol {
 
-    private let transactionsProvider: MoyaProvider<NodeService.Target.Transaction>
-    var enviroment: Enviroment
+    private let transactionsProvider: MoyaProvider<NodeService.Target.Transaction>    
     
     init(transactionsProvider: MoyaProvider<NodeService.Target.Transaction>, enviroment: Enviroment) {
         self.transactionsProvider = transactionsProvider
-        self.enviroment = enviroment
+        super.init(enviroment: enviroment)
     }
     
     public func transactions(query: NodeService.Query.Transaction) -> Observable<NodeService.DTO.Transaction> {
