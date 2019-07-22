@@ -11,7 +11,7 @@ You can use it to build your own decentralised applications. Waves provides full
 To build your first Waves platform integrated application please go directly to the [Waves iOS SDK QuickStart tutorial](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Get-started-with-WavesSDK-for-iOS) and follow the instructions. 
 
 ## SDK main parts
-* [Waves Crypto](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Waves-Crypto) handles an interaction with crypto part of blockchain, allows to generate seed-phrases, convert public and private keys, obtain and verify addresses, translate bytes to string and back, sign the data with private key, etc.
+* [Waves Crypto](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Waves-Crypto) handles interaction with crypto part of blockchain, allows to generate seed-phrases, convert public and private keys, obtain and verify addresses, translate bytes to string and back, sign the data with a private key, etc.
 * [Waves Models](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Waves-Models) contains models of transactions and other data transfer objects that are needed for building correct services
 * [Waves Services](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Waves-Services) provides network services for sending transactions to the blockchain nodes, handling the responses and requesting data.
 
