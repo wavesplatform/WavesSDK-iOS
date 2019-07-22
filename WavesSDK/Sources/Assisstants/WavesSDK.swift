@@ -137,7 +137,9 @@ private final class DebugServicePlugin: PluginType {
             userAgent = DebugServicePlugin.userAgentDefault
         }
         
-        userAgent = "\(userAgent) WavesSDK/\(WavesSDKVersionNumber) DeviceId/\(UIDevice.uuid)"
+        let bundle = Bundle.main.bundleIdentifier ?? ""
+        
+        userAgent = "\(userAgent) WavesSDK/\(WavesSDKVersionNumber) DeviceId/\(UIDevice.uuid) AppId/\(bundle)"
         
         mRq.setValue(userAgent, forHTTPHeaderField: "User-Agent")
         
