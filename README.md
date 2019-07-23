@@ -22,7 +22,7 @@ There are three main SDK services that provide the blockchain functionality:
 * [Waves Node Service](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Node-Service) allows the application to cooperate directly with the blockchain: you can create transacations, broadcast them and load data from the node using these features. This is the main part of the SDK.
 * [Waves Data Service](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Data-Service) suggests the easier way to access the data that is stored in the node. The methods presented in this service are the most efficient way to read blockchain data but do not help writing it. 
 * [Waves Matcher Service](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Matcher-Service) contains the methods that give ability to integrate [Waves DEX](https://dex.wavesplatform.com) (decentralized exchange platform) features into the iOS application. You can collect and add users' orders and work with exchange transactions using this service.
-<br>
+
 Furthermore, there are two more SDK parts that are needed to prepare crypto data and create models. You will have to use them to build the services correctly:
 * [Waves Crypto](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Waves-Crypto) handles interaction with crypto part of blockchain, allows to generate seed-phrases, convert public and private keys, obtain and verify addresses, translate bytes to string and back, sign the data with a private key, etc.
 * [Waves Models](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Waves-Models) contains models of transactions and other data transfer objects that are needed for building correct services.
