@@ -10,8 +10,8 @@ You can use it to build your own decentralised applications. Waves provides full
 ## How does the blockchain network work?
 There is a huge collection of nodes deloyed by miners that store all of the network information in the chain of blocks (aka blockchain), process requests and can add new transactions to the network after checking their compliance with the rules. The miners are rewarded with the network coins called MRT. <br><br>
 The main advantage of this technology is that each node is a synchronized copy of the main blockchain: it means that the information is stored decentralized and won't be overwritten globally if one of the users changes it at one of the node storages. This can garantee that the user's information will stay fair and unchangable. <br><br>
-The important addition is that the service built using Waves blockchain looks like a usual web application and doesn't make user experience more difficult.
-<br>
+The important addition is that the service built using Waves blockchain looks like a usual web application and doesn't make user experience more difficult. <br><br>
+You can read the [definitions page](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Main-Definitions) for a better understanding of the blockchain functionality.
 
 ## iOS SDK QuickStart
 To build your first Waves platform integrated application and start using all of the blockchain features please go directly to the [Waves iOS SDK QuickStart tutorial](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Get-started-with-WavesSDK-for-iOS) and follow the instructions. 
