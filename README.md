@@ -11,16 +11,21 @@ You can use it to build your own decentralised applications. Waves provides full
 There is a huge collection of nodes deloyed by miners that store all of the network information in the chain of blocks (aka blockchain), process requests and can add new transactions to the network after checking their compliance with the rules. The miners are rewarded with the network coins called MRT. <br><br>
 The main advantage of this technology is that each node is a synchronized copy of the main blockchain: it means that the information is stored decentralized and won't be overwritten globally if one of the users changes it at one of the node storages. This can garantee that the user's information will stay fair and unchangable. <br><br>
 The important addition is that the service built using Waves blockchain looks like a usual web application and doesn't make user experience more difficult.
+<br>
 
 ## iOS SDK QuickStart
 To build your first Waves platform integrated application and start using all of the blockchain features please go directly to the [Waves iOS SDK QuickStart tutorial](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Get-started-with-WavesSDK-for-iOS) and follow the instructions. 
+<br>
 
-## SDK main parts
+## Waves SDK structure
+There are three main SDK services that provide the blockchain functionality:
+* [Waves Node Service](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Node-Service) allows the application to cooperate directly with the blockchain: you can create transacations, broadcast them and load data from the node using these features. This is the main part of the SDK.
+* [Waves Data Service](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Data-Service) suggests the easier way to access the data that is stored in the node. The methods presented in this service are the most efficient way to read blockchain data but do not help writing it. 
+* [Waves Matcher Service](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Matcher-Service) contains the methods that give ability to integrate [Waves DEX](https://dex.wavesplatform.com) (decentralized exchange platform) features into the iOS application. You can collect and add users' orders and work with exchange transactions using this service.
+<br>
+Furthermore, there are two more SDK parts that are needed to prepare crypto data and create models. You will have to use them to build the services correctly:
 * [Waves Crypto](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Waves-Crypto) handles interaction with crypto part of blockchain, allows to generate seed-phrases, convert public and private keys, obtain and verify addresses, translate bytes to string and back, sign the data with a private key, etc.
-* [Waves Models](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Waves-Models) contains models of transactions and other data transfer objects that are needed for building correct services
-* [Waves Services](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Waves-Services) provides network services for sending transactions to the blockchain nodes, handling the responses and requesting data.
-
-It's impossible to integrate Waves blockchain platform features into your app without touching all of these parts: for example, transactions can't be sent using Waves Services functionality without being prepared using Waves Crypto and Waves Models first.
+* [Waves Models](https://github.com/wavesplatform/WavesSDK-iOS/wiki/Waves-Models) contains models of transactions and other data transfer objects that are needed for building correct services.
 
 ## Testing
 To test your app you can use [Testnet](https://testnet.wavesplatform.com). This is a Waves Main Net duplicate where it's possible to repeat the real accounts structure without spending paid WAVES tokens. You can create multiple accounts, top up their balances using [Faucet](https://wavesexplorer.com/testnet/faucet) (just insert the account address to the input field and get 10 test tokens) and deploying RIDE scripts (as known as "smart contracts") to them using [Waves RIDE IDE](https://ide.wavesplatform.com/). 
