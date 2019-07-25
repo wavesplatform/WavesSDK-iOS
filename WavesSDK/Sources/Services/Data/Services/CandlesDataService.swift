@@ -30,7 +30,13 @@ final class CandlesDataService: InternalWavesService, CandlesDataServiceProtocol
             .catchError({ (error) -> Single<Response> in
                 return Single<Response>.error(NetworkError.error(by: error))
             })
-            .map(DataService.DTO.Chart.self)
+            .map(DataService.Response<[DataService.Response<DataService.DTO.Chart.Candle>]>.self,
+                 atKeyPath: nil,
+                 using: JSONDecoder.isoDecoderBySyncingTimestamp(enviroment.timestampServerDiff),
+                 failsOnEmptyData: false)
+            .map({ (response) -> DataService.DTO.Chart in
+                return DataService.DTO.Chart(candles: response.data.map { $0.data } )
+            })
             .asObservable()
     }
 }

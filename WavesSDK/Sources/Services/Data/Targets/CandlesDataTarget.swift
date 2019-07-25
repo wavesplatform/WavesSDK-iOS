@@ -27,9 +27,7 @@ extension DataService.Target.Candles: DataTargetType {
     var path: String {
         return "/\(Constants.candles)/\(query.amountAsset)/\(query.priceAsset)"
     }
-    
-    var baseURL: URL { return URL(string: "\(dataUrl.relativeString)")! }
-    
+            
     var method: Moya.Method {
         return .get
     }
