@@ -253,7 +253,6 @@
 		7B4E1FC122C4DD2D00854BAB /* TransactionsDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F5D22C4DD2D00854BAB /* TransactionsDataServiceProtocol.swift */; };
 		7B4E1FC222C4DD2D00854BAB /* WavesSDKConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1F5E22C4DD2D00854BAB /* WavesSDKConstants.swift */; };
 		7B72BBAE22550493004A047F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B72BBAD22550493004A047F /* AppDelegate.swift */; };
-		7B72BBB022550493004A047F /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B72BBAF22550493004A047F /* AssetListViewController.swift */; };
 		7B72BBB322550493004A047F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B72BBB122550493004A047F /* Main.storyboard */; };
 		7B72BBB522550495004A047F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B72BBB422550495004A047F /* Assets.xcassets */; };
 		7B72BBB822550495004A047F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B72BBB622550495004A047F /* LaunchScreen.storyboard */; };
@@ -595,7 +594,6 @@
 		7B4E1F5E22C4DD2D00854BAB /* WavesSDKConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WavesSDKConstants.swift; sourceTree = "<group>"; };
 		7B72BBAA22550493004A047F /* StubTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StubTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B72BBAD22550493004A047F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7B72BBAF22550493004A047F /* AssetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListViewController.swift; sourceTree = "<group>"; };
 		7B72BBB222550493004A047F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7B72BBB422550495004A047F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B72BBB722550495004A047F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -1375,7 +1373,7 @@
 		7B72BBA122550493004A047F = {
 			isa = PBXGroup;
 			children = (
-				7B72BBAC22550493004A047F /* WavesSDKExample */,
+				7B72BBAC22550493004A047F /* StubTest */,
 				7B951149225E16370030390C /* WavesSDKTests */,
 				7B4E1DE422C4DBDA00854BAB /* WavesSDK */,
 				7B4E1DF622C4DC2800854BAB /* WavesSDKCrypto */,
@@ -1398,13 +1396,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7B72BBAC22550493004A047F /* WavesSDKExample */ = {
+		7B72BBAC22550493004A047F /* StubTest */ = {
 			isa = PBXGroup;
 			children = (
 				7B951154225E18B80030390C /* Resources */,
 				7B951153225E18B30030390C /* Sources */,
 			);
-			path = WavesSDKExample;
+			path = StubTest;
 			sourceTree = "<group>";
 		};
 		7B951149225E16370030390C /* WavesSDKTests */ = {
@@ -1422,7 +1420,6 @@
 			isa = PBXGroup;
 			children = (
 				7B72BBAD22550493004A047F /* AppDelegate.swift */,
-				7B72BBAF22550493004A047F /* AssetListViewController.swift */,
 				7B72BBB122550493004A047F /* Main.storyboard */,
 			);
 			path = Sources;
@@ -2060,7 +2057,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B72BBB022550493004A047F /* AssetListViewController.swift in Sources */,
 				7B72BBAE22550493004A047F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

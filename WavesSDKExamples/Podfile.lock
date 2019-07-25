@@ -10,15 +10,15 @@ PODS:
     - RxSwift (~> 4.0)
   - Result (4.1.0)
   - RxSwift (4.5.0)
-  - WavesSDK (0.1.5):
+  - WavesSDK (0.1.7):
     - Moya (~> 12.0.1)
     - Moya/RxSwift (~> 12.0.1)
     - RxSwift (~> 4.0)
     - WavesSDKCrypto
     - WavesSDKExtensions
-  - WavesSDKCrypto (0.1.5):
+  - WavesSDKCrypto (0.1.7):
     - WavesSDKExtensions
-  - WavesSDKExtensions (0.1.5):
+  - WavesSDKExtensions (0.1.7):
     - RxSwift (~> 4.0)
 
 DEPENDENCIES:
@@ -39,9 +39,9 @@ SPEC CHECKSUMS:
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
-  WavesSDK: 87237ccc0d06ce25f397c49f898ff46b244c0c9c
-  WavesSDKCrypto: 5b3a83fb84cfdb495d2635fae90afd8682833f21
-  WavesSDKExtensions: fb8f09b3b237f7fa3f5827e6b933ec9efc1f8b68
+  WavesSDK: 4212f8b34a3e732cac52facb216466122f94b12d
+  WavesSDKCrypto: 05aab03ff2c6a8b5c98d6d1b38e557f4799756e3
+  WavesSDKExtensions: b0b46dd85aed81fd14e184da35582fda66da29d8
 
 PODFILE CHECKSUM: 0c51b5e2a57fe87859a8f4018538d3545907b878
 
