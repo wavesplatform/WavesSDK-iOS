@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (4.8.2)
-  - Fakery (4.0.0)
   - Moya (12.0.1):
     - Moya/Core (= 12.0.1)
   - Moya/Core (12.0.1):
@@ -9,34 +8,41 @@ PODS:
   - Moya/RxSwift (12.0.1):
     - Moya/Core
     - RxSwift (~> 4.0)
-  - Nimble (8.0.2)
   - Result (4.1.0)
   - RxSwift (4.5.0)
+  - WavesSDK (0.1.5):
+    - Moya (~> 12.0.1)
+    - Moya/RxSwift (~> 12.0.1)
+    - RxSwift (~> 4.0)
+    - WavesSDKCrypto
+    - WavesSDKExtensions
+  - WavesSDKCrypto (0.1.5):
+    - WavesSDKExtensions
+  - WavesSDKExtensions (0.1.5):
+    - RxSwift (~> 4.0)
 
 DEPENDENCIES:
-  - Fakery
-  - Moya
-  - Moya/RxSwift
-  - Nimble
-  - RxSwift
+  - WavesSDK
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - Fakery
     - Moya
-    - Nimble
     - Result
     - RxSwift
+    - WavesSDK
+    - WavesSDKCrypto
+    - WavesSDKExtensions
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Fakery: 476f6d947de432f84703acc830a1e7166330299b
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
-  Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  WavesSDK: 87237ccc0d06ce25f397c49f898ff46b244c0c9c
+  WavesSDKCrypto: 5b3a83fb84cfdb495d2635fae90afd8682833f21
+  WavesSDKExtensions: fb8f09b3b237f7fa3f5827e6b933ec9efc1f8b68
 
-PODFILE CHECKSUM: e63fbc46526e9f529679af7668827c4f512f9df4
+PODFILE CHECKSUM: 0c51b5e2a57fe87859a8f4018538d3545907b878
 
 COCOAPODS: 1.7.4

@@ -1,0 +1,10 @@
+platform :ios, '11.0'
+
+use_frameworks!(true)
+
+
+target 'WavesSDKExamples' do
+    inherit! :search_paths
+    pod 'WavesSDK'
+end
+
