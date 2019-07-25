@@ -12,7 +12,7 @@ public extension DataService.DTO {
     struct Chart: Decodable {
         
         public struct Candle: Decodable {
-            public let time: Int64
+            public let time: Date
             public let volume: Double?
             public let close: Double?
             public let high: Double?
@@ -21,5 +21,9 @@ public extension DataService.DTO {
         }
         
         public let candles: [Candle]
+        
+        public init(candles: [Candle]) {
+            self.candles = candles
+        }
     }
 }
