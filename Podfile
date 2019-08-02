@@ -1,7 +1,4 @@
-source 'https://github.com/wavesplatform/Specs.git'
-source 'https://github.com/CocoaPods/Specs.git'
-
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 use_frameworks!(true)
 
@@ -11,31 +8,31 @@ target 'WavesSDKTests' do
     inherit! :search_paths
     pod 'Fakery'  
     pod 'Nimble'
-    pod 'RxTest'
+    # pod 'RxTest'
 
     #TODO: How it fix?
-    pod 'RxSwift', '~> 4.0'
-    pod 'Moya', '~> 12.0.1'
-    pod 'Moya/RxSwift', '~> 12.0.1'
+    pod 'RxSwift'
+    pod 'Moya'
+    pod 'Moya/RxSwift'
 end
 
 # Pods for WavesSDK
-target 'WavesSDKExample' do
+target 'StubTest' do
     inherit! :search_paths   
 end
 
 # Pods for InternalWavesSDKExtensionsK
 target 'WavesSDKExtensions' do
     inherit! :search_paths
-    pod 'RxSwift', '~> 4.0'    
+    pod 'RxSwift'
 end
 
 # Pods for InternalWavesSDK
 target 'WavesSDK' do
 
     inherit! :search_paths
-    pod 'RxSwift', '~> 4.0'
-    pod 'Moya', '~> 12.0.1'
-    pod 'Moya/RxSwift', '~> 12.0.1'
+    pod 'RxSwift'
+    pod 'Moya'
+    pod 'Moya/RxSwift'
 end
 

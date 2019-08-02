@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 import RxSwift
-import RxTest
+//import RxTest
 
 import WavesSDK
 import WavesSDKCrypto

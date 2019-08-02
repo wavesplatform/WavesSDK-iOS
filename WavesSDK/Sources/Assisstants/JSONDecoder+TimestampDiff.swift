@@ -19,5 +19,15 @@ extension JSONDecoder {
         
         return decoder
     }
+    
+    static func isoDecoderBySyncingTimestamp(_ timestampServerDiff: Int64) -> JSONDecoder {
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom { decoder in
+            return Date(isoDecoder: decoder, timestampDiff: timestampServerDiff)
+        }
+        
+        return decoder
+    }    
 }
 
