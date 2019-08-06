@@ -28,7 +28,7 @@ public extension DataService.DTO {
     
     struct PairPriceSearch: Decodable {
         
-        public let data: [PairPrice]
+        public let data: PairPrice
         public let amountAsset: String
         public let priceAsset: String
     }
