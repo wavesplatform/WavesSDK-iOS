@@ -25,5 +25,18 @@ public extension DataService.DTO {
                             quoteVolume: 0)
         }
     }
+    
+    struct PairPriceSearch: Decodable {
+        
+        public let data: [PairPrice]
+        public let amountAsset: String
+        public let priceAsset: String
+        
+        public static var empty: PairPriceSearch {
+            return PairPriceSearch(data: [],
+                                   amountAsset: "",
+                                   priceAsset: "")
+        }
+    }
 }
 

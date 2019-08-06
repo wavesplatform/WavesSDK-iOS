@@ -10,11 +10,16 @@ import RxSwift
 import Moya
 
 final class PairsPriceDataService: InternalWavesService, PairsPriceDataServiceProtocol {
-    
+  
     private let pairsPriceProvider: MoyaProvider<DataService.Target.PairsPrice>
+    private let pairsPriceSearchProvider: MoyaProvider<DataService.Target.PairsPriceSearch>
+    
+    init(pairsPriceProvider: MoyaProvider<DataService.Target.PairsPrice>,
+         pairsPriceSearchProvider: MoyaProvider<DataService.Target.PairsPriceSearch>,
+         enviroment: Enviroment) {
         
-    init(pairsPriceProvider: MoyaProvider<DataService.Target.PairsPrice>, enviroment: Enviroment) {
         self.pairsPriceProvider = pairsPriceProvider
+        self.pairsPriceSearchProvider = pairsPriceSearchProvider
         super.init(enviroment: enviroment)
     }
     
@@ -34,4 +39,22 @@ final class PairsPriceDataService: InternalWavesService, PairsPriceDataServicePr
             .map { $0.data.map {$0.data ?? .empty}}
             .asObservable()
     }
+    
+    public func seachByAsset(query: DataService.Query.PairsPriceSearch) -> Observable<[DataService.DTO.PairPriceSearch]> {
+        
+        return self.pairsPriceSearchProvider
+                .rx
+                .request(DataService.Target.PairsPriceSearch(kind: query.kind,
+                                                             dataUrl: enviroment.dataUrl),
+                         callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                .filterSuccessfulStatusAndRedirectCodes()
+                .catchError({ (error) -> Single<Response> in
+                    return Single<Response>.error(NetworkError.error(by: error))
+                })
+                .map(DataService.Response<[DataService.OptionalResponse<DataService.DTO.PairPriceSearch>]>.self)
+                .map { $0.data.map {$0.data ?? .empty}}
+                .asObservable()
+    }
+    
+    
 }

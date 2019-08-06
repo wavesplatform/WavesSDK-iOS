@@ -13,4 +13,6 @@ public protocol PairsPriceDataServiceProtocol {
       Get pair info by amount and price assets
      */
     func pairsPrice(query: DataService.Query.PairsPrice) -> Observable<[DataService.DTO.PairPrice]>
+    
+    func seachByAsset(query: DataService.Query.PairsPriceSearch) -> Observable<[DataService.DTO.PairPriceSearch]>
 }
