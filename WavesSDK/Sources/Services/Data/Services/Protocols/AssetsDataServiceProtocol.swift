@@ -19,4 +19,6 @@ public protocol AssetsDataServiceProtocol {
       Get asset info by asset ID
       */
     func asset(id: String) -> Observable<DataService.DTO.Asset>
+    
+    func searchAssets(search: String) -> Observable<[DataService.DTO.Asset]>
 }
