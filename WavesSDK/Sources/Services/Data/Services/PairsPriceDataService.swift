@@ -40,7 +40,7 @@ final class PairsPriceDataService: InternalWavesService, PairsPriceDataServicePr
             .asObservable()
     }
     
-    public func seachByAsset(query: DataService.Query.PairsPriceSearch) -> Observable<[DataService.DTO.PairPriceSearch]> {
+    public func searchByAsset(query: DataService.Query.PairsPriceSearch) -> Observable<[DataService.DTO.PairPriceSearch]> {
         
         return self.pairsPriceSearchProvider
                 .rx

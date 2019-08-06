@@ -14,5 +14,5 @@ public protocol PairsPriceDataServiceProtocol {
      */
     func pairsPrice(query: DataService.Query.PairsPrice) -> Observable<[DataService.DTO.PairPrice]>
     
-    func seachByAsset(query: DataService.Query.PairsPriceSearch) -> Observable<[DataService.DTO.PairPriceSearch]>
+    func searchByAsset(query: DataService.Query.PairsPriceSearch) -> Observable<[DataService.DTO.PairPriceSearch]>
 }
