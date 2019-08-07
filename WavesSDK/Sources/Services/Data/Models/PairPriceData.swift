@@ -12,8 +12,6 @@ public extension DataService.DTO {
     
     struct PairPrice: Decodable {
         
-        private var isNotValid: Bool = false
-        
         public let firstPrice: Double
         public let lastPrice: Double
         public let volume: Double
@@ -21,16 +19,11 @@ public extension DataService.DTO {
         public let quoteVolume: Double?
         
         public static var empty: PairPrice {
-            return PairPrice(isNotValid: true,
-                             firstPrice: 0,
+            return PairPrice(firstPrice: 0,
                              lastPrice: 0,
                              volume: 0,
                              volumeWaves: 0,
                              quoteVolume: 0)
-        }
-        
-        public var isNotValidPair: Bool {
-            return isNotValid
         }
     }
     
