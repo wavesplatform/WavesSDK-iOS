@@ -32,7 +32,7 @@ final class TransactionsDataService: InternalWavesService, TransactionsDataServi
             })
             .map(DataService.Response<[DataService.Response<DataService.DTO.ExchangeTransaction>]>.self,
                  atKeyPath: nil,
-                 using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff),
+                 using: JSONDecoder.isoDecoderBySyncingTimestamp(enviroment.timestampServerDiff),
                  failsOnEmptyData: false)
             .map { $0.data.map { $0.data } }
             .asObservable()

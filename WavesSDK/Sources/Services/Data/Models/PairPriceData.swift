@@ -15,13 +15,22 @@ public extension DataService.DTO {
         public let lastPrice: Double
         public let volume: Double
         public let volumeWaves: Double?
-    
+        public let quoteVolume: Double?
+        
         public static var empty: PairPrice {
             return PairPrice(firstPrice: 0,
                             lastPrice: 0,
                             volume: 0,
-                            volumeWaves: 0)
+                            volumeWaves: 0,
+                            quoteVolume: 0)
         }
+    }
+    
+    struct PairPriceSearch: Decodable {
+        
+        public let data: PairPrice
+        public let amountAsset: String
+        public let priceAsset: String
     }
 }
 
