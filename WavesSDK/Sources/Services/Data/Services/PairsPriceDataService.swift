@@ -23,7 +23,7 @@ final class PairsPriceDataService: InternalWavesService, PairsPriceDataServicePr
         super.init(enviroment: enviroment)
     }
     
-    public func pairsPrice(query: DataService.Query.PairsPrice) -> Observable<[DataService.DTO.PairPrice]> {
+    public func pairsPrice(query: DataService.Query.PairsPrice) -> Observable<[DataService.DTO.PairPrice?]> {
         
         return self
             .pairsPriceProvider
@@ -36,7 +36,7 @@ final class PairsPriceDataService: InternalWavesService, PairsPriceDataServicePr
                 return Single<Response>.error(NetworkError.error(by: error))
             })
             .map(DataService.Response<[DataService.OptionalResponse<DataService.DTO.PairPrice>]>.self)
-            .map { $0.data.map {$0.data ?? .empty}}
+            .map { $0.data.map {$0.data}}
             .asObservable()
     }
     
