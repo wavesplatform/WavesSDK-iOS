@@ -1710,7 +1710,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WavesSDKCrypto-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-WavesSDK-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
