@@ -57,4 +57,24 @@ final class AssetsDataService: InternalWavesService, AssetsDataServiceProtocol {
             .map { $0.data }
             .asObservable()
     }
+    
+    func searchAssets(search: String) -> Observable<[DataService.DTO.Asset]> {
+        
+        return self
+            .assetsProvider
+            .rx
+            .request(.init(kind: .search(search),
+                           dataUrl: enviroment.dataUrl),
+                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+            .filterSuccessfulStatusAndRedirectCodes()
+            .catchError({ (error) -> Single<Response> in
+                return Single<Response>.error(NetworkError.error(by: error))
+            })
+            .map(DataService.Response<[DataService.Response<DataService.DTO.Asset>]>.self,
+                 atKeyPath: nil,
+                 using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff),
+                 failsOnEmptyData: false)            
+            .map { $0.data.map { $0.data } }
+            .asObservable()
+    }
 }
