@@ -41,4 +41,8 @@ public extension MatcherService.DTO {
         public let assetId: String
         public let rate: Double
     }
+    
+    struct Setting: Decodable {
+        public let priceAssets: [String]        
+    }
 }
