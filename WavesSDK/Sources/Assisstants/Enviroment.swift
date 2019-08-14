@@ -54,9 +54,8 @@ public struct Enviroment {
     }
     
     public var timestampServerDiff: Int64
-    //TODO: Rename chainId
-    public var chainId: String!
     
+    public var chainId: String!    
     public var nodeUrl: URL
     public var matcherUrl: URL
     public var dataUrl: URL
