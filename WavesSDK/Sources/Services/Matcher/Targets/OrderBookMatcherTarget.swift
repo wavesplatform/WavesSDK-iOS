@@ -21,6 +21,7 @@ extension MatcherService.Target {
             case cancelOrder(MatcherService.Query.CancelOrder)
             case createOrder(MatcherService.Query.CreateOrder)
             case settingsFee
+            case settings
         }
 
         var kind: Kind
@@ -32,6 +33,7 @@ extension MatcherService.Target.OrderBook: MatcherTargetType {
     
     fileprivate enum Constants {
         static let matcher = "matcher"
+        static let settings = "settings"
         static let orderbook = "orderbook"
         static let publicKey = "publicKey"
         static let cancel = "cancel"
@@ -45,6 +47,9 @@ extension MatcherService.Target.OrderBook: MatcherTargetType {
     var path: String {
         switch kind {
          
+        case .settings:
+            return Constants.matcher + "/" + Constants.settings
+            
         case .getOrderBook(let amountAsset, let priceAsset):
             return orderBookPath + "/" + amountAsset + "/" + priceAsset
         

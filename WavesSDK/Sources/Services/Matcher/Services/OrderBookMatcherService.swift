@@ -138,7 +138,21 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
                 return settingsFee
             })
     }
-
+    
+    func settings() -> Observable<MatcherService.DTO.Setting> {
+        return self
+            .orderBookProvider
+            .rx
+            .request(.init(kind: .settings,
+                           matcherUrl: enviroment.matcherUrl),
+                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+            .filterSuccessfulStatusAndRedirectCodes()
+            .catchError({ (error) -> Single<Response> in
+                return Single.error(NetworkError.error(by: error))
+            })
+            .asObservable()
+            .map(MatcherService.DTO.Setting.self)
+    }
 }
 
 

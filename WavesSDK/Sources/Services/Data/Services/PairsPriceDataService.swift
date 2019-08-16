@@ -36,7 +36,7 @@ final class PairsPriceDataService: InternalWavesService, PairsPriceDataServicePr
                 return Single<Response>.error(NetworkError.error(by: error))
             })
             .map(DataService.Response<[DataService.OptionalResponse<DataService.DTO.PairPrice>]>.self)
-            .map { $0.data.map {$0.data}}
+            .map { $0.data.map {$0.data }}
             .asObservable()
     }
     

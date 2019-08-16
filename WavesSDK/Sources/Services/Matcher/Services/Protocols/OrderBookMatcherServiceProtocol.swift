@@ -38,5 +38,8 @@ public protocol OrderBookMatcherServiceProtocol {
     
     //TODO: need documents
     func settingsRatesFee() -> Observable<[MatcherService.DTO.SettingRateFee]>
+    
+    //TODO: need documents
+    func settings() -> Observable<MatcherService.DTO.Setting>
 }
 

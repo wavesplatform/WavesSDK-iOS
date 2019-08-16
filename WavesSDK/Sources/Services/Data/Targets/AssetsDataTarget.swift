@@ -19,11 +19,13 @@ extension DataService.Target {
              - API.Response<[API.Response<API.Model.Asset>]>.self
              */
             case getAssets(ids: [String])
-            /**
+    /**
              Response:
              - API.Response<API.Model.Asset>.self
-             */
+        */
             case getAsset(id: String)
+            
+            case search(String)
         }
 
         let kind: Kind
@@ -41,7 +43,7 @@ extension DataService.Target.Assets: DataTargetType {
         switch kind {
         case .getAsset(let id):
             return Constants.assets + "/" + "\(id)".urlEscaped
-        case .getAssets:
+        case .getAssets, .search:
             return Constants.assets
         }
     }
@@ -50,7 +52,7 @@ extension DataService.Target.Assets: DataTargetType {
         switch kind {
         case .getAsset:
             return .get
-        case .getAssets:
+        case .getAssets, .search:
             return .post
         }
     }
@@ -59,6 +61,10 @@ extension DataService.Target.Assets: DataTargetType {
         switch kind {
         case .getAssets(let ids):
             return Task.requestParameters(parameters: [Constants.ids: ids],
+                                          encoding: JSONEncoding.default)
+            
+        case .search(let string):
+            return Task.requestParameters(parameters: ["search": string],
                                           encoding: JSONEncoding.default)
         case .getAsset:
             return .requestPlain

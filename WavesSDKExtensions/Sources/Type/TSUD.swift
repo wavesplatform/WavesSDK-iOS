@@ -8,6 +8,8 @@ public protocol TSUD {
     static var defaultValue: ValueType { get }
     
     static var stringKey: String { get }
+    
+    static var userDefaults: UserDefaults { get }
 }
 
 public extension TSUD {
@@ -18,6 +20,10 @@ public extension TSUD {
         } else {
             return s
         }
+    }
+    
+    static var userDefaults: UserDefaults {
+        return .standard
     }
 }
 
@@ -39,11 +45,11 @@ extension TSUD {
         }
     }
     
-    public static func get(_ nsud: UserDefaults = .standard) -> ValueType {
+    public static func get(_ nsud: UserDefaults = userDefaults) -> ValueType {
         return self.init()[nsud]
     }
     
-    public static func set(_ value: ValueType, _ nsud: UserDefaults = .standard) {
+    public static func set(_ value: ValueType, _ nsud: UserDefaults = userDefaults) {
         self.init()[nsud] = value
     }
     
