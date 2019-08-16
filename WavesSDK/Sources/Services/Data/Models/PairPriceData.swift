@@ -17,7 +17,6 @@ public extension DataService.DTO {
         public let volume: Double
         public let volumeWaves: Double?
         public let quoteVolume: Double?
-        
     }
     
     struct PairPriceSearch: Decodable {
