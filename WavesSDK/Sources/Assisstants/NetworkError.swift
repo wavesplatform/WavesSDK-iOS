@@ -11,7 +11,7 @@ import Moya
 
 private enum Constants {
     static let scriptErrorCode: Int = 307
-    static let assetScriptErrorCode: Int = 308
+    static let assetScriptErrorCode: Int = 308 //TODO: remove?
     static let notFound: Int = 404
 }
 
@@ -148,17 +148,15 @@ public extension NetworkError {
     
     static func error(response: Moya.Response) -> NetworkError {
         
+        if response.statusCode == Constants.notFound {
+            return NetworkError.notFound
+        }
+        
         if let error = error(data: response.data) {
             return error
         }
         
-        switch response.statusCode {
-        case Constants.notFound:
-            return NetworkError.notFound
-            
-        default:
-            return NetworkError.none
-        }
+        return NetworkError.none
     }
     
     
