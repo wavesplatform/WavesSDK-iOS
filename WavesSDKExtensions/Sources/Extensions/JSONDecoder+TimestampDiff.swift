@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension JSONDecoder {
+public extension JSONDecoder {
     
     static func decoderBySyncingTimestamp(_ timestampServerDiff: Int64) -> JSONDecoder {
         
