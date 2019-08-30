@@ -17,6 +17,8 @@ public protocol SignatureProtocol {
     func signature(privateKey: WavesSDKCrypto.PrivateKey) -> WavesSDKCrypto.Bytes?
     
     func signature(privateKey: WavesSDKCrypto.PrivateKey) -> String?
+    
+    var id: String { get }
 }
 
 public extension SignatureProtocol {
@@ -37,5 +39,9 @@ public extension SignatureProtocol {
     func signature(privateKey: WavesSDKCrypto.PrivateKey) -> String? {
         guard let bytes: Bytes = signature(privateKey: privateKey) else { return nil }
         return WavesCrypto.shared.base58encode(input: bytes)
+    }
+    
+    var id: String {    
+        return WavesCrypto.shared.base58encode(input: WavesCrypto.shared.blake2b256(input: bytesStructure)) ?? ""
     }
 }
