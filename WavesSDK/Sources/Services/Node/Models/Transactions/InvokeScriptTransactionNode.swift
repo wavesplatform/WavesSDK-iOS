@@ -63,6 +63,7 @@ extension NodeService.DTO {
         
         public let type: Int
         public let id: String
+        public let chainId: String?
         public let sender: String
         public let senderPublicKey: String
         public let fee: Int64

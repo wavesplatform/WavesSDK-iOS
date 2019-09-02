@@ -73,7 +73,6 @@ public extension NodeService.Query {
     }
 }
 
-
 public extension NodeService.Query.Transaction {
     
     struct Sponsorship: BaseTransactionQueryProtocol {
@@ -89,7 +88,7 @@ public extension NodeService.Query.Transaction {
         public let minSponsoredAssetFee: Int64?
         public let assetId: String
         
-        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], minSponsoredAssetFee: Int64?, assetId: String) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], minSponsoredAssetFee: Int64?, assetId: String) {
             self.type = TransactionType.sponsorship.int
             self.assetId = assetId
             self.version = version
@@ -315,8 +314,8 @@ public extension NodeService.Query.Transaction {
         public let payment: [Payment]
         public let feeAssetId: String
 
-        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64,
-                    senderPublicKey: String, feeAssetId: String, proofs: [String] = [], dApp: String, call: Call?, payment: [Payment]) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64 = 0,
+                    senderPublicKey: String = "", feeAssetId: String, proofs: [String] = [], dApp: String, call: Call?, payment: [Payment]) {
             
             self.version = version
             self.feeAssetId = feeAssetId
@@ -462,7 +461,7 @@ public extension NodeService.Query.Transaction {
         
         public let data: [Value]
 
-        public init(version: Int = TransactionVersion.version_1.rawValue, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], data: [Value], chainId: String) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, fee: Int64, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], data: [Value], chainId: String) {
             self.type = TransactionType.data.int
             self.version = version
             self.fee = fee
@@ -474,7 +473,7 @@ public extension NodeService.Query.Transaction {
         }
     }
     
-    struct Transfer {
+    struct Transfer: BaseTransactionQueryProtocol, Decodable, Encodable {
         
         public private(set) var type: Int
         public private(set) var version: Int
@@ -491,7 +490,7 @@ public extension NodeService.Query.Transaction {
         public let attachment: String
         public let feeAssetId: String
 
-        public init(version: Int = TransactionVersion.version_2.rawValue, recipient: String, assetId: String, amount: Int64, fee: Int64, attachment: String, feeAssetId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], chainId: String) {
+        public init(version: Int = TransactionVersion.version_2.rawValue, recipient: String, assetId: String, amount: Int64, fee: Int64, attachment: String, feeAssetId: String, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], chainId: String) {
             self.type = TransactionType.transfer.int
             self.version = version
             self.recipient = recipient
