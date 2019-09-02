@@ -54,6 +54,12 @@ public extension NodeService.DTO {
               Can't be empty string
             */
             public let value: Value
+
+            public init(key: String, type: String, value: Value) {
+                self.key = key
+                self.type = type
+                self.value = value
+            }
         }
 
         public let type: Int
@@ -83,7 +89,21 @@ public extension NodeService.DTO {
           ],
          */
         public let data: [Data]
-     }
+
+        public init(type: Int, id: String, chainId: String?, sender: String, senderPublicKey: String, fee: Int64, timestamp: Date, height: Int64?, version: Int, proofs: [String]?, data: [Data]) {
+            self.type = type
+            self.id = id
+            self.chainId = chainId
+            self.sender = sender
+            self.senderPublicKey = senderPublicKey
+            self.fee = fee
+            self.timestamp = timestamp
+            self.height = height
+            self.version = version
+            self.proofs = proofs
+            self.data = data
+        }
+    }
 }
 
 extension NodeService.DTO.DataTransaction.Data {

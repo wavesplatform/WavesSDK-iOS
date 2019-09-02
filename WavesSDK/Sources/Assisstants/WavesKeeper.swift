@@ -46,14 +46,24 @@ public class WavesKeeper {
     }
     
     //Method For Wallet
-    public func returnResponse(_ response: Response) {        
-        UIApplication.shared.open(URL.init(string: "\(application.scheme)://arg1=3&arg2=4")!, options: .init(), completionHandler: nil)
+    public func returnResponse(for dApp: Application, response: Response) {
+        UIApplication.shared.open(URL.init(string: "\(dApp.scheme)://arg1=3&arg2=4")!, options: .init(), completionHandler: nil)
     }
     
     //Method For Wallet
     public func decodableRequest(_ url: URL, sourceApplication: String) -> Request? {
         
-        // parser url and return response
+        return Request.init(dApp: .init(name: "AppCon",
+                                        iconUrl: "",
+                                        scheme: "waves"),
+                            action: .sign,
+                            transaction: .transfer(.init(recipient: "3PEsVWBVi4szBuJFTJ1dhYmULS4eH22sEUH",
+                                                         assetId: "WAVES",
+                                                         amount: 1000,
+                                                         fee: 100000,
+                                                         attachment: "",
+                                                         feeAssetId: "WAVES",
+                                                         chainId: "W")))
         return nil
     }
     

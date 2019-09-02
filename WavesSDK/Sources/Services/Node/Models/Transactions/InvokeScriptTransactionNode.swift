@@ -34,6 +34,11 @@ extension NodeService.DTO {
                 
                 public let type: String
                 public let value: Value
+
+                public init(type: String, value: Value) {
+                    self.type = type
+                    self.value = value
+                }
             }
 
             /**
@@ -45,6 +50,11 @@ extension NodeService.DTO {
               List of arguments
               */
             public let args: [Args]
+
+            public init(function: String, args: [Args]) {
+                self.function = function
+                self.args = args
+            }
         }
 
         /**
@@ -59,6 +69,11 @@ extension NodeService.DTO {
               Asset Id in Waves blockchain
              */
             public let assetId: String?
+
+            public init(amount: Int64, assetId: String?) {
+                self.amount = amount
+                self.assetId = assetId
+            }
         }
         
         public let type: Int
@@ -93,6 +108,23 @@ extension NodeService.DTO {
           Payments for function of dApp. Now it works with only one payment.
          */
         public let payment: [Payment]
+
+        public init(type: Int, id: String, chainId: String?, sender: String, senderPublicKey: String, fee: Int64, timestamp: Date, proofs: [String]?, version: Int, height: Int64?, feeAssetId: String?, dApp: String, call: Call?, payment: [Payment]) {
+            self.type = type
+            self.id = id
+            self.chainId = chainId
+            self.sender = sender
+            self.senderPublicKey = senderPublicKey
+            self.fee = fee
+            self.timestamp = timestamp
+            self.proofs = proofs
+            self.version = version
+            self.height = height
+            self.feeAssetId = feeAssetId
+            self.dApp = dApp
+            self.call = call
+            self.payment = payment
+        }
     }
 }
 

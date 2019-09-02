@@ -52,5 +52,23 @@ public extension NodeService.DTO {
           Additional info [0,140] bytes of string
          */
         public let attachment: String?
+
+        public init(type: Int, id: String, sender: String, senderPublicKey: String, fee: Int64, timestamp: Date, version: Int, height: Int64?, signature: String?, proofs: [String]?, recipient: String, assetId: String?, feeAssetId: String?, amount: Int64, attachment: String?) {
+            self.type = type
+            self.id = id
+            self.sender = sender
+            self.senderPublicKey = senderPublicKey
+            self.fee = fee
+            self.timestamp = timestamp
+            self.version = version
+            self.height = height
+            self.signature = signature
+            self.proofs = proofs
+            self.recipient = recipient
+            self.assetId = assetId
+            self.feeAssetId = feeAssetId
+            self.amount = amount
+            self.attachment = attachment
+        }
     }
 }
