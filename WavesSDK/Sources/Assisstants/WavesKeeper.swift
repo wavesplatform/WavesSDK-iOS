@@ -72,59 +72,6 @@ public class WavesKeeper {
     }
 }
 
-//For Wallet
-public extension WavesKeeper {
-    
-    //TODO: Pavel
-    //TODO: Method For Wallet. Result Return for dApp
-    public func returnResponse(for dApp: Application, response: Response) {
-        
-        //        callbackSchema://waveskeeper/error/message=problem_description*
-        
-        let dictionary = response.parameters
-        
-        let url = URL(string: "\(dApp.schemeUrl)://mobilekeeper")!
-        
-        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
-        
-        let queryItems = dictionary.map({ (element) -> URLQueryItem in
-            return URLQueryItem(name: "\(element.key)", value: "\(element.value)")
-        })
-        
-        urlComponents?.queryItems = queryItems
-        
-        print(urlComponents?.url)
-        //
-        //
-        //        UIApplication.shared.open(URL.init(string: "\(dApp.schemeUrl)://arg1=3&arg2=4")!, options: .init(), completionHandler: nil)
-    }
-    
-    //TODO: Pavel
-    //TODO: Method For Wallet
-    //TODO: URL парсим в -> Request
-    public func decodableRequest(_ url: URL, sourceApplication: String) -> Request? {
-        
-        var request = Request.init(dApp: .init(name: "AppCon",
-                                               iconUrl: "",
-                                               schemeUrl: "AplicationMega"),
-                                   action: .sign,
-                                   transaction: .transfer(.init(recipient: "3PEsVWBVi4szBuJFTJ1dhYmULS4eH22sEUH",
-                                                                assetId: "WAVES",
-                                                                amount: 1000,
-                                                                fee: 100000,
-                                                                attachment: "",
-                                                                feeAssetId: "WAVES",
-                                                                chainId: "W")))
-        
-        let dic = request.dictionary
-        
-        print(dic)
-        
-        return request
-    }
-}
-
-
 public extension WavesKeeper {
     
     struct Application: Codable {
