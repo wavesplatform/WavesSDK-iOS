@@ -9,7 +9,7 @@
 import Foundation
 
 public extension NodeService.DTO {
-    struct UnrecognisedTransaction: Decodable {
+    struct UnrecognisedTransaction: Codable {
         /**
           ID of the transaction type. Correct values in [1; 16]
          */

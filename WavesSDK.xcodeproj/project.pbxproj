@@ -10,6 +10,7 @@
 		412C17E66F2DCD1B8B8A5700 /* Pods_WavesSDKExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B8C6C318AE1E6A1668B56FF /* Pods_WavesSDKExtensions.framework */; };
 		474FEABA82AF9D9B89A52474 /* Pods_WavesSDKCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D4DB33B270716223CC8FE37 /* Pods_WavesSDKCrypto.framework */; };
 		5E755C09D52B52870F3C2D66 /* Pods_WavesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72818587D5D748104E066BF0 /* Pods_WavesSDK.framework */; };
+		7B0B6F9B231E6DC800CC5DCB /* DictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0B6F9A231E6DC800CC5DCB /* DictionaryEncoder.swift */; };
 		7B3681A323152E13000D5592 /* WavesKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3681A223152E13000D5592 /* WavesKeeper.swift */; };
 		7B3DCA2922CFC37600FC973D /* keccak.c in Sources */ = {isa = PBXBuildFile; fileRef = 7B3DC9B622CFC37500FC973D /* keccak.c */; settings = {COMPILER_FLAGS = " -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7B3DCA8122CFC37600FC973D /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3DCA1A22CFC37500FC973D /* Words.swift */; };
@@ -347,6 +348,7 @@
 		72818587D5D748104E066BF0 /* Pods_WavesSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WavesSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75FFDE847B534C528F075F61 /* Pods-WavesSDKCrypto.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKCrypto.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKCrypto/Pods-WavesSDKCrypto.release-dev.xcconfig"; sourceTree = "<group>"; };
 		78D7832575360CA51393CFEB /* Pods-WavesSDKCrypto.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKCrypto.release-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKCrypto/Pods-WavesSDKCrypto.release-prod.xcconfig"; sourceTree = "<group>"; };
+		7B0B6F9A231E6DC800CC5DCB /* DictionaryEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEncoder.swift; sourceTree = "<group>"; };
 		7B3681A223152E13000D5592 /* WavesKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesKeeper.swift; sourceTree = "<group>"; };
 		7B3DC9B622CFC37500FC973D /* keccak.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = keccak.c; sourceTree = "<group>"; };
 		7B3DC9B722CFC37500FC973D /* keccak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keccak.h; sourceTree = "<group>"; };
@@ -1090,6 +1092,7 @@
 				7B4E1EF322C4DD2D00854BAB /* Protocols */,
 				7B4E1EF922C4DD2D00854BAB /* String+Waves.swift */,
 				7B3681A223152E13000D5592 /* WavesKeeper.swift */,
+				7B0B6F9A231E6DC800CC5DCB /* DictionaryEncoder.swift */,
 			);
 			path = Assisstants;
 			sourceTree = "<group>";
@@ -1803,6 +1806,7 @@
 				7B4E1FA022C4DD2D00854BAB /* LeasingNodeService.swift in Sources */,
 				7B4E1FAD22C4DD2D00854BAB /* PairsPriceDataTarget.swift in Sources */,
 				7BBB233622CE13140057095D /* BaseTransactionQueryProtocol.swift in Sources */,
+				7B0B6F9B231E6DC800CC5DCB /* DictionaryEncoder.swift in Sources */,
 				7B4E1F6D22C4DD2D00854BAB /* DataServicesProtocol.swift in Sources */,
 				7B4E1FA322C4DD2D00854BAB /* AddressesNodeService.swift in Sources */,
 				7B4E1FAF22C4DD2D00854BAB /* ExchangeFiltersDataQuery.swift in Sources */,

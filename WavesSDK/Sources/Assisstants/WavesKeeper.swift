@@ -29,83 +29,132 @@ public class WavesKeeper {
     }
     
     //Method For DApp
-    public func send(_ tx: NodeService.Query.Transaction) -> Bool {
+    public func send(_ tx: NodeService.Query.Transaction) {
         
         let request = prepareRequest(tx: tx,
                                      action: .send)
         send(request)
-        return true
     }
     
     //Method For DApp
-    public func sign(_ tx: NodeService.Query.Transaction) -> Bool {
+    public func sign(_ tx: NodeService.Query.Transaction){
         let request = prepareRequest(tx: tx,
                                      action: .sign)
         send(request)
-        return true
     }
     
-    //Method For Wallet
-    public func returnResponse(for dApp: Application, response: Response) {
-        UIApplication.shared.open(URL.init(string: "\(dApp.scheme)://arg1=3&arg2=4")!, options: .init(), completionHandler: nil)
-    }
-    
-    //Method For Wallet
-    public func decodableRequest(_ url: URL, sourceApplication: String) -> Request? {
-        
-        return Request.init(dApp: .init(name: "AppCon",
-                                        iconUrl: "",
-                                        scheme: "waves"),
-                            action: .sign,
-                            transaction: .transfer(.init(recipient: "3PEsVWBVi4szBuJFTJ1dhYmULS4eH22sEUH",
-                                                         assetId: "WAVES",
-                                                         amount: 1000,
-                                                         fee: 100000,
-                                                         attachment: "",
-                                                         feeAssetId: "WAVES",
-                                                         chainId: "W")))
-        return nil
-    }
-    
-    //Method For DApp
+    //TODO: Pavel
+    //TODO: Callback For DApp
     public func decodableResponse(_ url: URL, sourceApplication: String) -> Response? {
         
+//        url -> Reponse
         // parser url and return response
         return nil
     }
+    
+    
+    //TODO: Pavel
+    //TODO: Method For DApp
+    private func send(_ request: Request) {
         
+        // request -> URL
+        
+        // DApp request send to wallet
+        
+        UIApplication.shared.open(URL.init(string: "\(application.schemeUrl)://arg1=3&arg2=4")!, options: .init(), completionHandler: nil)
+    }
+    
     private func prepareRequest(tx: NodeService.Query.Transaction, action: Action) -> Request {
         
         return Request(dApp: application,
                        action: action,
                        transaction: tx)
     }
+}
+
+//For Wallet
+public extension WavesKeeper {
     
-    private func send(_ request: Request) {
-        UIApplication.shared.open(URL.init(string: "\(application.scheme)://arg1=3&arg2=4")!, options: .init(), completionHandler: nil)
+    //TODO: Pavel
+    //TODO: Method For Wallet. Result Return for dApp
+    public func returnResponse(for dApp: Application, response: Response) {
+        
+        //        callbackSchema://waveskeeper/error/message=problem_description*
+        
+        let dictionary = response.parameters
+        
+        let url = URL(string: "\(dApp.schemeUrl)://mobilekeeper")!
+        
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        
+        let queryItems = dictionary.map({ (element) -> URLQueryItem in
+            return URLQueryItem(name: "\(element.key)", value: "\(element.value)")
+        })
+        
+        urlComponents?.queryItems = queryItems
+        
+        print(urlComponents?.url)
+        //
+        //
+        //        UIApplication.shared.open(URL.init(string: "\(dApp.schemeUrl)://arg1=3&arg2=4")!, options: .init(), completionHandler: nil)
+    }
+    
+    //TODO: Pavel
+    //TODO: Method For Wallet
+    //TODO: URL парсим в -> Request
+    public func decodableRequest(_ url: URL, sourceApplication: String) -> Request? {
+        
+        var request = Request.init(dApp: .init(name: "AppCon",
+                                               iconUrl: "",
+                                               schemeUrl: "AplicationMega"),
+                                   action: .sign,
+                                   transaction: .transfer(.init(recipient: "3PEsVWBVi4szBuJFTJ1dhYmULS4eH22sEUH",
+                                                                assetId: "WAVES",
+                                                                amount: 1000,
+                                                                fee: 100000,
+                                                                attachment: "",
+                                                                feeAssetId: "WAVES",
+                                                                chainId: "W")))
+        
+        let dic = request.dictionary
+        
+        print(dic)
+        
+        return request
     }
 }
 
+
 public extension WavesKeeper {
     
-    struct Application {
+    struct Application: Codable {
         public let name: String
         public let iconUrl: String
-        public let scheme: String
+        public let schemeUrl: String
         
-        public init(name: String, iconUrl: String, scheme: String) {
+        public init(name: String, iconUrl: String, schemeUrl: String) {
             self.name = name
             self.iconUrl = iconUrl
-            self.scheme = scheme
+            self.schemeUrl = schemeUrl
+        }
+        
+        var parameters: [String: String] {
+            return ["appName": self.name,
+                    "iconUrl": self.iconUrl,
+                    "schemeUrl": self.schemeUrl]
         }
     }
     
-    enum Action {
+    enum Action: Int, Codable {
         case sign
         case send
+        
+        var parameters: [String: String] {
+            return ["kind": self == .send ? "send" : "sign"]
+        }
     }
     
-    struct Request {
+    struct Request: Codable {
         public let dApp: Application
         public let action: Action
         public let transaction: NodeService.Query.Transaction
@@ -117,11 +166,27 @@ public extension WavesKeeper {
             self.action = action
             self.transaction = transaction
         }
+        
+        var parameters: [String: String] {
+            
+            let dAppParameters = dApp.parameters
+            let actionParameters = action.parameters
+            let transactionParameters = transaction.parameters
+            
+            
+            return ["kind": ""]
+        }
     }
     
+    /*
+    только 3 транзакции
+     case data
+     case transfer
+     case invokeScript
+ */
     enum Success {
-        case transactionQuery(NodeService.Query.Transaction)
-        case transaction(NodeService.DTO.Transaction)
+        case sign(NodeService.Query.Transaction)
+        case send(NodeService.DTO.Transaction)
     }
     
     enum Error {
@@ -132,5 +197,135 @@ public extension WavesKeeper {
     enum Response {
         case error(Error)
         case success(Success)
+    }
+}
+
+
+fileprivate extension WavesKeeper.Success {
+    
+    var parameters: [String: String] {
+        
+        switch self {
+        case .sign(let queryTransaction):
+            
+            var param: [String: String] = .init()
+            param["successType"] = "sign"
+            param.merge(queryTransaction.parameters) { (value1, value2) -> String in
+                if value1 == value2 {
+                    return value1
+                } else {
+                    return "conflict_\(value2)"
+                }
+            }
+            
+            return param
+            
+        case .send(let transaction):
+            
+            var param: [String: String] = .init()
+            param["successType"] = "send"
+            param.merge(transaction.parameters) { (value1, value2) -> String in
+                if value1 == value2 {
+                    return value1
+                } else {
+                    return "conflict_\(value2)"
+                }
+            }
+            
+            return param
+        }
+    }
+}
+
+
+fileprivate extension WavesKeeper.Response {
+    
+    var parameters: [String: String] {
+        
+        switch self {
+        case .success(let success):
+            
+            var param: [String: String] = .init()
+            param["success"] = "1"
+            
+            switch success {
+            case .send(let model):
+                model.parameters
+            case .sign(let model):
+                model.parameters
+            }
+            
+            return param
+            
+        case .error(let error):
+            
+            var param: [String: String] = .init()
+            param["success"] = "0"
+            param.merge(error.parameters) { (value1, value2) -> String in
+                if value1 == value2 {
+                    return value1
+                } else {
+                    return "conflict_\(value2)"
+                }
+            }
+            
+            return param
+        }
+    }
+}
+
+fileprivate extension WavesKeeper.Error {
+    
+    var parameters: [String: String] {
+        
+        switch self {
+        case .reject:
+            return ["errorType": "reject"]
+            
+        case .message(let message, let code):
+            return ["errorType": "message",
+                    "errorMessage": message,
+                    "errorCode": "\(code)"]
+        }
+    }
+}
+
+fileprivate extension NodeService.DTO.Transaction {
+    
+    var parameters: [String: String] {
+        
+        switch self {
+        case .transfer(let model):
+            return .init()
+            
+        case .invokeScript(let model):
+            return .init()
+            
+        case .data(let model):
+            return .init()
+            
+        default:
+            return .init()
+        }
+    }
+}
+
+fileprivate extension NodeService.Query.Transaction {
+    
+    var parameters: [String: String] {
+        
+        switch self {
+        case .transfer(let model):
+            return .init()
+            
+        case .invokeScript(let model):
+            return .init()
+            
+        case .data(let model):
+            return .init()
+            
+        default:
+            return .init()
+        }
     }
 }

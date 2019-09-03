@@ -21,16 +21,68 @@ public extension NodeService.DTO {
      
      Fee depends of data transaction length (0.001 per 1kb)
      */
-    struct DataTransaction: Decodable {
+    struct DataTransaction: Codable {
 
         /**
           Data of Data transaction
          */
-        public struct Data: Decodable {
+        public struct Data: Codable {
 
-            public enum Value {
+            public enum Value: Codable {
+                
+                private enum CodingKeys: String, CodingKey {
+                    case integer
+                    case bool
+                    case string
+                    case binary
+                }
+                
+                public init(from decoder: Decoder) throws {
+                    let values = try decoder.container(keyedBy: CodingKeys.self)
+                    
+                    if let value = try? values.decode(Int64.self, forKey: .integer) {
+                        self = .integer(value)
+                        return
+                    }
+                    
+                    if let value = try? values.decode(String.self, forKey: .string) {
+                        self = .string(value)
+                        return
+                    }
+                    
+                    if let value = try? values.decode(String.self, forKey: .binary) {
+                        self = .binary(value)
+                        return
+                    }
+                    
+                    if let value = try? values.decode(Bool.self, forKey: .bool) {
+                        self = .bool(value)
+                        return
+                    }
+                    
+                    throw NSError(domain: "Decoder Invalid", code: 0, userInfo: nil)
+                }
+                
+                public func encode(to encoder: Encoder) throws {
+                    
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    switch self {
+                    case .integer(let value):
+                        try container.encode(value, forKey: .integer)
+                        
+                    case .string(let value):
+                        try container.encode(value, forKey: .string)
+                        
+                    case .bool(let value):
+                        try container.encode(value, forKey: .bool)
+                        
+                    case .binary(let value):
+                        try container.encode(value, forKey: .binary)
+                    }
+                }
+                
                 case bool(Bool)
-                case integer(Int)
+                case integer(Int64)
                 case string(String)
                 case binary(String)
             }
@@ -144,7 +196,7 @@ extension NodeService.DTO.DataTransaction.Data {
             case .boolean:
                 value = .bool(try container.decode(Bool.self, forKey: .value))
             case .integer:
-                value = .integer(try container.decode(Int.self, forKey: .value))
+                value = .integer(try container.decode(Int64.self, forKey: .value))
             case .string:
                 value = .string(try container.decode(String.self, forKey: .value))
             case .binary:

@@ -13,7 +13,7 @@ public extension NodeService.DTO {
     /**
      The Alias transaction creates short readable alias for address
      */
-    struct AliasTransaction: Decodable {
+    struct AliasTransaction: Codable {
         public let type: Int
         public let id: String
         public let sender: String

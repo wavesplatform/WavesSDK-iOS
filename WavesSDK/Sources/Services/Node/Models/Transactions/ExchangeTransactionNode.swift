@@ -21,8 +21,8 @@ public extension NodeService.DTO {
       The amount which the user is offering.
       The asset and the amount which the user requests in return.
      */
-    struct ExchangeTransaction: Decodable {
-        public struct Order: Decodable {
+    struct ExchangeTransaction: Codable {
+        public struct Order: Codable {
             public let id: String
             public let sender: String
             public let senderPublicKey: String
@@ -39,7 +39,7 @@ public extension NodeService.DTO {
             public let matcherFeeAssetId: String?
         }
 
-        public struct AssetPair: Decodable {
+        public struct AssetPair: Codable {
             public let amountAsset: String?
             public let priceAsset: String?
         }

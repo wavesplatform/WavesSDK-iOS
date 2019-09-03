@@ -32,7 +32,8 @@ extension NodeService.DTO {
         case none
     }
 
-    public enum Transaction: Decodable {
+    public enum Transaction: Decodable {        
+        
         case unrecognised(NodeService.DTO.UnrecognisedTransaction)
         case issue(NodeService.DTO.IssueTransaction)
         case transfer(NodeService.DTO.TransferTransaction)

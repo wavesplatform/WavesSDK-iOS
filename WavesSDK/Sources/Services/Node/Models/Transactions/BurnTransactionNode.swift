@@ -14,7 +14,7 @@ public extension NodeService.DTO {
       The Burn transaction irreversible deletes amount of some asset
       It's impossible to burn WAVES with the burn transaction.
      */
-    struct BurnTransaction: Decodable {
+    struct BurnTransaction: Codable {
         public let type: Int
         public let id: String
         public let sender: String

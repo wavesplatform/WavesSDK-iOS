@@ -24,12 +24,12 @@ public extension NodeService.DTO {
       Fee depends of mass transactions count
       0.001 + 0.0005 × N, N is the number of transfers inside of a transaction
      */
-    struct MassTransferTransaction: Decodable {
+    struct MassTransferTransaction: Codable {
 
         /**
           * The item of the Mass-transfer transaction
          */
-        public struct Transfer: Decodable {
+        public struct Transfer: Codable {
             /**
               Address or alias of Waves blockchain
              */

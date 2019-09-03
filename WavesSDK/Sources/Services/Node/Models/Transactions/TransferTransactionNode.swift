@@ -15,7 +15,7 @@ public extension NodeService.DTO {
       It is used to transfer a specific amount of an asset (WAVES by default)
       to the recipient (by address or alias).
      */
-    struct TransferTransaction: Decodable {
+    struct TransferTransaction: Codable {
         public let type: Int
         public let id: String
         public let sender: String

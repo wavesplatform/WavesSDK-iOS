@@ -19,7 +19,7 @@ public extension NodeService.DTO {
      
       Script can be developed with [Waves Ride IDE]({https://ide.wavesplatform.com/)
      */
-    struct IssueTransaction: Decodable {
+    struct IssueTransaction: Codable {
         public let type: Int
         public let id: String
         public let sender: String
