@@ -11,7 +11,7 @@ import WavesSDKExtensions
 
 extension NodeService.DTO {
 
-    fileprivate enum TransactionType: Int, Decodable {
+    enum TransactionType: Int, Decodable {
         case issue = 3
         case transfer = 4
         case reissue = 5
@@ -32,8 +32,8 @@ extension NodeService.DTO {
         case none
     }
 
-    public enum Transaction: Decodable {        
-        
+    public enum Transaction: Codable {
+       
         case unrecognised(NodeService.DTO.UnrecognisedTransaction)
         case issue(NodeService.DTO.IssueTransaction)
         case transfer(NodeService.DTO.TransferTransaction)
@@ -63,6 +63,20 @@ extension NodeService.DTO {
             }
         }
 
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            switch self {
+            case .alias(let model):
+                try container.encode(model, forKey: .type)
+            default:
+                break
+            }
+            
+            throw TransactionError.none
+        }
+            
 
         fileprivate static func transaction(from decode: Decoder, type: TransactionType) throws -> Transaction {
 
