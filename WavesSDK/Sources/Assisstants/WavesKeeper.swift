@@ -10,7 +10,7 @@ import Foundation
 import WavesSDKCrypto
 
 private enum Constants {
-    static let keeperSchemeKey = "keeper"
+
 }
 
 public enum URLTypes {
@@ -39,68 +39,6 @@ public class WavesKeeper {
     
     public class func initialization(application: Application) {
         WavesKeeper.shared = .init(application: application)
-        
-//
-//        let req = WavesKeeper.Request(dApp: application,
-//                                      action: .send,
-//                                      transaction: .transfer(.init(recipient: "recipient_test",
-//                                                                   assetId: "assetID_test",
-//                                                                   amount: 1,
-//                                                                   fee: 2,
-//                                                                   attachment: "attachment_test",
-//                                                                   feeAssetId: "feeAssetId_test",
-//                                                                   chainId: "chaidId_test")))
-//
-//        let query = req.urlQueryString
-//
-//        let url = URL(string: "waves://\(query)")
-//        print(url?.request)
-//
-//
-//        let error = WavesKeeper.Error.reject
-//        let error2 = WavesKeeper.Error.message(.init(message: "dsad", code: 10))
-//
-//        let dataError = try! JSONEncoder().encode(error)
-//        let base64StringError = dataError.base64EncodedString()
-//
-//        if let data = Data(base64Encoded: base64StringError) {
-//            let error = try? JSONDecoder().decode(WavesKeeper.Error.self, from: data)
-//            print("error", error)
-//
-//        }
-        
-        let success = WavesKeeper.Success.send(.alias(NodeService.DTO.AliasTransaction(type: 10,
-                                                                                       id: "",
-                                                                                       sender: "",
-                                                                                       senderPublicKey: "",
-                                                                                       fee: 0,
-                                                                                       timestamp: Date(),
-                                                                                       version: 0,
-                                                                                       height: 0,
-                                                                                       signature: "",
-                                                                                       proofs: nil,
-                                                                                       alias: "")))
-        
-        do {
-            let result = try JSONEncoder().encode(success)
-            
-        }
-        catch let error {
-            print("decode \(error)")
-        }
-        
-        if let data = try? JSONEncoder().encode(success) {
-            
-            print("encoded", success)
-            let base64EncodedString = data.base64EncodedString()
-            
-            
-            if let newData = Data(base64Encoded: base64EncodedString) {
-               let result = try? JSONDecoder().decode(WavesKeeper.Success.self, from: data)
-                print(result)
-            }
-        }
-        
     }
     
     //Method For DApp
@@ -118,25 +56,15 @@ public class WavesKeeper {
         send(request)
     }
     
-    //TODO: Pavel
-    //TODO: Callback For DApp
     public func decodableResponse(_ url: URL, sourceApplication: String) -> Response? {
-        
-//        if url.queryParams[URLTypes.transactionAction] == WavesKeeper.Action.send.rawValue {
-//
-//            print(url.request)
-//        }
-//        url -> Reponse
-        // parser url and return response
-        return nil
+        return url.response()
     }
     
-    
-    //TODO: Pavel
-    //TODO: Method For DApp
     private func send(_ request: Request) {
-        
-        UIApplication.shared.open(URL(string: "\(application.schemeUrl)://\(request.urlQueryString)")!, options: .init(), completionHandler: nil)
+
+        guard let url = request.url() else { return }
+                
+        UIApplication.shared.open(url, options: .init(), completionHandler: nil)
     }
  
     private func prepareRequest(tx: NodeService.Query.Transaction, action: Action) -> Request {
@@ -159,12 +87,6 @@ public extension WavesKeeper {
             self.iconUrl = iconUrl
             self.schemeUrl = schemeUrl
         }
-        
-        var parameters: [String: String] {
-            return ["appName": self.name,
-                    "iconUrl": self.iconUrl,
-                    "schemeUrl": self.schemeUrl]
-        }
     }
     
     enum Action: String, Codable {
@@ -176,6 +98,7 @@ public extension WavesKeeper {
         public let dApp: Application
         public let action: Action
         public let transaction: NodeService.Query.Transaction
+        //TODO: ID
         
         public init(dApp: Application,
                     action: Action,
@@ -213,65 +136,39 @@ public extension WavesKeeper {
         case message(Message)
     }
     
-    enum Response {
+    enum Response: Codable {
         case error(Error)
         case success(Success)
     }
 }
 
-public extension WavesKeeper.Request {
+private extension URL {
     
-    var urlQueryString: String {
+    func response() -> WavesKeeper.Response? {
         
-        if let data = try? JSONEncoder().encode(self) {
-            var string: String = Constants.keeperSchemeKey + "?"
-            string += URLTypes.request + "=" + data.base64EncodedString()
-            return string
-        }
-        return ""
+        guard let component = URLComponents.init(url: self, resolvingAgainstBaseURL: true) else { return nil }
+        guard component.path == "keeper/response" else { return nil }
+        guard let item = (component.queryItems?.first { $0.name == "data" }) else { return nil }
+        guard let value = item.value else { return nil }
+        
+        let response: WavesKeeper.Response? = value.decodableBase64ToObject()
+        
+        return response
     }
 }
 
-public extension URL {
+
+public extension WavesKeeper.Request {
     
-    var request: WavesKeeper.Request? {
+    func url() -> URL? {
         
-        let string = absoluteString
+        guard let base64 = self.encodableToBase64 else { return nil }
         
-        let range = (string as NSString).range(of: Constants.keeperSchemeKey + "?")
-        if range.location != NSNotFound {
-            let paramsString = (string as NSString).substring(from: range.location + range.length)
-            
-            let reqRange = (paramsString as NSString).range(of: URLTypes.request + "=")
-            if reqRange.location != NSNotFound {
-                let base64String = (paramsString as NSString).substring(from: reqRange.location + reqRange.length)
-                if let data = Data(base64Encoded: base64String) {
-                    return try? JSONDecoder().decode(WavesKeeper.Request.self, from: data)
-                }
-            }
-        }
+        var component = URLComponents(string: "")
+        component?.scheme = WavesSDKConstants.UrlScheme.wallet
+        component?.path = "keeper/request"
+        component?.queryItems = [URLQueryItem(name: "data", value: base64)]
         
-        return nil
+        return try? component?.asURL()
     }
-    
-    var response: WavesKeeper.Response? {
-        
-        let string = absoluteString
-        
-        let range = (string as NSString).range(of: Constants.keeperSchemeKey + "?")
-        if range.location != NSNotFound {
-            let paramsString = (string as NSString).substring(from: range.location + range.length)
-            
-            let reqRange = (paramsString as NSString).range(of: URLTypes.request + "=")
-            if reqRange.location != NSNotFound {
-                let base64String = (paramsString as NSString).substring(from: reqRange.location + reqRange.length)
-                if let data = Data(base64Encoded: base64String) {
-//                    return try? JSONDecoder().decode(WavesKeeper.Response.self, from: data)
-                }
-            }
-        }
-        
-        return nil
-    }
-    
 }

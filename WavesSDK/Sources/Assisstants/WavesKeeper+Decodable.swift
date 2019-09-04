@@ -45,6 +45,48 @@ extension WavesKeeper.Error {
     }
 }
 
+extension WavesKeeper.Response {
+    
+    enum CodingKeys: String, CodingKey {
+        case error
+        case success
+    }
+    
+    public init(from decoder: Decoder) throws {
+        
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try? values.decode(WavesKeeper.Error.self, forKey: .error) {
+            self = .error(value)
+            return
+        }
+        
+        if let value = try? values.decode(WavesKeeper.Success.self, forKey: .success) {
+            self = .success(value)
+            return
+        }
+        
+        throw NSError(domain: "Decoder Invalid", code: 0, userInfo: nil)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        
+        do {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            switch self {
+            case .error(let value):
+                try container.encode(value, forKey: .error)
+                
+            case .success(let value):
+                try container.encode(value, forKey: .success)
+            }
+            
+        } catch let e {
+            throw NSError(domain: "Encoder Invalid WavesKeeper.Success", code: 0, userInfo: nil)
+        }
+        
+    }
+}
 
 extension WavesKeeper.Success {
     
@@ -81,7 +123,7 @@ extension WavesKeeper.Success {
             case .send(let value):
                 try container.encode(value, forKey: .send)
             }
-        } catch let e {
+        } catch {
             throw NSError(domain: "Encoder Invalid WavesKeeper.Success", code: 0, userInfo: nil)
         }
 

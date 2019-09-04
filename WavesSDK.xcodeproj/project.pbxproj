@@ -115,6 +115,7 @@
 		7B3DCBF922D3647D00FC973D /* WavesSDKExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4E1E0622C4DC3400854BAB /* WavesSDKExtensions.framework */; };
 		7B3DCBFA22D366AB00FC973D /* WavesSDKCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4E1DF522C4DC2800854BAB /* WavesSDKCrypto.framework */; };
 		7B3DCBFB22D366AB00FC973D /* WavesSDKExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4E1E0622C4DC3400854BAB /* WavesSDKExtensions.framework */; };
+		7B42C0212320415C00B3E5DC /* Encodable+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B42C0202320415C00B3E5DC /* Encodable+Base64.swift */; };
 		7B4E1DE722C4DBDA00854BAB /* WavesSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B4E1DE522C4DBDA00854BAB /* WavesSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B4E1DEA22C4DBDA00854BAB /* WavesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4E1DE322C4DBD900854BAB /* WavesSDK.framework */; };
 		7B4E1DEB22C4DBDA00854BAB /* WavesSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4E1DE322C4DBD900854BAB /* WavesSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -452,6 +453,7 @@
 		7B3DCB3722D3478300FC973D /* Curve25519.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Curve25519.h; sourceTree = "<group>"; };
 		7B42335422563A2100E82730 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		7B42335622563A3200E82730 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7B42C0202320415C00B3E5DC /* Encodable+Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Base64.swift"; sourceTree = "<group>"; };
 		7B4E1DE322C4DBD900854BAB /* WavesSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WavesSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B4E1DE522C4DBDA00854BAB /* WavesSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WavesSDK.h; sourceTree = "<group>"; };
 		7B4E1DE622C4DBDA00854BAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1096,6 +1098,7 @@
 				7B3681A223152E13000D5592 /* WavesKeeper.swift */,
 				E9399075231FD41D00302490 /* WavesKeeper+Decodable.swift */,
 				7B0B6F9A231E6DC800CC5DCB /* DictionaryEncoder.swift */,
+				7B42C0202320415C00B3E5DC /* Encodable+Base64.swift */,
 			);
 			path = Assisstants;
 			sourceTree = "<group>";
@@ -1783,6 +1786,7 @@
 				7B4E1F9122C4DD2D00854BAB /* BurnTransactionNode.swift in Sources */,
 				7B4E1F7822C4DD2D00854BAB /* OrderBookMatcher.swift in Sources */,
 				7B4E1F9922C4DD2D00854BAB /* TransactionContainersNode.swift in Sources */,
+				7B42C0212320415C00B3E5DC /* Encodable+Base64.swift in Sources */,
 				7B4E1FBF22C4DD2D00854BAB /* PairsPriceDataServiceProtocol.swift in Sources */,
 				7B4E1FB322C4DD2D00854BAB /* TransactionData.swift in Sources */,
 				7B4E1F6322C4DD2D00854BAB /* WavesSDK.swift in Sources */,

@@ -56,14 +56,12 @@ extension NodeService.DTO {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 let type = try container.decode(TransactionType.self, forKey: .type)
                 
-                
                 self = try Transaction.transaction(from: decoder, type: type)
             } catch let e {
                 SweetLogger.error(e)
                 throw TransactionError.none
             }
         }
-
 
         public func encode(to encoder: Encoder) throws {
             
@@ -73,12 +71,52 @@ extension NodeService.DTO {
                 switch self {
                 case .alias(let model):
                     try unkeyedContainer.encode(model)
-//                case .invokeScript(let model):
-                default:
-                    break
+                    
+                case .invokeScript(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .transfer(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .assetScript(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .burn(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .data(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .exchange(let model):
+                    try unkeyedContainer.encode(model)
+                                        
+                case .issue(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .lease(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .unrecognised(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .reissue(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .leaseCancel(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .massTransfer(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .script(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .sponsorship(let model):
+                    try unkeyedContainer.encode(model)
                 }
-            } catch let e {
                 
+            } catch let e {
+                SweetLogger.error(e)
                 throw TransactionError.none
             }
         }

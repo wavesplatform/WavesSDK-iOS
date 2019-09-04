@@ -16,6 +16,16 @@ public enum WavesSDKConstants {
     public static let WavesTransactionFeeAmount: Int64 = 100000
     public static let WavesDecimals: Int = 8
     public static let FiatDecimals: Int = 2
+    
+    public enum UrlScheme {
+        #if DEBUG
+        static let wallet: String = "waves-dev"
+        #elseif TEST
+        static let wallet: String = "waves-test"
+        #else
+        static let wallet: String = "waves"
+        #endif
+    }
 }
 
 public enum RegEx {
