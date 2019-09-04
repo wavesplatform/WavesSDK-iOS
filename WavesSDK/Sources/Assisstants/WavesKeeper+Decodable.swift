@@ -54,6 +54,7 @@ extension WavesKeeper.Success {
     }
     
     public init(from decoder: Decoder) throws {
+        
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         if let value = try? values.decode(NodeService.Query.Transaction.self, forKey: .sign) {
@@ -70,17 +71,19 @@ extension WavesKeeper.Success {
     }
     
     public func encode(to encoder: Encoder) throws {
-        
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        switch self {
-        case .sign(let value):
-            try container.encode(value, forKey: .sign)
-            
-        case .send(let value):
-            try container.encode(value, forKey: .send)
+       
+        do {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            switch self {
+            case .sign(let value):
+                try container.encode(value, forKey: .sign)
+                
+            case .send(let value):
+                try container.encode(value, forKey: .send)
+            }
+        } catch let e {
+            throw NSError(domain: "Encoder Invalid WavesKeeper.Success", code: 0, userInfo: nil)
         }
-        
-        throw NSError(domain: "Encoder Invalid WavesKeeper.Success", code: 0, userInfo: nil)
 
     }
 }

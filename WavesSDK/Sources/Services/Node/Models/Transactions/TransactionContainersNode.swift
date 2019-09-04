@@ -55,7 +55,8 @@ extension NodeService.DTO {
             do {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 let type = try container.decode(TransactionType.self, forKey: .type)
-
+                
+                
                 self = try Transaction.transaction(from: decoder, type: type)
             } catch let e {
                 SweetLogger.error(e)
@@ -65,16 +66,21 @@ extension NodeService.DTO {
 
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
             
-            switch self {
-            case .alias(let model):
-                try container.encode(model, forKey: .type)
-            default:
-                break
+            do {
+                var unkeyedContainer = encoder.singleValueContainer()
+                
+                switch self {
+                case .alias(let model):
+                    try unkeyedContainer.encode(model)
+//                case .invokeScript(let model):
+                default:
+                    break
+                }
+            } catch let e {
+                
+                throw TransactionError.none
             }
-            
-            throw TransactionError.none
         }
             
 

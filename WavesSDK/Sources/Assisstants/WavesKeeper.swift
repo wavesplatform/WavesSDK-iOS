@@ -69,7 +69,7 @@ public class WavesKeeper {
 //
 //        }
         
-        let success = WavesKeeper.Success.send(.alias(NodeService.DTO.AliasTransaction(type: 0,
+        let success = WavesKeeper.Success.send(.alias(NodeService.DTO.AliasTransaction(type: 10,
                                                                                        id: "",
                                                                                        sender: "",
                                                                                        senderPublicKey: "",
@@ -85,8 +85,8 @@ public class WavesKeeper {
             let result = try JSONEncoder().encode(success)
             
         }
-        catch {
-            print(error)
+        catch let error {
+            print("decode \(error)")
         }
         
         if let data = try? JSONEncoder().encode(success) {
@@ -96,7 +96,7 @@ public class WavesKeeper {
             
             
             if let newData = Data(base64Encoded: base64EncodedString) {
-               let result = try? JSONDecoder().decode(WavesKeeper.Success.self, from: newData)
+               let result = try? JSONDecoder().decode(WavesKeeper.Success.self, from: data)
                 print(result)
             }
         }
