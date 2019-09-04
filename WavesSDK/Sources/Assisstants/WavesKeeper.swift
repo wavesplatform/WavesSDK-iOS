@@ -98,7 +98,7 @@ public extension WavesKeeper {
         public let dApp: Application
         public let action: Action
         public let transaction: NodeService.Query.Transaction
-        //TODO: ID
+        public let id: String
         
         public init(dApp: Application,
                     action: Action,
@@ -106,6 +106,7 @@ public extension WavesKeeper {
             self.dApp = dApp
             self.action = action
             self.transaction = transaction
+            self.id = NSUUID().uuidString
         }
     }
     
@@ -136,9 +137,19 @@ public extension WavesKeeper {
         case message(Message)
     }
     
-    enum Response: Codable {
-        case error(Error)
-        case success(Success)
+    struct Response: Codable {
+        public enum Kind: Codable {
+            case error(Error)
+            case success(Success)
+        }
+        
+        public let requestId: String
+        public let kind: Kind
+
+        public init(requestId: String, kind: Kind) {
+            self.requestId = requestId
+            self.kind = kind
+        }
     }
 }
 
@@ -165,7 +176,7 @@ public extension WavesKeeper.Request {
         guard let base64 = self.encodableToBase64 else { return nil }
         
         var component = URLComponents(string: "")
-        component?.scheme = WavesSDKConstants.UrlScheme.wallet
+        component?.scheme = WavesSDKConstants.UrlScheme.wallet        
         component?.path = "keeper/request"
         component?.queryItems = [URLQueryItem(name: "data", value: base64)]
         
