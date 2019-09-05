@@ -67,15 +67,16 @@ public class WavesKeeper {
         return url.response()
     }
     
-    //TODO: It is method need rename
-    public func gripByUrl(_ url: URL, sourceApplication: String) {
+    public func applicationOpenURL(_ url: URL, _ sourceApplication: String) -> Bool {
         
-        guard let response = url.response() else { return }
+        guard let response = url.response() else { return false }
         
-        guard let operation = operations[response.requestId] else { return }
+        guard let operation = operations[response.requestId] else { return false }
         operation.response.onNext(response)
         operation.response.onCompleted()
         removeOperation(response.requestId)
+        
+        return true
     }
 }
 
