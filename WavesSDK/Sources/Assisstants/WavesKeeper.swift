@@ -177,6 +177,7 @@ public extension WavesKeeper {
         case message(Message)
         case wavesKeeperDontInstall(_ appstore: URL)
         case invalidRequest
+        case transactionDontSupport
     }
     
     struct Response: Codable {

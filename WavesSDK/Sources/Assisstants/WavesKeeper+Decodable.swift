@@ -16,6 +16,7 @@ extension WavesKeeper.Error {
         case message
         case wavesKeeperDontInstall
         case invalidRequest
+        case transactionDontSupport
     }
     
     public init(from decoder: Decoder) throws {
@@ -41,6 +42,11 @@ extension WavesKeeper.Error {
             return
         }
         
+        if (try? values.decode(String.self, forKey: .transactionDontSupport)) != nil {
+            self = .transactionDontSupport
+            return
+        }
+        
         throw NSError(domain: "Decoder Invalid", code: 0, userInfo: nil)
     }
     
@@ -59,6 +65,9 @@ extension WavesKeeper.Error {
             
         case .invalidRequest:
             try container.encode(CodingKeys.invalidRequest.rawValue, forKey: .invalidRequest)
+            
+        case .transactionDontSupport:
+            try container.encode(CodingKeys.transactionDontSupport.rawValue, forKey: .transactionDontSupport)
         }
     }
 }
