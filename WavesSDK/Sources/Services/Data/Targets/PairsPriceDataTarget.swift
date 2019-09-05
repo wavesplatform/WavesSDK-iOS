@@ -73,8 +73,7 @@ extension DataService.Target.PairsPrice: DataTargetType {
     }
     
     var task: Task {
-        return .requestParameters(parameters: [TargetConstants.pairs: query.pairs.map { $0.amountAssetId + "/" + $0.priceAssetId },
-                                               "matcher": "3PJaDyprvekvPXPuAtxrapacuDJopgJRaU3"],
+        return .requestParameters(parameters: [TargetConstants.pairs: query.pairs.map { $0.amountAssetId + "/" + $0.priceAssetId }],
                                   encoding: URLEncoding.default)
     }
 }
