@@ -93,7 +93,7 @@ extension WavesKeeper.Success {
             return
         }
         
-        throw NSError(domain: "Decoder Invalid", code: 0, userInfo: nil)
+        throw NSError(domain: "Decoder Invalid WavesKeeper.Success", code: 0, userInfo: nil)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -135,7 +135,7 @@ extension WavesKeeper.Response.Kind {
             return
         }
         
-        throw NSError(domain: "Decoder Invalid", code: 0, userInfo: nil)
+        throw NSError(domain: "Decoder Invalid WavesKeeper.Response", code: 0, userInfo: nil)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -151,7 +151,7 @@ extension WavesKeeper.Response.Kind {
             }
             
         } catch let e {
-            throw NSError(domain: "Encoder Invalid WavesKeeper.Success", code: 0, userInfo: nil)
+            throw NSError(domain: "Encoder Invalid WavesKeeper.Response", code: 0, userInfo: nil)
         }
         
     }

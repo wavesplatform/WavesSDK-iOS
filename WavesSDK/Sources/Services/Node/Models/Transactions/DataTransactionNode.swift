@@ -28,58 +28,8 @@ public extension NodeService.DTO {
          */
         public struct Data: Codable {
 
-            public enum Value: Codable {
+            public enum Value {
                 
-                private enum CodingKeys: String, CodingKey {
-                    case integer
-                    case bool
-                    case string
-                    case binary
-                }
-                
-                public init(from decoder: Decoder) throws {
-                    let values = try decoder.container(keyedBy: CodingKeys.self)
-                    
-                    if let value = try? values.decode(Int64.self, forKey: .integer) {
-                        self = .integer(value)
-                        return
-                    }
-                    
-                    if let value = try? values.decode(String.self, forKey: .string) {
-                        self = .string(value)
-                        return
-                    }
-                    
-                    if let value = try? values.decode(String.self, forKey: .binary) {
-                        self = .binary(value)
-                        return
-                    }
-                    
-                    if let value = try? values.decode(Bool.self, forKey: .bool) {
-                        self = .bool(value)
-                        return
-                    }
-                    
-                    throw NSError(domain: "Decoder Invalid", code: 0, userInfo: nil)
-                }
-                
-                public func encode(to encoder: Encoder) throws {
-                    
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    switch self {
-                    case .integer(let value):
-                        try container.encode(value, forKey: .integer)
-                        
-                    case .string(let value):
-                        try container.encode(value, forKey: .string)
-                        
-                    case .bool(let value):
-                        try container.encode(value, forKey: .bool)
-                        
-                    case .binary(let value):
-                        try container.encode(value, forKey: .binary)
-                    }
-                }
                 
                 case bool(Bool)
                 case integer(Int64)
@@ -205,6 +155,39 @@ extension NodeService.DTO.DataTransaction.Data {
         } else {
             throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: container.codingPath,
                                                                          debugDescription: "Not found value"))
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        do {
+            
+            try container.encode(key, forKey: .key)
+            
+            
+            switch value {
+            case .bool(let value):
+                try container.encode(value, forKey: .value)
+                try container.encode(ValueKey.boolean.rawValue, forKey: .type)
+                
+            case .integer(let value):
+                try container.encode(value, forKey: .value)
+                try container.encode(ValueKey.integer.rawValue, forKey: .type)
+                
+            case .string(let value):
+                try container.encode(value, forKey: .value)
+                try container.encode(ValueKey.string.rawValue, forKey: .type)
+                
+            case .binary(let value):
+                try container.encode(value, forKey: .value)
+                try container.encode(ValueKey.binary.rawValue, forKey: .type)
+            }
+
+        } catch let e {
+                        
+            throw NSError(domain: "Decoder Invalid Data ValueAA", code: 0, userInfo: nil)
         }
     }
 }
