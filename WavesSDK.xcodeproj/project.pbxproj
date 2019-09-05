@@ -158,7 +158,6 @@
 		7B4E1F5F22C4DD2D00854BAB /* SignatureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EE422C4DD2D00854BAB /* SignatureProtocol.swift */; };
 		7B4E1F6022C4DD2D00854BAB /* TransactionSignatureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EE522C4DD2D00854BAB /* TransactionSignatureProtocol.swift */; };
 		7B4E1F6122C4DD2D00854BAB /* TransactionSignatureV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EE622C4DD2D00854BAB /* TransactionSignatureV2.swift */; };
-		7B4E1F6222C4DD2D00854BAB /* JSONDecoder+TimestampDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EE822C4DD2D00854BAB /* JSONDecoder+TimestampDiff.swift */; };
 		7B4E1F6322C4DD2D00854BAB /* WavesSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EE922C4DD2D00854BAB /* WavesSDK.swift */; };
 		7B4E1F6422C4DD2D00854BAB /* Enviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EEA22C4DD2D00854BAB /* Enviroment.swift */; };
 		7B4E1F6522C4DD2D00854BAB /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EEC22C4DD2D00854BAB /* DataServices.swift */; };
@@ -269,6 +268,7 @@
 		7BBB233022CA2B8D0057095D /* TransactionSignatureV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB232E22CA2A940057095D /* TransactionSignatureV1.swift */; };
 		7BBB233322CA2C990057095D /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB233122CA2C600057095D /* TransactionType.swift */; };
 		7BBB233622CE13140057095D /* BaseTransactionQueryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB233422CE13080057095D /* BaseTransactionQueryProtocol.swift */; };
+		E96DE18F231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96DE18E231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift */; };
 		E9399076231FD41D00302490 /* WavesKeeper+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9399075231FD41D00302490 /* WavesKeeper+Decodable.swift */; };
 		E97A74A922D4B26200777C39 /* String+Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A74A822D4B26200777C39 /* String+Bytes.swift */; };
 /* End PBXBuildFile section */
@@ -496,7 +496,6 @@
 		7B4E1EE422C4DD2D00854BAB /* SignatureProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureProtocol.swift; sourceTree = "<group>"; };
 		7B4E1EE522C4DD2D00854BAB /* TransactionSignatureProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionSignatureProtocol.swift; sourceTree = "<group>"; };
 		7B4E1EE622C4DD2D00854BAB /* TransactionSignatureV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionSignatureV2.swift; sourceTree = "<group>"; };
-		7B4E1EE822C4DD2D00854BAB /* JSONDecoder+TimestampDiff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+TimestampDiff.swift"; sourceTree = "<group>"; };
 		7B4E1EE922C4DD2D00854BAB /* WavesSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WavesSDK.swift; sourceTree = "<group>"; };
 		7B4E1EEA22C4DD2D00854BAB /* Enviroment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enviroment.swift; sourceTree = "<group>"; };
 		7B4E1EEC22C4DD2D00854BAB /* DataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
@@ -618,6 +617,7 @@
 		D9387DBAA6359A3ED5505A5D /* Pods-WavesSDKExtensions.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKExtensions.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKExtensions/Pods-WavesSDKExtensions.test-prod.xcconfig"; sourceTree = "<group>"; };
 		E2D7032DCD57CC4376B4E62D /* Pods-WavesSDKCrypto.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKCrypto.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKCrypto/Pods-WavesSDKCrypto.test-prod.xcconfig"; sourceTree = "<group>"; };
 		E2DAA2313D13873B3DFB0736 /* Pods-WavesSDK.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDK.release-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDK/Pods-WavesSDK.release-prod.xcconfig"; sourceTree = "<group>"; };
+		E96DE18E231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+TimestampDiff.swift"; sourceTree = "<group>"; };
 		E9399075231FD41D00302490 /* WavesKeeper+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WavesKeeper+Decodable.swift"; sourceTree = "<group>"; };
 		E97A74A822D4B26200777C39 /* String+Bytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Bytes.swift"; sourceTree = "<group>"; };
 		EF2543D7C92B92855970DEAF /* Pods-WavesSDKExtensions.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKExtensions.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKExtensions/Pods-WavesSDKExtensions.test-dev.xcconfig"; sourceTree = "<group>"; };
@@ -978,6 +978,7 @@
 		7B4E1E1C22C4DD0100854BAB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E96DE18E231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift */,
 				7B4E1E3822C4DD0100854BAB /* Any+Name.swift */,
 				7B4E1E1E22C4DD0100854BAB /* Assert+Message.swift */,
 				7B4E1E1D22C4DD0100854BAB /* Bundle+Version.swift */,
@@ -1087,7 +1088,6 @@
 		7B4E1EE722C4DD2D00854BAB /* Assisstants */ = {
 			isa = PBXGroup;
 			children = (
-				7B4E1EE822C4DD2D00854BAB /* JSONDecoder+TimestampDiff.swift */,
 				7B4E1EE922C4DD2D00854BAB /* WavesSDK.swift */,
 				7B4E1EEA22C4DD2D00854BAB /* Enviroment.swift */,
 				7B4E1EEB22C4DD2D00854BAB /* Type */,
@@ -1862,7 +1862,6 @@
 				7B4E1F6B22C4DD2D00854BAB /* NetworkError.swift in Sources */,
 				7B4E1F9722C4DD2D00854BAB /* UnrecognisedTransactionNode.swift in Sources */,
 				7B4E1F9F22C4DD2D00854BAB /* UtilsNodeService.swift in Sources */,
-				7B4E1F6222C4DD2D00854BAB /* JSONDecoder+TimestampDiff.swift in Sources */,
 				7B4E1F8922C4DD2D00854BAB /* AddressScriptInfoNode.swift in Sources */,
 				7B4E1F7322C4DD2D00854BAB /* PublicKeyMatcherTarget.swift in Sources */,
 				7B4E1F7222C4DD2D00854BAB /* OrderBookMatcherTarget.swift in Sources */,
@@ -1962,6 +1961,7 @@
 			files = (
 				7B4E1E4A22C4DD0100854BAB /* Thread+Assisstants.swift in Sources */,
 				E97A74A922D4B26200777C39 /* String+Bytes.swift in Sources */,
+				E96DE18F231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift in Sources */,
 				7B4E1E5222C4DD0100854BAB /* Optional+Hashable.swift in Sources */,
 				7B4E1E4322C4DD0100854BAB /* Array+Sort.swift in Sources */,
 				7B4E1E4922C4DD0100854BAB /* DateFormatter+Once.swift in Sources */,
