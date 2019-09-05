@@ -8,18 +8,22 @@
 
 import Foundation
 import WavesSDKCrypto
+import RxSwift
 
-private enum Constants {
-
+private struct Constants {
+    static let appstoreURL: URL = URL(string: "")!
 }
 
-public enum URLTypes {
+extension WavesKeeper {
+    private class RequestOperation {
+        let request: WavesKeeper.Request
+        let response: ReplaySubject<WavesKeeper.Response>
 
-    static let request = "request"
-    static let response = "response"
-
-    static let sign = "sign"
-    static let send = "send"
+        public init(request: WavesKeeper.Request, response: ReplaySubject<WavesKeeper.Response>) {
+            self.request = request
+            self.response = response
+        }
+    }
 }
 
 public class WavesKeeper {
@@ -27,7 +31,10 @@ public class WavesKeeper {
     typealias TransactionV = NodeService.Query.Transaction
     
     static private(set) public var shared: WavesKeeper!
+    
     private(set) public var application: Application
+    
+    private lazy var operations: [String: RequestOperation] = .init()
     
     public init(application: Application) {
         self.application = application
@@ -42,31 +49,70 @@ public class WavesKeeper {
     }
     
     //Method For DApp
-    public func send(_ tx: NodeService.Query.Transaction) {
+    public func send(_ tx: NodeService.Query.Transaction) -> Observable<Response> {
         
         let request = prepareRequest(tx: tx,
                                      action: .send)
-        send(request)
+        return send(request)
     }
     
     //Method For DApp
-    public func sign(_ tx: NodeService.Query.Transaction){
+    public func sign(_ tx: NodeService.Query.Transaction) -> Observable<Response> {
         let request = prepareRequest(tx: tx,
                                      action: .sign)
-        send(request)
+        return send(request)
     }
     
     public func decodableResponse(_ url: URL, sourceApplication: String) -> Response? {
         return url.response()
     }
     
-    private func send(_ request: Request) {
-
-        guard let url = request.url() else { return }
-                
-        UIApplication.shared.open(url, options: .init(), completionHandler: nil)
+    //TODO: It is method need rename
+    public func gripByUrl(_ url: URL, sourceApplication: String) {
+        
+        guard let response = url.response() else { return }
+        
+        guard let operation = operations[response.requestId] else { return }
+        operation.response.onNext(response)
+        operation.response.onCompleted()
+        removeOperation(response.requestId)
     }
- 
+}
+
+private extension WavesKeeper {
+    
+    private func removeOperation(_ id: String) {
+        self.operations.removeValue(forKey: id)
+    }
+    
+    private func send(_ request: Request) -> Observable<Response> {
+        
+        guard let url = request.url() else {
+            return Observable.just(.init(requestId: request.id,
+                                         kind: .error(.invalidRequest)))
+        }
+        
+        let replaySubject: ReplaySubject<Response> = ReplaySubject.create(bufferSize: 1)
+        
+        let operation = RequestOperation(request: request,
+                                         response: replaySubject)
+        
+        self.operations[request.id] = operation
+        
+        UIApplication.shared.open(url, options: .init(), completionHandler: { [weak self] result in
+            if result == false {
+                
+                guard let operation = self?.operations[request.id] else { return }
+                operation.response.onNext(.init(requestId: request.id,
+                                                kind: .error(.wavesKeeperDontInstall(Constants.appstoreURL))))
+                operation.response.onCompleted()
+                self?.removeOperation(request.id)
+            }
+        })
+        
+        return replaySubject.asObserver()
+    }
+    
     private func prepareRequest(tx: NodeService.Query.Transaction, action: Action) -> Request {
         
         return Request(dApp: application,
@@ -110,12 +156,6 @@ public extension WavesKeeper {
         }
     }
     
-    /*
-    только 3 транзакции
-     case data
-     case transfer
-     case invokeScript
- */
     enum Success: Codable {
         case sign(NodeService.Query.Transaction)
         case send(NodeService.DTO.Transaction)
@@ -135,6 +175,8 @@ public extension WavesKeeper {
       
         case reject
         case message(Message)
+        case wavesKeeperDontInstall(_ appstore: URL)
+        case invalidRequest
     }
     
     struct Response: Codable {
@@ -158,7 +200,7 @@ private extension URL {
     func response() -> WavesKeeper.Response? {
         
         guard let component = URLComponents.init(url: self, resolvingAgainstBaseURL: true) else { return nil }
-        guard component.path == "keeper/response" else { return nil }
+        guard component.path == "keeper/v1/response" else { return nil }
         guard let item = (component.queryItems?.first { $0.name == "data" }) else { return nil }
         guard let value = item.value else { return nil }
         
@@ -177,7 +219,7 @@ public extension WavesKeeper.Request {
         
         var component = URLComponents(string: "")
         component?.scheme = WavesSDKConstants.UrlScheme.wallet        
-        component?.path = "keeper/request"
+        component?.path = "keeper/v1/request"
         component?.queryItems = [URLQueryItem(name: "data", value: base64)]
         
         return try? component?.asURL()

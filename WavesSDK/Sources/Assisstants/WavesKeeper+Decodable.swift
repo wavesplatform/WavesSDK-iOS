@@ -14,6 +14,8 @@ extension WavesKeeper.Error {
     private enum CodingKeys: String, CodingKey {
         case reject
         case message
+        case wavesKeeperDontInstall
+        case invalidRequest
     }
     
     public init(from decoder: Decoder) throws {
@@ -29,6 +31,16 @@ extension WavesKeeper.Error {
             return
         }
         
+        if let value = try? values.decode(URL.self, forKey: .wavesKeeperDontInstall) {
+            self = .wavesKeeperDontInstall(value)
+            return
+        }
+        
+        if (try? values.decode(String.self, forKey: .invalidRequest)) != nil {
+            self = .invalidRequest
+            return
+        }
+        
         throw NSError(domain: "Decoder Invalid", code: 0, userInfo: nil)
     }
     
@@ -41,6 +53,12 @@ extension WavesKeeper.Error {
             
         case .message(let value):
             try container.encode(value, forKey: .message)
+            
+        case .wavesKeeperDontInstall(let url):
+            try container.encode(url, forKey: .wavesKeeperDontInstall)
+            
+        case .invalidRequest:
+            try container.encode(CodingKeys.invalidRequest.rawValue, forKey: .invalidRequest)
         }
     }
 }
