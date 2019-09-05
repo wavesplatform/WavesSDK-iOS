@@ -100,7 +100,7 @@ public extension NodeService.Query {
                 return
             }
             
-            throw NSError(domain: "Decoder Invalid", code: 0, userInfo: nil)
+            throw NSError(domain: "Decoder Invalid TX", code: 0, userInfo: nil)
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -654,7 +654,7 @@ public extension NodeService.Query.Transaction {
                         return
                     }
                     
-                    throw NSError(domain: "Decoder Invalid", code: 0, userInfo: nil)
+                    throw NSError(domain: "Decoder Invalid query Data", code: 0, userInfo: nil)
                 }
                 
                 public func encode(to encoder: Encoder) throws {

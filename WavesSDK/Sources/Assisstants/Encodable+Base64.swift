@@ -25,8 +25,15 @@ public extension String {
     func decodableBase64ToObject<T: Decodable>() -> T? {
         
         guard let newData = Data(base64Encoded: self) else { return nil }
-        guard let object = try? JSONDecoder().decode(T.self, from: newData) else { return nil }
         
-        return object
+        
+        do {
+            let object = try JSONDecoder().decode(T.self, from: newData) 
+            return object
+        } catch let error {
+            print("error \(error)")
+        }
+        
+        return nil
     }
 }
