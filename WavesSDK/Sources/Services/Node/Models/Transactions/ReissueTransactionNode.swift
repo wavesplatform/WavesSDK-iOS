@@ -14,7 +14,7 @@ public extension NodeService.DTO {
       The Reissue transaction is used to give the ability to reissue more tokens of an asset
       by specifying the amount and the asset id. Only quantity and reissuable can be new values
      */
-    struct ReissueTransaction: Decodable {
+    struct ReissueTransaction: Codable {
         public let type: Int
         public let id: String
         public let sender: String

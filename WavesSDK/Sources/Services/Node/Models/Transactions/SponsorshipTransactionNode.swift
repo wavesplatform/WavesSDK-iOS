@@ -47,7 +47,7 @@ public extension NodeService.DTO {
 
       For cancel send with minSponsoredAssetFee == 0
      */
-    struct SponsorshipTransaction: Decodable {
+    struct SponsorshipTransaction: Codable {
 
         public let type: Int
         public let id: String

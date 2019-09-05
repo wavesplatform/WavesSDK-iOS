@@ -15,7 +15,7 @@ public extension NodeService.DTO {
       it can be address or alias by Proof-of-Stake consensus. It will perform at non-node address.
       You always can reverse the any leased amount by [LeaseCancelTransaction]
      */
-    struct LeaseTransaction: Decodable {
+    struct LeaseTransaction: Codable {
         public let type: Int
         public let id: String
         public let sender: String

@@ -14,26 +14,83 @@ extension NodeService.DTO {
       dApp contains compiled functions  developed with [Waves Ride IDE]({https://ide.wavesplatform.com/)
       You can invoke one of them by name with some arguments.
      */
-    public struct InvokeScriptTransaction: Decodable {
+    public struct InvokeScriptTransaction: Codable {
 
         /**
           Call the function from dApp (address or alias) with typed arguments
          */
-        public struct Call: Decodable {
+        public struct Call: Codable {
 
             /**
               Arguments for the function call
              */
-            public struct Args: Decodable {
-                public enum Value {
+            public struct Args: Codable {
+                public enum Value: Codable {
+                    
+                    private enum CodingKeys: String, CodingKey {
+                        case integer
+                        case bool
+                        case string
+                        case binary
+                    }
+                    
+                    public init(from decoder: Decoder) throws {
+                        let values = try decoder.container(keyedBy: CodingKeys.self)
+                        
+                        if let value = try? values.decode(Int64.self, forKey: .integer) {
+                            self = .integer(value)
+                            return
+                        }
+                        
+                        if let value = try? values.decode(String.self, forKey: .string) {
+                            self = .string(value)
+                            return
+                        }
+                        
+                        if let value = try? values.decode(String.self, forKey: .binary) {
+                            self = .binary(value)
+                            return
+                        }
+                        
+                        if let value = try? values.decode(Bool.self, forKey: .bool) {
+                            self = .bool(value)
+                            return
+                        }
+                        
+                        throw NSError(domain: "Decoder Invalid", code: 0, userInfo: nil)
+                    }
+                    
+                    public func encode(to encoder: Encoder) throws {
+                        
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        switch self {
+                        case .integer(let value):
+                            try container.encode(value, forKey: .integer)
+                            
+                        case .string(let value):
+                            try container.encode(value, forKey: .string)
+                            
+                        case .bool(let value):
+                            try container.encode(value, forKey: .bool)
+                            
+                        case .binary(let value):
+                            try container.encode(value, forKey: .binary)
+                        }
+                    }
+                    
                     case bool(Bool)
-                    case integer(Int)
+                    case integer(Int64)
                     case string(String)
                     case binary(String)
                 }
                 
                 public let type: String
                 public let value: Value
+
+                public init(type: String, value: Value) {
+                    self.type = type
+                    self.value = value
+                }
             }
 
             /**
@@ -45,12 +102,17 @@ extension NodeService.DTO {
               List of arguments
               */
             public let args: [Args]
+
+            public init(function: String, args: [Args]) {
+                self.function = function
+                self.args = args
+            }
         }
 
         /**
           Payment for function of dApp. Now it works with only one payment.
          */
-        public struct Payment: Decodable {
+        public struct Payment: Codable {
             /**
               Amount in satoshi
              */
@@ -59,10 +121,16 @@ extension NodeService.DTO {
               Asset Id in Waves blockchain
              */
             public let assetId: String?
+
+            public init(amount: Int64, assetId: String?) {
+                self.amount = amount
+                self.assetId = assetId
+            }
         }
         
         public let type: Int
         public let id: String
+        public let chainId: String?
         public let sender: String
         public let senderPublicKey: String
         public let fee: Int64
@@ -92,6 +160,23 @@ extension NodeService.DTO {
           Payments for function of dApp. Now it works with only one payment.
          */
         public let payment: [Payment]
+
+        public init(type: Int, id: String, chainId: String?, sender: String, senderPublicKey: String, fee: Int64, timestamp: Date, proofs: [String]?, version: Int, height: Int64?, feeAssetId: String?, dApp: String, call: Call?, payment: [Payment]) {
+            self.type = type
+            self.id = id
+            self.chainId = chainId
+            self.sender = sender
+            self.senderPublicKey = senderPublicKey
+            self.fee = fee
+            self.timestamp = timestamp
+            self.proofs = proofs
+            self.version = version
+            self.height = height
+            self.feeAssetId = feeAssetId
+            self.dApp = dApp
+            self.call = call
+            self.payment = payment
+        }
     }
 }
 
@@ -125,7 +210,7 @@ extension NodeService.DTO.InvokeScriptTransaction.Call.Args {
             case .boolean:
                 value = .bool(try container.decode(Bool.self, forKey: .value))
             case .integer:
-                value = .integer(try container.decode(Int.self, forKey: .value))
+                value = .integer(try container.decode(Int64.self, forKey: .value))
             case .string:
                 value = .string(try container.decode(String.self, forKey: .value))
             case .binary:

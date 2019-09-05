@@ -11,7 +11,7 @@ import WavesSDKExtensions
 
 extension NodeService.DTO {
 
-    fileprivate enum TransactionType: Int, Decodable {
+    enum TransactionType: Int, Decodable {
         case issue = 3
         case transfer = 4
         case reissue = 5
@@ -32,7 +32,8 @@ extension NodeService.DTO {
         case none
     }
 
-    public enum Transaction: Decodable {
+    public enum Transaction: Codable {
+       
         case unrecognised(NodeService.DTO.UnrecognisedTransaction)
         case issue(NodeService.DTO.IssueTransaction)
         case transfer(NodeService.DTO.TransferTransaction)
@@ -54,7 +55,7 @@ extension NodeService.DTO {
             do {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 let type = try container.decode(TransactionType.self, forKey: .type)
-
+                
                 self = try Transaction.transaction(from: decoder, type: type)
             } catch let e {
                 SweetLogger.error(e)
@@ -62,6 +63,64 @@ extension NodeService.DTO {
             }
         }
 
+        public func encode(to encoder: Encoder) throws {
+            
+            do {
+                var unkeyedContainer = encoder.singleValueContainer()
+                
+                switch self {
+                case .alias(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .invokeScript(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .transfer(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .assetScript(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .burn(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .data(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .exchange(let model):
+                    try unkeyedContainer.encode(model)
+                                        
+                case .issue(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .lease(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .unrecognised(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .reissue(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .leaseCancel(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .massTransfer(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .script(let model):
+                    try unkeyedContainer.encode(model)
+                    
+                case .sponsorship(let model):
+                    try unkeyedContainer.encode(model)
+                }
+                
+            } catch let e {
+                SweetLogger.error(e)
+                throw TransactionError.none
+            }
+        }
+            
 
         fileprivate static func transaction(from decode: Decoder, type: TransactionType) throws -> Transaction {
 

@@ -15,7 +15,7 @@ public extension NodeService.DTO {
       Lease cancel transaction is used to to cancel
       and discontinue the WAVES leasing process to a Waves node.
      */
-    struct LeaseCancelTransaction: Decodable {
+    struct LeaseCancelTransaction: Codable {
         public let type: Int
         public let id: String
         public let sender: String

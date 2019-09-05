@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WavesSDKExtensions
 
 public enum TransactionVersion: Int {
     case version_1 = 1
@@ -13,7 +14,141 @@ public enum TransactionVersion: Int {
 }
 
 public extension NodeService.Query {
-    enum Transaction {
+    enum Transaction: Codable {
+        
+        private enum CodingKeys: String, CodingKey {
+            case createAlias
+            case startLease
+            case cancelLease
+            case burn
+            case data
+            case transfer
+            case invokeScript
+            case reissue
+            case issue
+            case massTransfer
+            case setScript
+            case setAssetScript
+            case sponsorship
+        }
+        
+        public init(from decoder: Decoder) throws {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            
+            if let value = try? values.decode(Alias.self, forKey: .createAlias) {
+                self = .createAlias(value)
+                return
+            }
+            
+            if let value = try? values.decode(Lease.self, forKey: .startLease) {
+                self = .startLease(value)
+                return
+            }
+            
+            if let value = try? values.decode(LeaseCancel.self, forKey: .cancelLease) {
+                self = .cancelLease(value)
+                return
+            }
+            
+            if let value = try? values.decode(Burn.self, forKey: .burn) {
+                self = .burn(value)
+                return
+            }
+            
+            if let value = try? values.decode(Data.self, forKey: .data) {
+                self = .data(value)
+                return
+            }
+            
+            if let value = try? values.decode(Transfer.self, forKey: .transfer) {
+                self = .transfer(value)
+                return
+            }
+            
+            if let value = try? values.decode(InvokeScript.self, forKey: .invokeScript) {
+                self = .invokeScript(value)
+                return
+            }
+            
+            if let value = try? values.decode(Reissue.self, forKey: .reissue) {
+                self = .reissue(value)
+                return
+            }
+            
+            if let value = try? values.decode(Issue.self, forKey: .issue) {
+                self = .issue(value)
+                return
+            }
+            
+            if let value = try? values.decode(MassTransfer.self, forKey: .massTransfer) {
+                self = .massTransfer(value)
+                return
+            }
+            
+            if let value = try? values.decode(SetScript.self, forKey: .setScript) {
+                self = .setScript(value)
+                return
+            }
+            
+            if let value = try? values.decode(SetAssetScript.self, forKey: .setAssetScript) {
+                self = .setAssetScript(value)
+                return
+            }
+            
+            if let value = try? values.decode(Sponsorship.self, forKey: .sponsorship) {
+                self = .sponsorship(value)
+                return
+            }
+            
+            throw NSError(domain: "Decoder Invalid", code: 0, userInfo: nil)
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            switch self {
+                
+            case .createAlias(let value):
+                try container.encode(value, forKey: .createAlias)
+                
+            case .startLease(let value):
+                try container.encode(value, forKey: .startLease)
+                
+            case .cancelLease(let value):
+                try container.encode(value, forKey: .cancelLease)
+                
+            case .burn(let value):
+                try container.encode(value, forKey: .burn)
+                
+            case .data(let value):
+                try container.encode(value, forKey: .data)
+                
+            case .transfer(let value):
+                try container.encode(value, forKey: .transfer)
+                
+            case .invokeScript(let value):
+                try container.encode(value, forKey: .invokeScript)
+                
+            case .reissue(let value):
+                try container.encode(value, forKey: .reissue)
+                
+            case .issue(let value):
+                try container.encode(value, forKey: .issue)
+                
+            case .massTransfer(let value):
+                try container.encode(value, forKey: .massTransfer)
+                
+            case .setScript(let value):
+                try container.encode(value, forKey: .setScript)
+                
+            case .setAssetScript(let value):
+                try container.encode(value, forKey: .setAssetScript)
+                
+            case .sponsorship(let value):
+                try container.encode(value, forKey: .sponsorship)
+            }
+        }
+        
         case createAlias(Alias)
         case startLease(Lease)
         case cancelLease(LeaseCancel)
@@ -73,10 +208,9 @@ public extension NodeService.Query {
     }
 }
 
-
 public extension NodeService.Query.Transaction {
     
-    struct Sponsorship: BaseTransactionQueryProtocol {
+    struct Sponsorship: BaseTransactionQueryProtocol, Encodable, Decodable {
         
         public private(set) var type: Int
         public private(set) var version: Int
@@ -89,7 +223,7 @@ public extension NodeService.Query.Transaction {
         public let minSponsoredAssetFee: Int64?
         public let assetId: String
         
-        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], minSponsoredAssetFee: Int64?, assetId: String) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], minSponsoredAssetFee: Int64?, assetId: String) {
             self.type = TransactionType.sponsorship.int
             self.assetId = assetId
             self.version = version
@@ -102,7 +236,7 @@ public extension NodeService.Query.Transaction {
         }
     }
     
-    struct SetAssetScript: BaseTransactionQueryProtocol {
+    struct SetAssetScript: BaseTransactionQueryProtocol, Encodable, Decodable {
         
         public private(set) var type: Int
         public private(set) var version: Int
@@ -128,7 +262,7 @@ public extension NodeService.Query.Transaction {
         }
     }
     
-    struct SetScript: BaseTransactionQueryProtocol {
+    struct SetScript: BaseTransactionQueryProtocol, Encodable, Decodable {
         
         public private(set) var type: Int
         public private(set) var version: Int
@@ -152,9 +286,9 @@ public extension NodeService.Query.Transaction {
         }
     }
     
-    struct MassTransfer: BaseTransactionQueryProtocol {
+    struct MassTransfer: BaseTransactionQueryProtocol, Encodable, Decodable {
         
-        public struct Transfer {
+        public struct Transfer: Encodable, Decodable {
             public let recipient: String
             public let amount: Int64
 
@@ -190,7 +324,7 @@ public extension NodeService.Query.Transaction {
         }
     }
     
-    struct Issue: BaseTransactionQueryProtocol {
+    struct Issue: BaseTransactionQueryProtocol, Encodable, Decodable {
         
         public private(set) var type: Int
         public private(set) var version: Int
@@ -237,7 +371,7 @@ public extension NodeService.Query.Transaction {
         }
     }
     
-    struct Reissue: BaseTransactionQueryProtocol {
+    struct Reissue: BaseTransactionQueryProtocol, Encodable, Decodable {
         
         public private(set) var type: Int
         public private(set) var version: Int
@@ -265,12 +399,64 @@ public extension NodeService.Query.Transaction {
         }
     }
     
-    struct InvokeScript: BaseTransactionQueryProtocol {
+    struct InvokeScript: BaseTransactionQueryProtocol, Encodable, Decodable {
         
-        public struct Arg {
-            public enum Value {
+        public struct Arg: Encodable, Decodable {
+            public enum Value: Encodable, Decodable {
+                
+                private enum CodingKeys: String, CodingKey {
+                    case integer
+                    case bool
+                    case string
+                    case binary
+                }
+                
+                public init(from decoder: Decoder) throws {
+                    let values = try decoder.container(keyedBy: CodingKeys.self)
+                    
+                    if let value = try? values.decode(Int64.self, forKey: .integer) {
+                        self = .integer(value)
+                        return
+                    }
+                    
+                    if let value = try? values.decode(String.self, forKey: .string) {
+                        self = .string(value)
+                        return
+                    }
+                    
+                    if let value = try? values.decode(String.self, forKey: .binary) {
+                        self = .binary(value)
+                        return
+                    }
+                    
+                    if let value = try? values.decode(Bool.self, forKey: .bool) {
+                        self = .bool(value)
+                        return
+                    }
+                    
+                    throw NSError(domain: "Decoder Invalid", code: 0, userInfo: nil)
+                }
+                
+                public func encode(to encoder: Encoder) throws {
+                    
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    switch self {
+                    case .integer(let value):
+                        try container.encode(value, forKey: .integer)
+                        
+                    case .string(let value):
+                        try container.encode(value, forKey: .string)
+                        
+                    case .bool(let value):
+                        try container.encode(value, forKey: .bool)
+                        
+                    case .binary(let value):
+                        try container.encode(value, forKey: .binary)
+                    }
+                }
+                
                 case bool(Bool)
-                case integer(Int)
+                case integer(Int64)
                 case string(String)
                 case binary(String)
             }
@@ -282,7 +468,7 @@ public extension NodeService.Query.Transaction {
             }
         }
         
-        public struct Call {
+        public struct Call: Encodable, Decodable {
             public let function: String
             public let args: [Arg]
 
@@ -292,7 +478,7 @@ public extension NodeService.Query.Transaction {
             }
         }
         
-        public struct Payment {
+        public struct Payment: Encodable, Decodable {
             public let amount: Int64
             public let assetId: String
 
@@ -315,8 +501,8 @@ public extension NodeService.Query.Transaction {
         public let payment: [Payment]
         public let feeAssetId: String
 
-        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64,
-                    senderPublicKey: String, feeAssetId: String, proofs: [String] = [], dApp: String, call: Call?, payment: [Payment]) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64 = 0,
+                    senderPublicKey: String = "", feeAssetId: String, proofs: [String] = [], dApp: String, call: Call?, payment: [Payment]) {
             
             self.version = version
             self.feeAssetId = feeAssetId
@@ -333,7 +519,7 @@ public extension NodeService.Query.Transaction {
         
     }
     
-    struct Burn: BaseTransactionQueryProtocol {
+    struct Burn: BaseTransactionQueryProtocol, Encodable, Decodable {
         
         public private(set) var type: Int
         public private(set) var version: Int
@@ -359,7 +545,7 @@ public extension NodeService.Query.Transaction {
         }
     }
     
-    struct Alias: BaseTransactionQueryProtocol {
+    struct Alias: BaseTransactionQueryProtocol, Encodable, Decodable {
 
         public private(set) var type: Int
         public private(set) var version: Int
@@ -383,7 +569,7 @@ public extension NodeService.Query.Transaction {
         }
     }
     
-    struct Lease: BaseTransactionQueryProtocol {
+    struct Lease: BaseTransactionQueryProtocol, Encodable, Decodable {
         
         public private(set) var type: Int
         public private(set) var version: Int
@@ -409,7 +595,7 @@ public extension NodeService.Query.Transaction {
         }
     }
     
-    struct LeaseCancel: BaseTransactionQueryProtocol {
+    struct LeaseCancel: BaseTransactionQueryProtocol, Encodable, Decodable {
         
         public private(set) var type: Int
         public private(set) var version: Int
@@ -433,10 +619,62 @@ public extension NodeService.Query.Transaction {
         }
     }
     
-    struct Data: BaseTransactionQueryProtocol {
-        public struct Value {
+    struct Data: BaseTransactionQueryProtocol, Encodable, Decodable {
+        public struct Value: Encodable, Decodable {
             
-            public enum Kind {
+            public enum Kind: Codable {
+                
+                private enum CodingKeys: String, CodingKey {
+                    case integer
+                    case boolean
+                    case string
+                    case binary
+                }
+                
+                public init(from decoder: Decoder) throws {
+                    let values = try decoder.container(keyedBy: CodingKeys.self)
+                    
+                    if let value = try? values.decode(Int64.self, forKey: .integer) {
+                        self = .integer(value)
+                        return
+                    }
+                    
+                    if let value = try? values.decode(String.self, forKey: .string) {
+                        self = .string(value)
+                        return
+                    }
+                    
+                    if let value = try? values.decode(String.self, forKey: .binary) {
+                        self = .binary(value)
+                        return
+                    }
+                    
+                    if let value = try? values.decode(Bool.self, forKey: .boolean) {
+                        self = .boolean(value)
+                        return
+                    }
+                    
+                    throw NSError(domain: "Decoder Invalid", code: 0, userInfo: nil)
+                }
+                
+                public func encode(to encoder: Encoder) throws {
+                    
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    switch self {
+                    case .integer(let value):
+                        try container.encode(value, forKey: .integer)
+                        
+                    case .string(let value):
+                        try container.encode(value, forKey: .string)
+                        
+                    case .boolean(let value):
+                        try container.encode(value, forKey: .boolean)
+                        
+                    case .binary(let value):
+                        try container.encode(value, forKey: .binary)
+                    }
+                }
+                
                 case integer(Int64)
                 case boolean(Bool)
                 case string(String)
@@ -462,7 +700,7 @@ public extension NodeService.Query.Transaction {
         
         public let data: [Value]
 
-        public init(version: Int = TransactionVersion.version_1.rawValue, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], data: [Value], chainId: String) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, fee: Int64, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], data: [Value], chainId: String) {
             self.type = TransactionType.data.int
             self.version = version
             self.fee = fee
@@ -474,7 +712,7 @@ public extension NodeService.Query.Transaction {
         }
     }
     
-    struct Transfer {
+    struct Transfer: BaseTransactionQueryProtocol, Decodable, Encodable {
         
         public private(set) var type: Int
         public private(set) var version: Int
@@ -491,7 +729,7 @@ public extension NodeService.Query.Transaction {
         public let attachment: String
         public let feeAssetId: String
 
-        public init(version: Int = TransactionVersion.version_2.rawValue, recipient: String, assetId: String, amount: Int64, fee: Int64, attachment: String, feeAssetId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], chainId: String) {
+        public init(version: Int = TransactionVersion.version_2.rawValue, recipient: String, assetId: String, amount: Int64, fee: Int64, attachment: String, feeAssetId: String, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], chainId: String) {
             self.type = TransactionType.transfer.int
             self.version = version
             self.recipient = recipient

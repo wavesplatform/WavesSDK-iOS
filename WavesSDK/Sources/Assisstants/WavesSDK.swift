@@ -75,11 +75,10 @@ public final class WavesSDK {
     }
     
     static private(set) public var shared: WavesSDK!
-    
+        
     init(services: WavesServicesProtocol, enviroment: Enviroment) {
         self.services = services
         self.internalEnviroment = enviroment
-        
     }
     
     public class func isInitialized() -> Bool {
@@ -105,6 +104,7 @@ public final class WavesSDK {
         
         WavesSDK.shared = WavesSDK(services: services, enviroment: enviroment)
     }
+
 }
 
 private final class DebugServicePlugin: PluginType {
