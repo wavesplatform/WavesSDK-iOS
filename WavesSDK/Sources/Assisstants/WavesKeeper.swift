@@ -11,7 +11,7 @@ import WavesSDKCrypto
 import RxSwift
 
 private struct Constants {
-    static let appstoreURL: URL = URL(string: "")!
+    static let appstoreURL: URL = URL(string: "https://apps.apple.com/ua/app/waves-wallet-crypto-exchange/id1233158971")!
 }
 
 extension WavesKeeper {
