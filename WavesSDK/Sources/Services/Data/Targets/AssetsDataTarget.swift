@@ -25,7 +25,7 @@ extension DataService.Target {
         */
             case getAsset(id: String)
             
-            case search(String)
+            case search(text: String, limit: Int)
         }
 
         let kind: Kind
@@ -63,8 +63,8 @@ extension DataService.Target.Assets: DataTargetType {
             return Task.requestParameters(parameters: [Constants.ids: ids],
                                           encoding: JSONEncoding.default)
             
-        case .search(let string):
-            return Task.requestParameters(parameters: ["search": string],
+        case .search(let string, let limit):
+            return Task.requestParameters(parameters: ["search": string, "limit": limit],
                                           encoding: JSONEncoding.default)
         case .getAsset:
             return .requestPlain

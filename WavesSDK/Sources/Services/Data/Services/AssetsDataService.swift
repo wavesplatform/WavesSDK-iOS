@@ -58,12 +58,12 @@ final class AssetsDataService: InternalWavesService, AssetsDataServiceProtocol {
             .asObservable()
     }
     
-    func searchAssets(search: String) -> Observable<[DataService.DTO.Asset]> {
+    func searchAssets(search: String, limit: Int) -> Observable<[DataService.DTO.Asset]> {
         
         return self
             .assetsProvider
             .rx
-            .request(.init(kind: .search(search),
+            .request(.init(kind: .search(text: search, limit: limit),
                            dataUrl: enviroment.dataUrl),
                      callbackQueue: DispatchQueue.global(qos: .userInteractive))
             .filterSuccessfulStatusAndRedirectCodes()
