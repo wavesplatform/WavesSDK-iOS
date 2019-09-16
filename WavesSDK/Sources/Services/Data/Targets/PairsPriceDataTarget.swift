@@ -69,12 +69,12 @@ extension DataService.Target.PairsPrice: DataTargetType {
     }
     
     var method: Moya.Method {
-        return .get
+        return .post
     }
     
     var task: Task {
         return .requestParameters(parameters: [TargetConstants.pairs: query.pairs.map { $0.amountAssetId + "/" + $0.priceAssetId }],
-                                  encoding: URLEncoding.default)
+                                  encoding: JSONEncoding.default)
     }
 }
 
