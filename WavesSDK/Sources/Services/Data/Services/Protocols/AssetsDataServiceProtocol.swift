@@ -20,5 +20,5 @@ public protocol AssetsDataServiceProtocol {
       */
     func asset(id: String) -> Observable<DataService.DTO.Asset>
     
-    func searchAssets(search: String) -> Observable<[DataService.DTO.Asset]>
+    func searchAssets(search: String, limit: Int) -> Observable<[DataService.DTO.Asset]>
 }
