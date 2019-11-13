@@ -10,10 +10,6 @@ import Foundation
 import WavesSDKCrypto
 import RxSwift
 
-private struct Constants {
-    static let appstoreURL: URL = URL(string: "https://apps.apple.com/ua/app/waves-wallet-crypto-exchange/id1233158971")!
-}
-
 extension WavesKeeper {
     private class RequestOperation {
         let request: WavesKeeper.Request
@@ -105,7 +101,7 @@ private extension WavesKeeper {
                 
                 guard let operation = self?.operations[request.id] else { return }
                 operation.response.onNext(.init(requestId: request.id,
-                                                kind: .error(.wavesKeeperDontInstall(Constants.appstoreURL))))
+                                                kind: .error(.wavesKeeperDontInstall(WavesSDKConstants.appstoreURL))))
                 operation.response.onCompleted()
                 self?.removeOperation(request.id)
             }
