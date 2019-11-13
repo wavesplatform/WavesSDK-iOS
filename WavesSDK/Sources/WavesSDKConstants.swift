@@ -16,7 +16,8 @@ public enum WavesSDKConstants {
     public static let WavesTransactionFeeAmount: Int64 = 100000
     public static let WavesDecimals: Int = 8
     public static let FiatDecimals: Int = 2
-    
+    public static let appstoreURL: URL = URL(string: "https://apps.apple.com/ua/app/id1233158971")!
+
     public enum UrlScheme {
         #if DEBUG
         static let wallet: String = "waves-dev"
