@@ -95,7 +95,23 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
         return self
             .orderBookProvider
             .rx
-            .request(.init(kind: .createOrder(query),
+            .request(.init(kind: .createOrder(.limit(query)),
+                           matcherUrl: enviroment.matcherUrl),
+                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+            .filterSuccessfulStatusAndRedirectCodes()
+            .catchError({ (error) -> Single<Response> in
+                return Single.error(NetworkError.error(by: error))
+            })
+            .map { _ in true }
+            .asObservable()
+    }
+    
+    public func createMarketOrder(query: MatcherService.Query.CreateOrder) -> Observable<Bool> {
+        
+        return self
+            .orderBookProvider
+            .rx
+            .request(.init(kind: .createOrder(.market(query)),
                            matcherUrl: enviroment.matcherUrl),
                      callbackQueue: DispatchQueue.global(qos: .userInteractive))
             .filterSuccessfulStatusAndRedirectCodes()
@@ -139,7 +155,7 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
             })
     }
     
-    func settings() -> Observable<MatcherService.DTO.Setting> {
+    public func settings() -> Observable<MatcherService.DTO.Setting> {
         return self
             .orderBookProvider
             .rx

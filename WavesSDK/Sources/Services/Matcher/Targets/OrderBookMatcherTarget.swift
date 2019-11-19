@@ -15,11 +15,17 @@ extension MatcherService.Target {
     struct OrderBook {
         
         enum Kind {
+            
+            enum CreateOrderType {
+                case limit(MatcherService.Query.CreateOrder)
+                case market(MatcherService.Query.CreateOrder)
+            }
+            
             case getOrderBook(amountAsset: String, priceAsset: String)
             case getMarket
             case getMyOrders(MatcherService.Query.GetMyOrders)
             case cancelOrder(MatcherService.Query.CancelOrder)
-            case createOrder(MatcherService.Query.CreateOrder)
+            case createOrder(CreateOrderType)
             case settingsFee
             case settings
         }
@@ -38,6 +44,7 @@ extension MatcherService.Target.OrderBook: MatcherTargetType {
         static let publicKey = "publicKey"
         static let cancel = "cancel"
         static let settingsRates = "settings/rates"
+        static let market = "market"
     }
 
     private var orderBookPath: String {
@@ -63,8 +70,14 @@ extension MatcherService.Target.OrderBook: MatcherTargetType {
         case .cancelOrder(let query):
             return orderBookPath + "/" + query.amountAsset + "/" + query.priceAsset + "/" + Constants.cancel
 
-        case .createOrder:
-            return orderBookPath
+        case .createOrder(let orderType):
+            switch orderType {
+            case .limit:
+                return orderBookPath
+                
+            case .market:
+                return orderBookPath + "/" + Constants.market
+            }
             
         case .settingsFee:
             return Constants.matcher + "/" + Constants.settingsRates
@@ -88,8 +101,14 @@ extension MatcherService.Target.OrderBook: MatcherTargetType {
         case .cancelOrder(let query):
             return .requestParameters(parameters: query.parameters, encoding: JSONEncoding.default)
 
-        case .createOrder(let query):
-            return .requestParameters(parameters: query.parameters, encoding: JSONEncoding.default)
+        case .createOrder(let type):
+            switch type {
+            case .limit(let query):
+                return .requestParameters(parameters: query.parameters, encoding: JSONEncoding.default)
+                
+            case .market(let query):
+                return .requestParameters(parameters: query.parameters, encoding: JSONEncoding.default)
+            }
 
         default:
             return .requestPlain
