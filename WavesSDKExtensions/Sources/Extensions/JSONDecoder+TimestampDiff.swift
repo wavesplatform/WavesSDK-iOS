@@ -28,6 +28,16 @@ public extension JSONDecoder {
         }
         
         return decoder
-    }    
+    }
+        
+    static func decoderByDateWithSecond(_ timestampServerDiff: Int64) -> JSONDecoder {
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom { decoder in
+            return Date(timestampDecoderSeconds: decoder, timestampDiff: timestampServerDiff)
+        }
+        
+        return decoder
+    }
 }
 
