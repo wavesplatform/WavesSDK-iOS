@@ -25,6 +25,16 @@ public extension Date {
         }
     }
     
+    init(timestampDecoderSeconds from: Decoder, timestampDiff: Int64) {
+        if let container = try? from.singleValueContainer(),
+            let miliseconds = try? container.decode(Int64.self) {
+            self = Date(milliseconds: miliseconds * 1000 + timestampDiff)
+        }
+        else {
+            self = Date()
+        }
+    }
+    
     init(isoDecoder from: Decoder, timestampDiff: Int64) {
         
         let formatter = DateFormatter.iso()
