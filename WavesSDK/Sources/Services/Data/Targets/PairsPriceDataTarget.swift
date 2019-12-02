@@ -11,6 +11,7 @@ import Moya
 
 private enum TargetConstants {
     static let pairs = "pairs"
+    static let matcher = "matcher"
 }
 
 public extension DataService.Query {
@@ -28,8 +29,10 @@ public extension DataService.Query {
         }
         
         public let pairs: [Pair]
+        public let matcher: String?
         
-        public init(pairs: [Pair]) {
+        public init(pairs: [Pair], matcher: String?) {
+            self.matcher = matcher
             self.pairs = pairs
         }
     }
@@ -42,9 +45,11 @@ public extension DataService.Query {
         }
         
         public let kind: Kind
+        public let matcher: String?
         
-        public init(kind: Kind) {
+        public init(kind: Kind, matcher: String?) {
             self.kind = kind
+            self.matcher = matcher
         }
     }
 }
@@ -57,7 +62,7 @@ extension DataService.Target {
     }
     
     struct PairsPriceSearch {
-        let kind: DataService.Query.PairsPriceSearch.Kind
+        let query: DataService.Query.PairsPriceSearch
         let dataUrl: URL
     }
 }
@@ -73,7 +78,18 @@ extension DataService.Target.PairsPrice: DataTargetType {
     }
     
     var task: Task {
-        return .requestParameters(parameters: [TargetConstants.pairs: query.pairs.map { $0.amountAssetId + "/" + $0.priceAssetId }],
+        
+        let dictionary: [String: Any] = {
+                    
+            if let matcher = query.matcher {
+                return [TargetConstants.pairs: query.pairs.map { $0.amountAssetId + "/" + $0.priceAssetId },
+                        TargetConstants.matcher: matcher]
+            } else {
+                return [TargetConstants.pairs: query.pairs.map { $0.amountAssetId + "/" + $0.priceAssetId }]
+            }
+        }()
+        
+        return .requestParameters(parameters: dictionary,
                                   encoding: JSONEncoding.default)
     }
 }
@@ -95,12 +111,36 @@ extension DataService.Target.PairsPriceSearch: DataTargetType {
     }
     
     var task: Task {
-        switch kind {
+        
+        
+        switch query.kind {
         case .byAsset(let name):
-            return .requestParameters(parameters: [Constants.searchByAsset: name], encoding: URLEncoding.default)
+
+            let dictionary: [String: Any] = {
+
+                 if let matcher = query.matcher {
+                     return [Constants.searchByAsset: name,
+                             TargetConstants.matcher: matcher]
+                 } else {
+                     return [Constants.searchByAsset: name]
+                 }
+             }()
+            
+            return .requestParameters(parameters: dictionary, encoding: URLEncoding.default)
             
         case .byAssets(let firstName, let secondName):
-            return .requestParameters(parameters: [Constants.searchByAssets: firstName + "," + secondName],
+            
+            let dictionary: [String: Any] = {
+
+                 if let matcher = query.matcher {
+                     return [Constants.searchByAssets: firstName + "," + secondName,
+                             TargetConstants.matcher: matcher]
+                 } else {
+                     return [Constants.searchByAssets: firstName + "," + secondName]
+                 }
+             }()
+            
+            return .requestParameters(parameters: dictionary,
                                       encoding: URLEncoding.default)
         }
     }

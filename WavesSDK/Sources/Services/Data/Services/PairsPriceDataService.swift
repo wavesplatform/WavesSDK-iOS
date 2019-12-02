@@ -44,7 +44,7 @@ final class PairsPriceDataService: InternalWavesService, PairsPriceDataServicePr
         
         return self.pairsPriceSearchProvider
                 .rx
-                .request(DataService.Target.PairsPriceSearch(kind: query.kind,
+                .request(DataService.Target.PairsPriceSearch(query: query,
                                                              dataUrl: enviroment.dataUrl),
                          callbackQueue: DispatchQueue.global(qos: .userInteractive))
                 .filterSuccessfulStatusAndRedirectCodes()
