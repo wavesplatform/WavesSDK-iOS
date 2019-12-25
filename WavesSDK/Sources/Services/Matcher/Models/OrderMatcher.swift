@@ -12,6 +12,11 @@ public extension MatcherService.DTO {
     
     struct Order: Decodable {
         
+        public struct AssetPair: Decodable {
+            public let amountAsset: String?
+            public let priceAsset: String?
+        }
+        
         public enum OrderType: String, Decodable {
             case sell
             case buy
@@ -35,6 +40,7 @@ public extension MatcherService.DTO {
         //TODO: Remove optional after Release  https://jira.wavesplatform.com/browse/DEX-352
         public let fee: Int64?
         public let feeAsset: String?
+        public let assetPair: AssetPair
     }
     
     struct SettingRateFee {

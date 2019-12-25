@@ -10,7 +10,7 @@ import RxSwift
 import Moya
 
 final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServiceProtocol {
-    
+   
     private let orderBookProvider: MoyaProvider<MatcherService.Target.OrderBook>
         
     init(orderBookProvider: MoyaProvider<MatcherService.Target.OrderBook>, enviroment: Enviroment) {
@@ -74,6 +74,24 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
             .asObservable()
     }
     
+    public func allMyOrders(query: MatcherService.Query.GetAllMyOrders) -> Observable<[MatcherService.DTO.Order]> {
+        return self
+           .orderBookProvider
+           .rx
+           .request(.init(kind: .getAllMyOrders(query),
+                          matcherUrl: enviroment.matcherUrl),
+                    callbackQueue: DispatchQueue.global(qos: .userInteractive))
+           .filterSuccessfulStatusAndRedirectCodes()
+           .catchError({ (error) -> Single<Response> in
+               return Single.error(NetworkError.error(by: error))
+           })
+           .map([MatcherService.DTO.Order].self,
+                atKeyPath: nil,
+                using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff),
+                failsOnEmptyData: false)
+           .asObservable()
+    }
+    
     public func cancelOrder(query: MatcherService.Query.CancelOrder) -> Observable<Bool> {
         
         return self
@@ -90,6 +108,21 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
             .asObservable()
     }
     
+    public func cancelAllOrders(query: MatcherService.Query.CancelAllOrders) -> Observable<Bool> {
+        return self
+            .orderBookProvider
+            .rx
+            .request(.init(kind: .cancelAllOrders(query),
+                           matcherUrl: enviroment.matcherUrl),
+                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+            .filterSuccessfulStatusAndRedirectCodes()
+            .catchError({ (error) -> Single<Response> in
+                return Single.error(NetworkError.error(by: error))
+            })
+            .map { _ in true }
+            .asObservable()
+    }
+       
     public func createOrder(query: MatcherService.Query.CreateOrder) -> Observable<Bool> {
         
         return self
