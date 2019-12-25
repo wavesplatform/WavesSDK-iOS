@@ -197,6 +197,37 @@ public extension MatcherService.Query {
                     Constants.signature : signature]
         }
     }
+  
+    struct CancelAllOrders {
+         
+        /**
+         Order signature by account private key
+         */
+        public let signature: String
+
+        /**
+         Account public key of the sender in Base58
+         */
+        public let senderPublicKey: String
+        
+        /**
+          Unix time of sending of transaction to blockchain, must be in current time +/- half of hour
+         */
+        public let timestamp: Int64
+
+
+        public init(signature: String, senderPublicKey: String, timestamp: Int64) {
+              self.signature = signature
+              self.timestamp = timestamp
+              self.senderPublicKey = senderPublicKey
+          }
+          
+          internal var parameters: [String : Any] {
+              return [Constants.sender : senderPublicKey,
+                      Constants.timestamp: timestamp,
+                      Constants.signature : signature]
+          }
+      }
     
     struct GetMyOrders {
         public let amountAsset: String
@@ -208,6 +239,24 @@ public extension MatcherService.Query {
         public init(amountAsset: String, priceAsset: String, publicKey: String, signature: String, timestamp: Int64) {
             self.amountAsset = amountAsset
             self.priceAsset = priceAsset
+            self.publicKey = publicKey
+            self.signature = signature
+            self.timestamp = timestamp
+        }
+        
+        public var parameters: [String: String] {
+            return [Constants.senderPublicKey : publicKey,
+                    Constants.timestamp: "\(timestamp)",
+                    Constants.signature: signature]
+        }
+    }
+    
+    struct GetAllMyOrders {
+        public let publicKey: String
+        public let signature: String
+        public let timestamp: Int64
+
+        public init(publicKey: String, signature: String, timestamp: Int64) {
             self.publicKey = publicKey
             self.signature = signature
             self.timestamp = timestamp

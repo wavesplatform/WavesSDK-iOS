@@ -24,7 +24,9 @@ extension MatcherService.Target {
             case getOrderBook(amountAsset: String, priceAsset: String)
             case getMarket
             case getMyOrders(MatcherService.Query.GetMyOrders)
+            case getAllMyOrders(MatcherService.Query.GetAllMyOrders)
             case cancelOrder(MatcherService.Query.CancelOrder)
+            case cancelAllOrders(MatcherService.Query.CancelAllOrders)
             case createOrder(CreateOrderType)
             case settingsFee
             case settings
@@ -67,8 +69,14 @@ extension MatcherService.Target.OrderBook: MatcherTargetType {
             return orderBookPath + "/" + query.amountAsset + "/" + query.priceAsset + "/"
                 + Constants.publicKey + "/" + query.publicKey
 
+        case .getAllMyOrders(let query):
+            return orderBookPath + "/" + query.publicKey
+
         case .cancelOrder(let query):
             return orderBookPath + "/" + query.amountAsset + "/" + query.priceAsset + "/" + Constants.cancel
+
+        case .cancelAllOrders:
+            return orderBookPath + "/" + Constants.cancel
 
         case .createOrder(let orderType):
             switch orderType {
@@ -87,7 +95,7 @@ extension MatcherService.Target.OrderBook: MatcherTargetType {
     var method: Moya.Method {
         
         switch kind {
-        case .cancelOrder, .createOrder:
+        case .cancelOrder, .cancelAllOrders, .createOrder:
             return .post
             
         default:
@@ -99,6 +107,9 @@ extension MatcherService.Target.OrderBook: MatcherTargetType {
         
         switch kind {
         case .cancelOrder(let query):
+            return .requestParameters(parameters: query.parameters, encoding: JSONEncoding.default)
+
+        case .cancelAllOrders(let query):
             return .requestParameters(parameters: query.parameters, encoding: JSONEncoding.default)
 
         case .createOrder(let type):
@@ -120,6 +131,9 @@ extension MatcherService.Target.OrderBook: MatcherTargetType {
 
         switch kind {
         case .getMyOrders(let query):
+            headers.merge(query.parameters) { a, _ in a }
+
+        case .getAllMyOrders(let query):
             headers.merge(query.parameters) { a, _ in a }
 
         default:

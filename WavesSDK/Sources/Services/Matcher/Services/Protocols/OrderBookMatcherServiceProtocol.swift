@@ -26,11 +26,24 @@ public protocol OrderBookMatcherServiceProtocol {
      */
     func myOrders(query: MatcherService.Query.GetMyOrders) -> Observable<[MatcherService.DTO.Order]>
 
+    
+    /**
+      Get OrderResponse History for a all assets and Public Key
+     */
+    
+    func allMyOrders(query: MatcherService.Query.GetAllMyOrders) -> Observable<[MatcherService.DTO.Order]>
+
     /**
       Cancel previously submitted order if it's not already filled completely
      */
     func cancelOrder(query: MatcherService.Query.CancelOrder) -> Observable<Bool>
 
+    
+    /**
+        Cancel previously submitted orders if it's not already filled completely
+    */
+    func cancelAllOrders(query: MatcherService.Query.CancelAllOrders) -> Observable<Bool>
+    
     /**
       Place a new limit order (buy or sell)
      */
