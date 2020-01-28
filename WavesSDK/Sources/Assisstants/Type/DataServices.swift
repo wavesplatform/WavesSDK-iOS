@@ -43,6 +43,7 @@ internal final class DataServices: InternalWavesService, DataServicesProtocol {
         candlesDataService = CandlesDataService(candlesProvider: DataServices.moyaProvider(plugins: plugins), enviroment: enviroment)
         pairsPriceDataService = PairsPriceDataService(pairsPriceProvider: DataServices.moyaProvider(plugins: plugins),
                                                       pairsPriceSearchProvider: DataServices.moyaProvider(plugins: plugins),
+                                                      pairsRateProvider: DataServices.moyaProvider(plugins: plugins),
                                                       enviroment: enviroment)
         transactionsDataService = TransactionsDataService(transactionsProvider: DataServices.moyaProvider(plugins: plugins), enviroment: enviroment)
         

@@ -9,17 +9,32 @@ import Foundation
 import RxSwift
 import Moya
 
+private struct Rate: Decodable {
+    
+    struct Data: Decodable {
+        let rate: Double
+    }
+    
+    let data: Data
+    let amountAsset: String
+    let priceAsset: String
+}
+
+
 final class PairsPriceDataService: InternalWavesService, PairsPriceDataServiceProtocol {
   
     private let pairsPriceProvider: MoyaProvider<DataService.Target.PairsPrice>
     private let pairsPriceSearchProvider: MoyaProvider<DataService.Target.PairsPriceSearch>
-    
+    private let pairsRateProvider: MoyaProvider<DataService.Target.PairsRate>
+
     init(pairsPriceProvider: MoyaProvider<DataService.Target.PairsPrice>,
          pairsPriceSearchProvider: MoyaProvider<DataService.Target.PairsPriceSearch>,
+         pairsRateProvider: MoyaProvider<DataService.Target.PairsRate>,
          enviroment: Enviroment) {
         
         self.pairsPriceProvider = pairsPriceProvider
         self.pairsPriceSearchProvider = pairsPriceSearchProvider
+        self.pairsRateProvider = pairsRateProvider
         super.init(enviroment: enviroment)
     }
     
@@ -40,6 +55,24 @@ final class PairsPriceDataService: InternalWavesService, PairsPriceDataServicePr
             .asObservable()
     }
     
+    public func pairsRate(query: DataService.Query.PairsRate) -> Observable<[DataService.DTO.PairRate]> {
+        
+        return pairsRateProvider
+            .rx
+            .request(DataService.Target.PairsRate(query: query, dataUrl: enviroment.dataUrl),
+                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+            .filterSuccessfulStatusAndRedirectCodes()
+            .catchError({ (error) -> Single<Response> in
+                return Single<Response>.error(NetworkError.error(by: error))
+            })
+            .map(DataService.Response<[Rate]>.self)
+            .map { $0.data.map { DataService.DTO.PairRate(amountAssetId: $0.amountAsset,
+                                                          priceAssetId: $0.priceAsset,
+                                                          rate: $0.data.rate) }}
+            .asObservable()
+
+        
+    }
     public func searchByAsset(query: DataService.Query.PairsPriceSearch) -> Observable<[DataService.DTO.PairPriceSearch]> {
         
         return self.pairsPriceSearchProvider

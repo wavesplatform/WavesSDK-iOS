@@ -145,3 +145,4 @@ extension DataService.Target.PairsPriceSearch: DataTargetType {
         }
     }
 }
+

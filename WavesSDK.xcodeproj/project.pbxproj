@@ -268,8 +268,10 @@
 		7BBB233022CA2B8D0057095D /* TransactionSignatureV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB232E22CA2A940057095D /* TransactionSignatureV1.swift */; };
 		7BBB233322CA2C990057095D /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB233122CA2C600057095D /* TransactionType.swift */; };
 		7BBB233622CE13140057095D /* BaseTransactionQueryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB233422CE13080057095D /* BaseTransactionQueryProtocol.swift */; };
-		E96DE18F231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96DE18E231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift */; };
 		E9399076231FD41D00302490 /* WavesKeeper+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9399075231FD41D00302490 /* WavesKeeper+Decodable.swift */; };
+		E9496F5923D7D93500FBF78F /* PairsRateDataTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9496F5823D7D93500FBF78F /* PairsRateDataTarget.swift */; };
+		E9496F5B23D7DBF300FBF78F /* PairsRateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9496F5A23D7DBF300FBF78F /* PairsRateData.swift */; };
+		E96DE18F231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96DE18E231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift */; };
 		E97A74A922D4B26200777C39 /* String+Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A74A822D4B26200777C39 /* String+Bytes.swift */; };
 /* End PBXBuildFile section */
 
@@ -617,8 +619,10 @@
 		D9387DBAA6359A3ED5505A5D /* Pods-WavesSDKExtensions.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKExtensions.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKExtensions/Pods-WavesSDKExtensions.test-prod.xcconfig"; sourceTree = "<group>"; };
 		E2D7032DCD57CC4376B4E62D /* Pods-WavesSDKCrypto.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKCrypto.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKCrypto/Pods-WavesSDKCrypto.test-prod.xcconfig"; sourceTree = "<group>"; };
 		E2DAA2313D13873B3DFB0736 /* Pods-WavesSDK.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDK.release-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDK/Pods-WavesSDK.release-prod.xcconfig"; sourceTree = "<group>"; };
-		E96DE18E231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+TimestampDiff.swift"; sourceTree = "<group>"; };
 		E9399075231FD41D00302490 /* WavesKeeper+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WavesKeeper+Decodable.swift"; sourceTree = "<group>"; };
+		E9496F5823D7D93500FBF78F /* PairsRateDataTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairsRateDataTarget.swift; sourceTree = "<group>"; };
+		E9496F5A23D7DBF300FBF78F /* PairsRateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairsRateData.swift; sourceTree = "<group>"; };
+		E96DE18E231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+TimestampDiff.swift"; sourceTree = "<group>"; };
 		E97A74A822D4B26200777C39 /* String+Bytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Bytes.swift"; sourceTree = "<group>"; };
 		EF2543D7C92B92855970DEAF /* Pods-WavesSDKExtensions.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKExtensions.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKExtensions/Pods-WavesSDKExtensions.test-dev.xcconfig"; sourceTree = "<group>"; };
 		F2EFB19AAEF15B25F1D28436 /* Pods-WavesSDK.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDK.dev-debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDK/Pods-WavesSDK.dev-debug.xcconfig"; sourceTree = "<group>"; };
@@ -1316,6 +1320,7 @@
 				7B4E1F4422C4DD2D00854BAB /* CandlesDataTarget.swift */,
 				7B4E1F4522C4DD2D00854BAB /* PairsPriceDataTarget.swift */,
 				7B4E1F4622C4DD2D00854BAB /* AliasDataTarget.swift */,
+				E9496F5823D7D93500FBF78F /* PairsRateDataTarget.swift */,
 			);
 			path = Targets;
 			sourceTree = "<group>";
@@ -1333,6 +1338,7 @@
 			isa = PBXGroup;
 			children = (
 				7B4E1F4B22C4DD2D00854BAB /* PairPriceData.swift */,
+				E9496F5A23D7DBF300FBF78F /* PairsRateData.swift */,
 				7B4E1F4C22C4DD2D00854BAB /* AssetData.swift */,
 				7B4E1F4D22C4DD2D00854BAB /* TransactionData.swift */,
 				7B4E1F4E22C4DD2D00854BAB /* CandleData.swift */,
@@ -1819,6 +1825,7 @@
 				7B4E1FAF22C4DD2D00854BAB /* ExchangeFiltersDataQuery.swift in Sources */,
 				7B4E1FAC22C4DD2D00854BAB /* CandlesDataTarget.swift in Sources */,
 				7B4E1FBE22C4DD2D00854BAB /* AliasDataServiceProtocol.swift in Sources */,
+				E9496F5923D7D93500FBF78F /* PairsRateDataTarget.swift in Sources */,
 				7B4E1F6C22C4DD2D00854BAB /* ServicesProtocol.swift in Sources */,
 				7B4E1F8D22C4DD2D00854BAB /* SetAssetScriptTransactionNode.swift in Sources */,
 				7B4E1FB922C4DD2D00854BAB /* PairsPriceDataService.swift in Sources */,
@@ -1832,6 +1839,7 @@
 				7B4E1FA822C4DD2D00854BAB /* BlocksNodeServiceProtocol.swift in Sources */,
 				7B4E1F6122C4DD2D00854BAB /* TransactionSignatureV2.swift in Sources */,
 				7B4E1FB722C4DD2D00854BAB /* DataServiceTypes.swift in Sources */,
+				E9496F5B23D7DBF300FBF78F /* PairsRateData.swift in Sources */,
 				7B4E1F6922C4DD2D00854BAB /* NodeServices.swift in Sources */,
 				7B4E1F8122C4DD2D00854BAB /* AssetsNodeTarget.swift in Sources */,
 				7B4E1F8622C4DD2D00854BAB /* AddressesNodeTarget.swift in Sources */,
