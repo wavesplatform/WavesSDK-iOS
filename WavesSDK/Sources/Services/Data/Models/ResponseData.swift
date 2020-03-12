@@ -10,25 +10,29 @@ import Foundation
 
 public extension DataService {
     struct Response<T: Decodable>: Decodable {
-        let type: String
-        let data: T
-        let lastCursor: String?
+        public let type: String
+        public let data: T
+        public let isLastPage: Bool
+        public let lastCursor: String?
 
         enum CodingKeys: String, CodingKey {
             case type = "__type"
             case data
+            case isLastPage
             case lastCursor
         }
     }
     
     struct OptionalResponse<T: Decodable>: Decodable {
-        let type: String
-        let data: T?
-        let lastCursor: String?
+        public let type: String
+        public let data: T?
+        public let isLastPage: Bool
+        public let lastCursor: String?
         
         enum CodingKeys: String, CodingKey {
             case type = "__type"
             case data
+            case isLastPage
             case lastCursor
         }
     }

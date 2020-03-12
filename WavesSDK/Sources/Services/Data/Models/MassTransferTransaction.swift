@@ -1,15 +1,17 @@
 //
-//  TransactionMassTransferNode.swift
-//  WavesWallet-iOS
+//  MassTransferTransaction.swift
+//  WavesSDK
 //
-//  Created by Prokofev Ruslan on 07/08/2018.
-//  Copyright © 2018 Waves Platform. All rights reserved.
+//  Created by vvisotskiy on 12.03.2020.
+//  Copyright © 2020 Waves. All rights reserved.
 //
 
 import Foundation
 
-extension NodeService.DTO {
-
+// Скопированаая DTO из extension NodeService.DTO {
+// разница между ними в fee (int64 и double)
+extension DataService.DTO {
+    
     /**
       The Mass-Transfer transaction sends a lot of transactions of asset for recipients set
 
@@ -38,14 +40,14 @@ extension NodeService.DTO {
             /**
               Amount of asset in satoshi
               */
-            public let amount: Int64
+            public let amount: Double
         }
 
         public let type: Int
         public let id: String
         public let sender: String
         public let senderPublicKey: String
-        public let fee: Int64
+        public let fee: Double
         public let timestamp: Date
         public let version: Int
         public let height: Int64?
@@ -61,16 +63,6 @@ extension NodeService.DTO {
           [0,140] bytes of string encoded in Base58
          */
         public let attachment: String
-
-        /**
-          Not necessary
-         */
-        public let transferCount: Int
-
-        /**
-          Not necessary
-         */
-        public let totalAmount: Int64
 
         /**
           Collection of recipients with amount each

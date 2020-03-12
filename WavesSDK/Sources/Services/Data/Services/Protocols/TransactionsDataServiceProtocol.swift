@@ -14,4 +14,7 @@ public protocol TransactionsDataServiceProtocol {
             Get a list of exchange transactions by applying filters
         */
     func transactionsExchange(query: DataService.Query.ExchangeFilters) -> Observable<[DataService.DTO.ExchangeTransaction]>
+    
+    func obtainPayoutsHistory(query: DataService.Query.MassTransferDataQuery)
+        -> Observable<DataService.Response<[DataService.DTO.MassTransferTransaction]>>
 }
