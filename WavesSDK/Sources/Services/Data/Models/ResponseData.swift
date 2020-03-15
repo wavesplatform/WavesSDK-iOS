@@ -12,7 +12,7 @@ public extension DataService {
     struct Response<T: Decodable>: Decodable {
         public let type: String
         public let data: T
-        public let isLastPage: Bool
+        public let isLastPage: Bool?
         public let lastCursor: String?
 
         enum CodingKeys: String, CodingKey {
@@ -26,7 +26,7 @@ public extension DataService {
     struct OptionalResponse<T: Decodable>: Decodable {
         public let type: String
         public let data: T?
-        public let isLastPage: Bool
+        public let isLastPage: Bool?
         public let lastCursor: String?
         
         enum CodingKeys: String, CodingKey {

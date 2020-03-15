@@ -21,7 +21,7 @@ extension DataService.Target {
             case getExchange(id: String)
             case getExchangeWithFilters(DataService.Query.ExchangeFilters)
             
-            case getPayoutsHistory
+            case getPayoutsHistory(DataService.Query.MassTransferDataQuery)
         }
 
         let kind: Kind
@@ -60,8 +60,8 @@ extension DataService.Target.Transactions: DataTargetType {
         case .getExchangeWithFilters(let filter):
             return .requestParameters(parameters: filter.dictionary, encoding: URLEncoding.default)
             
-        case .getPayoutsHistory:
-            return .requestPlain
+        case .getPayoutsHistory(let query):
+            return .requestParameters(parameters: query.dictionary, encoding: URLEncoding.default)
         }
     }
 }

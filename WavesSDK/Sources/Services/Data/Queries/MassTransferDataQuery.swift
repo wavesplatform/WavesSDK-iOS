@@ -31,7 +31,7 @@ extension DataService.Query {
         public let timeEnd: String?
         
         ///
-        public let recipient: String?
+        public let recipient: String
         
         /// Фильтрация транзакций по asset id
         public let assetId: String?
@@ -48,7 +48,7 @@ extension DataService.Query {
         public init(sender: String?,
                     timeStart: String?,
                     timeEnd: String?,
-                    recipient: String?,
+                    recipient: String,
                     assetId: String?,
                     after: String?,
                     sort: SortOrder = .desc,

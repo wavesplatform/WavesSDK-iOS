@@ -42,7 +42,7 @@ final class TransactionsDataService: InternalWavesService, TransactionsDataServi
     public func obtainPayoutsHistory(query: DataService.Query.MassTransferDataQuery)
         -> Observable<DataService.Response<[DataService.DTO.MassTransferTransaction]>> {
 
-        let target = DataService.Target.Transactions(kind: .getPayoutsHistory, dataUrl: enviroment.dataUrl)
+        let target = DataService.Target.Transactions(kind: .getPayoutsHistory(query), dataUrl: enviroment.dataUrl)
         
         return transactionsProvider
             .rx
