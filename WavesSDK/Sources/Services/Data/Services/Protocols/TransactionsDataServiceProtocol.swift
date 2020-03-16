@@ -15,6 +15,6 @@ public protocol TransactionsDataServiceProtocol {
         */
     func transactionsExchange(query: DataService.Query.ExchangeFilters) -> Observable<[DataService.DTO.ExchangeTransaction]>
     
-    func obtainPayoutsHistory(query: DataService.Query.MassTransferDataQuery)
+    func getMassTransferTransactions(query: DataService.Query.MassTransferDataQuery)
         -> Observable<DataService.Response<[DataService.DTO.MassTransferTransaction]>>
 }

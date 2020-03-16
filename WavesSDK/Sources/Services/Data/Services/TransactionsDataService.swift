@@ -12,8 +12,6 @@ import Moya
 final class TransactionsDataService: InternalWavesService, TransactionsDataServiceProtocol {
     
     private let transactionsProvider: MoyaProvider<DataService.Target.Transactions>
-    
-    private let disposeBag = DisposeBag()
         
     init(transactionsProvider: MoyaProvider<DataService.Target.Transactions>, enviroment: Enviroment) {
         self.transactionsProvider = transactionsProvider
@@ -39,10 +37,10 @@ final class TransactionsDataService: InternalWavesService, TransactionsDataServi
             .asObservable()
     }
     
-    public func obtainPayoutsHistory(query: DataService.Query.MassTransferDataQuery)
+    public func getMassTransferTransactions(query: DataService.Query.MassTransferDataQuery)
         -> Observable<DataService.Response<[DataService.DTO.MassTransferTransaction]>> {
 
-        let target = DataService.Target.Transactions(kind: .getPayoutsHistory(query), dataUrl: enviroment.dataUrl)
+        let target = DataService.Target.Transactions(kind: .getMassTransferTransactions(query), dataUrl: enviroment.dataUrl)
         
         return transactionsProvider
             .rx
@@ -70,7 +68,9 @@ final class TransactionsDataService: InternalWavesService, TransactionsDataServi
 }
 
 extension TransactionsDataService {
+    /// Данная структура помогает нам забрать ответ который нам необходим и не засорять внешний Namespace ненужными обертками из-за несовершенства back-end системы
     fileprivate struct MassTransferResponseAdapter: Decodable {
+        
         let type: String
         let data: DataService.DTO.MassTransferTransaction
         

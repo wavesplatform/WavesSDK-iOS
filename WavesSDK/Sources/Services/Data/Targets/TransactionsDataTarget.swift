@@ -21,7 +21,7 @@ extension DataService.Target {
             case getExchange(id: String)
             case getExchangeWithFilters(DataService.Query.ExchangeFilters)
             
-            case getPayoutsHistory(DataService.Query.MassTransferDataQuery)
+            case getMassTransferTransactions(DataService.Query.MassTransferDataQuery)
         }
 
         let kind: Kind
@@ -33,6 +33,7 @@ extension DataService.Target.Transactions: DataTargetType {
 
     private enum Constants {
         static let exchange = "transactions/exchange"
+        static let massTransfer = "transactions/mass-transfer"
     }
 
     var path: String {
@@ -41,13 +42,13 @@ extension DataService.Target.Transactions: DataTargetType {
 
         case .getExchangeWithFilters: return Constants.exchange
             
-        case .getPayoutsHistory: return "transactions/mass-transfer"
+        case .getMassTransferTransactions: return Constants.massTransfer
         }
     }
 
     var method: Moya.Method {
         switch kind {
-        case .getExchange, .getExchangeWithFilters, .getPayoutsHistory:
+        case .getExchange, .getExchangeWithFilters, .getMassTransferTransactions:
             return .get
         }
     }
@@ -60,7 +61,7 @@ extension DataService.Target.Transactions: DataTargetType {
         case .getExchangeWithFilters(let filter):
             return .requestParameters(parameters: filter.dictionary, encoding: URLEncoding.default)
             
-        case .getPayoutsHistory(let query):
+        case .getMassTransferTransactions(let query):
             return .requestParameters(parameters: query.dictionary, encoding: URLEncoding.default)
         }
     }
