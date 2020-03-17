@@ -150,7 +150,7 @@ extension WavesKeeper.Response.Kind {
                 try container.encode(value, forKey: .success)
             }
             
-        } catch let e {
+        } catch {
             throw NSError(domain: "Encoder Invalid WavesKeeper.Response", code: 0, userInfo: nil)
         }
         

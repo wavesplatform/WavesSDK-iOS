@@ -21,9 +21,7 @@ internal final class DataServices: InternalWavesService, DataServicesProtocol {
     public var transactionsDataService: TransactionsDataServiceProtocol
     
     override var enviroment: Enviroment {
-        
         didSet {
-            
             [aliasDataService,
              assetsDataService,
              candlesDataService,
@@ -45,7 +43,8 @@ internal final class DataServices: InternalWavesService, DataServicesProtocol {
                                                       pairsPriceSearchProvider: DataServices.moyaProvider(plugins: plugins),
                                                       pairsRateProvider: DataServices.moyaProvider(plugins: plugins),
                                                       enviroment: enviroment)
-        transactionsDataService = TransactionsDataService(transactionsProvider: DataServices.moyaProvider(plugins: plugins), enviroment: enviroment)
+        transactionsDataService = TransactionsDataService(transactionsProvider: DataServices.moyaProvider(plugins: plugins),
+                                                          enviroment: enviroment)
         
         super.init(enviroment: enviroment)
     }

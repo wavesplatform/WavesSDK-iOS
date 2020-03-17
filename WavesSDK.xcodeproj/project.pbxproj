@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		412C17E66F2DCD1B8B8A5700 /* Pods_WavesSDKExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B8C6C318AE1E6A1668B56FF /* Pods_WavesSDKExtensions.framework */; };
-		474FEABA82AF9D9B89A52474 /* Pods_WavesSDKCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D4DB33B270716223CC8FE37 /* Pods_WavesSDKCrypto.framework */; };
-		5E755C09D52B52870F3C2D66 /* Pods_WavesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72818587D5D748104E066BF0 /* Pods_WavesSDK.framework */; };
+		176747752F50C7BD0BE9F26B /* Pods_WavesSDKCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160129484C5E9AB44B31968C /* Pods_WavesSDKCrypto.framework */; };
+		1C7329CF0B5C93F62C17A44D /* Pods_WavesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1729452E23D948963F49462 /* Pods_WavesSDK.framework */; };
 		7B0B6F9B231E6DC800CC5DCB /* DictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0B6F9A231E6DC800CC5DCB /* DictionaryEncoder.swift */; };
 		7B3681A323152E13000D5592 /* WavesKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3681A223152E13000D5592 /* WavesKeeper.swift */; };
 		7B3DCA2922CFC37600FC973D /* keccak.c in Sources */ = {isa = PBXBuildFile; fileRef = 7B3DC9B622CFC37500FC973D /* keccak.c */; settings = {COMPILER_FLAGS = " -w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -268,6 +267,9 @@
 		7BBB233022CA2B8D0057095D /* TransactionSignatureV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB232E22CA2A940057095D /* TransactionSignatureV1.swift */; };
 		7BBB233322CA2C990057095D /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB233122CA2C600057095D /* TransactionType.swift */; };
 		7BBB233622CE13140057095D /* BaseTransactionQueryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB233422CE13080057095D /* BaseTransactionQueryProtocol.swift */; };
+		872C36A8241A38100050250B /* MassTransferTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872C36A7241A38100050250B /* MassTransferTransaction.swift */; };
+		87409DB02417B06000726C12 /* MassTransferDataQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87409DAF2417B06000726C12 /* MassTransferDataQuery.swift */; };
+		9D8F99F008C16F4A92D9DC96 /* Pods_WavesSDKExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A187621E9A98C1B2062128 /* Pods_WavesSDKExtensions.framework */; };
 		E9399076231FD41D00302490 /* WavesKeeper+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9399075231FD41D00302490 /* WavesKeeper+Decodable.swift */; };
 		E9496F5923D7D93500FBF78F /* PairsRateDataTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9496F5823D7D93500FBF78F /* PairsRateDataTarget.swift */; };
 		E9496F5B23D7DBF300FBF78F /* PairsRateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9496F5A23D7DBF300FBF78F /* PairsRateData.swift */; };
@@ -345,11 +347,23 @@
 
 /* Begin PBXFileReference section */
 		00AE2365D4C9D44C3EB23248 /* Pods-WavesSDKCrypto.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKCrypto.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKCrypto/Pods-WavesSDKCrypto.test-dev.xcconfig"; sourceTree = "<group>"; };
-		0B8C6C318AE1E6A1668B56FF /* Pods_WavesSDKExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WavesSDKExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00DEC5869C6B4B65FFFA313E /* Pods-WavesWallet-WavesSDK.dev-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDK.dev-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDK/Pods-WavesWallet-WavesSDK.dev-adhoc.xcconfig"; sourceTree = "<group>"; };
+		076F06C5E0123CC7FDEF6D1E /* Pods-WavesWallet-WavesSDKCrypto.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKCrypto.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKCrypto/Pods-WavesWallet-WavesSDKCrypto.release-dev.xcconfig"; sourceTree = "<group>"; };
 		10016CF24DA41E675DC3F0C9 /* Pods-WavesSDKExtensions.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKExtensions.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKExtensions/Pods-WavesSDKExtensions.release-dev.xcconfig"; sourceTree = "<group>"; };
+		160129484C5E9AB44B31968C /* Pods_WavesSDKCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WavesSDKCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1672E43CD7B4EE74D63BAD8D /* Pods-WavesWallet-WavesSDKCrypto.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKCrypto.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKCrypto/Pods-WavesWallet-WavesSDKCrypto.test-dev.xcconfig"; sourceTree = "<group>"; };
+		169C207798B898F88CC1FD50 /* Pods-WavesWallet-WavesSDKExtensions.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKExtensions.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKExtensions/Pods-WavesWallet-WavesSDKExtensions.release-dev.xcconfig"; sourceTree = "<group>"; };
+		20466A12792AD08F8A3F0D6D /* Pods-WavesWallet-WavesSDKExtensions.dev-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKExtensions.dev-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKExtensions/Pods-WavesWallet-WavesSDKExtensions.dev-adhoc.xcconfig"; sourceTree = "<group>"; };
 		20E21113E935A957B60B9B61 /* Pods-WavesSDK.dev-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDK.dev-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDK/Pods-WavesSDK.dev-adhoc.xcconfig"; sourceTree = "<group>"; };
+		22B6F7AD51F62C06580F88EA /* Pods-WavesWallet-WavesSDK.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDK.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDK/Pods-WavesWallet-WavesSDK.release-dev.xcconfig"; sourceTree = "<group>"; };
+		2863375FFFE63C999B7D5B19 /* Pods-WavesWallet-WavesSDKExtensions.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKExtensions.release-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKExtensions/Pods-WavesWallet-WavesSDKExtensions.release-prod.xcconfig"; sourceTree = "<group>"; };
+		2B4B74725BD856B8FC661BB8 /* Pods-WavesWallet-WavesSDKCrypto.dev-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKCrypto.dev-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKCrypto/Pods-WavesWallet-WavesSDKCrypto.dev-adhoc.xcconfig"; sourceTree = "<group>"; };
+		35A5A24DE33886BBC8DE94F0 /* Pods-WavesWallet-WavesSDK.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDK.release-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDK/Pods-WavesWallet-WavesSDK.release-prod.xcconfig"; sourceTree = "<group>"; };
+		3D2AA03EFA737B2D25953C79 /* Pods-WavesWallet-WavesSDKExtensions.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKExtensions.dev-debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKExtensions/Pods-WavesWallet-WavesSDKExtensions.dev-debug.xcconfig"; sourceTree = "<group>"; };
+		48A187621E9A98C1B2062128 /* Pods_WavesSDKExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WavesSDKExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E4D16E9A03A5D1FEF89AFD2 /* Pods-WavesWallet-WavesSDKExtensions.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKExtensions.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKExtensions/Pods-WavesWallet-WavesSDKExtensions.test-prod.xcconfig"; sourceTree = "<group>"; };
 		557FBA94B197A0B14DB78B87 /* Pods-WavesSDKCrypto.dev-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKCrypto.dev-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKCrypto/Pods-WavesSDKCrypto.dev-adhoc.xcconfig"; sourceTree = "<group>"; };
-		72818587D5D748104E066BF0 /* Pods_WavesSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WavesSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AA4956319919D28300DC8A8 /* Pods-WavesWallet-WavesSDKCrypto.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKCrypto.dev-debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKCrypto/Pods-WavesWallet-WavesSDKCrypto.dev-debug.xcconfig"; sourceTree = "<group>"; };
 		75FFDE847B534C528F075F61 /* Pods-WavesSDKCrypto.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKCrypto.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKCrypto/Pods-WavesSDKCrypto.release-dev.xcconfig"; sourceTree = "<group>"; };
 		78D7832575360CA51393CFEB /* Pods-WavesSDKCrypto.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKCrypto.release-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKCrypto/Pods-WavesSDKCrypto.release-prod.xcconfig"; sourceTree = "<group>"; };
 		7B0B6F9A231E6DC800CC5DCB /* DictionaryEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEncoder.swift; sourceTree = "<group>"; };
@@ -609,12 +623,20 @@
 		7BBB232E22CA2A940057095D /* TransactionSignatureV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSignatureV1.swift; sourceTree = "<group>"; };
 		7BBB233122CA2C600057095D /* TransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
 		7BBB233422CE13080057095D /* BaseTransactionQueryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTransactionQueryProtocol.swift; sourceTree = "<group>"; };
+		7EB0BF3B8993800BE9CD3D94 /* Pods-WavesWallet-WavesSDK.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDK.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDK/Pods-WavesWallet-WavesSDK.test-prod.xcconfig"; sourceTree = "<group>"; };
+		86877D739CE99F30ABB94FA9 /* Pods-WavesWallet-WavesSDKExtensions.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKExtensions.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKExtensions/Pods-WavesWallet-WavesSDKExtensions.test-dev.xcconfig"; sourceTree = "<group>"; };
+		872C36A7241A38100050250B /* MassTransferTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassTransferTransaction.swift; sourceTree = "<group>"; };
+		87409DAF2417B06000726C12 /* MassTransferDataQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassTransferDataQuery.swift; sourceTree = "<group>"; };
 		97C22B5788C92E2B8864E109 /* Pods-WavesSDK.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDK.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDK/Pods-WavesSDK.test-prod.xcconfig"; sourceTree = "<group>"; };
-		9D4DB33B270716223CC8FE37 /* Pods_WavesSDKCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WavesSDKCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F4193CAE9942B8A00D910D4 /* Pods-WavesWallet-WavesSDK.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDK.dev-debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDK/Pods-WavesWallet-WavesSDK.dev-debug.xcconfig"; sourceTree = "<group>"; };
 		AA4D4BB3D50A9961A5687C84 /* Pods-WavesSDKExtensions.dev-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKExtensions.dev-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKExtensions/Pods-WavesSDKExtensions.dev-adhoc.xcconfig"; sourceTree = "<group>"; };
 		AE08FC927FCAEE48D556A21F /* Pods-WavesSDKExtensions.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKExtensions.dev-debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKExtensions/Pods-WavesSDKExtensions.dev-debug.xcconfig"; sourceTree = "<group>"; };
+		BBF02B007BFCC774990CD169 /* Pods-WavesWallet-WavesSDKCrypto.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKCrypto.release-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKCrypto/Pods-WavesWallet-WavesSDKCrypto.release-prod.xcconfig"; sourceTree = "<group>"; };
+		BC1008162E1E77FAE1DA41D3 /* Pods-WavesWallet-WavesSDK.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDK.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDK/Pods-WavesWallet-WavesSDK.test-dev.xcconfig"; sourceTree = "<group>"; };
 		C33879D1D1E550A4E4946A77 /* Pods-WavesSDK.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDK.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDK/Pods-WavesSDK.release-dev.xcconfig"; sourceTree = "<group>"; };
+		CB14CB85805F940459E2410E /* Pods-WavesWallet-WavesSDKCrypto.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKCrypto.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKCrypto/Pods-WavesWallet-WavesSDKCrypto.test-prod.xcconfig"; sourceTree = "<group>"; };
 		D0A8B49767FDDEA7D4F92A21 /* Pods-WavesSDK.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDK.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDK/Pods-WavesSDK.test-dev.xcconfig"; sourceTree = "<group>"; };
+		D1729452E23D948963F49462 /* Pods_WavesSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WavesSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D66F4985E2EB5D9F05458841 /* Pods-WavesSDKCrypto.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKCrypto.dev-debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKCrypto/Pods-WavesSDKCrypto.dev-debug.xcconfig"; sourceTree = "<group>"; };
 		D9387DBAA6359A3ED5505A5D /* Pods-WavesSDKExtensions.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKExtensions.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKExtensions/Pods-WavesSDKExtensions.test-prod.xcconfig"; sourceTree = "<group>"; };
 		E2D7032DCD57CC4376B4E62D /* Pods-WavesSDKCrypto.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKCrypto.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKCrypto/Pods-WavesSDKCrypto.test-prod.xcconfig"; sourceTree = "<group>"; };
@@ -636,7 +658,7 @@
 			files = (
 				7B3DCBFA22D366AB00FC973D /* WavesSDKCrypto.framework in Frameworks */,
 				7B3DCBFB22D366AB00FC973D /* WavesSDKExtensions.framework in Frameworks */,
-				5E755C09D52B52870F3C2D66 /* Pods_WavesSDK.framework in Frameworks */,
+				1C7329CF0B5C93F62C17A44D /* Pods_WavesSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,7 +669,7 @@
 				7B3DCBF922D3647D00FC973D /* WavesSDKExtensions.framework in Frameworks */,
 				7B3DCA8522CFC9C700FC973D /* Foundation.framework in Frameworks */,
 				7B3DCA8322CFC68C00FC973D /* Security.framework in Frameworks */,
-				474FEABA82AF9D9B89A52474 /* Pods_WavesSDKCrypto.framework in Frameworks */,
+				176747752F50C7BD0BE9F26B /* Pods_WavesSDKCrypto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,7 +677,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				412C17E66F2DCD1B8B8A5700 /* Pods_WavesSDKExtensions.framework in Frameworks */,
+				9D8F99F008C16F4A92D9DC96 /* Pods_WavesSDKExtensions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,6 +725,24 @@
 				557FBA94B197A0B14DB78B87 /* Pods-WavesSDKCrypto.dev-adhoc.xcconfig */,
 				78D7832575360CA51393CFEB /* Pods-WavesSDKCrypto.release-prod.xcconfig */,
 				E2D7032DCD57CC4376B4E62D /* Pods-WavesSDKCrypto.test-prod.xcconfig */,
+				9F4193CAE9942B8A00D910D4 /* Pods-WavesWallet-WavesSDK.dev-debug.xcconfig */,
+				BC1008162E1E77FAE1DA41D3 /* Pods-WavesWallet-WavesSDK.test-dev.xcconfig */,
+				22B6F7AD51F62C06580F88EA /* Pods-WavesWallet-WavesSDK.release-dev.xcconfig */,
+				00DEC5869C6B4B65FFFA313E /* Pods-WavesWallet-WavesSDK.dev-adhoc.xcconfig */,
+				35A5A24DE33886BBC8DE94F0 /* Pods-WavesWallet-WavesSDK.release-prod.xcconfig */,
+				7EB0BF3B8993800BE9CD3D94 /* Pods-WavesWallet-WavesSDK.test-prod.xcconfig */,
+				6AA4956319919D28300DC8A8 /* Pods-WavesWallet-WavesSDKCrypto.dev-debug.xcconfig */,
+				1672E43CD7B4EE74D63BAD8D /* Pods-WavesWallet-WavesSDKCrypto.test-dev.xcconfig */,
+				076F06C5E0123CC7FDEF6D1E /* Pods-WavesWallet-WavesSDKCrypto.release-dev.xcconfig */,
+				2B4B74725BD856B8FC661BB8 /* Pods-WavesWallet-WavesSDKCrypto.dev-adhoc.xcconfig */,
+				BBF02B007BFCC774990CD169 /* Pods-WavesWallet-WavesSDKCrypto.release-prod.xcconfig */,
+				CB14CB85805F940459E2410E /* Pods-WavesWallet-WavesSDKCrypto.test-prod.xcconfig */,
+				3D2AA03EFA737B2D25953C79 /* Pods-WavesWallet-WavesSDKExtensions.dev-debug.xcconfig */,
+				86877D739CE99F30ABB94FA9 /* Pods-WavesWallet-WavesSDKExtensions.test-dev.xcconfig */,
+				169C207798B898F88CC1FD50 /* Pods-WavesWallet-WavesSDKExtensions.release-dev.xcconfig */,
+				20466A12792AD08F8A3F0D6D /* Pods-WavesWallet-WavesSDKExtensions.dev-adhoc.xcconfig */,
+				2863375FFFE63C999B7D5B19 /* Pods-WavesWallet-WavesSDKExtensions.release-prod.xcconfig */,
+				4E4D16E9A03A5D1FEF89AFD2 /* Pods-WavesWallet-WavesSDKExtensions.test-prod.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1330,6 +1370,7 @@
 			children = (
 				7B4E1F4822C4DD2D00854BAB /* ExchangeFiltersDataQuery.swift */,
 				7B4E1F4922C4DD2D00854BAB /* CandleFiltersDataQuery.swift */,
+				87409DAF2417B06000726C12 /* MassTransferDataQuery.swift */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
@@ -1344,6 +1385,7 @@
 				7B4E1F4E22C4DD2D00854BAB /* CandleData.swift */,
 				7B4E1F4F22C4DD2D00854BAB /* AliasData.swift */,
 				7B4E1F5022C4DD2D00854BAB /* ResponseData.swift */,
+				872C36A7241A38100050250B /* MassTransferTransaction.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1444,9 +1486,9 @@
 				7B3DCA8422CFC9C700FC973D /* Foundation.framework */,
 				7B42335622563A3200E82730 /* Security.framework */,
 				7B42335422563A2100E82730 /* CoreTelephony.framework */,
-				72818587D5D748104E066BF0 /* Pods_WavesSDK.framework */,
-				0B8C6C318AE1E6A1668B56FF /* Pods_WavesSDKExtensions.framework */,
-				9D4DB33B270716223CC8FE37 /* Pods_WavesSDKCrypto.framework */,
+				D1729452E23D948963F49462 /* Pods_WavesSDK.framework */,
+				160129484C5E9AB44B31968C /* Pods_WavesSDKCrypto.framework */,
+				48A187621E9A98C1B2062128 /* Pods_WavesSDKExtensions.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1807,6 +1849,7 @@
 				7B4E1F9622C4DD2D00854BAB /* LeaseTransactionNode.swift in Sources */,
 				7B3681A323152E13000D5592 /* WavesKeeper.swift in Sources */,
 				7B4E1F9222C4DD2D00854BAB /* SponsorshipTransactionNode.swift in Sources */,
+				87409DB02417B06000726C12 /* MassTransferDataQuery.swift in Sources */,
 				7B4E1F6822C4DD2D00854BAB /* MatcherServices.swift in Sources */,
 				7B4E1F6A22C4DD2D00854BAB /* ContentType.swift in Sources */,
 				7B4E1FA222C4DD2D00854BAB /* AssetsNodeService.swift in Sources */,
@@ -1890,6 +1933,7 @@
 				7B4E1F8E22C4DD2D00854BAB /* DataTransactionNode.swift in Sources */,
 				7B4E1FAA22C4DD2D00854BAB /* TransactionsDataTarget.swift in Sources */,
 				7B4E1F7D22C4DD2D00854BAB /* OrderBookMatcherServiceProtocol.swift in Sources */,
+				872C36A8241A38100050250B /* MassTransferTransaction.swift in Sources */,
 				7B4E1F8C22C4DD2D00854BAB /* IssueTransactionNode.swift in Sources */,
 				7B4E1F8822C4DD2D00854BAB /* BlockNode.swift in Sources */,
 				7B4E1F8722C4DD2D00854BAB /* TransactionNodeQuery.swift in Sources */,
