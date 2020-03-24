@@ -367,10 +367,10 @@ private extension TransactionSignatureV1.Structure.InvokeScript.Call {
                 
             case .string(let value):
                 
-                bytes += [2] + value.arrayWithSize32()
+                bytes += [UInt8(2)] + value.arrayWithSize32()
                 
             case .integer(let value):
-                bytes += [0] + toByteArray(value)
+                bytes += [UInt8(0)] + toByteArray(value)
                 
             case .bool(let value):
                 
@@ -413,7 +413,11 @@ private extension TransactionSignatureV1.Structure.InvokeScript {
             bytes += assetId
         }
         
-        bytes = toByteArray(Int16(self.payment.count)) + bytes.arrayWithSize()
+        if bytes.count > 0 {
+            bytes = toByteArray(Int16(self.payment.count)) + bytes.arrayWithSize()
+        } else {
+            bytes = toByteArray(Int16(self.payment.count))
+        }
         
         return bytes
     }
