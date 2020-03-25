@@ -20,33 +20,38 @@ final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProt
     }
 
     public func addressBalance(address: String) -> Observable<NodeService.DTO.AddressBalance> {
-        
-        return self
-            .addressesProvider
+        let target: NodeService.Target.Addresses = .init(kind: .getAddressBalance(id: address), nodeUrl: enviroment.nodeUrl)
+        return addressesProvider
             .rx
-            .request(.init(kind: .getAddressBalance(id: address),
-                           nodeUrl: enviroment.nodeUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+            .request(target, callbackQueue: DispatchQueue.global(qos: .userInteractive))
             .filterSuccessfulStatusAndRedirectCodes()
-            .catchError({ (error) -> Single<Response> in
-                return Single.error(NetworkError.error(by: error))
-            })
+            .catchError { (error) -> Single<Response> in Single.error(NetworkError.error(by: error)) }
             .map(NodeService.DTO.AddressBalance.self)
             .asObservable()
     }
 
     public func scriptInfo(address: String) -> Observable<NodeService.DTO.AddressScriptInfo> {
-        return self
-            .addressesProvider
+        let target: NodeService.Target.Addresses = .init(kind: .scriptInfo(id: address), nodeUrl: enviroment.nodeUrl)
+        
+        return addressesProvider
             .rx
-            .request(.init(kind: .scriptInfo(id: address),
-                           nodeUrl: enviroment.nodeUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+            .request(target, callbackQueue: DispatchQueue.global(qos: .userInteractive))
             .filterSuccessfulStatusAndRedirectCodes()
-            .catchError({ (error) -> Single<Response> in
-                return Single.error(NetworkError.error(by: error))
-            })
+            .catchError{ error -> Single<Response> in Single.error(NetworkError.error(by: error)) }
             .map(NodeService.DTO.AddressScriptInfo.self)
+            .asObservable()
+    }
+    
+    func getAddressData(addressSmartContract: String, key: String) -> Observable<NodeService.DTO.AddressesData> {
+        let target: NodeService.Target.Addresses = .init(kind: .getData(addressSmartContract: addressSmartContract, key: key),
+                                                         nodeUrl: enviroment.nodeUrl)
+        
+        return addressesProvider
+            .rx
+            .request(target)
+            .filterSuccessfulStatusAndRedirectCodes()
+            .catchError { error -> Single<Response> in Single.error(error) }
+            .map(NodeService.DTO.AddressesData.self)
             .asObservable()
     }
 }

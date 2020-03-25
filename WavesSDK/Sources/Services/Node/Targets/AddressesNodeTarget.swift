@@ -25,6 +25,8 @@ extension NodeService.Target {
              - DomainLayer.DTO.AddressScriptInfo
              */
             case scriptInfo(id: String)
+            
+            case getData(addressSmartContract: String, key: String)
         }
 
         var kind: Kind
@@ -46,19 +48,22 @@ extension NodeService.Target.Addresses: NodeTargetType {
 
         case .scriptInfo(let id):
             return Constants.addresses + "/" + Constants.scriptInfo + "/" + "\(id)".urlEscaped
+            
+        case let .getData(addressSmartContract, key):
+            return Constants.addresses + "/" + "data" + "/" + addressSmartContract.urlEscaped + "/" + "\(key)".urlEscaped
         }
     }
 
     var method: Moya.Method {
         switch kind {
-        case .getAddressBalance, .scriptInfo:
+        case .getAddressBalance, .scriptInfo, .getData:
             return .get
         }
     }
 
     var task: Task {
         switch kind {
-        case .getAddressBalance, .scriptInfo:
+        case .getAddressBalance, .scriptInfo, .getData:
             return .requestPlain
         }
     }
