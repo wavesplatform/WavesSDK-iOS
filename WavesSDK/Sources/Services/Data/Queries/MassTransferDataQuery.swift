@@ -24,10 +24,10 @@ extension DataService.Query {
         ///
         public let sender: String?
         
-        ///
+        /// (ISO-8601 or timestamp in milliseconds)
         public let timeStart: String?
         
-        ///
+        /// (ISO-8601 or timestamp in milliseconds)
         public let timeEnd: String?
         
         ///
@@ -43,7 +43,7 @@ extension DataService.Query {
         public let sort: SortOrder
         
         /// признак предела загрузки за один раз
-        public let limit: UInt
+        public let limit: UInt?
         
         public init(sender: String?,
                     timeStart: String?,
@@ -52,7 +52,7 @@ extension DataService.Query {
                     assetId: String?,
                     after: String?,
                     sort: SortOrder = .desc,
-                    limit: UInt = 25) {
+                    limit: UInt?) {
             self.sender = sender
             self.timeStart = timeStart
             self.timeEnd = timeEnd
