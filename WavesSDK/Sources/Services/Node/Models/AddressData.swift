@@ -13,5 +13,11 @@ extension NodeService.DTO {
         public let type: String
         public let value: Int64
         public let key: String
+        
+        public init(type: String, value: Int64, key: String) {
+            self.type = type
+            self.value = value
+            self.key = key
+        }
     }
 }
