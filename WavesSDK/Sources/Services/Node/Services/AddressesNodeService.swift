@@ -25,7 +25,7 @@ final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProt
             .rx
             .request(target, callbackQueue: DispatchQueue.global(qos: .userInteractive))
             .filterSuccessfulStatusAndRedirectCodes()
-            .catchError { (error) -> Single<Response> in Single.error(NetworkError.error(by: error)) }
+            .catchError { error -> Single<Response> in Single.error(NetworkError.error(by: error)) }
             .map(NodeService.DTO.AddressBalance.self)
             .asObservable()
     }
@@ -49,9 +49,8 @@ final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProt
         return addressesProvider
             .rx
             .request(target)
-            .filterSuccessfulStatusAndRedirectCodes()
-            .catchError { error -> Single<Response> in Single.error(error) }
             .map(NodeService.DTO.AddressesData.self)
+            .catchErrorJustReturn(NodeService.DTO.AddressesData(type: "", value: 0, key: ""))
             .asObservable()
     }
 }
