@@ -15,8 +15,8 @@ private struct Constants {
     static let schemeMainnet: String = "W"
     
     static let dataUrlTestnet: URL = URL(string: "https://api.testnet.wavesplatform.com")!
-    static let nodeUrlTestnet: URL = URL(string: "https://pool.testnet.wavesnodes.com")!
-    static let matcherUrlTestnet: URL = URL(string: "https://matcher.testnet.wavesnodes.com")!
+    static let nodeUrlTestnet: URL = URL(string: "https://nodes-testnet.wavesnodes.com")!
+    static let matcherUrlTestnet: URL = URL(string: "https://matcher-testnet.wavesnodes.com")!
     static let schemeTestnet: String = "T"
 }
 
