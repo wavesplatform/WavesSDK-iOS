@@ -108,20 +108,27 @@ private final class DebugServicePlugin: PluginType {
     private var userAgent: String = ""
 
     private let webView: WKWebView
-
-    static let serialQueue = DispatchQueue(label: "DebugServicePlugin")
-    static let serialQueueWebView = DispatchQueue(label: "DebugServicePlugin.webView")
+    
+    private let backgroundQueueLock: NSLock
+    private let backgroundQueue: DispatchQueue
     
     init() {
         webView = WKWebView()
         
-        webView.evaluateJavaScript("navigator.userAgent", completionHandler: { [weak self] result, error in
-            if let userAgent = result as? String {
-                self?.userAgent = userAgent
-            } else {
-                self?.userAgent = ""
-            }
-        })
+        backgroundQueueLock = NSLock()
+        backgroundQueue = DispatchQueue.global(qos: .userInteractive)
+        
+        backgroundQueue.async { [weak self] in
+            self?.backgroundQueueLock.lock()
+            self?.webView.evaluateJavaScript("navigator.userAgent", completionHandler: { [weak self] result, error in
+                if let userAgent = result as? String {
+                    self?.userAgent = userAgent
+                } else {
+                    self?.userAgent = ""
+                }
+                self?.backgroundQueueLock.unlock()
+            })
+        }
     }
 
     func prepare(_ request: URLRequest, target _: TargetType) -> URLRequest {
