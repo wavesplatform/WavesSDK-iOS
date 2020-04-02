@@ -1,24 +1,25 @@
 /*
-* ██╗    ██╗ █████╗ ██╗   ██╗███████╗███████╗
-* ██║    ██║██╔══██╗██║   ██║██╔════╝██╔════╝
-* ██║ █╗ ██║███████║██║   ██║█████╗  ███████╗
-* ██║███╗██║██╔══██║╚██╗ ██╔╝██╔══╝  ╚════██║
-* ╚███╔███╔╝██║  ██║ ╚████╔╝ ███████╗███████║
-* ╚══╝╚══╝ ╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚══════╝
-*
-* ██████╗ ██╗      █████╗ ████████╗███████╗ ██████╗ ██████╗ ███╗   ███╗
-* ██╔══██╗██║     ██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██╔══██╗████╗ ████║
-* ██████╔╝██║     ███████║   ██║   █████╗  ██║   ██║██████╔╝██╔████╔██║
-* ██╔═══╝ ██║     ██╔══██║   ██║   ██╔══╝  ██║   ██║██╔══██╗██║╚██╔╝██║
-* ██║     ███████╗██║  ██║   ██║   ██║     ╚██████╔╝██║  ██║██║ ╚═╝ ██║
-* ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝
-*
-*/
+ * ██╗    ██╗ █████╗ ██╗   ██╗███████╗███████╗
+ * ██║    ██║██╔══██╗██║   ██║██╔════╝██╔════╝
+ * ██║ █╗ ██║███████║██║   ██║█████╗  ███████╗
+ * ██║███╗██║██╔══██║╚██╗ ██╔╝██╔══╝  ╚════██║
+ * ╚███╔███╔╝██║  ██║ ╚████╔╝ ███████╗███████║
+ * ╚══╝╚══╝ ╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚══════╝
+ *
+ * ██████╗ ██╗      █████╗ ████████╗███████╗ ██████╗ ██████╗ ███╗   ███╗
+ * ██╔══██╗██║     ██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██╔══██╗████╗ ████║
+ * ██████╔╝██║     ███████║   ██║   █████╗  ██║   ██║██████╔╝██╔████╔██║
+ * ██╔═══╝ ██║     ██╔══██║   ██║   ██╔══╝  ██║   ██║██╔══██╗██║╚██╔╝██║
+ * ██║     ███████╗██║  ██║   ██║   ██║     ╚██████╔╝██║  ██║██║ ╚═╝ ██║
+ * ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝
+ *
+ */
 
 import Foundation
-import WavesSDKExtensions
-import WavesSDKCrypto
 import Moya
+import WavesSDKCrypto
+import WavesSDKExtensions
+import WebKit
 
 /**
  *
@@ -38,7 +39,6 @@ import Moya
  */
 
 public final class WavesSDK {
-    
     public struct ServicesPlugins {
         public let data: [PluginType]
         public let node: [PluginType]
@@ -50,114 +50,100 @@ public final class WavesSDK {
             self.matcher = matcher
         }
     }
-    
-    private(set) public var services: WavesServicesProtocol
-    
+
+    public private(set) var services: WavesServicesProtocol
+
     private var internalEnviroment: Enviroment
-    
+
     public var enviroment: Enviroment {
-        
         get {
             objc_sync_enter(self)
             defer { objc_sync_exit(self) }
             return internalEnviroment
         }
-        
+
         set {
             objc_sync_enter(self)
             defer { objc_sync_exit(self) }
             internalEnviroment = newValue
-            
+
             if var internalServices = services as? InternalWavesServiceProtocol {
                 internalServices.enviroment = newValue
             }
         }
     }
-    
-    static private(set) public var shared: WavesSDK!
-        
+
+    public private(set) static var shared: WavesSDK!
+
     init(services: WavesServicesProtocol, enviroment: Enviroment) {
         self.services = services
-        self.internalEnviroment = enviroment
+        internalEnviroment = enviroment
     }
-    
+
     public class func isInitialized() -> Bool {
         return WavesSDK.shared != nil
     }
-    
+
     public class func initialization(servicesPlugins: ServicesPlugins,
                                      enviroment: Enviroment) {
-        
-        
         var dataPlugins = servicesPlugins.data
         var nodePlugins = servicesPlugins.node
         var matcherPlugins = servicesPlugins.matcher
-        
+
         dataPlugins.append(DebugServicePlugin())
         nodePlugins.append(DebugServicePlugin())
         matcherPlugins.append(DebugServicePlugin())
-        
+
         let services = WavesServices(enviroment: enviroment,
                                      dataServicePlugins: dataPlugins,
                                      nodeServicePlugins: nodePlugins,
                                      matcherServicePlugins: matcherPlugins)
-        
+
         WavesSDK.shared = WavesSDK(services: services, enviroment: enviroment)
     }
-
 }
 
 private final class DebugServicePlugin: PluginType {
     
-    static var _userAgentDefault: String? = nil
+    private var userAgent: String = ""
 
-    static let webView: UIWebView = UIWebView()
-    
+    private let webView: WKWebView
+
     static let serialQueue = DispatchQueue(label: "DebugServicePlugin")
     static let serialQueueWebView = DispatchQueue(label: "DebugServicePlugin.webView")
     
-    static var userAgentDefault: String = {
-        serialQueue.sync {
-            if _userAgentDefault?.isEmpty ?? true {
-                _userAgentDefault = DebugServicePlugin.webView.stringByEvaluatingJavaScript(from: "navigator.userAgent")                
+    init() {
+        webView = WKWebView()
+        
+        webView.evaluateJavaScript("navigator.userAgent", completionHandler: { [weak self] result, error in
+            if let userAgent = result as? String {
+                self?.userAgent = userAgent
+            } else {
+                self?.userAgent = ""
             }
-            
-            return _userAgentDefault ?? ""
-        }
-    }()
-    
-    
-    func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
-        
+        })
+    }
+
+    func prepare(_ request: URLRequest, target _: TargetType) -> URLRequest {
         var mRq = request
-        
-        var userAgent = mRq.value(forHTTPHeaderField: "User-Agent") ?? ""
-        
-        if userAgent.isEmpty {
-            userAgent = DebugServicePlugin.userAgentDefault
-        }
-        
+
         let bundle = Bundle.main.bundleIdentifier ?? ""
-        
-        userAgent = "\(userAgent) WavesSDK/\(WavesSDKVersionNumber) DeviceId/\(UIDevice.uuid) AppId/\(bundle)"
-        
-        mRq.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-        
+
+        let requestUserAgent = "\(userAgent) WavesSDK/\(WavesSDKVersionNumber) DeviceId/\(UIDevice.uuid) AppId/\(bundle)"
+
+        mRq.setValue(requestUserAgent, forHTTPHeaderField: "User-Agent")
+
         return mRq
     }
-    
+
     /// Called immediately before a request is sent over the network (or stubbed).
-    func willSend(_ request: RequestType, target: TargetType) {
-        
-    }
-    
+    func willSend(_: RequestType, target _: TargetType) {}
+
     /// Called after a response has been received, but before the MoyaProvider has invoked its completion handler.
-    func didReceive(_ result: Result<Moya.Response, MoyaError>, target: TargetType) {
-        
-    }
-    
+    func didReceive(_: Result<Moya.Response, MoyaError>, target _: TargetType) {}
+
     /// Called to modify a result before completion.
-    func process(_ result: Result<Moya.Response, MoyaError>, target: TargetType) -> Result<Moya.Response, MoyaError> {
+    func process(_ result: Result<Moya.Response, MoyaError>, target _: TargetType) -> Result<Moya.Response, MoyaError> {
         return result
     }
 }
