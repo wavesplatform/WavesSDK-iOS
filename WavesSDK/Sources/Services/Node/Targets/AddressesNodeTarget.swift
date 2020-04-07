@@ -69,3 +69,12 @@ extension NodeService.Target.Addresses: NodeTargetType {
         }
     }
 }
+
+// MARK: CachePolicyTarget
+
+extension NodeService.Target.Addresses: CachePolicyTarget {
+    
+    var cachePolicy: URLRequest.CachePolicy {
+        return .reloadIgnoringLocalAndRemoteCacheData
+    }
+}
