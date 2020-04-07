@@ -79,3 +79,12 @@ extension NodeService.Target.Assets: NodeTargetType {
         }
     }
 }
+
+// MARK: CachePolicyTarget
+
+extension NodeService.Target.Assets: CachePolicyTarget {
+    
+    var cachePolicy: URLRequest.CachePolicy {
+        return .reloadIgnoringLocalAndRemoteCacheData
+    }
+}
