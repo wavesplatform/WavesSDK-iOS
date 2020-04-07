@@ -50,10 +50,11 @@ extension NodeService.Target.Assets: NodeTargetType {
     }
 
     var path: String {
+            
         switch kind {
         case .getAssetsBalances(let id):
             return Constants.assets + "/" + Constants.balance + "/" + "\(id)".urlEscaped
-
+            
         case .getAssetsBalance(let address,
                                let assetId):
             return Constants.assets + "/" + Constants.balance + "/" + "\(address)".urlEscaped + "/" + "\(assetId)".urlEscaped
@@ -73,7 +74,8 @@ extension NodeService.Target.Assets: NodeTargetType {
     var task: Task {
         switch kind {
         case .getAssetsBalances, .getAssetsBalance, .details:
-            return .requestPlain
+            return .requestParameters(parameters: ["r": "\(Date().timeIntervalSince1970)"],
+                                      encoding: URLEncoding.default)
         }
     }
 }

@@ -64,7 +64,8 @@ extension NodeService.Target.Addresses: NodeTargetType {
     var task: Task {
         switch kind {
         case .getAddressBalance, .scriptInfo, .getData:
-            return .requestPlain
+            return .requestParameters(parameters: ["r": "\(Date().timeIntervalSince1970)"],
+                                      encoding: URLEncoding.default)
         }
     }
 }
