@@ -132,7 +132,7 @@ public extension MatcherService.Query {
             self.expirationTimestamp = expirationTimestamp
             self.proofs = proofs
             self.matcherFeeAsset = matcherFeeAsset
-            self.version = matcherFeeAsset == WavesSDKConstants.wavesAssetId ? .V2 : .V3
+            self.version = .V3
         }
         
         internal var parameters: [String : Any] {
