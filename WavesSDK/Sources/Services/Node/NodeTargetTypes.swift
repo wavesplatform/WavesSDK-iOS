@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Result
 import Moya
 
 public enum NodeService {}
