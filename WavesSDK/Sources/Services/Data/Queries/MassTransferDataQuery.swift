@@ -47,7 +47,7 @@ extension DataService.Query {
         /// признак предела загрузки за один раз
         public let limit: UInt?
         
-        public init(sender: String?,
+        public init(sender: String? = nil,
                     senders: [String]? = nil,
                     timeStart: String?,
                     timeEnd: String?,
