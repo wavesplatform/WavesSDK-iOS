@@ -24,8 +24,6 @@ extension DataService.Query {
         ///
         public let senders: [String]?
         
-        public let sender: String?
-        
         /// (ISO-8601 or timestamp in milliseconds)
         public let timeStart: String?
         
