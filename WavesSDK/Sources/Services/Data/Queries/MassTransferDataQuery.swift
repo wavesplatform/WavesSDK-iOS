@@ -22,7 +22,7 @@ extension DataService.Query {
     public struct MassTransferDataQuery: Encodable, Hashable {
         
         ///
-        public let sender: String?
+        public let senders: [String]?
         
         /// (ISO-8601 or timestamp in milliseconds)
         public let timeStart: String?
@@ -45,7 +45,7 @@ extension DataService.Query {
         /// признак предела загрузки за один раз
         public let limit: UInt?
         
-        public init(sender: String?,
+        public init(senders: [String]?,
                     timeStart: String?,
                     timeEnd: String?,
                     recipient: String,
@@ -53,7 +53,6 @@ extension DataService.Query {
                     after: String?,
                     sort: SortOrder = .desc,
                     limit: UInt?) {
-            self.sender = sender
             self.timeStart = timeStart
             self.timeEnd = timeEnd
             self.recipient = recipient
@@ -61,6 +60,7 @@ extension DataService.Query {
             self.after = after
             self.sort = sort
             self.limit = limit
+            self.senders = senders
         }
     }
 }
