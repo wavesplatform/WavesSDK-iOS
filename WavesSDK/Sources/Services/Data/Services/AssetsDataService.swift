@@ -18,7 +18,7 @@ final class AssetsDataService: InternalWavesService, AssetsDataServiceProtocol {
         super.init(enviroment: enviroment)
     }
     
-    public func assets(ids: [String]) -> Observable<[DataService.DTO.Asset]> {
+    public func assets(ids: [String]) -> Observable<[DataService.DTO.Asset?]> {
         
         return self
             .assetsProvider

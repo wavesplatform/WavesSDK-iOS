@@ -13,7 +13,7 @@ public protocol AssetsDataServiceProtocol {
     /**
       Get a list of assets info from a list of IDs
      */
-    func assets(ids: [String]) -> Observable<[DataService.DTO.Asset]>
+    func assets(ids: [String]) -> Observable<[DataService.DTO.Asset?]>
 
     /**
       Get asset info by asset ID
