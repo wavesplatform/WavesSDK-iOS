@@ -79,7 +79,7 @@ extension NodeService.DTO {
         
         public let type: Int
         public let id: String
-        public let chainId: String?
+        public let chainId: UInt8?
         public let sender: String
         public let senderPublicKey: String
         public let fee: Int64
@@ -110,7 +110,7 @@ extension NodeService.DTO {
          */
         public let payment: [Payment]
 
-        public init(type: Int, id: String, chainId: String?, sender: String, senderPublicKey: String, fee: Int64, timestamp: Date, proofs: [String]?, version: Int, height: Int64?, feeAssetId: String?, dApp: String, call: Call?, payment: [Payment]) {
+        public init(type: Int, id: String, chainId: UInt8?, sender: String, senderPublicKey: String, fee: Int64, timestamp: Date, proofs: [String]?, version: Int, height: Int64?, feeAssetId: String?, dApp: String, call: Call?, payment: [Payment]) {
             self.type = type
             self.id = id
             self.chainId = chainId

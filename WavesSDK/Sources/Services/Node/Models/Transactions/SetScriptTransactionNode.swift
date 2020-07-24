@@ -45,7 +45,7 @@ public extension NodeService.DTO {
         public let height: Int64?
         public let signature: String?
         public let proofs: [String]?
-        public let chainId: Int?
+        public let chainId: UInt8?
         public let version: Int
         /**
           Base64 binary string with Waves Ride script

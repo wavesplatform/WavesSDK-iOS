@@ -55,9 +55,9 @@ public extension NodeService.DTO {
               and [String] string(3).
               Can't be empty string
             */
-            public let value: Value
+            public let value: Value?
 
-            public init(key: String, type: String, value: Value) {
+            public init(key: String, type: String, value: Value?) {
                 self.key = key
                 self.type = type
                 self.value = value
@@ -66,7 +66,7 @@ public extension NodeService.DTO {
 
         public let type: Int
         public let id: String
-        public let chainId: String?
+        public let chainId: UInt8?
         public let sender: String
         public let senderPublicKey: String
         public let fee: Int64
@@ -92,7 +92,7 @@ public extension NodeService.DTO {
          */
         public let data: [Data]
 
-        public init(type: Int, id: String, chainId: String?, sender: String, senderPublicKey: String, fee: Int64, timestamp: Date, height: Int64?, version: Int, proofs: [String]?, data: [Data]) {
+        public init(type: Int, id: String, chainId: UInt8?, sender: String, senderPublicKey: String, fee: Int64, timestamp: Date, height: Int64?, version: Int, proofs: [String]?, data: [Data]) {
             self.type = type
             self.id = id
             self.chainId = chainId
@@ -166,6 +166,10 @@ extension NodeService.DTO.DataTransaction.Data {
             
             try container.encode(key, forKey: .key)
             
+            guard let value = self.value else {                
+                try container.encodeNil(forKey: .value)
+                return
+            }
             
             switch value {
             case .bool(let value):

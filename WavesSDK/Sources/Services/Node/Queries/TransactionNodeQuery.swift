@@ -214,7 +214,7 @@ public extension NodeService.Query.Transaction {
         
         public private(set) var type: Int
         public private(set) var version: Int
-        public private(set) var chainId: String
+        public private(set) var chainId: UInt8
         public private(set) var fee: Int64
         public private(set) var timestamp: Int64
         public private(set) var senderPublicKey: String
@@ -223,7 +223,7 @@ public extension NodeService.Query.Transaction {
         public let minSponsoredAssetFee: Int64?
         public let assetId: String
         
-        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], minSponsoredAssetFee: Int64?, assetId: String) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: UInt8, fee: Int64, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], minSponsoredAssetFee: Int64?, assetId: String) {
             self.type = TransactionType.sponsorship.int
             self.assetId = assetId
             self.version = version
@@ -240,7 +240,7 @@ public extension NodeService.Query.Transaction {
         
         public private(set) var type: Int
         public private(set) var version: Int
-        public private(set) var chainId: String
+        public private(set) var chainId: UInt8
         public private(set) var fee: Int64
         public private(set) var timestamp: Int64
         public private(set) var senderPublicKey: String
@@ -249,7 +249,7 @@ public extension NodeService.Query.Transaction {
         public let script: String?
         public let assetId: String
         
-        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], script: String?, assetId: String) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: UInt8, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], script: String?, assetId: String) {
             self.type = TransactionType.assetScript.int
             self.assetId = assetId
             self.version = version
@@ -266,7 +266,7 @@ public extension NodeService.Query.Transaction {
         
         public private(set) var type: Int
         public private(set) var version: Int
-        public private(set) var chainId: String
+        public private(set) var chainId: UInt8
         public private(set) var fee: Int64
         public private(set) var timestamp: Int64
         public private(set) var senderPublicKey: String
@@ -274,7 +274,7 @@ public extension NodeService.Query.Transaction {
         
         public let script: String?
 
-        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], script: String?) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: UInt8, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], script: String?) {
             self.type = TransactionType.script.int
             self.version = version
             self.chainId = chainId
@@ -300,7 +300,7 @@ public extension NodeService.Query.Transaction {
         
         public private(set) var type: Int
         public private(set) var version: Int
-        public private(set) var chainId: String
+        public private(set) var chainId: UInt8
         public private(set) var fee: Int64
         public private(set) var timestamp: Int64
         public private(set) var senderPublicKey: String
@@ -310,7 +310,7 @@ public extension NodeService.Query.Transaction {
         public let attachment: String
         public let transfers: [Transfer]
 
-        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], assetId: String, attachment: String, transfers: [Transfer]) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: UInt8, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], assetId: String, attachment: String, transfers: [Transfer]) {
             self.type = TransactionType.massTransfer.int
             self.version = version
             self.chainId = chainId
@@ -328,7 +328,7 @@ public extension NodeService.Query.Transaction {
         
         public private(set) var type: Int
         public private(set) var version: Int
-        public private(set) var chainId: String
+        public private(set) var chainId: UInt8
         public private(set) var fee: Int64
         public private(set) var timestamp: Int64
         public private(set) var senderPublicKey: String
@@ -342,7 +342,7 @@ public extension NodeService.Query.Transaction {
         public let isReissuable: Bool
 
         public init(version: Int = TransactionVersion.version_2.rawValue,
-                    chainId: String,
+                    chainId: UInt8,
                     fee: Int64,
                     timestamp: Int64,
                     senderPublicKey: String,
@@ -375,7 +375,7 @@ public extension NodeService.Query.Transaction {
         
         public private(set) var type: Int
         public private(set) var version: Int
-        public private(set) var chainId: String
+        public private(set) var chainId: UInt8
         public private(set) var fee: Int64
         public private(set) var timestamp: Int64
         public private(set) var senderPublicKey: String
@@ -385,7 +385,7 @@ public extension NodeService.Query.Transaction {
         public let quantity: Int64
         public let isReissuable: Bool
         
-        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], assetId: String, quantity: Int64, isReissuable: Bool) {
+        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: UInt8, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = [], assetId: String, quantity: Int64, isReissuable: Bool) {
             self.version = version
             self.type = TransactionType.reissue.int
             self.chainId = chainId
@@ -490,7 +490,7 @@ public extension NodeService.Query.Transaction {
         
         public private(set) var type: Int
         public private(set) var version: Int
-        public private(set) var chainId: String
+        public private(set) var chainId: UInt8
         public private(set) var fee: Int64
         public private(set) var timestamp: Int64
         public private(set) var senderPublicKey: String
@@ -501,7 +501,7 @@ public extension NodeService.Query.Transaction {
         public let payment: [Payment]
         public let feeAssetId: String
 
-        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: String, fee: Int64, timestamp: Int64 = 0,
+        public init(version: Int = TransactionVersion.version_1.rawValue, chainId: UInt8, fee: Int64, timestamp: Int64 = 0,
                     senderPublicKey: String = "", feeAssetId: String, proofs: [String] = [], dApp: String, call: Call?, payment: [Payment]) {
             
             self.version = version
@@ -523,7 +523,7 @@ public extension NodeService.Query.Transaction {
         
         public private(set) var type: Int
         public private(set) var version: Int
-        public private(set) var chainId: String
+        public private(set) var chainId: UInt8
         public private(set) var fee: Int64
         public private(set) var timestamp: Int64
         public private(set) var senderPublicKey: String
@@ -532,7 +532,7 @@ public extension NodeService.Query.Transaction {
         public let assetId: String
         public let quantity: Int64
 
-        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: String, fee: Int64, assetId: String, quantity: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
+        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: UInt8, fee: Int64, assetId: String, quantity: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
             self.version = version
             self.type = TransactionType.burn.int
             self.chainId = chainId
@@ -549,7 +549,7 @@ public extension NodeService.Query.Transaction {
 
         public private(set) var type: Int
         public private(set) var version: Int
-        public private(set) var chainId: String
+        public private(set) var chainId: UInt8
         public private(set) var fee: Int64
         public private(set) var timestamp: Int64
         public private(set) var senderPublicKey: String
@@ -557,7 +557,7 @@ public extension NodeService.Query.Transaction {
         
         public let name: String
         
-        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: String, name: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
+        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: UInt8, name: String, fee: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
             self.chainId = chainId
             self.version = version
             self.name = name
@@ -573,7 +573,7 @@ public extension NodeService.Query.Transaction {
         
         public private(set) var type: Int
         public private(set) var version: Int
-        public private(set) var chainId: String
+        public private(set) var chainId: UInt8
         public private(set) var fee: Int64
         public private(set) var timestamp: Int64
         public private(set) var senderPublicKey: String
@@ -582,7 +582,7 @@ public extension NodeService.Query.Transaction {
         public let recipient: String
         public let amount: Int64
 
-        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: String, fee: Int64, recipient: String, amount: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
+        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: UInt8, fee: Int64, recipient: String, amount: Int64, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
             self.version = version
             self.chainId = chainId
             self.fee = fee
@@ -599,7 +599,7 @@ public extension NodeService.Query.Transaction {
         
         public private(set) var type: Int
         public private(set) var version: Int
-        public private(set) var chainId: String
+        public private(set) var chainId: UInt8
         public private(set) var fee: Int64
         public private(set) var timestamp: Int64
         public private(set) var senderPublicKey: String
@@ -607,7 +607,7 @@ public extension NodeService.Query.Transaction {
         
         public let leaseId: String
         
-        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: String, fee: Int64, leaseId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
+        public init(version: Int = TransactionVersion.version_2.rawValue, chainId: UInt8, fee: Int64, leaseId: String, timestamp: Int64, senderPublicKey: String, proofs: [String] = []) {
             self.version = version
             self.chainId = chainId
             self.fee = fee
@@ -682,9 +682,9 @@ public extension NodeService.Query.Transaction {
             }
             
             public let key: String
-            public let value: Kind
+            public let value: Kind?
 
-            public init(key: String, value: Kind) {
+            public init(key: String, value: Kind?) {
                 self.key = key
                 self.value = value
             }
@@ -692,7 +692,7 @@ public extension NodeService.Query.Transaction {
         
         public private(set) var type: Int
         public private(set) var version: Int
-        public private(set) var chainId: String
+        public private(set) var chainId: UInt8
         public private(set) var fee: Int64
         public private(set) var timestamp: Int64
         public private(set) var senderPublicKey: String
@@ -700,7 +700,7 @@ public extension NodeService.Query.Transaction {
         
         public let data: [Value]
 
-        public init(version: Int = TransactionVersion.version_1.rawValue, fee: Int64, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], data: [Value], chainId: String) {
+        public init(version: Int = TransactionVersion.version_1.rawValue, fee: Int64, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], data: [Value], chainId: UInt8) {
             self.type = TransactionType.data.int
             self.version = version
             self.fee = fee
@@ -716,7 +716,7 @@ public extension NodeService.Query.Transaction {
         
         public private(set) var type: Int
         public private(set) var version: Int
-        public private(set) var chainId: String
+        public private(set) var chainId: UInt8
         public private(set) var fee: Int64
         public private(set) var timestamp: Int64
         public private(set) var senderPublicKey: String
@@ -729,7 +729,7 @@ public extension NodeService.Query.Transaction {
         public let attachment: String
         public let feeAssetId: String
 
-        public init(version: Int = TransactionVersion.version_2.rawValue, recipient: String, assetId: String, amount: Int64, fee: Int64, attachment: String, feeAssetId: String, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], chainId: String) {
+        public init(version: Int = TransactionVersion.version_2.rawValue, recipient: String, assetId: String, amount: Int64, fee: Int64, attachment: String, feeAssetId: String, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], chainId: UInt8) {
             self.type = TransactionType.transfer.int
             self.version = version
             self.recipient = recipient
