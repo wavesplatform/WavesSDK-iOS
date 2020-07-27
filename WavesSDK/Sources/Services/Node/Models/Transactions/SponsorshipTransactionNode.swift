@@ -67,5 +67,6 @@ public extension NodeService.DTO {
           Min sponsored asset fee. If "0" Sponsorship will be cancelled
          */
         public let minSponsoredAssetFee: Int64?
+        public let applicationStatus: String?
     }
 }

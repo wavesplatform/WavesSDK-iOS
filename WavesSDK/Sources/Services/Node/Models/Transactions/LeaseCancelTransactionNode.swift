@@ -32,5 +32,6 @@ public extension NodeService.DTO {
          */
         public let leaseId: String
         public let lease: NodeService.DTO.LeaseTransaction?
+        public let applicationStatus: String?
     }
 }

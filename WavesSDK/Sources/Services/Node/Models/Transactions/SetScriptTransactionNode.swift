@@ -54,5 +54,6 @@ public extension NodeService.DTO {
           Can't be empty string
          */
         public let script: String?
+        public let applicationStatus: String?
     }
 }

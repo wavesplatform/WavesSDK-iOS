@@ -36,5 +36,6 @@ public extension NodeService.DTO {
           Address or alias of Waves blockchain to lease
          */
         public let recipient: String
+        public let applicationStatus: String?
     }
 }

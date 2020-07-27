@@ -42,5 +42,6 @@ public extension NodeService.DTO {
           defined during the transaction.
          */
         public let reissuable: Bool
+        public let applicationStatus: String?
     }
 }

@@ -35,5 +35,6 @@ public extension NodeService.DTO {
           Amount of asset to burn in satoshi
           */
         public let amount: Int64
+        public let applicationStatus: String?
     }
 }
