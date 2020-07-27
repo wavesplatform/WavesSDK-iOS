@@ -45,7 +45,7 @@ public extension NodeService.DTO {
             /**
               Type of data of the Data transaction type can be only "string", "boolean", "integer", "binary"
               */
-            public let type: String
+            public let type: String?
             
             /**
               Data transaction value can be one of four types:
@@ -57,7 +57,7 @@ public extension NodeService.DTO {
             */
             public let value: Value?
 
-            public init(key: String, type: String, value: Value?) {
+            public init(key: String, type: String?, value: Value?) {
                 self.key = key
                 self.type = type
                 self.value = value
@@ -137,12 +137,11 @@ extension NodeService.DTO.DataTransaction.Data {
         if let value = try container.decodeIfPresent(String.self, forKey: .type) {
             type = value
         } else {
-            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: container.codingPath,
-                                                                    debugDescription: "Not found value"))
+            type = nil
         }
 
-        if let type = ValueKey(rawValue: self.type) {
-            switch type {
+        if let type = self.type, let valueKey = ValueKey(rawValue: type) {
+            switch valueKey {
             case .boolean:
                 value = .bool(try container.decode(Bool.self, forKey: .value))
             case .integer:
@@ -153,8 +152,7 @@ extension NodeService.DTO.DataTransaction.Data {
                 value = .binary(try container.decode(String.self, forKey: .value))
             }
         } else {
-            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: container.codingPath,
-                                                                         debugDescription: "Not found value"))
+            value = nil
         }
     }
     
@@ -189,9 +187,8 @@ extension NodeService.DTO.DataTransaction.Data {
                 try container.encode(ValueKey.binary.rawValue, forKey: .type)
             }
 
-        } catch let e {
-                        
-            throw NSError(domain: "Decoder Invalid Data ValueAA", code: 0, userInfo: nil)
+        } catch _ {
+            throw NSError(domain: "Decoder Invalid Data Value", code: 0, userInfo: nil)
         }
     }
 }
