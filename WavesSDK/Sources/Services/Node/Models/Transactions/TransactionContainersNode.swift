@@ -10,7 +10,6 @@ import Foundation
 import WavesSDKExtensions
 
 extension NodeService.DTO {
-
     enum TransactionType: Int, Decodable {
         case issue = 3
         case transfer = 4
@@ -26,6 +25,7 @@ extension NodeService.DTO {
         case sponsorship = 14
         case assetScript = 15
         case invokeScript = 16
+        case updateAssetInfo = 17
     }
 
     public enum TransactionError: Error {
@@ -33,7 +33,6 @@ extension NodeService.DTO {
     }
 
     public enum Transaction: Codable {
-       
         case unrecognised(NodeService.DTO.UnrecognisedTransaction)
         case issue(NodeService.DTO.IssueTransaction)
         case transfer(NodeService.DTO.TransferTransaction)
@@ -49,13 +48,13 @@ extension NodeService.DTO {
         case sponsorship(NodeService.DTO.SponsorshipTransaction)
         case assetScript(NodeService.DTO.SetAssetScriptTransaction)
         case invokeScript(NodeService.DTO.InvokeScriptTransaction)
+        case updateAssetInfo(UpdateAssetInfoTransaction)
 
         public init(from decoder: Decoder) throws {
-
             do {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 let type = try container.decode(TransactionType.self, forKey: .type)
-                
+
                 self = try Transaction.transaction(from: decoder, type: type)
             } catch let e {
                 SweetLogger.error(e)
@@ -64,93 +63,93 @@ extension NodeService.DTO {
         }
 
         public func encode(to encoder: Encoder) throws {
-            
             do {
                 var unkeyedContainer = encoder.singleValueContainer()
-                
+
                 switch self {
-                case .alias(let model):
+                case let .alias(model):
                     try unkeyedContainer.encode(model)
-                    
-                case .invokeScript(let model):
+
+                case let .invokeScript(model):
                     try unkeyedContainer.encode(model)
-                    
-                case .transfer(let model):
+
+                case let .transfer(model):
                     try unkeyedContainer.encode(model)
-                    
-                case .assetScript(let model):
+
+                case let .assetScript(model):
                     try unkeyedContainer.encode(model)
-                    
-                case .burn(let model):
+
+                case let .burn(model):
                     try unkeyedContainer.encode(model)
-                    
-                case .data(let model):
+
+                case let .data(model):
                     try unkeyedContainer.encode(model)
-                    
-                case .exchange(let model):
+
+                case let .exchange(model):
                     try unkeyedContainer.encode(model)
-                                        
-                case .issue(let model):
+
+                case let .issue(model):
                     try unkeyedContainer.encode(model)
-                    
-                case .lease(let model):
+
+                case let .lease(model):
                     try unkeyedContainer.encode(model)
-                    
-                case .unrecognised(let model):
+
+                case let .unrecognised(model):
                     try unkeyedContainer.encode(model)
-                    
-                case .reissue(let model):
+
+                case let .reissue(model):
                     try unkeyedContainer.encode(model)
-                    
-                case .leaseCancel(let model):
+
+                case let .leaseCancel(model):
                     try unkeyedContainer.encode(model)
-                    
-                case .massTransfer(let model):
+
+                case let .massTransfer(model):
                     try unkeyedContainer.encode(model)
-                    
-                case .script(let model):
+
+                case let .script(model):
                     try unkeyedContainer.encode(model)
-                    
-                case .sponsorship(let model):
+
+                case let .sponsorship(model):
+                    try unkeyedContainer.encode(model)
+
+                case let .updateAssetInfo(model):
                     try unkeyedContainer.encode(model)
                 }
-                
+
             } catch let e {
                 SweetLogger.error(e)
                 throw TransactionError.none
             }
         }
-            
 
         fileprivate static func transaction(from decode: Decoder, type: TransactionType) throws -> Transaction {
-
             switch type {
             case .issue:
-                return .issue( try NodeService.DTO.IssueTransaction(from: decode))
+                return .issue(try NodeService.DTO.IssueTransaction(from: decode))
 
             case .transfer:
-                return .transfer( try NodeService.DTO.TransferTransaction(from: decode))
+                return .transfer(try NodeService.DTO.TransferTransaction(from: decode))
 
             case .reissue:
-                return .reissue( try NodeService.DTO.ReissueTransaction(from: decode))
+                return .reissue(try NodeService.DTO.ReissueTransaction(from: decode))
 
             case .burn:
-                return .burn( try NodeService.DTO.BurnTransaction(from: decode))
+                return .burn(try NodeService.DTO.BurnTransaction(from: decode))
 
             case .exchange:
-                return .exchange( try NodeService.DTO.ExchangeTransaction(from: decode))
+                return .exchange(try NodeService.DTO.ExchangeTransaction(from: decode))
 
             case .lease:
-                return .lease( try NodeService.DTO.LeaseTransaction(from: decode))
+                return .lease(try NodeService.DTO.LeaseTransaction(from: decode))
 
             case .leaseCancel:
-                return .leaseCancel( try NodeService.DTO.LeaseCancelTransaction(from: decode))
+                return .leaseCancel(try NodeService.DTO.LeaseCancelTransaction(from: decode))
 
             case .alias:
-                return .alias( try NodeService.DTO.AliasTransaction(from: decode))
+                return .alias(try NodeService.DTO.AliasTransaction(from: decode))
 
             case .massTransfer:
-                return .massTransfer( try NodeService.DTO.MassTransferTransaction(from: decode))
+                return .massTransfer(try NodeService.DTO.MassTransferTransaction(from: decode))
 
             case .data:
                 return .data(try NodeService.DTO.DataTransaction(from: decode))
@@ -163,33 +162,32 @@ extension NodeService.DTO {
 
             case .sponsorship:
                 return .sponsorship(try NodeService.DTO.SponsorshipTransaction(from: decode))
-                
+
             case .invokeScript:
                 return .invokeScript(try NodeService.DTO.InvokeScriptTransaction(from: decode))
+
+            case .updateAssetInfo:
+                return .updateAssetInfo(try NodeService.DTO.UpdateAssetInfoTransaction(from: decode))
             }
         }
     }
 
     enum CodingKeys: String, CodingKey {
-        case type = "type"
+        case type
     }
 
     public struct TransactionContainers: Decodable {
-        
         public let transactions: [Transaction]
-        
-        public init(from decoder: Decoder) throws {
 
+        public init(from decoder: Decoder) throws {
             var transactions: [Transaction] = []
 
             do {
-
                 var container = try decoder.unkeyedContainer()
                 var listForType = try container.nestedUnkeyedContainer()
 
                 var listArray = listForType
                 while !listForType.isAtEnd {
-
                     let objectType = try listForType.nestedContainer(keyedBy: CodingKeys.self)
 
                     do {
@@ -247,13 +245,16 @@ extension NodeService.DTO {
                         case .sponsorship:
                             let tx = try listArray.decode(NodeService.DTO.SponsorshipTransaction.self)
                             transactions.append(.sponsorship(tx))
-                            
+
                         case .invokeScript:
                             let tx = try listArray.decode(NodeService.DTO.InvokeScriptTransaction.self)
                             transactions.append(.invokeScript(tx))
+
+                        case .updateAssetInfo:
+                            let tx = try listArray.decode(NodeService.DTO.UpdateAssetInfoTransaction.self)
+                            transactions.append(.updateAssetInfo(tx))
                         }
                     } catch let e {
-
                         if let tx = try? listArray.decode(NodeService.DTO.UnrecognisedTransaction.self) {
                             transactions.append(.unrecognised(tx))
                             SweetLogger.error("Unrecognised \(e)")
