@@ -25,7 +25,7 @@ public protocol BaseTransactionQueryProtocol {
      T or 84 in bytes for test network,
      W or 87 in for main network
      */
-    var chainId: String { get }
+    var chainId: UInt8 { get }
 
     /**
       A transaction fee is a fee that an account owner pays to send a transaction.

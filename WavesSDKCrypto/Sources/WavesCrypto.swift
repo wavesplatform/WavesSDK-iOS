@@ -133,12 +133,12 @@ public protocol WavesCryptoProtocol {
     /**
      - Returns: a new generated Waves address as String from the publicKey and chainId
      */
-    func address(publicKey: PublicKey, chainId: String?) -> Address?
+    func address(publicKey: PublicKey, chainId: UInt8?) -> Address?
 
     /**
      - Returns: a new generated Waves address as String from the seed-phrase
      */
-    func address(seed: Seed, chainId: String?) -> Address?
+    func address(seed: Seed, chainId: UInt8?) -> Address?
 
     /**
      - Parameter: privateKey is a key to an address that gives access
@@ -171,7 +171,7 @@ public protocol WavesCryptoProtocol {
      - Parameter: publicKey
      - Returns: true if address is a valid Waves address for optional chainId and publicKey
      */
-    func verifyAddress(address: Address, chainId: String?, publicKey: PublicKey?) -> Bool
+    func verifyAddress(address: Address, chainId: UInt8?, publicKey: PublicKey?) -> Bool
 }
 
 public class WavesCrypto: WavesCryptoProtocol {
@@ -180,20 +180,20 @@ public class WavesCrypto: WavesCryptoProtocol {
     
     public static let shared: WavesCrypto  = WavesCrypto()
 
-    public func address(publicKey: PublicKey, chainId: String?) -> Address? {
+    public func address(publicKey: PublicKey, chainId: UInt8?) -> Address? {
         
         guard let publicKeyDecode = base58decode(input: publicKey) else { return nil }
         
         let bytes = secureHash(publicKeyDecode)
         let publicKeyHash = Array(bytes[0..<WavesCryptoConstants.hashLength])
         
-        let withoutChecksum: Bytes = [WavesCryptoConstants.addressVersion, (chainId?.utf8.first ?? 0)] + publicKeyHash
+        let withoutChecksum: Bytes = [WavesCryptoConstants.addressVersion, UInt8(chainId ?? 0)] + publicKeyHash
         let checksum = calcCheckSum(withoutChecksum)
         
         return base58encode(input: withoutChecksum + checksum)
     }
     
-    public func address(seed: Seed, chainId: String?) -> Address? {
+    public func address(seed: Seed, chainId: UInt8?) -> Address? {
         
         guard let key = publicKey(seed: seed) else { return nil }
         
@@ -228,7 +228,7 @@ public class WavesCrypto: WavesCryptoProtocol {
         return publicKeyDecode.count == WavesCryptoConstants.keyLength
     }
 
-    public func verifyAddress(address: Address, chainId: String?, publicKey: PublicKey?) -> Bool {
+    public func verifyAddress(address: Address, chainId: UInt8?, publicKey: PublicKey?) -> Bool {
         
         if let publicKey = publicKey {
             return self.verifyPublicKey(publicKey: publicKey)
@@ -238,7 +238,7 @@ public class WavesCrypto: WavesCryptoProtocol {
         
         if bytes.count == WavesCryptoConstants.addressLength
             && bytes[0] == WavesCryptoConstants.addressVersion
-            && bytes[1] == (chainId?.utf8.first ?? 0) {
+            && bytes[1] == UInt8(chainId ?? 0) {
             let checkSum = Array(bytes[bytes.count - WavesCryptoConstants.checksumLength..<bytes.count])
             let checkSumGenerated = calcCheckSum(Array(bytes[0..<bytes.count - WavesCryptoConstants.checksumLength]))
             

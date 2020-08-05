@@ -10,29 +10,26 @@ import Foundation
 extension NodeService.DTO {
 
     /**
-      Invoke script transaction is a transaction that invokes functions of the dApp script.
-      dApp contains compiled functions  developed with [Waves Ride IDE]({https://ide.wavesplatform.com/)
-      You can invoke one of them by name with some arguments.
+     Invoke script transaction is a transaction that invokes functions of the dApp script.
+     dApp contains compiled functions  developed with [Waves Ride IDE]({https://ide.wavesplatform.com/)
+     You can invoke one of them by name with some arguments.
      */
     public struct InvokeScriptTransaction: Codable {
-
         /**
-          Call the function from dApp (address or alias) with typed arguments
+         Call the function from dApp (address or alias) with typed arguments
          */
         public struct Call: Codable {
-
             /**
-              Arguments for the function call
+             Arguments for the function call
              */
             public struct Args: Codable {
                 public enum Value {
-                                  
                     case bool(Bool)
                     case integer(Int64)
                     case string(String)
                     case binary(String)
                 }
-                
+
                 public let type: String
                 public let value: Value
 
@@ -43,13 +40,13 @@ extension NodeService.DTO {
             }
 
             /**
-              Function unique name
-              */
+             Function unique name
+             */
             public let function: String
 
             /**
-              List of arguments
-              */
+             List of arguments
+             */
             public let args: [Args]
 
             public init(function: String, args: [Args]) {
@@ -59,15 +56,15 @@ extension NodeService.DTO {
         }
 
         /**
-          Payment for function of dApp. Now it works with only one payment.
+         Payment for function of dApp. Now it works with only one payment.
          */
         public struct Payment: Codable {
             /**
-              Amount in satoshi
+             Amount in satoshi
              */
             public let amount: Int64
             /**
-              Asset Id in Waves blockchain
+             Asset Id in Waves blockchain
              */
             public let assetId: String?
 
@@ -76,10 +73,10 @@ extension NodeService.DTO {
                 self.assetId = assetId
             }
         }
-        
+
         public let type: Int
         public let id: String
-        public let chainId: String?
+        public let chainId: UInt8?
         public let sender: String
         public let senderPublicKey: String
         public let fee: Int64
@@ -91,26 +88,43 @@ extension NodeService.DTO {
         public let height: Int64?
 
         /**
-          Asset id instead Waves for transaction commission withdrawal
+         Asset id instead Waves for transaction commission withdrawal
          */
         public let feeAssetId: String?
 
         /**
-          dApp – address or alias of contract with function on RIDE language
+         dApp – address or alias of contract with function on RIDE language
          */
         public let dApp: String
 
         /**
-          Function name in dApp with array of arguments
+         Function name in dApp with array of arguments
          */
         public let call: Call?
 
         /**
-          Payments for function of dApp. Now it works with only one payment.
+         Payments for function of dApp. Now it works with only one payment.
          */
         public let payment: [Payment]
 
-        public init(type: Int, id: String, chainId: String?, sender: String, senderPublicKey: String, fee: Int64, timestamp: Date, proofs: [String]?, version: Int, height: Int64?, feeAssetId: String?, dApp: String, call: Call?, payment: [Payment]) {
+        public let applicationStatus: String?
+    
+        public init(
+            type: Int,
+            id: String,
+            chainId: UInt8?,
+            sender: String,
+            senderPublicKey: String,
+            fee: Int64,
+            timestamp: Date,
+            proofs: [String]?,
+            version: Int,
+            height: Int64?,
+            feeAssetId: String?,
+            dApp: String,
+            call: Call?,
+            payment: [Payment],
+            applicationStatus: String?) {
             self.type = type
             self.id = id
             self.chainId = chainId
@@ -125,35 +139,34 @@ extension NodeService.DTO {
             self.dApp = dApp
             self.call = call
             self.payment = payment
+            self.applicationStatus = applicationStatus
         }
     }
 }
 
 extension NodeService.DTO.InvokeScriptTransaction.Call.Args {
-    
     enum CodingKeys: String, CodingKey {
         case type
         case value
     }
-    
+
     enum ValueKey: String {
         case boolean
         case integer
         case string
         case binary
     }
-    
+
     public init(from decoder: Decoder) throws {
-        
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         if let value = try container.decodeIfPresent(String.self, forKey: .type) {
             type = value
         } else {
             throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: container.codingPath,
                                                                     debugDescription: "Not found type"))
         }
-        
+
         if let type = ValueKey(rawValue: self.type) {
             switch type {
             case .boolean:
@@ -170,35 +183,31 @@ extension NodeService.DTO.InvokeScriptTransaction.Call.Args {
                                                                     debugDescription: "Not found value"))
         }
     }
-        
-        public func encode(to encoder: Encoder) throws {
-            
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            do {
-                                
-                switch value {
-                case .bool(let value):
-                    try container.encode(value, forKey: .value)
-                    try container.encode(ValueKey.boolean.rawValue, forKey: .type)
-                    
-                case .integer(let value):
-                    try container.encode(value, forKey: .value)
-                    try container.encode(ValueKey.integer.rawValue, forKey: .type)
-                    
-                case .string(let value):
-                    try container.encode(value, forKey: .value)
-                    try container.encode(ValueKey.string.rawValue, forKey: .type)
-                    
-                case .binary(let value):
-                    try container.encode(value, forKey: .value)
-                    try container.encode(ValueKey.binary.rawValue, forKey: .type)
-                }
-                
-            } catch let e {
-                
-                throw NSError(domain: "Decoder Invalid Data ValueAA", code: 0, userInfo: nil)
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        do {
+            switch value {
+            case let .bool(value):
+                try container.encode(value, forKey: .value)
+                try container.encode(ValueKey.boolean.rawValue, forKey: .type)
+
+            case let .integer(value):
+                try container.encode(value, forKey: .value)
+                try container.encode(ValueKey.integer.rawValue, forKey: .type)
+
+            case let .string(value):
+                try container.encode(value, forKey: .value)
+                try container.encode(ValueKey.string.rawValue, forKey: .type)
+
+            case let .binary(value):
+                try container.encode(value, forKey: .value)
+                try container.encode(ValueKey.binary.rawValue, forKey: .type)
             }
+
+        } catch let e {
+            throw NSError(domain: "Decoder Invalid Data ValueAA", code: 0, userInfo: nil)
+        }
     }
 }
-

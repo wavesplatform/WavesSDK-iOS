@@ -23,6 +23,7 @@ public enum TransactionType: Int8 {
     case sponsorship = 14
     case assetScript = 15
     case invokeScript = 16
+    case updateAssetInfo = 17
     
     var int: Int {
         return Int(self.rawValue)

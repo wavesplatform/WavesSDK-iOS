@@ -18,7 +18,7 @@ final class AssetsDataService: InternalWavesService, AssetsDataServiceProtocol {
         super.init(enviroment: enviroment)
     }
     
-    public func assets(ids: [String]) -> Observable<[DataService.DTO.Asset]> {
+    public func assets(ids: [String]) -> Observable<[DataService.DTO.Asset?]> {
         
         return self
             .assetsProvider
@@ -30,7 +30,7 @@ final class AssetsDataService: InternalWavesService, AssetsDataServiceProtocol {
             .catchError({ (error) -> Single<Response> in
                 return Single<Response>.error(NetworkError.error(by: error))
             })
-            .map(DataService.Response<[DataService.Response<DataService.DTO.Asset>]>.self,
+            .map(DataService.Response<[DataService.Response<DataService.DTO.Asset?>]>.self,
                  atKeyPath: nil,
                  using: JSONDecoder.isoDecoderBySyncingTimestamp(enviroment.timestampServerDiff),
                  failsOnEmptyData: false)

@@ -48,6 +48,6 @@ public extension NodeService.DTO {
         public let minSponsoredAssetFee: Int64?
         public let sponsorBalance: Int64?
         public let quantity: Int64
-        public let issueTransaction: IssueTransaction
+        public let issueTransaction: IssueTransaction?
     }
 }

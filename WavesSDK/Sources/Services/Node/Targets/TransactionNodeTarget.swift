@@ -63,7 +63,7 @@ public extension NodeService.Query.Transaction {
                     Constants.proofs: alias.proofs]
             
         case .startLease(let lease):
-            let chainId: UInt8 = lease.chainId.utf8.last ?? UInt8(0)
+            let chainId: UInt8 = lease.chainId
             return  [Constants.version: lease.version,
                      Constants.chainId: chainId,
                      Constants.senderPublicKey: lease.senderPublicKey,
@@ -75,7 +75,7 @@ public extension NodeService.Query.Transaction {
                      Constants.type: lease.type]
             
         case .cancelLease(let lease):
-            let scheme: UInt8 = lease.chainId.utf8.last ?? UInt8(0)
+            let scheme: UInt8 = lease.chainId
             return  [Constants.version: lease.version,
                      Constants.chainId: scheme,
                      Constants.senderPublicKey: lease.senderPublicKey,
@@ -303,7 +303,9 @@ fileprivate extension NodeService.Query.Transaction.Data.Value {
 
         params["key"] = self.key
 
-        switch self.value {
+        guard let value = self.value else { return params }
+        
+        switch value {
             case .integer(let number):
                 params["type"] = "integer"
                 params["value"] = number

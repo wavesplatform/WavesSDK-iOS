@@ -25,7 +25,7 @@ public extension NodeService.DTO {
         public let height: Int64?
         public let signature: String?
         public let proofs: [String]?
-        public let chainId: Int?
+        public let chainId: UInt8?
 
         /**
           Id of burnable asset in Waves blockchain, different for main and test net
@@ -35,5 +35,6 @@ public extension NodeService.DTO {
           Amount of asset to burn in satoshi
           */
         public let amount: Int64
+        public let applicationStatus: String?
     }
 }

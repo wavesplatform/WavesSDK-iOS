@@ -30,5 +30,6 @@ public extension NodeService.DTO {
          */
         public let timestamp: Date
         public let height: Int64
+        public let applicationStatus: String?
     }
 }

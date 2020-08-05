@@ -14,7 +14,7 @@ import WavesSDKExtensions
 
 class WavesServicesTest: XCTestCase {
         
-    var chainId: String!
+    var chainId: UInt8!
     var seed: String!
     var address: String!
     var senderPublicKey: String!

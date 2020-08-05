@@ -9,7 +9,6 @@
 import Foundation
 
 public extension NodeService.DTO {
-
     /**
      The Alias transaction creates short readable alias for address
      */
@@ -27,10 +26,12 @@ public extension NodeService.DTO {
         public let proofs: [String]?
 
         /**
-          Alias, short name for address in Waves blockchain.
-          Alias bytes must be in [4;30]
-          Alphabet: -.0123456789@_abcdefghijklmnopqrstuvwxyz
+         Alias, short name for address in Waves blockchain.
+         Alias bytes must be in [4;30]
+         Alphabet: -.0123456789@_abcdefghijklmnopqrstuvwxyz
          */
         public let alias: String
+
+        public let applicationStatus: String?
     }
 }
