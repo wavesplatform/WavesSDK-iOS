@@ -77,58 +77,34 @@ public extension NetworkError {
             
         case let moyaError as MoyaError:
             guard let response = moyaError.response else {
-                
                 if let error = moyaError.error {
-                    return NetworkError.error(by: error)
+                    return .error(by: error)
                 } else {
-                    return NetworkError.notFound
+                    return .notFound
                 }
             }
             
-            return NetworkError.error(response: response)
+            return .error(response: response)
             
         case let urlError as NSError where urlError.domain == NSURLErrorDomain:
             
             switch urlError.code {
-            case NSURLErrorBadURL:
-                return NetworkError.serverError
-                
-            case NSURLErrorTimedOut:
-                return NetworkError.internetNotWorking
-                
-            case NSURLErrorUnsupportedURL:
-                return NetworkError.serverError
-                
-            case NSURLErrorCannotFindHost:
-                return NetworkError.serverError
-                
-            case NSURLErrorCannotConnectToHost:
-                return NetworkError.serverError
-                
-            case NSURLErrorNetworkConnectionLost:
-                return NetworkError.serverError
-                
-            case NSURLErrorDNSLookupFailed:
-                return NetworkError.serverError
-                
-            case NSURLErrorHTTPTooManyRedirects:
-                return NetworkError.serverError
-                
-            case NSURLErrorResourceUnavailable:
-                return NetworkError.serverError
-                
-            case NSURLErrorNotConnectedToInternet:
-                return NetworkError.internetNotWorking
-                
-            case NSURLErrorBadServerResponse:
-                return NetworkError.serverError
-                
-            default:
-                return NetworkError.none
+            case NSURLErrorBadURL: return .serverError
+            case NSURLErrorTimedOut: return .internetNotWorking
+            case NSURLErrorUnsupportedURL: return .serverError
+            case NSURLErrorCannotFindHost: return .serverError
+            case NSURLErrorCannotConnectToHost: return .serverError
+            case NSURLErrorNetworkConnectionLost: return .serverError
+            case NSURLErrorDNSLookupFailed: return .serverError
+            case NSURLErrorHTTPTooManyRedirects: return .serverError
+            case NSURLErrorResourceUnavailable: return .serverError
+            case NSURLErrorNotConnectedToInternet: return .internetNotWorking
+            case NSURLErrorBadServerResponse: return .serverError
+            case NSURLErrorCancelled: return .none
+            default: return .none
             }
             
-        default:
-            return NetworkError.none
+        default: return .none
         }
     }
     

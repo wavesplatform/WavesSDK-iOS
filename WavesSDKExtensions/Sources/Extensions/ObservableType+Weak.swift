@@ -11,12 +11,12 @@ import RxSwift
 
 public extension ObservableType {
     func `do`<WeakObject: AnyObject>(weak obj: WeakObject,
-                                            onNext: ((WeakObject, E) throws -> Swift.Void)? = nil,
+                                            onNext: ((WeakObject, Element) throws -> Swift.Void)? = nil,
                                             onError: ((WeakObject, Error) throws -> Swift.Void)? = nil,
                                             onCompleted: ((WeakObject) throws -> Swift.Void)? = nil,
                                             onSubscribe: ((WeakObject) -> Void)? = nil,
                                             onSubscribed: ((WeakObject) -> Void)? = nil,
-                                            onDispose: ((WeakObject) -> Void)? = nil) -> RxSwift.Observable<Self.E> {
+                                            onDispose: ((WeakObject) -> Void)? = nil) -> RxSwift.Observable<Self.Element> {
         return `do`(onNext: { [weak obj] element in
 
             guard let obj = obj else { return }
@@ -44,10 +44,10 @@ public extension ObservableType {
         })
     }
 
-    func catchError<WeakObject: AnyObject>(weak obj: WeakObject, handler: @escaping (WeakObject, Error) throws -> RxSwift.Observable<Self.E>) -> RxSwift.Observable<Self.E> {
-        return catchError { [weak obj] (error) -> Observable<E> in
+    func catchError<WeakObject: AnyObject>(weak obj: WeakObject, handler: @escaping (WeakObject, Error) throws -> RxSwift.Observable<Self.Element>) -> RxSwift.Observable<Self.Element> {
+        return catchError { [weak obj] (error) -> Observable<Element> in
 
-            guard let obj = obj else { return Observable<E>.never() }
+            guard let obj = obj else { return Observable<Element>.never() }
 
             return try handler(obj, error)
         }
@@ -55,20 +55,20 @@ public extension ObservableType {
 
     func flatMap<O: ObservableConvertibleType,
         WeakObject: AnyObject>(weak obj: WeakObject,
-                               selector: @escaping (_ weak: WeakObject, E) throws -> O) -> Observable<O.E> {
-        return flatMap { [weak obj] (element) -> Observable<O.E> in
+                               selector: @escaping (_ weak: WeakObject, Element) throws -> O) -> Observable<O.Element> {
+        return flatMap { [weak obj] (element) -> Observable<O.Element> in
 
-            guard let obj = obj else { return Observable<O.E>.never() }
+            guard let obj = obj else { return Observable<O.Element>.never() }
 
             return try selector(obj, element).asObservable()
         }
     }
 
     func flatMap<O: ObservableConvertibleType, WeakObject: AnyObject>(weak obj: WeakObject,
-                                                                             selector: @escaping (WeakObject) -> (Self.E) -> O) -> Observable<O.E> {
-        return flatMap { [weak obj] (element) -> Observable<O.E> in
+                                                                             selector: @escaping (WeakObject) -> (Self.Element) -> O) -> Observable<O.Element> {
+        return flatMap { [weak obj] (element) -> Observable<O.Element> in
 
-            guard let obj = obj else { return Observable<O.E>.never() }
+            guard let obj = obj else { return Observable<O.Element>.never() }
 
             return selector(obj)(element).asObservable()
         }
@@ -84,7 +84,7 @@ public extension ObservableType {
         return subscribe(weak: obj, onNext: nil, onError: nil, onCompleted: onCompleted, onDisposed: nil)
     }
 
-    func subscribe<WeakObject: AnyObject>(weak obj: WeakObject, _ on: @escaping (WeakObject, RxSwift.Event<Self.E>) -> Void) -> Disposable {
+    func subscribe<WeakObject: AnyObject>(weak obj: WeakObject, _ on: @escaping (WeakObject, RxSwift.Event<Self.Element>) -> Void) -> Disposable {
         return subscribe { [weak obj] event in
 
             guard let obj = obj else { return }
@@ -93,7 +93,7 @@ public extension ObservableType {
     }
 
     func subscribe<WeakObject: AnyObject>(weak obj: WeakObject,
-                                                 onNext: ((WeakObject, Self.E) -> Void)? = nil,
+                                                 onNext: ((WeakObject, Self.Element) -> Void)? = nil,
                                                  onError: ((WeakObject, Error) -> Void)? = nil,
                                                  onCompleted: ((WeakObject) -> Void)? = nil,
                                                  onDisposed: ((WeakObject) -> Void)? = nil) -> Disposable {
@@ -108,7 +108,7 @@ public extension ObservableType {
             disposable = Disposables.create()
         }
 
-        let observer = AnyObserver { [weak obj] (event: RxSwift.Event<Self.E>) in
+        let observer = AnyObserver { [weak obj] (event: RxSwift.Event<Self.Element>) in
             guard let obj = obj else { return }
             switch event {
             case .next(let value):

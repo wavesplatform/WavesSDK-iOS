@@ -16,9 +16,8 @@ private func log(identifier: String, message: String) {
 }
 
 private extension Thread {
-
     var displayName: String {
-        if let name = Thread.current.name, name.count > 0 {
+        if let name = Thread.current.name, !name.isEmpty {
             return name
         } else {
             return "Global"
@@ -27,11 +26,8 @@ private extension Thread {
 }
 
 public extension ObservableType {
-
-    
-    func sweetDebugWithoutResponse(_ identifier: String) -> RxSwift.Observable<Self.E> {
-
-        return self.do(onNext: { element in
+    func sweetDebugWithoutResponse(_ identifier: String) -> RxSwift.Observable<Self.Element> {
+        return self.do(onNext: { _ in
             log(identifier: identifier, message: "onNext 💬")
         }, onError: { error in
             log(identifier: identifier, message: "onError \(error)")
@@ -46,8 +42,7 @@ public extension ObservableType {
         })
     }
 
-    func sweetDebug(_ identifier: String) -> RxSwift.Observable<Self.E> {
-
+    func sweetDebug(_ identifier: String) -> RxSwift.Observable<Self.Element> {
         return self.do(onNext: { element in
             log(identifier: identifier, message: "onNext \(element)")
         }, onError: { error in

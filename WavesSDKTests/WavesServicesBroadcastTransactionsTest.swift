@@ -40,10 +40,8 @@ public class XCTestExpectationReactive: XCTestExpectation {
 
     public func executionDebug<E>(observer: Observable<E>) {
         self.execution(observer: observer, success: { (element) in
-            print(element)
             XCTAssertTrue(true)
         }) { (error) in
-            print(error)
             XCTFail()
         }
     }

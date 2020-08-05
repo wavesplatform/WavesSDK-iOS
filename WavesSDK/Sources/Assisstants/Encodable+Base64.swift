@@ -31,7 +31,6 @@ public extension String {
             let object = try JSONDecoder().decode(T.self, from: newData) 
             return object
         } catch let error {
-            print("error \(error)")
         }
         
         return nil

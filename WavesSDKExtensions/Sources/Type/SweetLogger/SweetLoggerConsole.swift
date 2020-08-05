@@ -55,7 +55,6 @@ public final class SweetLoggerConsole: SweetLoggerProtocol {
 private extension SweetLoggerLevel {
     
     var nameLevel: String {
-        
         switch self {
         case .debug:
             return "🐞 Debug:"
