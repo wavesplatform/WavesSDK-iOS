@@ -724,12 +724,12 @@ public extension NodeService.Query.Transaction {
         
         
         public let recipient: String
-        public let assetId: String
+        public let assetId: String?
         public let amount: Int64
-        public let attachment: String
-        public let feeAssetId: String
+        public let attachment: String?
+        public let feeAssetId: String?
 
-        public init(version: Int = TransactionVersion.version_2.rawValue, recipient: String, assetId: String, amount: Int64, fee: Int64, attachment: String, feeAssetId: String, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], chainId: String) {
+        public init(version: Int = TransactionVersion.version_2.rawValue, recipient: String, assetId: String?, amount: Int64, fee: Int64, attachment: String?, feeAssetId: String?, timestamp: Int64 = 0, senderPublicKey: String = "", proofs: [String] = [], chainId: String) {
             self.type = TransactionType.transfer.int
             self.version = version
             self.recipient = recipient

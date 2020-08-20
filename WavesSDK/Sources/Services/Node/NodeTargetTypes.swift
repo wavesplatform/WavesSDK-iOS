@@ -30,6 +30,7 @@ extension NodeTargetType {
     }
     
     var headers: [String: String]? {
-        return ContentType.applicationJson.headers
+        return [:]
+//        ContentType.applicationJson.headers
     }
 }

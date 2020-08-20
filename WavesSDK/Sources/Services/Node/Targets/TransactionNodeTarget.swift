@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import WavesSDKExtensions
 import Moya
+import WavesSDKExtensions
 
 fileprivate enum Constants {
     static let transactions = "transactions"
@@ -36,24 +36,23 @@ fileprivate enum Constants {
     static let attachment: String = "attachment"
 }
 
-//TODO: - need take parameter name from Constants
+// TODO: - need take parameter name from Constants
 
 public extension NodeService.Query.Transaction {
-    
     var params: [String: Any] {
         switch self {
-        case .burn(let burn):
-            return  [Constants.version: burn.version,
-                     Constants.chainId: burn.chainId,
-                     Constants.senderPublicKey: burn.senderPublicKey,
-                     Constants.quantity: burn.quantity,
-                     Constants.fee: burn.fee,
-                     Constants.timestamp: burn.timestamp,
-                     Constants.proofs: burn.proofs,
-                     Constants.type: burn.type,
-                     Constants.assetId: burn.assetId.normalizeWavesAssetId]
-            
-        case .createAlias(let alias):
+        case let .burn(burn):
+            return [Constants.version: burn.version,
+                    Constants.chainId: burn.chainId,
+                    Constants.senderPublicKey: burn.senderPublicKey,
+                    Constants.quantity: burn.quantity,
+                    Constants.fee: burn.fee,
+                    Constants.timestamp: burn.timestamp,
+                    Constants.proofs: burn.proofs,
+                    Constants.type: burn.type,
+                    Constants.assetId: burn.assetId.normalizeWavesAssetId]
+
+        case let .createAlias(alias):
             return [Constants.version: alias.version,
                     Constants.alias: alias.name,
                     Constants.fee: alias.fee,
@@ -61,180 +60,192 @@ public extension NodeService.Query.Transaction {
                     Constants.type: alias.type,
                     Constants.senderPublicKey: alias.senderPublicKey,
                     Constants.proofs: alias.proofs]
-            
-        case .startLease(let lease):
+
+        case let .startLease(lease):
             let chainId: UInt8 = lease.chainId.utf8.last ?? UInt8(0)
-            return  [Constants.version: lease.version,
-                     Constants.chainId: chainId,
-                     Constants.senderPublicKey: lease.senderPublicKey,
-                     Constants.recipient: lease.recipient,
-                     Constants.amount: lease.amount,
-                     Constants.fee: lease.fee,
-                     Constants.timestamp: lease.timestamp,
-                     Constants.proofs: lease.proofs,
-                     Constants.type: lease.type]
-            
-        case .cancelLease(let lease):
+            return [Constants.version: lease.version,
+                    Constants.chainId: chainId,
+                    Constants.senderPublicKey: lease.senderPublicKey,
+                    Constants.recipient: lease.recipient,
+                    Constants.amount: lease.amount,
+                    Constants.fee: lease.fee,
+                    Constants.timestamp: lease.timestamp,
+                    Constants.proofs: lease.proofs,
+                    Constants.type: lease.type]
+
+        case let .cancelLease(lease):
             let scheme: UInt8 = lease.chainId.utf8.last ?? UInt8(0)
-            return  [Constants.version: lease.version,
-                     Constants.chainId: scheme,
-                     Constants.senderPublicKey: lease.senderPublicKey,
-                     Constants.fee: lease.fee,
-                     Constants.timestamp: lease.timestamp,
-                     Constants.proofs: lease.proofs,
-                     Constants.type: lease.type,
-                     Constants.leaseId: lease.leaseId]
+            return [Constants.version: lease.version,
+                    Constants.chainId: scheme,
+                    Constants.senderPublicKey: lease.senderPublicKey,
+                    Constants.fee: lease.fee,
+                    Constants.timestamp: lease.timestamp,
+                    Constants.proofs: lease.proofs,
+                    Constants.type: lease.type,
+                    Constants.leaseId: lease.leaseId]
+
+        case let .data(data):
+
+            return [Constants.version: data.version,
+                    Constants.senderPublicKey: data.senderPublicKey,
+                    Constants.fee: data.fee,
+                    Constants.timestamp: data.timestamp,
+                    Constants.proofs: data.proofs,
+                    Constants.type: data.type,
+                    Constants.data: data.data.dataByParams]
+
+        case let .transfer(model):
+
+            var params: [String: Any] = [Constants.type: model.type,
+                                         Constants.senderPublicKey: model.senderPublicKey,
+                                         Constants.fee: model.fee,
+                                         Constants.timestamp: model.timestamp,
+                                         Constants.proofs: model.proofs,
+                                         Constants.version: model.version,
+                                         Constants.recipient: model.recipient]
             
-        case .data(let data):
+            if let assetId = model.assetId?.normalizeWavesAssetId {
+                params[Constants.assetId] = assetId == "" ? NSNull() : assetId
+            }
+
+            if let feeAssetId = model.feeAssetId?.normalizeWavesAssetId {
+                params[Constants.feeAssetId] = feeAssetId
+            } else {
+                params[Constants.feeAssetId] = NSNull()
+            }
+
+            params[Constants.amount] = model.amount
             
-            return  [Constants.version: data.version,
-                     Constants.senderPublicKey: data.senderPublicKey,
-                     Constants.fee: data.fee,
-                     Constants.timestamp: data.timestamp,
-                     Constants.proofs: data.proofs,
-                     Constants.type: data.type,
-                     Constants.data: data.data.dataByParams]
-            
-        case .transfer(let model):
-            
-            return [Constants.type: model.type,
-                    Constants.senderPublicKey : model.senderPublicKey,
-                    Constants.fee: model.fee,
-                    Constants.timestamp: model.timestamp,
-                    Constants.proofs: model.proofs,
-                    Constants.version: model.version,
-                    Constants.recipient: model.recipient,
-                    Constants.assetId: model.assetId.normalizeWavesAssetId,
-                    Constants.feeAssetId: model.feeAssetId.normalizeWavesAssetId,                    
-                    Constants.amount: model.amount,
-                    Constants.attachment: model.attachment]
-        case .invokeScript(let model):
-            
+            if let attachment = model.attachment {
+                params[Constants.attachment] = attachment == "" ? NSNull() : attachment
+            }
+                    
+
+            return params
+
+        case let .invokeScript(model):
+
             var params = [Constants.version: model.version,
                           Constants.senderPublicKey: model.senderPublicKey,
                           Constants.fee: model.fee,
                           Constants.timestamp: model.timestamp,
                           Constants.proofs: model.proofs,
-                          Constants.type: model.type] as [String : Any]
-            
+                          Constants.type: model.type] as [String: Any]
+
             params["feeAssetId"] = model.feeAssetId.normalizeWavesAssetId
             params["dApp"] = model.dApp
-            
+
             if let call = model.call {
                 params["call"] = call.params()
             }
-            
+
             params["payment"] = model.payment.map { $0.params() }
-            
+
             return params
-        
-        case .reissue(let model):
-            
+
+        case let .reissue(model):
+
             var params = [Constants.version: model.version,
                           Constants.senderPublicKey: model.senderPublicKey,
                           Constants.fee: model.fee,
                           Constants.timestamp: model.timestamp,
                           Constants.proofs: model.proofs,
-                          Constants.type: model.type] as [String : Any]
-            
+                          Constants.type: model.type] as [String: Any]
+
             params["assetId"] = model.assetId.normalizeWavesAssetId
             params["quantity"] = model.quantity
             params["reissuable"] = model.isReissuable
-            
+
             return params
-            
-        case .issue(let model):
-            
+
+        case let .issue(model):
+
             var params = [Constants.version: model.version,
                           Constants.senderPublicKey: model.senderPublicKey,
                           Constants.fee: model.fee,
                           Constants.timestamp: model.timestamp,
                           Constants.proofs: model.proofs,
-                          Constants.type: model.type] as [String : Any]
-            
+                          Constants.type: model.type] as [String: Any]
+
             params["name"] = model.name
             params["description"] = model.description
             params["quantity"] = model.quantity
             params["decimals"] = model.decimals
             params["reissuable"] = model.isReissuable
             params["script"] = model.script
-            
+
             return params
-        
-        case .massTransfer(let model):
-            
+
+        case let .massTransfer(model):
+
             var params = [Constants.type: model.type,
-                    Constants.senderPublicKey : model.senderPublicKey,
-                    Constants.fee: model.fee,                    
-                    Constants.timestamp: model.timestamp,
-                    Constants.proofs: model.proofs,
-                    Constants.version: model.version] as [String : Any]
-            
+                          Constants.senderPublicKey: model.senderPublicKey,
+                          Constants.fee: model.fee,
+                          Constants.timestamp: model.timestamp,
+                          Constants.proofs: model.proofs,
+                          Constants.version: model.version] as [String: Any]
+
             params[Constants.attachment] = model.attachment
-            
+
             params["assetId"] = model.assetId.normalizeWavesAssetId
             params["transfers"] = model.transfers.map {
-                return ["recipient": $0.recipient, "amount": $0.amount]
+                ["recipient": $0.recipient, "amount": $0.amount]
             }
 
             return params
-            
-        case .setScript(let model):
-            
+
+        case let .setScript(model):
+
             var params = [Constants.type: model.type,
-                          Constants.senderPublicKey : model.senderPublicKey,
+                          Constants.senderPublicKey: model.senderPublicKey,
                           Constants.fee: model.fee,
                           Constants.timestamp: model.timestamp,
                           Constants.proofs: model.proofs,
-                          Constants.version: model.version] as [String : Any]
-                        
+                          Constants.version: model.version] as [String: Any]
+
             params["script"] = model.script
-            
+
             return params
-            
-        case .setAssetScript(let model):
-            
+
+        case let .setAssetScript(model):
+
             var params = [Constants.type: model.type,
-                          Constants.senderPublicKey : model.senderPublicKey,
+                          Constants.senderPublicKey: model.senderPublicKey,
                           Constants.fee: model.fee,
                           Constants.timestamp: model.timestamp,
                           Constants.proofs: model.proofs,
-                          Constants.version: model.version] as [String : Any]
-        
+                          Constants.version: model.version] as [String: Any]
+
             params["script"] = model.script
             params["assetId"] = model.assetId.normalizeWavesAssetId
-        
+
             return params
-            
-        case .sponsorship(let model):
-            
+
+        case let .sponsorship(model):
+
             var params = [Constants.type: model.type,
-                          Constants.senderPublicKey : model.senderPublicKey,
+                          Constants.senderPublicKey: model.senderPublicKey,
                           Constants.fee: model.fee,
                           Constants.timestamp: model.timestamp,
                           Constants.proofs: model.proofs,
-                          Constants.version: model.version] as [String : Any]
-            
+                          Constants.version: model.version] as [String: Any]
+
             params["minSponsoredAssetFee"] = model.minSponsoredAssetFee
             params["assetId"] = model.assetId.normalizeWavesAssetId
-            
+
             return params
         }
     }
-
 }
 
 extension NodeService.Target {
-
     struct Transaction {
-
         public enum Kind {
-    
             case list(address: String, limit: Int)
-   
+
             case info(id: String)
 
-            case broadcast(NodeService.Query.Transaction)                        
+            case broadcast(NodeService.Query.Transaction)
         }
 
         var kind: Kind
@@ -249,15 +260,15 @@ extension NodeService.Target.Transaction: NodeTargetType {
 
     var path: String {
         switch kind {
-        case .list(let address, let limit):
-            return Constants.transactions + "/" + Constants.address + "/" + "\(address)".urlEscaped + "/" + Constants.limit + "/" + "\(limit)".urlEscaped
-            
-        case .info(let id):
+        case let .list(address, limit):
+            return Constants.transactions + "/" + Constants.address + "/" + "\(address)".urlEscaped + "/" + Constants
+                .limit + "/" + "\(limit)".urlEscaped
+
+        case let .info(id):
             return Constants.transactions + "/" + Constants.info + "/" + "\(id)".urlEscaped
 
         case .broadcast:
             return Constants.transactions + "/" + Constants.broadcast
-                    
         }
     }
 
@@ -274,17 +285,15 @@ extension NodeService.Target.Transaction: NodeTargetType {
         switch kind {
         case .list, .info:
             return .requestPlain
-            
-        case .broadcast(let specification):
+
+        case let .broadcast(specification):
             return .requestParameters(parameters: specification.params, encoding: JSONEncoding.default)
         }
     }
 }
 
 fileprivate extension Array where Element == NodeService.Query.Transaction.Data.Value {
-
     var dataByParams: [[String: Any]] {
-
         var list: [[String: Any]] = .init()
 
         for value in self {
@@ -296,29 +305,27 @@ fileprivate extension Array where Element == NodeService.Query.Transaction.Data.
 }
 
 fileprivate extension NodeService.Query.Transaction.Data.Value {
-
     func params() -> [String: Any] {
-
         var params: [String: Any] = .init()
 
-        params["key"] = self.key
+        params["key"] = key
 
-        switch self.value {
-            case .integer(let number):
-                params["type"] = "integer"
-                params["value"] = number
+        switch value {
+        case let .integer(number):
+            params["type"] = "integer"
+            params["value"] = number
 
-            case .boolean(let flag):
-                params["type"] = "boolean"
-                params["value"] = flag
+        case let .boolean(flag):
+            params["type"] = "boolean"
+            params["value"] = flag
 
-            case .string(let txt):
-                params["type"] = "string"
-                params["value"] = txt
+        case let .string(txt):
+            params["type"] = "string"
+            params["value"] = txt
 
-            case .binary(let binary):
-                params["type"] = "binary"
-                params["value"] = binary
+        case let .binary(binary):
+            params["type"] = "binary"
+            params["value"] = binary
         }
 
         return params
@@ -326,55 +333,49 @@ fileprivate extension NodeService.Query.Transaction.Data.Value {
 }
 
 fileprivate extension NodeService.Query.Transaction.InvokeScript.Call {
-    
     func params() -> [String: Any] {
-        
         var params: [String: Any] = .init()
-        
-        params["function"] = self.function
-        params["args"] = self.args.map { $0.params() }
-        
+
+        params["function"] = function
+        params["args"] = args.map { $0.params() }
+
         return params
     }
 }
 
 fileprivate extension NodeService.Query.Transaction.InvokeScript.Arg {
-    
     func params() -> [String: Any] {
-        
         var params: [String: Any] = .init()
 
-        switch self.value {
-        case .binary(let value):            
+        switch value {
+        case let .binary(value):
             params["type"] = "binary"
             params["value"] = value
-            
-        case .bool(let value):
+
+        case let .bool(value):
             params["type"] = "boolean"
             params["value"] = value
-            
-        case .integer(let value):
+
+        case let .integer(value):
             params["type"] = "integer"
             params["value"] = value
-            
-        case .string(let value):
+
+        case let .string(value):
             params["type"] = "string"
             params["value"] = value
         }
-        
+
         return params
     }
 }
 
 fileprivate extension NodeService.Query.Transaction.InvokeScript.Payment {
-    
     func params() -> [String: Any] {
-        
         var params: [String: Any] = .init()
-        
-        params["amount"] = self.amount
-        params["assetId"] = self.assetId.isEmpty == true ? NSNull() : self.assetId.normalizeToNullWavesAssetId
-        
+
+        params["amount"] = amount
+        params["assetId"] = assetId.isEmpty == true ? NSNull() : assetId.normalizeToNullWavesAssetId
+
         return params
     }
 }
