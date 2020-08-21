@@ -37,7 +37,7 @@ extension DataService.Query {
         public let assetId: String?
         
         /// Курсор последней записи в списке (base64 строчка которая держит в себе инфу по оффсету, таймстампа и тд)
-        public let after: String?
+        public var after: String?
         
         /// признак сортировки
         public let sort: SortOrder
