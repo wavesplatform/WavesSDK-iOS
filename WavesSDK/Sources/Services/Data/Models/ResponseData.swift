@@ -14,6 +14,13 @@ public extension DataService {
         public let data: T
         public let isLastPage: Bool?
         public let lastCursor: String?
+        
+        public init(type: String, data: T, isLastPage: Bool?, lastCursor: String?) {
+            self.type = type
+            self.data = data
+            self.isLastPage = isLastPage
+            self.lastCursor = lastCursor
+        }
 
         enum CodingKeys: String, CodingKey {
             case type = "__type"
