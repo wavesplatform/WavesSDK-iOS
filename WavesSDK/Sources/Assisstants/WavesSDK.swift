@@ -104,24 +104,24 @@ public final class WavesSDK {
 }
 
 private final class DebugServicePlugin: PluginType {
-    
     private var userAgent: String = ""
 
-    private let webView: WKWebView
+    private var webView: WKWebView?
 
     static let serialQueue = DispatchQueue(label: "DebugServicePlugin")
     static let serialQueueWebView = DispatchQueue(label: "DebugServicePlugin.webView")
-    
+
     init() {
-        webView = WKWebView()
-        
-        webView.evaluateJavaScript("navigator.userAgent", completionHandler: { [weak self] result, error in
-            if let userAgent = result as? String {
-                self?.userAgent = userAgent
-            } else {
-                self?.userAgent = ""
-            }
-        })
+        DispatchQueue.main.async { [weak self] in
+            self?.webView = WKWebView(frame: CGRect.zero)
+            self?.webView?.evaluateJavaScript("navigator.userAgent", completionHandler: { [weak self] result, _ in
+                if let userAgent = result as? String {
+                    self?.userAgent = userAgent
+                } else {
+                    self?.userAgent = ""
+                }
+            })
+        }
     }
 
     func prepare(_ request: URLRequest, target _: TargetType) -> URLRequest {
