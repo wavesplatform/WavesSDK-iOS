@@ -11,7 +11,7 @@ import Moya
 
 private enum Constants {
     static let scriptErrorCode: Int = 307
-    static let assetScriptErrorCode: Int = 308 //TODO: remove?
+    static let assetScriptErrorCode: Int = 308
     static let notFound: Int = 404
 }
 

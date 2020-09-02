@@ -36,8 +36,7 @@ public extension MatcherService.DTO {
         public let filled: Int64
         public let status: Status
         public let timestamp: Date
-        
-        //TODO: Remove optional after Release  https://jira.wavesplatform.com/browse/DEX-352
+                
         public let fee: Int64?
         public let feeAsset: String?
         public let assetPair: AssetPair
