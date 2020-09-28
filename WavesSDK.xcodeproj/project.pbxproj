@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B82212383ECF5F678FDDED7 /* Pods_WavesSDKCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C1EAB3948614C5958C8854 /* Pods_WavesSDKCrypto.framework */; };
+		11A03F5F5F0599FF0BB51E50 /* Pods_Waves_Exchange_SDK_WavesSDKCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C211CC774C88262EC274D292 /* Pods_Waves_Exchange_SDK_WavesSDKCrypto.framework */; };
 		4AF1EEBA1DC2288A5799015A /* Pods_WavesSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EBC6763F0CBF8C4EB1DA4C1 /* Pods_WavesSDKTests.framework */; };
-		50C4352575232A97768E6867 /* Pods_WavesSDKExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6088DAFE692A5CEDAC0465C4 /* Pods_WavesSDKExtensions.framework */; };
-		7B0A5D53DC6B327306A83D7E /* Pods_StubTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33C191D548715B178F62C6F /* Pods_StubTest.framework */; };
 		7B0B6F9B231E6DC800CC5DCB /* DictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0B6F9A231E6DC800CC5DCB /* DictionaryEncoder.swift */; };
 		7B3681A323152E13000D5592 /* WavesKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3681A223152E13000D5592 /* WavesKeeper.swift */; };
 		7B3DCA2922CFC37600FC973D /* keccak.c in Sources */ = {isa = PBXBuildFile; fileRef = 7B3DC9B622CFC37500FC973D /* keccak.c */; settings = {COMPILER_FLAGS = " -w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -274,12 +272,14 @@
 		872C36A8241A38100050250B /* MassTransferTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872C36A7241A38100050250B /* MassTransferTransaction.swift */; };
 		87409DB02417B06000726C12 /* MassTransferDataQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87409DAF2417B06000726C12 /* MassTransferDataQuery.swift */; };
 		8756669B242BBDD200E9F177 /* AddressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8756669A242BBDD200E9F177 /* AddressData.swift */; };
+		BA41E7E737BA6B507539D633 /* Pods_Waves_Exchange_SDK_WavesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FFECBE0B2B21E953A29830 /* Pods_Waves_Exchange_SDK_WavesSDK.framework */; };
 		E9399076231FD41D00302490 /* WavesKeeper+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9399075231FD41D00302490 /* WavesKeeper+Decodable.swift */; };
 		E9496F5923D7D93500FBF78F /* PairsRateDataTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9496F5823D7D93500FBF78F /* PairsRateDataTarget.swift */; };
 		E9496F5B23D7DBF300FBF78F /* PairsRateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9496F5A23D7DBF300FBF78F /* PairsRateData.swift */; };
 		E96DE18F231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96DE18E231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift */; };
 		E97A74A922D4B26200777C39 /* String+Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A74A822D4B26200777C39 /* String+Bytes.swift */; };
-		F48E5FF5F5E9F799B0852CCE /* Pods_WavesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93B34EAE9425B4C7BEB90E26 /* Pods_WavesSDK.framework */; };
+		EC3C23FE197267C22A050750 /* Pods_Waves_Exchange_SDK_StubTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81871304A387E5FEE8EFDFCE /* Pods_Waves_Exchange_SDK_StubTest.framework */; };
+		F9856AE2381FCFB9B57F78E8 /* Pods_Waves_Exchange_SDK_WavesSDKExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC76DFBE5B508855B2E5528 /* Pods_Waves_Exchange_SDK_WavesSDKExtensions.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -357,6 +357,7 @@
 		057B85604F42005119F57F40 /* Pods-Waves-Exchange-SDK-WavesSDKExtensions.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDKExtensions.release-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-WavesSDKExtensions/Pods-Waves-Exchange-SDK-WavesSDKExtensions.release-prod.xcconfig"; sourceTree = "<group>"; };
 		0676613607E48064DAA194D3 /* Pods-Waves-Exchange-SDK-WavesSDKCrypto.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDKCrypto.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-WavesSDKCrypto/Pods-Waves-Exchange-SDK-WavesSDKCrypto.release-dev.xcconfig"; sourceTree = "<group>"; };
 		076F06C5E0123CC7FDEF6D1E /* Pods-WavesWallet-WavesSDKCrypto.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKCrypto.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKCrypto/Pods-WavesWallet-WavesSDKCrypto.release-dev.xcconfig"; sourceTree = "<group>"; };
+		09FFECBE0B2B21E953A29830 /* Pods_Waves_Exchange_SDK_WavesSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Waves_Exchange_SDK_WavesSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F8BF3A6A6D9ADCA6DFEF993 /* Pods-WavesSDK.release-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDK.release-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDK/Pods-WavesSDK.release-adhoc.xcconfig"; sourceTree = "<group>"; };
 		10016CF24DA41E675DC3F0C9 /* Pods-WavesSDKExtensions.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKExtensions.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKExtensions/Pods-WavesSDKExtensions.release-dev.xcconfig"; sourceTree = "<group>"; };
 		1672E43CD7B4EE74D63BAD8D /* Pods-WavesWallet-WavesSDKCrypto.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKCrypto.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKCrypto/Pods-WavesWallet-WavesSDKCrypto.test-dev.xcconfig"; sourceTree = "<group>"; };
@@ -374,7 +375,6 @@
 		3CDF430358CBF52255D16643 /* Pods-Waves-Exchange-SDK-WavesSDK.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDK.release-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-WavesSDK/Pods-Waves-Exchange-SDK-WavesSDK.release-prod.xcconfig"; sourceTree = "<group>"; };
 		3D2AA03EFA737B2D25953C79 /* Pods-WavesWallet-WavesSDKExtensions.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKExtensions.dev-debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKExtensions/Pods-WavesWallet-WavesSDKExtensions.dev-debug.xcconfig"; sourceTree = "<group>"; };
 		3F250AADF26F2C0EAED041BB /* Pods-Waves-Exchange-SDK-WavesSDKCrypto.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDKCrypto.dev-debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-WavesSDKCrypto/Pods-Waves-Exchange-SDK-WavesSDKCrypto.dev-debug.xcconfig"; sourceTree = "<group>"; };
-		43C1EAB3948614C5958C8854 /* Pods_WavesSDKCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WavesSDKCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F560354B85368B8E0711AD /* Pods-Waves-Exchange-SDK-WavesSDK.release-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDK.release-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-WavesSDK/Pods-Waves-Exchange-SDK-WavesSDK.release-adhoc.xcconfig"; sourceTree = "<group>"; };
 		4A454F9C11AE629C2010A571 /* Pods-StubTest.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StubTest.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-StubTest/Pods-StubTest.test-prod.xcconfig"; sourceTree = "<group>"; };
 		4E4D16E9A03A5D1FEF89AFD2 /* Pods-WavesWallet-WavesSDKExtensions.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKExtensions.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKExtensions/Pods-WavesWallet-WavesSDKExtensions.test-prod.xcconfig"; sourceTree = "<group>"; };
@@ -383,7 +383,6 @@
 		5DBA949868868AFFBD54A272 /* Pods-StubTest.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StubTest.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-StubTest/Pods-StubTest.test-dev.xcconfig"; sourceTree = "<group>"; };
 		5EDF2C55F01435BC6E1F8597 /* Pods-Waves-Exchange-SDK-StubTest.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-StubTest.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-StubTest/Pods-Waves-Exchange-SDK-StubTest.release-dev.xcconfig"; sourceTree = "<group>"; };
 		5F810CC28B5ACE0283743AFA /* Pods-StubTest.release-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StubTest.release-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-StubTest/Pods-StubTest.release-adhoc.xcconfig"; sourceTree = "<group>"; };
-		6088DAFE692A5CEDAC0465C4 /* Pods_WavesSDKExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WavesSDKExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AA4956319919D28300DC8A8 /* Pods-WavesWallet-WavesSDKCrypto.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKCrypto.dev-debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKCrypto/Pods-WavesWallet-WavesSDKCrypto.dev-debug.xcconfig"; sourceTree = "<group>"; };
 		6DD9AA75B44A529C1EBB2A10 /* Pods-Waves-Exchange-SDK-WavesSDKCrypto.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDKCrypto.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-WavesSDKCrypto/Pods-Waves-Exchange-SDK-WavesSDKCrypto.test-dev.xcconfig"; sourceTree = "<group>"; };
 		6FEEF46B75FC4BA86AED0470 /* Pods-WavesSDKTests.dev-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKTests.dev-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests.dev-adhoc.xcconfig"; sourceTree = "<group>"; };
@@ -657,6 +656,7 @@
 		7BE1930E243CFD5B00916E15 /* CachePolicyPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachePolicyPlugin.swift; sourceTree = "<group>"; };
 		7CC610F9C46AE31219A21B74 /* Pods-WavesSDKExtensions.release-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKExtensions.release-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKExtensions/Pods-WavesSDKExtensions.release-adhoc.xcconfig"; sourceTree = "<group>"; };
 		7EB0BF3B8993800BE9CD3D94 /* Pods-WavesWallet-WavesSDK.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDK.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDK/Pods-WavesWallet-WavesSDK.test-prod.xcconfig"; sourceTree = "<group>"; };
+		81871304A387E5FEE8EFDFCE /* Pods_Waves_Exchange_SDK_StubTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Waves_Exchange_SDK_StubTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86877D739CE99F30ABB94FA9 /* Pods-WavesWallet-WavesSDKExtensions.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKExtensions.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKExtensions/Pods-WavesWallet-WavesSDKExtensions.test-dev.xcconfig"; sourceTree = "<group>"; };
 		872C36A7241A38100050250B /* MassTransferTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassTransferTransaction.swift; sourceTree = "<group>"; };
 		87409DAF2417B06000726C12 /* MassTransferDataQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassTransferDataQuery.swift; sourceTree = "<group>"; };
@@ -665,7 +665,6 @@
 		8FB1FDF7CD4EEDBDE7DA455E /* Pods-StubTest.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StubTest.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-StubTest/Pods-StubTest.release-dev.xcconfig"; sourceTree = "<group>"; };
 		90D10FDB0B5EA0B2BF564F51 /* Pods-StubTest.dev-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StubTest.dev-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-StubTest/Pods-StubTest.dev-adhoc.xcconfig"; sourceTree = "<group>"; };
 		9374F8CED3317CCC73621702 /* Pods-Waves-Exchange-SDK-WavesSDK.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDK.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-WavesSDK/Pods-Waves-Exchange-SDK-WavesSDK.test-dev.xcconfig"; sourceTree = "<group>"; };
-		93B34EAE9425B4C7BEB90E26 /* Pods_WavesSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WavesSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9580253F23A7C1663DC94CA3 /* Pods-WavesSDKTests.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKTests.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests.release-dev.xcconfig"; sourceTree = "<group>"; };
 		96085BF71F0F7687E9AC40C8 /* Pods-Waves-Exchange-SDK-WavesSDKExtensions.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDKExtensions.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-WavesSDKExtensions/Pods-Waves-Exchange-SDK-WavesSDKExtensions.test-prod.xcconfig"; sourceTree = "<group>"; };
 		97C22B5788C92E2B8864E109 /* Pods-WavesSDK.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDK.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDK/Pods-WavesSDK.test-prod.xcconfig"; sourceTree = "<group>"; };
@@ -678,6 +677,7 @@
 		BA03DE09B7EDEFB302A706B3 /* Pods-Waves-Exchange-SDK-WavesSDKExtensions.dev-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDKExtensions.dev-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-WavesSDKExtensions/Pods-Waves-Exchange-SDK-WavesSDKExtensions.dev-adhoc.xcconfig"; sourceTree = "<group>"; };
 		BBF02B007BFCC774990CD169 /* Pods-WavesWallet-WavesSDKCrypto.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKCrypto.release-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKCrypto/Pods-WavesWallet-WavesSDKCrypto.release-prod.xcconfig"; sourceTree = "<group>"; };
 		BC1008162E1E77FAE1DA41D3 /* Pods-WavesWallet-WavesSDK.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDK.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDK/Pods-WavesWallet-WavesSDK.test-dev.xcconfig"; sourceTree = "<group>"; };
+		C211CC774C88262EC274D292 /* Pods_Waves_Exchange_SDK_WavesSDKCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Waves_Exchange_SDK_WavesSDKCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C33879D1D1E550A4E4946A77 /* Pods-WavesSDK.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDK.release-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDK/Pods-WavesSDK.release-dev.xcconfig"; sourceTree = "<group>"; };
 		CB14CB85805F940459E2410E /* Pods-WavesWallet-WavesSDKCrypto.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesWallet-WavesSDKCrypto.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesWallet-WavesSDKCrypto/Pods-WavesWallet-WavesSDKCrypto.test-prod.xcconfig"; sourceTree = "<group>"; };
 		CCEF9017ECA5BADF4FE41535 /* Pods-Waves-Exchange-SDK-StubTest.release-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-StubTest.release-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-StubTest/Pods-Waves-Exchange-SDK-StubTest.release-adhoc.xcconfig"; sourceTree = "<group>"; };
@@ -690,7 +690,6 @@
 		DA25C0B4F491198D0B80112F /* Pods-WavesSDKTests.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKTests.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests.test-dev.xcconfig"; sourceTree = "<group>"; };
 		E2D7032DCD57CC4376B4E62D /* Pods-WavesSDKCrypto.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKCrypto.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKCrypto/Pods-WavesSDKCrypto.test-prod.xcconfig"; sourceTree = "<group>"; };
 		E2DAA2313D13873B3DFB0736 /* Pods-WavesSDK.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDK.release-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDK/Pods-WavesSDK.release-prod.xcconfig"; sourceTree = "<group>"; };
-		E33C191D548715B178F62C6F /* Pods_StubTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StubTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E33F9E382872B5BCEC1D94EE /* Pods-Waves-Exchange-SDK-WavesSDK.dev-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDK.dev-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-WavesSDK/Pods-Waves-Exchange-SDK-WavesSDK.dev-adhoc.xcconfig"; sourceTree = "<group>"; };
 		E8F1B2EBA71E061E5C46D1DF /* Pods-Waves-Exchange-SDK-WavesSDK.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDK.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-WavesSDK/Pods-Waves-Exchange-SDK-WavesSDK.test-prod.xcconfig"; sourceTree = "<group>"; };
 		E9399075231FD41D00302490 /* WavesKeeper+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WavesKeeper+Decodable.swift"; sourceTree = "<group>"; };
@@ -699,6 +698,7 @@
 		E96DE18E231805A7005E1FD9 /* JSONDecoder+TimestampDiff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+TimestampDiff.swift"; sourceTree = "<group>"; };
 		E97A74A822D4B26200777C39 /* String+Bytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Bytes.swift"; sourceTree = "<group>"; };
 		EA03F1EA82B6F6A913C52644 /* Pods-Waves-Exchange-SDK-StubTest.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-StubTest.test-prod.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-StubTest/Pods-Waves-Exchange-SDK-StubTest.test-prod.xcconfig"; sourceTree = "<group>"; };
+		EDC76DFBE5B508855B2E5528 /* Pods_Waves_Exchange_SDK_WavesSDKExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Waves_Exchange_SDK_WavesSDKExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2543D7C92B92855970DEAF /* Pods-WavesSDKExtensions.test-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKExtensions.test-dev.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDKExtensions/Pods-WavesSDKExtensions.test-dev.xcconfig"; sourceTree = "<group>"; };
 		F2EFB19AAEF15B25F1D28436 /* Pods-WavesSDK.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDK.dev-debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-WavesSDK/Pods-WavesSDK.dev-debug.xcconfig"; sourceTree = "<group>"; };
 		FAB3273CE75ABEAD55FA7828 /* Pods-Waves-Exchange-SDK-StubTest.dev-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-StubTest.dev-adhoc.xcconfig"; path = "../../../Pods/Target Support Files/Pods-Waves-Exchange-SDK-StubTest/Pods-Waves-Exchange-SDK-StubTest.dev-adhoc.xcconfig"; sourceTree = "<group>"; };
@@ -713,7 +713,7 @@
 			files = (
 				7B3DCBFA22D366AB00FC973D /* WavesSDKCrypto.framework in Frameworks */,
 				7B3DCBFB22D366AB00FC973D /* WavesSDKExtensions.framework in Frameworks */,
-				F48E5FF5F5E9F799B0852CCE /* Pods_WavesSDK.framework in Frameworks */,
+				BA41E7E737BA6B507539D633 /* Pods_Waves_Exchange_SDK_WavesSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,7 +724,7 @@
 				7B3DCBF922D3647D00FC973D /* WavesSDKExtensions.framework in Frameworks */,
 				7B3DCA8522CFC9C700FC973D /* Foundation.framework in Frameworks */,
 				7B3DCA8322CFC68C00FC973D /* Security.framework in Frameworks */,
-				1B82212383ECF5F678FDDED7 /* Pods_WavesSDKCrypto.framework in Frameworks */,
+				11A03F5F5F0599FF0BB51E50 /* Pods_Waves_Exchange_SDK_WavesSDKCrypto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,7 +732,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50C4352575232A97768E6867 /* Pods_WavesSDKExtensions.framework in Frameworks */,
+				F9856AE2381FCFB9B57F78E8 /* Pods_Waves_Exchange_SDK_WavesSDKExtensions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,7 +743,7 @@
 				7B4E1DFC22C4DC2800854BAB /* WavesSDKCrypto.framework in Frameworks */,
 				7B4E1E0D22C4DC3400854BAB /* WavesSDKExtensions.framework in Frameworks */,
 				7B4E1DEA22C4DBDA00854BAB /* WavesSDK.framework in Frameworks */,
-				7B0A5D53DC6B327306A83D7E /* Pods_StubTest.framework in Frameworks */,
+				EC3C23FE197267C22A050750 /* Pods_Waves_Exchange_SDK_StubTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1592,10 +1592,10 @@
 				7B42335622563A3200E82730 /* Security.framework */,
 				7B42335422563A2100E82730 /* CoreTelephony.framework */,
 				8EBC6763F0CBF8C4EB1DA4C1 /* Pods_WavesSDKTests.framework */,
-				E33C191D548715B178F62C6F /* Pods_StubTest.framework */,
-				93B34EAE9425B4C7BEB90E26 /* Pods_WavesSDK.framework */,
-				43C1EAB3948614C5958C8854 /* Pods_WavesSDKCrypto.framework */,
-				6088DAFE692A5CEDAC0465C4 /* Pods_WavesSDKExtensions.framework */,
+				81871304A387E5FEE8EFDFCE /* Pods_Waves_Exchange_SDK_StubTest.framework */,
+				09FFECBE0B2B21E953A29830 /* Pods_Waves_Exchange_SDK_WavesSDK.framework */,
+				C211CC774C88262EC274D292 /* Pods_Waves_Exchange_SDK_WavesSDKCrypto.framework */,
+				EDC76DFBE5B508855B2E5528 /* Pods_Waves_Exchange_SDK_WavesSDKExtensions.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1904,7 +1904,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WavesSDK-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Waves-Exchange-SDK-WavesSDK-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1926,7 +1926,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-StubTest-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Waves-Exchange-SDK-StubTest-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1963,7 +1963,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WavesSDKCrypto-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Waves-Exchange-SDK-WavesSDKCrypto-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1985,7 +1985,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WavesSDKExtensions-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Waves-Exchange-SDK-WavesSDKExtensions-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2019,7 +2019,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StubTest/Pods-StubTest-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Waves-Exchange-SDK-StubTest/Pods-Waves-Exchange-SDK-StubTest-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2330,7 +2330,7 @@
 /* Begin XCBuildConfiguration section */
 		7B4E1DEC22C4DBDA00854BAB /* Dev-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2EFB19AAEF15B25F1D28436 /* Pods-WavesSDK.dev-debug.xcconfig */;
+			baseConfigurationReference = 7275DD2C9CE67C1AFDF217BB /* Pods-Waves-Exchange-SDK-WavesSDK.dev-debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -2365,7 +2365,7 @@
 		};
 		7B4E1DED22C4DBDA00854BAB /* Release-Prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2DAA2313D13873B3DFB0736 /* Pods-WavesSDK.release-prod.xcconfig */;
+			baseConfigurationReference = 3CDF430358CBF52255D16643 /* Pods-Waves-Exchange-SDK-WavesSDK.release-prod.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -2399,7 +2399,7 @@
 		};
 		7B4E1DFF22C4DC2800854BAB /* Dev-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D66F4985E2EB5D9F05458841 /* Pods-WavesSDKCrypto.dev-debug.xcconfig */;
+			baseConfigurationReference = 3F250AADF26F2C0EAED041BB /* Pods-Waves-Exchange-SDK-WavesSDKCrypto.dev-debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -2440,7 +2440,7 @@
 		};
 		7B4E1E0022C4DC2800854BAB /* Release-Prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78D7832575360CA51393CFEB /* Pods-WavesSDKCrypto.release-prod.xcconfig */;
+			baseConfigurationReference = 04ED97A8747F7464FA98ECFF /* Pods-Waves-Exchange-SDK-WavesSDKCrypto.release-prod.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -2482,7 +2482,7 @@
 		};
 		7B4E1E1022C4DC3400854BAB /* Dev-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE08FC927FCAEE48D556A21F /* Pods-WavesSDKExtensions.dev-debug.xcconfig */;
+			baseConfigurationReference = 1FBCAB72F96FC24D16962F59 /* Pods-Waves-Exchange-SDK-WavesSDKExtensions.dev-debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -2518,7 +2518,7 @@
 		};
 		7B4E1E1122C4DC3400854BAB /* Release-Prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFD43551B6C25F10E7348FB6 /* Pods-WavesSDKExtensions.release-prod.xcconfig */;
+			baseConfigurationReference = 057B85604F42005119F57F40 /* Pods-Waves-Exchange-SDK-WavesSDKExtensions.release-prod.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -2669,7 +2669,7 @@
 		};
 		7B72BBBD22550495004A047F /* Dev-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 763F93B7A8546599012BE8F0 /* Pods-StubTest.dev-debug.xcconfig */;
+			baseConfigurationReference = 79D98E10A0EFCECA1C88DF58 /* Pods-Waves-Exchange-SDK-StubTest.dev-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2692,7 +2692,7 @@
 		};
 		7B72BBBE22550495004A047F /* Release-Prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71341E2E0E896FD672F2CBAA /* Pods-StubTest.release-prod.xcconfig */;
+			baseConfigurationReference = 70E6B3EAB2C78594AD429FB8 /* Pods-Waves-Exchange-SDK-StubTest.release-prod.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2772,7 +2772,7 @@
 		};
 		7B9393E022DF7CC7006634A6 /* Test-Prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A454F9C11AE629C2010A571 /* Pods-StubTest.test-prod.xcconfig */;
+			baseConfigurationReference = EA03F1EA82B6F6A913C52644 /* Pods-Waves-Exchange-SDK-StubTest.test-prod.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2821,7 +2821,7 @@
 		};
 		7B9393E222DF7CC7006634A6 /* Test-Prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97C22B5788C92E2B8864E109 /* Pods-WavesSDK.test-prod.xcconfig */;
+			baseConfigurationReference = E8F1B2EBA71E061E5C46D1DF /* Pods-Waves-Exchange-SDK-WavesSDK.test-prod.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -2855,7 +2855,7 @@
 		};
 		7B9393E322DF7CC7006634A6 /* Test-Prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2D7032DCD57CC4376B4E62D /* Pods-WavesSDKCrypto.test-prod.xcconfig */;
+			baseConfigurationReference = 2FB7EC69DB7948FB2163340D /* Pods-Waves-Exchange-SDK-WavesSDKCrypto.test-prod.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -2897,7 +2897,7 @@
 		};
 		7B9393E422DF7CC7006634A6 /* Test-Prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D9387DBAA6359A3ED5505A5D /* Pods-WavesSDKExtensions.test-prod.xcconfig */;
+			baseConfigurationReference = 96085BF71F0F7687E9AC40C8 /* Pods-Waves-Exchange-SDK-WavesSDKExtensions.test-prod.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -2993,7 +2993,7 @@
 		};
 		7B9393E622DF7CD1006634A6 /* Dev-Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90D10FDB0B5EA0B2BF564F51 /* Pods-StubTest.dev-adhoc.xcconfig */;
+			baseConfigurationReference = FAB3273CE75ABEAD55FA7828 /* Pods-Waves-Exchange-SDK-StubTest.dev-adhoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -3044,7 +3044,7 @@
 		};
 		7B9393E822DF7CD1006634A6 /* Dev-Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20E21113E935A957B60B9B61 /* Pods-WavesSDK.dev-adhoc.xcconfig */;
+			baseConfigurationReference = E33F9E382872B5BCEC1D94EE /* Pods-Waves-Exchange-SDK-WavesSDK.dev-adhoc.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -3079,7 +3079,7 @@
 		};
 		7B9393E922DF7CD1006634A6 /* Dev-Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 557FBA94B197A0B14DB78B87 /* Pods-WavesSDKCrypto.dev-adhoc.xcconfig */;
+			baseConfigurationReference = A0B569C86F4FE043E36653AD /* Pods-Waves-Exchange-SDK-WavesSDKCrypto.dev-adhoc.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -3121,7 +3121,7 @@
 		};
 		7B9393EA22DF7CD1006634A6 /* Dev-Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA4D4BB3D50A9961A5687C84 /* Pods-WavesSDKExtensions.dev-adhoc.xcconfig */;
+			baseConfigurationReference = BA03DE09B7EDEFB302A706B3 /* Pods-Waves-Exchange-SDK-WavesSDKExtensions.dev-adhoc.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -3216,7 +3216,7 @@
 		};
 		7B9393EC22DF7D74006634A6 /* Release-Dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8FB1FDF7CD4EEDBDE7DA455E /* Pods-StubTest.release-dev.xcconfig */;
+			baseConfigurationReference = 5EDF2C55F01435BC6E1F8597 /* Pods-Waves-Exchange-SDK-StubTest.release-dev.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -3267,7 +3267,7 @@
 		};
 		7B9393EE22DF7D74006634A6 /* Release-Dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C33879D1D1E550A4E4946A77 /* Pods-WavesSDK.release-dev.xcconfig */;
+			baseConfigurationReference = 1943F76F20458DDDCEDCA455 /* Pods-Waves-Exchange-SDK-WavesSDK.release-dev.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -3302,7 +3302,7 @@
 		};
 		7B9393EF22DF7D74006634A6 /* Release-Dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75FFDE847B534C528F075F61 /* Pods-WavesSDKCrypto.release-dev.xcconfig */;
+			baseConfigurationReference = 0676613607E48064DAA194D3 /* Pods-Waves-Exchange-SDK-WavesSDKCrypto.release-dev.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -3343,7 +3343,7 @@
 		};
 		7B9393F022DF7D74006634A6 /* Release-Dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10016CF24DA41E675DC3F0C9 /* Pods-WavesSDKExtensions.release-dev.xcconfig */;
+			baseConfigurationReference = D5AEED999FB4941B9A4AF97F /* Pods-Waves-Exchange-SDK-WavesSDKExtensions.release-dev.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -3440,7 +3440,7 @@
 		};
 		7B9393F222DF7D8A006634A6 /* Test-Dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5DBA949868868AFFBD54A272 /* Pods-StubTest.test-dev.xcconfig */;
+			baseConfigurationReference = 4E50DA3CA41B50532280E754 /* Pods-Waves-Exchange-SDK-StubTest.test-dev.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -3492,7 +3492,7 @@
 		};
 		7B9393F422DF7D8A006634A6 /* Test-Dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0A8B49767FDDEA7D4F92A21 /* Pods-WavesSDK.test-dev.xcconfig */;
+			baseConfigurationReference = 9374F8CED3317CCC73621702 /* Pods-Waves-Exchange-SDK-WavesSDK.test-dev.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -3526,7 +3526,7 @@
 		};
 		7B9393F522DF7D8A006634A6 /* Test-Dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00AE2365D4C9D44C3EB23248 /* Pods-WavesSDKCrypto.test-dev.xcconfig */;
+			baseConfigurationReference = 6DD9AA75B44A529C1EBB2A10 /* Pods-Waves-Exchange-SDK-WavesSDKCrypto.test-dev.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -3567,7 +3567,7 @@
 		};
 		7B9393F622DF7D8A006634A6 /* Test-Dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF2543D7C92B92855970DEAF /* Pods-WavesSDKExtensions.test-dev.xcconfig */;
+			baseConfigurationReference = 9CE2A012E643D5C34D3CBF4B /* Pods-Waves-Exchange-SDK-WavesSDKExtensions.test-dev.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -3711,7 +3711,7 @@
 		};
 		7BF3376E2436202100F88306 /* Release-Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F810CC28B5ACE0283743AFA /* Pods-StubTest.release-adhoc.xcconfig */;
+			baseConfigurationReference = CCEF9017ECA5BADF4FE41535 /* Pods-Waves-Exchange-SDK-StubTest.release-adhoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -3759,7 +3759,7 @@
 		};
 		7BF337702436202100F88306 /* Release-Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F8BF3A6A6D9ADCA6DFEF993 /* Pods-WavesSDK.release-adhoc.xcconfig */;
+			baseConfigurationReference = 44F560354B85368B8E0711AD /* Pods-Waves-Exchange-SDK-WavesSDK.release-adhoc.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -3793,7 +3793,7 @@
 		};
 		7BF337712436202100F88306 /* Release-Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDE8058D30B05D203145D768 /* Pods-WavesSDKCrypto.release-adhoc.xcconfig */;
+			baseConfigurationReference = 2C598EE4FAAE34C1F3635DC4 /* Pods-Waves-Exchange-SDK-WavesSDKCrypto.release-adhoc.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -3835,7 +3835,7 @@
 		};
 		7BF337722436202100F88306 /* Release-Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7CC610F9C46AE31219A21B74 /* Pods-WavesSDKExtensions.release-adhoc.xcconfig */;
+			baseConfigurationReference = FCB79C685947DB870AA5891C /* Pods-Waves-Exchange-SDK-WavesSDKExtensions.release-adhoc.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
