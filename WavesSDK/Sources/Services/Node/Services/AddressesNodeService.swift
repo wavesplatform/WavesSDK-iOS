@@ -42,8 +42,8 @@ final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProt
             .asObservable()
     }
     
-    func getAddressData(addressSmartContract: String, key: String) -> Observable<NodeService.DTO.AddressesData> {
-        let target: NodeService.Target.Addresses = .init(kind: .getData(addressSmartContract: addressSmartContract, key: key),
+    func getAddressData(address: String, key: String) -> Observable<NodeService.DTO.AddressesData> {
+        let target: NodeService.Target.Addresses = .init(kind: .getData(address: address, key: key),
                                                          nodeUrl: enviroment.nodeUrl)
         
         return addressesProvider

@@ -23,5 +23,5 @@ public protocol AddressesNodeServiceProtocol {
 
     func scriptInfo(address: String) -> Observable<NodeService.DTO.AddressScriptInfo>
     
-    func getAddressData(addressSmartContract: String, key: String) -> Observable<NodeService.DTO.AddressesData>
+    func getAddressData(address: String, key: String) -> Observable<NodeService.DTO.AddressesData>
 }
