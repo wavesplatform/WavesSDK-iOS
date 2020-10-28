@@ -26,7 +26,7 @@ extension NodeService.Target {
              */
             case scriptInfo(id: String)
             
-            case getData(addressSmartContract: String, key: String)
+            case getData(address: String, key: String)
         }
 
         var kind: Kind
@@ -49,8 +49,8 @@ extension NodeService.Target.Addresses: NodeTargetType {
         case .scriptInfo(let id):
             return Constants.addresses + "/" + Constants.scriptInfo + "/" + "\(id)".urlEscaped
             
-        case let .getData(addressSmartContract, key):
-            return Constants.addresses + "/" + "data" + "/" + addressSmartContract.urlEscaped + "/" + "\(key)".urlEscaped
+        case let .getData(address, key):
+            return Constants.addresses + "/" + "data" + "/" + address.urlEscaped + "/" + "\(key)".urlEscaped
         }
     }
 
