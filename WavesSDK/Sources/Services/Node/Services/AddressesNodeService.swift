@@ -6,15 +6,13 @@
 //
 
 import Foundation
-import RxSwift
 import Moya
+import RxSwift
 
 final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProtocol {
-    
     private let addressesProvider: MoyaProvider<NodeService.Target.Addresses>
-    
+
     init(addressesProvider: MoyaProvider<NodeService.Target.Addresses>, enviroment: Enviroment) {
-        
         self.addressesProvider = addressesProvider
         super.init(enviroment: enviroment)
     }
@@ -32,26 +30,40 @@ final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProt
 
     public func scriptInfo(address: String) -> Observable<NodeService.DTO.AddressScriptInfo> {
         let target: NodeService.Target.Addresses = .init(kind: .scriptInfo(id: address), nodeUrl: enviroment.nodeUrl)
-        
+
         return addressesProvider
             .rx
             .request(target, callbackQueue: DispatchQueue.global(qos: .userInteractive))
             .filterSuccessfulStatusAndRedirectCodes()
-            .catchError{ error -> Single<Response> in Single.error(NetworkError.error(by: error)) }
+            .catchError { error -> Single<Response> in Single.error(NetworkError.error(by: error)) }
             .map(NodeService.DTO.AddressScriptInfo.self)
             .asObservable()
     }
-    
+
     func getAddressData(address: String, key: String) -> Observable<NodeService.DTO.AddressesData> {
         let target: NodeService.Target.Addresses = .init(kind: .getData(address: address, key: key),
                                                          nodeUrl: enviroment.nodeUrl)
-        
+
         return addressesProvider
             .rx
             .request(target)
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError { error -> Single<Response> in Single.error(error) }
             .map(NodeService.DTO.AddressesData.self)
+            .asObservable()
+    }
+
+    func addressesBalance(addresses: [String]) -> Observable<[NodeService.DTO.WavesBalance]> {
+        let target: NodeService.Target.Addresses = .init(
+            kind: .getAddressesBalance(addresses: addresses),
+            nodeUrl: enviroment.nodeUrl)
+        
+        return addressesProvider
+            .rx
+            .request(target)
+            .filterSuccessfulStatusAndRedirectCodes()
+            .catchError { (error) -> Single<Response> in Single.error(NetworkError.error(by: error)) }
+            .map([NodeService.DTO.WavesBalance].self)
             .asObservable()
     }
 }
