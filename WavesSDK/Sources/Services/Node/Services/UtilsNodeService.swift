@@ -29,8 +29,7 @@ final class UtilsNodeService: InternalWavesService, UtilsNodeServiceProtocol {
             .utilsProvider
             .rx
             .request(.init(nodeUrl: enviroment.nodeUrl,
-                           kind: .transactionSerialize(query)),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           kind: .transactionSerialize(query)))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
@@ -45,8 +44,7 @@ final class UtilsNodeService: InternalWavesService, UtilsNodeServiceProtocol {
     
         return utilsProvider
             .rx
-            .request(.init(nodeUrl: enviroment.nodeUrl, kind: .time),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+            .request(.init(nodeUrl: enviroment.nodeUrl, kind: .time))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))

@@ -25,8 +25,7 @@ final class LeasingNodeService: InternalWavesService, LeasingNodeServiceProtocol
             .leasingProvider
             .rx
             .request(.init(kind: .getActive(address: address),
-                           nodeUrl: enviroment.nodeUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           nodeUrl: enviroment.nodeUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))

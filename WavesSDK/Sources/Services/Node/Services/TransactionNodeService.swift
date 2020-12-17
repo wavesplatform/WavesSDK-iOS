@@ -24,8 +24,7 @@ final class TransactionNodeService: InternalWavesService, TransactionNodeService
             .transactionsProvider
             .rx
             .request(.init(kind: .broadcast(query),
-                           nodeUrl: enviroment.nodeUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           nodeUrl: enviroment.nodeUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
@@ -41,8 +40,7 @@ final class TransactionNodeService: InternalWavesService, TransactionNodeService
             .rx
             .request(.init(kind: .list(address: address,
                                        limit: limit),
-                           nodeUrl: enviroment.nodeUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           nodeUrl: enviroment.nodeUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
