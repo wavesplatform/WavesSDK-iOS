@@ -24,8 +24,7 @@ final class AssetsNodeService: InternalWavesService, AssetsNodeServiceProtocol {
             .assetsProvider
             .rx
             .request(.init(kind: .getAssetsBalances(walletAddress: address),
-                           nodeUrl: enviroment.nodeUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           nodeUrl: enviroment.nodeUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .asObservable()
             .catchError({ (error) -> Observable<Response> in
@@ -44,8 +43,7 @@ final class AssetsNodeService: InternalWavesService, AssetsNodeServiceProtocol {
             .assetsProvider
             .rx
             .request(.init(kind: .getAssetsBalance(address: address, assetId: assetId),
-                           nodeUrl: enviroment.nodeUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           nodeUrl: enviroment.nodeUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
@@ -59,8 +57,7 @@ final class AssetsNodeService: InternalWavesService, AssetsNodeServiceProtocol {
             .assetsProvider
             .rx
             .request(.init(kind: .details(assetId: assetId),
-                           nodeUrl: enviroment.nodeUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           nodeUrl: enviroment.nodeUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))

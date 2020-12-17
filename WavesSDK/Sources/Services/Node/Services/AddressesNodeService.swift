@@ -21,7 +21,7 @@ final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProt
         let target: NodeService.Target.Addresses = .init(kind: .getAddressBalance(id: address), nodeUrl: enviroment.nodeUrl)
         return addressesProvider
             .rx
-            .request(target, callbackQueue: DispatchQueue.global(qos: .userInteractive))
+            .request(target)
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError { (error) -> Single<Response> in Single.error(NetworkError.error(by: error)) }
             .map(NodeService.DTO.AddressBalance.self)
@@ -33,7 +33,7 @@ final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProt
 
         return addressesProvider
             .rx
-            .request(target, callbackQueue: DispatchQueue.global(qos: .userInteractive))
+            .request(target)
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError { error -> Single<Response> in Single.error(NetworkError.error(by: error)) }
             .map(NodeService.DTO.AddressScriptInfo.self)

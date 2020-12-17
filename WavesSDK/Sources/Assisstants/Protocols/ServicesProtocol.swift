@@ -11,7 +11,7 @@ import Moya
 extension InternalWavesService {
     
     static func moyaProvider<Target: TargetType>(plugins: [PluginType]) -> MoyaProvider<Target> {
-        return MoyaProvider<Target>(callbackQueue: nil,
+        return MoyaProvider<Target>(callbackQueue: DispatchQueuePool.userInteractive,
                                     plugins: plugins)
     }
 }

@@ -23,8 +23,7 @@ final class TransactionsDataService: InternalWavesService, TransactionsDataServi
         
         transactionsProvider.rx
             .request(.init(kind: .getExchangeWithFilters(query),
-                           dataUrl: enviroment.dataUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           dataUrl: enviroment.dataUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError { error -> Single<Response> in
                 Single<Response>.error(NetworkError.error(by: error))
@@ -44,7 +43,7 @@ final class TransactionsDataService: InternalWavesService, TransactionsDataServi
         
         return transactionsProvider
             .rx
-            .request(target, callbackQueue: DispatchQueue.global(qos: .userInteractive))
+            .request(target)
             .catchError { error -> Single<Response> in
                 Single<Response>.error(NetworkError.error(by: error))
             }

@@ -24,8 +24,7 @@ final class AliasDataService: InternalWavesService, AliasDataServiceProtocol {
             .aliasProvider
             .rx
             .request(DataService.Target.Alias(dataUrl: enviroment.dataUrl,
-                                       kind: .alias(name: name)),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                                       kind: .alias(name: name)))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
@@ -41,8 +40,7 @@ final class AliasDataService: InternalWavesService, AliasDataServiceProtocol {
             .aliasProvider
             .rx
             .request(DataService.Target.Alias(dataUrl: enviroment.dataUrl,
-                                       kind: .list(address: address)),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                                       kind: .list(address: address)))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))

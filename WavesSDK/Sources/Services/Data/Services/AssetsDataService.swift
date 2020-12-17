@@ -24,8 +24,7 @@ final class AssetsDataService: InternalWavesService, AssetsDataServiceProtocol {
             .assetsProvider
             .rx
             .request(.init(kind: .getAssets(ids: ids),
-                           dataUrl: enviroment.dataUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           dataUrl: enviroment.dataUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single<Response>.error(NetworkError.error(by: error))
@@ -44,8 +43,7 @@ final class AssetsDataService: InternalWavesService, AssetsDataServiceProtocol {
             .assetsProvider
             .rx
             .request(.init(kind: .getAsset(id: id),
-                           dataUrl: enviroment.dataUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           dataUrl: enviroment.dataUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single<Response>.error(NetworkError.error(by: error))
@@ -64,8 +62,7 @@ final class AssetsDataService: InternalWavesService, AssetsDataServiceProtocol {
             .assetsProvider
             .rx
             .request(.init(kind: .search(text: search, limit: limit),
-                           dataUrl: enviroment.dataUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           dataUrl: enviroment.dataUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single<Response>.error(NetworkError.error(by: error))
