@@ -23,7 +23,7 @@ final class PublicKeyMatcherService: InternalWavesService, PublicKeyMatcherServi
         return self
             .publicKeyProvider
             .rx
-            .request(.init(matcherUrl: enviroment.matcherUrl)
+            .request(.init(matcherUrl: enviroment.matcherUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single<Response>.error(NetworkError.error(by: error))
