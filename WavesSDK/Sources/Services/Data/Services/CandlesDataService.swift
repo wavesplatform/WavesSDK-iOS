@@ -24,8 +24,7 @@ final class CandlesDataService: InternalWavesService, CandlesDataServiceProtocol
             .candlesProvider
             .rx
             .request(.init(query: query,
-                           dataUrl: enviroment.dataUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           dataUrl: enviroment.dataUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single<Response>.error(NetworkError.error(by: error))

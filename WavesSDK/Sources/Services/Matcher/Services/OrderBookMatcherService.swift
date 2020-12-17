@@ -26,8 +26,7 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
             .rx
             .request(.init(kind: .getOrderBook(amountAsset: amountAsset,
                                                priceAsset: priceAsset),
-                           matcherUrl: enviroment.matcherUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           matcherUrl: enviroment.matcherUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
@@ -45,8 +44,7 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
             .orderBookProvider
             .rx
             .request(.init(kind: .getMarket,
-                           matcherUrl: enviroment.matcherUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           matcherUrl: enviroment.matcherUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
@@ -61,8 +59,7 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
             .orderBookProvider
             .rx
             .request(.init(kind: .getMyOrders(query),
-                           matcherUrl: enviroment.matcherUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           matcherUrl: enviroment.matcherUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
@@ -79,8 +76,7 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
            .orderBookProvider
            .rx
            .request(.init(kind: .getAllMyOrders(query),
-                          matcherUrl: enviroment.matcherUrl),
-                    callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                          matcherUrl: enviroment.matcherUrl))
            .filterSuccessfulStatusAndRedirectCodes()
            .catchError({ (error) -> Single<Response> in
                return Single.error(NetworkError.error(by: error))
@@ -98,8 +94,7 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
             .orderBookProvider
             .rx
             .request(.init(kind: .cancelOrder(query),
-                           matcherUrl: enviroment.matcherUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           matcherUrl: enviroment.matcherUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
@@ -113,8 +108,7 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
             .orderBookProvider
             .rx
             .request(.init(kind: .cancelAllOrders(query),
-                           matcherUrl: enviroment.matcherUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           matcherUrl: enviroment.matcherUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
@@ -129,8 +123,7 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
             .orderBookProvider
             .rx
             .request(.init(kind: .createOrder(.limit(query)),
-                           matcherUrl: enviroment.matcherUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           matcherUrl: enviroment.matcherUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
@@ -145,8 +138,7 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
             .orderBookProvider
             .rx
             .request(.init(kind: .createOrder(.market(query)),
-                           matcherUrl: enviroment.matcherUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           matcherUrl: enviroment.matcherUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
@@ -161,8 +153,7 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
             .orderBookProvider
             .rx
             .request(.init(kind: .settingsFee,
-                           matcherUrl: enviroment.matcherUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           matcherUrl: enviroment.matcherUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
@@ -193,8 +184,7 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
             .orderBookProvider
             .rx
             .request(.init(kind: .settings,
-                           matcherUrl: enviroment.matcherUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           matcherUrl: enviroment.matcherUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))

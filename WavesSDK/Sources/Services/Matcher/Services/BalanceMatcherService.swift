@@ -24,8 +24,7 @@ final class BalanceMatcherService: InternalWavesService, BalanceMatcherServicePr
             .balanceProvider
             .rx
             .request(.init(kind: .getReservedBalances(query),
-                           matcherUrl: enviroment.matcherUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           matcherUrl: enviroment.matcherUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))

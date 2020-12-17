@@ -63,7 +63,7 @@ extension NodeService.Target.Addresses: NodeTargetType {
         case .getAddressBalance, .scriptInfo, .getData:
             return .get
         case .getAddressesBalance:
-            return .get
+            return .post
         }
     }
 
@@ -73,8 +73,8 @@ extension NodeService.Target.Addresses: NodeTargetType {
             return .requestParameters(parameters: ["r": "\(Date().timeIntervalSince1970)"],
                                       encoding: URLEncoding.default)
         case let .getAddressesBalance(address):
-            return Task.requestParameters(parameters: ["address": address],
-                                          encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["addresses": address],
+                                      encoding: JSONEncoding.default)
         }
     }
 }

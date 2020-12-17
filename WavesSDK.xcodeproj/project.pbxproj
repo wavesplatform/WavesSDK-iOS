@@ -266,6 +266,7 @@
 		7B7A4B7922D3757500E0A8CD /* WavesSDKExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4E1E0622C4DC3400854BAB /* WavesSDKExtensions.framework */; };
 		7B95114B225E16370030390C /* WavesCryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B95114A225E16370030390C /* WavesCryptoTest.swift */; };
 		7BB6759B24D19C43004AA4FF /* UpdateAssetInfoTransactionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB6759A24D19C43004AA4FF /* UpdateAssetInfoTransactionNode.swift */; };
+		7BB6EF82258B7F5600CC5164 /* DispatchQueuePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB6EF81258B7F5600CC5164 /* DispatchQueuePool.swift */; };
 		7BBB233022CA2B8D0057095D /* TransactionSignatureV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB232E22CA2A940057095D /* TransactionSignatureV1.swift */; };
 		7BBB233322CA2C990057095D /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB233122CA2C600057095D /* TransactionType.swift */; };
 		7BBB233622CE13140057095D /* BaseTransactionQueryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB233422CE13080057095D /* BaseTransactionQueryProtocol.swift */; };
@@ -628,6 +629,7 @@
 		7B95114A225E16370030390C /* WavesCryptoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesCryptoTest.swift; sourceTree = "<group>"; };
 		7B95114C225E16370030390C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BB6759A24D19C43004AA4FF /* UpdateAssetInfoTransactionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAssetInfoTransactionNode.swift; sourceTree = "<group>"; };
+		7BB6EF81258B7F5600CC5164 /* DispatchQueuePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueuePool.swift; sourceTree = "<group>"; };
 		7BBB232E22CA2A940057095D /* TransactionSignatureV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSignatureV1.swift; sourceTree = "<group>"; };
 		7BBB233122CA2C600057095D /* TransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
 		7BBB233422CE13080057095D /* BaseTransactionQueryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTransactionQueryProtocol.swift; sourceTree = "<group>"; };
@@ -1112,6 +1114,7 @@
 				7B0B6F9A231E6DC800CC5DCB /* DictionaryEncoder.swift */,
 				7B42C0202320415C00B3E5DC /* Encodable+Base64.swift */,
 				7BE1930E243CFD5B00916E15 /* CachePolicyPlugin.swift */,
+				7BB6EF81258B7F5600CC5164 /* DispatchQueuePool.swift */,
 			);
 			path = Assisstants;
 			sourceTree = "<group>";
@@ -1668,7 +1671,6 @@
 				7B951145225E16370030390C /* Frameworks */,
 				7B951146225E16370030390C /* Resources */,
 				48E9FE44485C21C1A3094268 /* [CP] Embed Pods Frameworks */,
-				A46DD808710F0B134AF55118 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1857,21 +1859,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A46DD808710F0B134AF55118 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B4461CC8C6B975F2BE55041B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1945,6 +1932,7 @@
 				7B4E1F7822C4DD2D00854BAB /* OrderBookMatcher.swift in Sources */,
 				7B4E1F9922C4DD2D00854BAB /* TransactionContainersNode.swift in Sources */,
 				7B42C0212320415C00B3E5DC /* Encodable+Base64.swift in Sources */,
+				7BB6EF82258B7F5600CC5164 /* DispatchQueuePool.swift in Sources */,
 				7B4E1FBF22C4DD2D00854BAB /* PairsPriceDataServiceProtocol.swift in Sources */,
 				7B4E1FB322C4DD2D00854BAB /* TransactionData.swift in Sources */,
 				7B4E1F6322C4DD2D00854BAB /* WavesSDK.swift in Sources */,

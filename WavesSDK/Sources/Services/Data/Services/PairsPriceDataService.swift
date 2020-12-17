@@ -44,8 +44,7 @@ final class PairsPriceDataService: InternalWavesService, PairsPriceDataServicePr
             .pairsPriceProvider
             .rx
             .request(.init(query: query,
-                           dataUrl: enviroment.dataUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                           dataUrl: enviroment.dataUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single<Response>.error(NetworkError.error(by: error))
@@ -59,8 +58,7 @@ final class PairsPriceDataService: InternalWavesService, PairsPriceDataServicePr
         
         return pairsRateProvider
             .rx
-            .request(DataService.Target.PairsRate(query: query, dataUrl: enviroment.dataUrl),
-                     callbackQueue: DispatchQueue.global(qos: .userInteractive))
+            .request(DataService.Target.PairsRate(query: query, dataUrl: enviroment.dataUrl))
             .filterSuccessfulStatusAndRedirectCodes()
             .catchError({ (error) -> Single<Response> in
                 return Single<Response>.error(NetworkError.error(by: error))
@@ -78,8 +76,7 @@ final class PairsPriceDataService: InternalWavesService, PairsPriceDataServicePr
         return self.pairsPriceSearchProvider
                 .rx
                 .request(DataService.Target.PairsPriceSearch(query: query,
-                                                             dataUrl: enviroment.dataUrl),
-                         callbackQueue: DispatchQueue.global(qos: .userInteractive))
+                                                             dataUrl: enviroment.dataUrl))
                 .filterSuccessfulStatusAndRedirectCodes()
                 .catchError({ (error) -> Single<Response> in
                     return Single<Response>.error(NetworkError.error(by: error))
