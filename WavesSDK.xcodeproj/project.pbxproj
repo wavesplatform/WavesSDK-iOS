@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1AB37B7C3C1EB90AC19BAA6D /* Pods_Waves_Exchange_SDK_WavesSDKCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8625E48FA90E048D091F4B9E /* Pods_Waves_Exchange_SDK_WavesSDKCrypto.framework */; };
 		3B0E8FCF7759CD4F8A4FF27C /* Pods_Waves_Exchange_SDK_WavesSDKExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7AA1F5018E52FD7CFB2112 /* Pods_Waves_Exchange_SDK_WavesSDKExtensions.framework */; };
+		42BB3EF72594C60C00A0142A /* NumberFormatter+Once.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BB3EF62594C60C00A0142A /* NumberFormatter+Once.swift */; };
 		4AF1EEBA1DC2288A5799015A /* Pods_WavesSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EBC6763F0CBF8C4EB1DA4C1 /* Pods_WavesSDKTests.framework */; };
 		7B0B6F9B231E6DC800CC5DCB /* DictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0B6F9A231E6DC800CC5DCB /* DictionaryEncoder.swift */; };
 		7B3681A323152E13000D5592 /* WavesKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3681A223152E13000D5592 /* WavesKeeper.swift */; };
@@ -362,6 +363,7 @@
 		2947576B28F5E4E8904B5301 /* Pods-WavesSDKTests.release-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKTests.release-adhoc.xcconfig"; path = "Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests.release-adhoc.xcconfig"; sourceTree = "<group>"; };
 		36FCA4E83FFD9076A9C08FE7 /* Pods-Waves-Exchange-SDK-WavesSDKExtensions.test-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDKExtensions.test-prod.xcconfig"; path = "Target Support Files/Pods-Waves-Exchange-SDK-WavesSDKExtensions/Pods-Waves-Exchange-SDK-WavesSDKExtensions.test-prod.xcconfig"; sourceTree = "<group>"; };
 		400C8FCA907BB961EF91A346 /* Pods-Waves-Exchange-SDK-WavesSDKExtensions.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDKExtensions.dev-debug.xcconfig"; path = "Target Support Files/Pods-Waves-Exchange-SDK-WavesSDKExtensions/Pods-Waves-Exchange-SDK-WavesSDKExtensions.dev-debug.xcconfig"; sourceTree = "<group>"; };
+		42BB3EF62594C60C00A0142A /* NumberFormatter+Once.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Once.swift"; sourceTree = "<group>"; };
 		42D7DDC3AFBDDE9DEF887387 /* Pods-Waves-Exchange-SDK-WavesSDK.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-WavesSDK.release-prod.xcconfig"; path = "Target Support Files/Pods-Waves-Exchange-SDK-WavesSDK/Pods-Waves-Exchange-SDK-WavesSDK.release-prod.xcconfig"; sourceTree = "<group>"; };
 		47D4ADFC1CA7318E60FB0AC4 /* Pods-WavesSDKTests.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKTests.dev-debug.xcconfig"; path = "Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests.dev-debug.xcconfig"; sourceTree = "<group>"; };
 		4D9AFCBE2E229B7214B2B634 /* Pods-Waves-Exchange-SDK-StubTest.dev-adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waves-Exchange-SDK-StubTest.dev-adhoc.xcconfig"; path = "Target Support Files/Pods-Waves-Exchange-SDK-StubTest/Pods-Waves-Exchange-SDK-StubTest.dev-adhoc.xcconfig"; sourceTree = "<group>"; };
@@ -1005,6 +1007,7 @@
 				7B4E1E3122C4DD0100854BAB /* Optional+Hashable.swift */,
 				7B4E1E2C22C4DD0100854BAB /* RxSwift+Scheduler.swift */,
 				7B4E1E2822C4DD0100854BAB /* Thread+Assisstants.swift */,
+				42BB3EF62594C60C00A0142A /* NumberFormatter+Once.swift */,
 				7B4E1E2E22C4DD0100854BAB /* UInt8+Assisstants.swift */,
 				7B4E1E1F22C4DD0100854BAB /* Array */,
 				7B4E1E2422C4DD0100854BAB /* Date */,
@@ -2141,6 +2144,7 @@
 				7B4E1E5922C4DD0100854BAB /* Runtime.swift in Sources */,
 				7B4E1E4822C4DD0100854BAB /* DateExtension+Sync.swift in Sources */,
 				7B4E1E4F22C4DD0100854BAB /* UInt8+Assisstants.swift in Sources */,
+				42BB3EF72594C60C00A0142A /* NumberFormatter+Once.swift in Sources */,
 				7B4E1E5822C4DD0100854BAB /* Any+Name.swift in Sources */,
 				7B4E1E4622C4DD0100854BAB /* Dictionary+Json.swift in Sources */,
 				7B4E1E4B22C4DD0100854BAB /* JSONDecoder+JSON.swift in Sources */,
