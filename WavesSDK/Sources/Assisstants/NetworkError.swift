@@ -15,7 +15,7 @@ private enum Constants {
     static let notFound: Int = 404
 }
 
-public enum NetworkError: Error, Equatable {
+@frozen public enum NetworkError: Error, Equatable {
     
     case none    
     case message(String)

@@ -17,7 +17,7 @@ public extension ObservableType {
     /**
             Makes the observable Subscribe to io thread and Observe on main thread
          */
-    func composeIoToMainThreads() -> Observable<E> {
+    func composeIoToMainThreads() -> Observable<Element> {
         return self.subscribeOn(myWorkScheduler)
             .observeOn(myDefaultScheduler)
     }

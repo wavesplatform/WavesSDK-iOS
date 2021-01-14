@@ -25,7 +25,7 @@ public extension NodeService.DTO {
          Data of Data transaction
          */
         public struct Data: Codable {
-            public enum Value {
+            @frozen public enum Value {
                 case bool(Bool)
                 case integer(Int64)
                 case string(String)

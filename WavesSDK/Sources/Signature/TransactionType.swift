@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum TransactionType: Int8 {
+@frozen public enum TransactionType: Int8 {
     case issue = 3
     case transfer = 4
     case reissue = 5
