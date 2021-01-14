@@ -23,7 +23,7 @@ extension NodeService.DTO {
              Arguments for the function call
              */
             public struct Args: Codable {
-                public enum Value {
+                @frozen public enum Value {
                     case bool(Bool)
                     case integer(Int64)
                     case string(String)
@@ -206,7 +206,7 @@ extension NodeService.DTO.InvokeScriptTransaction.Call.Args {
                 try container.encode(ValueKey.binary.rawValue, forKey: .type)
             }
 
-        } catch let e {
+        } catch _ {
             throw NSError(domain: "Decoder Invalid Data ValueAA", code: 0, userInfo: nil)
         }
     }

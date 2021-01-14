@@ -335,7 +335,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
             .transactions(query: send)
             .flatMap({ (tx) -> Observable<NodeService.DTO.Transaction> in
 
-                return Observable<Int>.timer(10, scheduler: MainScheduler.asyncInstance).map { _ in tx }
+                return Observable<Int>.timer(DispatchTimeInterval.seconds(10), scheduler: MainScheduler.asyncInstance).map { _ in tx }
             })
             .flatMap({ (tx) -> Observable<NodeService.DTO.Transaction> in
 
@@ -422,7 +422,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
             .transactionNodeService
             .transactions(query: issueTx(script: "AwZd0cYf"))
             .flatMap({ (tx) -> Observable<NodeService.DTO.Transaction> in
-                return Observable<Int>.timer(10, scheduler: MainScheduler.asyncInstance).map { _ in tx }
+                return Observable<Int>.timer(DispatchTimeInterval.seconds(10), scheduler: MainScheduler.asyncInstance).map { _ in tx }
             })
             .flatMap({ (tx) -> Observable<NodeService.DTO.Transaction> in
 
@@ -461,7 +461,7 @@ class WavesServicesBroadcastTransactionsTest: WavesServicesTest {
             .transactionNodeService
             .transactions(query: issueTx())
             .flatMap({ (tx) -> Observable<NodeService.DTO.Transaction> in
-                return Observable<Int>.timer(20, scheduler: MainScheduler.asyncInstance).map { _ in tx }
+                return Observable<Int>.timer(DispatchTimeInterval.seconds(20), scheduler: MainScheduler.asyncInstance).map { _ in tx }
             })
             .flatMap({ (tx) -> Observable<NodeService.DTO.Transaction> in
 

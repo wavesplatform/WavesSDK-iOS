@@ -1674,6 +1674,7 @@
 				7B951145225E16370030390C /* Frameworks */,
 				7B951146225E16370030390C /* Resources */,
 				48E9FE44485C21C1A3094268 /* [CP] Embed Pods Frameworks */,
+				E53425CD48D47EEE914B7A85 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1696,7 +1697,7 @@
 			attributes = {
 				DefaultBuildSystemTypeForWorkspace = Original;
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = Waves;
 				TargetAttributes = {
 					7B4E1DE222C4DBD900854BAB = {
@@ -1919,6 +1920,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Waves-Exchange-SDK-StubTest/Pods-Waves-Exchange-SDK-StubTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E53425CD48D47EEE914B7A85 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WavesSDKTests/Pods-WavesSDKTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3141,7 +3157,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};

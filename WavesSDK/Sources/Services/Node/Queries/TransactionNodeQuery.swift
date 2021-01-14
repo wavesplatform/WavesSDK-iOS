@@ -402,7 +402,7 @@ public extension NodeService.Query.Transaction {
     struct InvokeScript: BaseTransactionQueryProtocol, Encodable, Decodable {
         
         public struct Arg: Encodable, Decodable {
-            public enum Value: Encodable, Decodable {
+            @frozen public enum Value: Encodable, Decodable {
                 
                 private enum CodingKeys: String, CodingKey {
                     case integer
@@ -622,7 +622,7 @@ public extension NodeService.Query.Transaction {
     struct Data: BaseTransactionQueryProtocol, Encodable, Decodable {
         public struct Value: Encodable, Decodable {
             
-            public enum Kind: Codable {
+            @frozen public enum Kind: Codable {
                 
                 private enum CodingKeys: String, CodingKey {
                     case integer
