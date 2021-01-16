@@ -13,6 +13,7 @@ private enum Constants {
     static let scriptErrorCode: Int = 307
     static let assetScriptErrorCode: Int = 308
     static let notFound: Int = 404
+    static let negativeBalance: Int = 112
 }
 
 @frozen public enum NetworkError: Error, Equatable {
@@ -22,7 +23,9 @@ private enum Constants {
     case notFound
     case internetNotWorking
     case serverError
+    case negativeBalance
     case scriptError
+    case assetScriptErrorCode
     
     public var isInternetNotWorking: Bool {
         switch self {
@@ -34,6 +37,21 @@ private enum Constants {
         }
     }
     
+    public var errorType: String {
+        switch self {
+        case .negativeBalance:
+            return "negativeBalance"
+        case .scriptError:
+            return "scriptError"
+        case .assetScriptErrorCode:
+            return "assetScriptErrorCode"
+        case .notFound:
+            return "notFound"
+        default:
+            return "undefinedError"
+        }
+    }
+
     public var isServerError: Bool {
         switch self {
         case .serverError:
@@ -148,24 +166,28 @@ public extension NetworkError {
     
     static func error(data: Data) -> NetworkError? {
         
-        var message: String? = nil
         let anyObject = try? JSONSerialization.jsonObject(with: data, options: [])
         
         if let anyObject = anyObject as? [String: Any] {
             
-            if anyObject["error"] as? Int == Constants.scriptErrorCode {
-                return NetworkError.scriptError
+            if let errorCode = anyObject["error"] as? Int {
+                switch errorCode {
+                case Constants.scriptErrorCode:
+                    return NetworkError.scriptError
+                case Constants.negativeBalance:
+                    return NetworkError.negativeBalance
+                case Constants.assetScriptErrorCode:
+                    return NetworkError.assetScriptErrorCode
+                case Constants.notFound:
+                    return NetworkError.notFound
+                default:
+                    break
+                }
             }
             
-            message = anyObject["message"] as? String
-            
-            if message == nil {
-                message = anyObject["error"] as? String
+            if let m = anyObject["message"] as? String {
+                return NetworkError.message(m)
             }
-        }
-        
-        if let message = message {
-            return NetworkError.message(message)
         }
         
         return nil
