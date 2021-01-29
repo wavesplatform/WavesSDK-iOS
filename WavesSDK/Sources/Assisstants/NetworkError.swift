@@ -14,6 +14,7 @@ private enum Constants {
     static let scriptErrorCode: Int = 307
     static let assetScriptErrorCode: Int = 308
     static let notFound: Int = 404
+    static let imTeaPot: Int = 418
 }
 
 @frozen public enum NetworkError: Error, Equatable {
@@ -97,72 +98,72 @@ public extension NetworkError {
             case let .invalidURL(url: url):
                 return NetworkError.notFound
             case let .multipartEncodingFailed(reason: reason):
-                return NetworkError.none
+                return NetworkError.serverError
             case let .parameterEncodingFailed(reason: reason):
-                return NetworkError.none
+                return NetworkError.serverError
             case let .parameterEncoderFailed(reason: reason):
-                return NetworkError.none
+                return NetworkError.serverError
             case let .requestAdaptationFailed(error: error):
                 return NetworkError.error(by: error)
             case let .requestRetryFailed(retryError: retryError, originalError: originalError):
                 return NetworkError.error(by: retryError)
             case let .responseValidationFailed(reason: reason):
-                return NetworkError.none
+                return NetworkError.serverError
             case let .responseSerializationFailed(reason: reason):
-                return NetworkError.none
+                return NetworkError.serverError
             case let .serverTrustEvaluationFailed(reason: reason):
-                return NetworkError.none
+                return NetworkError.serverError
             case .sessionDeinitialized:
-                return NetworkError.none
+                return NetworkError.internetNotWorking
             case let .sessionInvalidated(error: error):
                 if let error = error {
                     return NetworkError.error(by: error)
                 } else {
-                    return NetworkError.none
+                    return NetworkError.internetNotWorking
                 }
             case let .sessionTaskFailed(error: error):
                 return NetworkError.error(by: error)
             case let .urlRequestValidationFailed(reason: reason):
                 return NetworkError.none
             @unknown default:
-                return .none
+                return NetworkError.none
             }
 
         case let urlError as NSError where urlError.domain == NSURLErrorDomain:
 
             switch urlError.code {
             case NSURLErrorBadURL:
-                return NetworkError.serverError
+                return NetworkError.none
 
             case NSURLErrorTimedOut:
                 return NetworkError.internetNotWorking
 
             case NSURLErrorUnsupportedURL:
-                return NetworkError.serverError
+                return NetworkError.none
 
             case NSURLErrorCannotFindHost:
-                return NetworkError.serverError
+                return NetworkError.none
 
             case NSURLErrorCannotConnectToHost:
-                return NetworkError.serverError
+                return NetworkError.internetNotWorking
 
             case NSURLErrorNetworkConnectionLost:
-                return NetworkError.serverError
+                return NetworkError.internetNotWorking
 
             case NSURLErrorDNSLookupFailed:
-                return NetworkError.serverError
+                return NetworkError.none
 
             case NSURLErrorHTTPTooManyRedirects:
-                return NetworkError.serverError
+                return NetworkError.none
 
             case NSURLErrorResourceUnavailable:
-                return NetworkError.serverError
+                return NetworkError.none
 
             case NSURLErrorNotConnectedToInternet:
                 return NetworkError.internetNotWorking
 
             case NSURLErrorBadServerResponse:
-                return NetworkError.serverError
+                return NetworkError.none
 
             case NSURLErrorCancelled:
                 return NetworkError.canceled
@@ -178,6 +179,10 @@ public extension NetworkError {
     static func error(response: Moya.Response) -> NetworkError {
         if response.statusCode == Constants.notFound {
             return NetworkError.notFound
+        }
+
+        if response.statusCode == Constants.imTeaPot {
+            return NetworkError.internetNotWorking
         }
 
         if let error = error(data: response.data) {
