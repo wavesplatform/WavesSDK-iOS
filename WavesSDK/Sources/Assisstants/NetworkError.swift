@@ -69,10 +69,9 @@ extension MoyaError {
 }
 
 private extension NetworkError {
-
-    static func message(code: Int, httpCode: Int? = nil) -> NetworkError {
-        if let httpCode = httpCode {
-            return NetworkError.message("Oh… It's all broken! \(code) \(httpCode)")
+    static func message(code: Int, message: String? = nil) -> NetworkError {
+        if let message = message {
+            return NetworkError.message("Oh… It's all broken! \(code) \(message)")
         } else {
             return NetworkError.message("Oh… It's all broken! \(code)")
         }
@@ -179,7 +178,7 @@ public extension NetworkError {
             case NSURLErrorCancelled:
                 return NetworkError.canceled
             default:
-                return NetworkError.message(code: 9019)
+                return NetworkError.message(code: 9019, message: "NSURL \(urlError.code)")
             }
 
         default:
@@ -200,7 +199,7 @@ public extension NetworkError {
             return error
         }
 
-        return NetworkError.message(code: 9021, httpCode: response.statusCode)
+        return NetworkError.message(code: 9021, message: "MoyaResponse \(response.statusCode)")
     }
 
     static func error(data: Data) -> NetworkError? {
