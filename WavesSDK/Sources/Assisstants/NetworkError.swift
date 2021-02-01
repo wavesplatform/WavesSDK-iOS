@@ -200,7 +200,7 @@ public extension NetworkError {
             return error
         }
 
-        return NetworkError.message(code: 9018)
+        return NetworkError.message(code: 9021, httpCode: response.statusCode)
     }
 
     static func error(data: Data) -> NetworkError? {
