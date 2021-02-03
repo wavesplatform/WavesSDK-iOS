@@ -68,6 +68,16 @@ extension MoyaError {
     }
 }
 
+private extension NetworkError {
+    static func message(code: Int, message: String? = nil) -> NetworkError {
+        if let message = message {
+            return NetworkError.message("Oh… It's all broken! \(code) \(message)")
+        } else {
+            return NetworkError.message("Oh… It's all broken! \(code)")
+        }
+    }
+}
+
 public extension NetworkError {
     static func error(by error: Error) -> NetworkError {
         switch error {
@@ -79,7 +89,7 @@ public extension NetworkError {
                 if let error = moyaError.error {
                     return NetworkError.error(by: error)
                 } else {
-                    return NetworkError.notFound
+                    return NetworkError.message(code: 9000)
                 }
             }
 
@@ -96,23 +106,23 @@ public extension NetworkError {
             case .explicitlyCancelled:
                 return NetworkError.canceled
             case let .invalidURL(url: url):
-                return NetworkError.notFound
+                return NetworkError.message(code: 9001)
             case let .multipartEncodingFailed(reason: reason):
-                return NetworkError.serverError
+                return NetworkError.message(code: 9002)
             case let .parameterEncodingFailed(reason: reason):
-                return NetworkError.serverError
+                return NetworkError.message(code: 9003)
             case let .parameterEncoderFailed(reason: reason):
-                return NetworkError.serverError
+                return NetworkError.message(code: 9004)
             case let .requestAdaptationFailed(error: error):
-                return NetworkError.error(by: error)
+                return NetworkError.message(code: 9005)
             case let .requestRetryFailed(retryError: retryError, originalError: originalError):
-                return NetworkError.error(by: retryError)
+                return NetworkError.message(code: 9006)
             case let .responseValidationFailed(reason: reason):
-                return NetworkError.serverError
+                return NetworkError.message(code: 9007)
             case let .responseSerializationFailed(reason: reason):
-                return NetworkError.serverError
+                return NetworkError.message(code: 9008)
             case let .serverTrustEvaluationFailed(reason: reason):
-                return NetworkError.serverError
+                return NetworkError.message(code: 9009)
             case .sessionDeinitialized:
                 return NetworkError.internetNotWorking
             case let .sessionInvalidated(error: error):
@@ -124,25 +134,25 @@ public extension NetworkError {
             case let .sessionTaskFailed(error: error):
                 return NetworkError.error(by: error)
             case let .urlRequestValidationFailed(reason: reason):
-                return NetworkError.none
+                return NetworkError.message(code: 9010)
             @unknown default:
-                return NetworkError.none
+                return NetworkError.message(code: 9011)
             }
 
         case let urlError as NSError where urlError.domain == NSURLErrorDomain:
 
             switch urlError.code {
             case NSURLErrorBadURL:
-                return NetworkError.none
+                return NetworkError.message(code: 9012)
 
             case NSURLErrorTimedOut:
                 return NetworkError.internetNotWorking
 
             case NSURLErrorUnsupportedURL:
-                return NetworkError.none
+                return NetworkError.message(code: 9013)
 
             case NSURLErrorCannotFindHost:
-                return NetworkError.none
+                return NetworkError.message(code: 9014)
 
             case NSURLErrorCannotConnectToHost:
                 return NetworkError.internetNotWorking
@@ -151,28 +161,29 @@ public extension NetworkError {
                 return NetworkError.internetNotWorking
 
             case NSURLErrorDNSLookupFailed:
-                return NetworkError.none
+                return NetworkError.message(code: 9015)
 
             case NSURLErrorHTTPTooManyRedirects:
-                return NetworkError.none
+                return NetworkError.message(code: 9016)
 
             case NSURLErrorResourceUnavailable:
-                return NetworkError.none
+                return NetworkError.message(code: 9017)
 
             case NSURLErrorNotConnectedToInternet:
                 return NetworkError.internetNotWorking
 
             case NSURLErrorBadServerResponse:
-                return NetworkError.none
+                return NetworkError.message(code: 9018)
 
             case NSURLErrorCancelled:
                 return NetworkError.canceled
+                
             default:
-                return NetworkError.none
+                return NetworkError.internetNotWorking 
             }
 
         default:
-            return NetworkError.none
+            return NetworkError.message(code: 9020)
         }
     }
 
@@ -189,7 +200,7 @@ public extension NetworkError {
             return error
         }
 
-        return NetworkError.none
+        return NetworkError.message(code: 9021, message: "MoyaResponse \(response.statusCode)")
     }
 
     static func error(data: Data) -> NetworkError? {
