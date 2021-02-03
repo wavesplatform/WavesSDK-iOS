@@ -177,8 +177,9 @@ public extension NetworkError {
 
             case NSURLErrorCancelled:
                 return NetworkError.canceled
+                
             default:
-                return NetworkError.message(code: 9019, message: "NSURL \(urlError.code)")
+                return NetworkError.internetNotWorking
             }
 
         default:
