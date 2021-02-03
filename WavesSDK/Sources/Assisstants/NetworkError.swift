@@ -179,7 +179,7 @@ public extension NetworkError {
                 return NetworkError.canceled
                 
             default:
-                return NetworkError.internetNotWorking
+                return NetworkError.internetNotWorking 
             }
 
         default:
