@@ -30,7 +30,7 @@ final class PairsPriceDataService: InternalWavesService, PairsPriceDataServicePr
     init(pairsPriceProvider: MoyaProvider<DataService.Target.PairsPrice>,
          pairsPriceSearchProvider: MoyaProvider<DataService.Target.PairsPriceSearch>,
          pairsRateProvider: MoyaProvider<DataService.Target.PairsRate>,
-         enviroment: Enviroment) {
+         enviroment: WavesEnvironment) {
         
         self.pairsPriceProvider = pairsPriceProvider
         self.pairsPriceSearchProvider = pairsPriceSearchProvider

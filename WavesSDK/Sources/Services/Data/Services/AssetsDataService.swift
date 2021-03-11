@@ -13,7 +13,7 @@ final class AssetsDataService: InternalWavesService, AssetsDataServiceProtocol {
     
     private let assetsProvider: MoyaProvider<DataService.Target.Assets>
     
-    init(assetsProvider: MoyaProvider<DataService.Target.Assets>, enviroment: Enviroment) {
+    init(assetsProvider: MoyaProvider<DataService.Target.Assets>, enviroment: WavesEnvironment) {
         self.assetsProvider = assetsProvider
         super.init(enviroment: enviroment)
     }

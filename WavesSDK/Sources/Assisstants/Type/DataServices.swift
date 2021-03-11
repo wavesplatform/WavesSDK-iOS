@@ -20,7 +20,7 @@ internal final class DataServices: InternalWavesService, DataServicesProtocol {
     
     public var transactionsDataService: TransactionsDataServiceProtocol
     
-    override var enviroment: Enviroment {
+    override var enviroment: WavesEnvironment {
         didSet {
             [aliasDataService,
              assetsDataService,
@@ -34,7 +34,7 @@ internal final class DataServices: InternalWavesService, DataServicesProtocol {
     }
     
     init(plugins: [PluginType],
-         enviroment: Enviroment) {
+         enviroment: WavesEnvironment) {
         
         aliasDataService = AliasDataService(aliasProvider: DataServices.moyaProvider(plugins: plugins), enviroment: enviroment)
         assetsDataService = AssetsDataService(assetsProvider: DataServices.moyaProvider(plugins: plugins), enviroment: enviroment)

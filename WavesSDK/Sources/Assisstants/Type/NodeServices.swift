@@ -22,7 +22,7 @@ internal final class NodeServices: InternalWavesService, NodeServicesProtocol {
     
     private(set) var utilsNodeService: UtilsNodeServiceProtocol
     
-    override var enviroment: Enviroment {
+    override var enviroment: WavesEnvironment {
         
         didSet {
             
@@ -39,7 +39,7 @@ internal final class NodeServices: InternalWavesService, NodeServicesProtocol {
     }
     
     init(plugins: [PluginType],
-         enviroment: Enviroment) {
+         enviroment: WavesEnvironment) {
         
         addressesNodeService = AddressesNodeService(addressesProvider: NodeServices.moyaProvider(plugins: plugins), enviroment: enviroment)
         assetsNodeService = AssetsNodeService(assetsProvider: NodeServices.moyaProvider(plugins: plugins), enviroment: enviroment)

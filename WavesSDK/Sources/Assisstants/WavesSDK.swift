@@ -53,9 +53,9 @@ public final class WavesSDK {
 
     public private(set) var services: WavesServicesProtocol
 
-    private var internalEnviroment: Enviroment
+    private var internalEnviroment: WavesEnvironment
 
-    public var enviroment: Enviroment {
+    public var enviroment: WavesEnvironment {
         get {
             objc_sync_enter(self)
             defer { objc_sync_exit(self) }
@@ -75,7 +75,7 @@ public final class WavesSDK {
 
     public private(set) static var shared: WavesSDK!
 
-    init(services: WavesServicesProtocol, enviroment: Enviroment) {
+    init(services: WavesServicesProtocol, enviroment: WavesEnvironment) {
         self.services = services
         internalEnviroment = enviroment
     }
@@ -85,7 +85,7 @@ public final class WavesSDK {
     }
 
     public class func initialization(servicesPlugins: ServicesPlugins,
-                                     enviroment: Enviroment) {
+                                     enviroment: WavesEnvironment) {
         var dataPlugins = servicesPlugins.data
         var nodePlugins = servicesPlugins.node
         var matcherPlugins = servicesPlugins.matcher

@@ -14,7 +14,7 @@ final class LeasingNodeService: InternalWavesService, LeasingNodeServiceProtocol
     
     private let leasingProvider: MoyaProvider<NodeService.Target.Leasing>
     
-    init(leasingProvider: MoyaProvider<NodeService.Target.Leasing>, enviroment: Enviroment) {
+    init(leasingProvider: MoyaProvider<NodeService.Target.Leasing>, enviroment: WavesEnvironment) {
         self.leasingProvider = leasingProvider
         super.init(enviroment: enviroment)
     }

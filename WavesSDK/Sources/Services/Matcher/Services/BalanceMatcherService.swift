@@ -13,7 +13,7 @@ final class BalanceMatcherService: InternalWavesService, BalanceMatcherServicePr
     
     private let balanceProvider: MoyaProvider<MatcherService.Target.Balance>
     
-    init(balanceProvider: MoyaProvider<MatcherService.Target.Balance>, enviroment: Enviroment) {
+    init(balanceProvider: MoyaProvider<MatcherService.Target.Balance>, enviroment: WavesEnvironment) {
         self.balanceProvider = balanceProvider
         super.init(enviroment: enviroment)
     }

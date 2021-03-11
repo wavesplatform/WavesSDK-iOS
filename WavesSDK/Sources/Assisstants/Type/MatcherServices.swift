@@ -16,7 +16,7 @@ internal final class MatcherServices: InternalWavesService, MatcherServicesProto
     
     private(set) var publicKeyMatcherService: PublicKeyMatcherServiceProtocol
     
-    override var enviroment: Enviroment {
+    override var enviroment: WavesEnvironment {
         
         didSet {
             
@@ -30,7 +30,7 @@ internal final class MatcherServices: InternalWavesService, MatcherServicesProto
     }
     
     init(plugins: [PluginType],
-         enviroment: Enviroment) {
+         enviroment: WavesEnvironment) {
         
         
         balanceMatcherService = BalanceMatcherService(balanceProvider: MatcherServices.moyaProvider(plugins: plugins), enviroment: enviroment)

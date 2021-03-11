@@ -12,7 +12,7 @@ import RxSwift
 final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProtocol {
     private let addressesProvider: MoyaProvider<NodeService.Target.Addresses>
 
-    init(addressesProvider: MoyaProvider<NodeService.Target.Addresses>, enviroment: Enviroment) {
+    init(addressesProvider: MoyaProvider<NodeService.Target.Addresses>, enviroment: WavesEnvironment) {
         self.addressesProvider = addressesProvider
         super.init(enviroment: enviroment)
     }

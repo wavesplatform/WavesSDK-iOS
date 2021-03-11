@@ -20,7 +20,7 @@ private struct Constants {
     static let schemeTestnet: UInt8 = "T".utf8.first ?? 0
 }
 
-public struct Enviroment {
+public struct WavesEnvironment {
     
     public enum Server {
         case mainNet

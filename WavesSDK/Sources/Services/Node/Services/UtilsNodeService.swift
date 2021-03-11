@@ -14,7 +14,7 @@ final class UtilsNodeService: InternalWavesService, UtilsNodeServiceProtocol {
     
     private let utilsProvider: MoyaProvider<NodeService.Target.Utils>
     
-    init(utilsProvider: MoyaProvider<NodeService.Target.Utils>, enviroment: Enviroment) {
+    init(utilsProvider: MoyaProvider<NodeService.Target.Utils>, enviroment: WavesEnvironment) {
         self.utilsProvider = utilsProvider
         super.init(enviroment: enviroment)
     }

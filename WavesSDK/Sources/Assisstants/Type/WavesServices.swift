@@ -14,7 +14,7 @@ internal final class WavesServices: InternalWavesService, WavesServicesProtocol 
     private(set) var dataServices: DataServicesProtocol
     private(set) var matcherServices: MatcherServicesProtocol
     
-    override var enviroment: Enviroment {
+    override var enviroment: WavesEnvironment {
         
         didSet {
             
@@ -27,7 +27,7 @@ internal final class WavesServices: InternalWavesService, WavesServicesProtocol 
         }
     }
     
-    init(enviroment: Enviroment,
+    init(enviroment: WavesEnvironment,
          dataServicePlugins: [PluginType],
          nodeServicePlugins: [PluginType],
          matcherServicePlugins: [PluginType]) {

@@ -160,7 +160,7 @@
 		7B4E1F6022C4DD2D00854BAB /* TransactionSignatureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EE522C4DD2D00854BAB /* TransactionSignatureProtocol.swift */; };
 		7B4E1F6122C4DD2D00854BAB /* TransactionSignatureV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EE622C4DD2D00854BAB /* TransactionSignatureV2.swift */; };
 		7B4E1F6322C4DD2D00854BAB /* WavesSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EE922C4DD2D00854BAB /* WavesSDK.swift */; };
-		7B4E1F6422C4DD2D00854BAB /* Enviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EEA22C4DD2D00854BAB /* Enviroment.swift */; };
+		7B4E1F6422C4DD2D00854BAB /* WavesEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EEA22C4DD2D00854BAB /* WavesEnvironment.swift */; };
 		7B4E1F6522C4DD2D00854BAB /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EEC22C4DD2D00854BAB /* DataServices.swift */; };
 		7B4E1F6622C4DD2D00854BAB /* InternalWavesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EED22C4DD2D00854BAB /* InternalWavesService.swift */; };
 		7B4E1F6722C4DD2D00854BAB /* WavesServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E1EEE22C4DD2D00854BAB /* WavesServices.swift */; };
@@ -523,7 +523,7 @@
 		7B4E1EE522C4DD2D00854BAB /* TransactionSignatureProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionSignatureProtocol.swift; sourceTree = "<group>"; };
 		7B4E1EE622C4DD2D00854BAB /* TransactionSignatureV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionSignatureV2.swift; sourceTree = "<group>"; };
 		7B4E1EE922C4DD2D00854BAB /* WavesSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WavesSDK.swift; sourceTree = "<group>"; };
-		7B4E1EEA22C4DD2D00854BAB /* Enviroment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enviroment.swift; sourceTree = "<group>"; };
+		7B4E1EEA22C4DD2D00854BAB /* WavesEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WavesEnvironment.swift; sourceTree = "<group>"; };
 		7B4E1EEC22C4DD2D00854BAB /* DataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		7B4E1EED22C4DD2D00854BAB /* InternalWavesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalWavesService.swift; sourceTree = "<group>"; };
 		7B4E1EEE22C4DD2D00854BAB /* WavesServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WavesServices.swift; sourceTree = "<group>"; };
@@ -1106,7 +1106,7 @@
 			isa = PBXGroup;
 			children = (
 				7B4E1EE922C4DD2D00854BAB /* WavesSDK.swift */,
-				7B4E1EEA22C4DD2D00854BAB /* Enviroment.swift */,
+				7B4E1EEA22C4DD2D00854BAB /* WavesEnvironment.swift */,
 				7B4E1EEB22C4DD2D00854BAB /* Type */,
 				7B4E1EF122C4DD2D00854BAB /* ContentType.swift */,
 				7B4E1EF222C4DD2D00854BAB /* NetworkError.swift */,
@@ -1976,7 +1976,7 @@
 				7B4E1FB822C4DD2D00854BAB /* CandlesDataService.swift in Sources */,
 				7B4E1F7422C4DD2D00854BAB /* BalanceMatcherTarget.swift in Sources */,
 				7B4E1F7E22C4DD2D00854BAB /* PublicKeyMatcherServiceProtocol.swift in Sources */,
-				7B4E1F6422C4DD2D00854BAB /* Enviroment.swift in Sources */,
+				7B4E1F6422C4DD2D00854BAB /* WavesEnvironment.swift in Sources */,
 				7B4E1F7022C4DD2D00854BAB /* NodeServicesProtocol.swift in Sources */,
 				7B74597922C653FB0047A005 /* TransactionSign.swift in Sources */,
 				7B4E1F9522C4DD2D00854BAB /* ReissueTransactionNode.swift in Sources */,

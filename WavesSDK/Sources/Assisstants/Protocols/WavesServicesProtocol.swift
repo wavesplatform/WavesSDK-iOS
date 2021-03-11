@@ -15,5 +15,5 @@ public protocol WavesServicesProtocol {
 }
 
 protocol InternalWavesServiceProtocol {
-    var enviroment: Enviroment { get set }
+    var enviroment: WavesEnvironment { get set }
 }

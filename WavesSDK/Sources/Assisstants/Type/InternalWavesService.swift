@@ -9,9 +9,9 @@ import Foundation
 
 internal class InternalWavesService: InternalWavesServiceProtocol {
     
-    private var internalEenviroment: Enviroment
+    private var internalEenviroment: WavesEnvironment
     
-    internal(set) public var enviroment: Enviroment {
+    internal(set) public var enviroment: WavesEnvironment {
         
         get {
             objc_sync_enter(self)
@@ -26,7 +26,7 @@ internal class InternalWavesService: InternalWavesServiceProtocol {
         }
     }
     
-    init(enviroment: Enviroment) {
+    init(enviroment: WavesEnvironment) {
         self.internalEenviroment = enviroment
     }
 }

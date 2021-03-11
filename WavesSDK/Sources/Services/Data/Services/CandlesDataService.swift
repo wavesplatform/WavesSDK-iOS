@@ -13,7 +13,7 @@ final class CandlesDataService: InternalWavesService, CandlesDataServiceProtocol
     
     private let candlesProvider: MoyaProvider<DataService.Target.Candles>
         
-    init(candlesProvider: MoyaProvider<DataService.Target.Candles>, enviroment: Enviroment) {
+    init(candlesProvider: MoyaProvider<DataService.Target.Candles>, enviroment: WavesEnvironment) {
         self.candlesProvider = candlesProvider
         super.init(enviroment: enviroment)
     }

@@ -13,7 +13,7 @@ final class BlocksNodeService: InternalWavesService, BlocksNodeServiceProtocol {
     
     private let blocksProvider: MoyaProvider<NodeService.Target.Blocks>
     
-    init(blocksProvider: MoyaProvider<NodeService.Target.Blocks>, enviroment: Enviroment) {
+    init(blocksProvider: MoyaProvider<NodeService.Target.Blocks>, enviroment: WavesEnvironment) {
         self.blocksProvider = blocksProvider
         super.init(enviroment: enviroment)
     }

@@ -13,7 +13,7 @@ final class TransactionNodeService: InternalWavesService, TransactionNodeService
 
     private let transactionsProvider: MoyaProvider<NodeService.Target.Transaction>    
     
-    init(transactionsProvider: MoyaProvider<NodeService.Target.Transaction>, enviroment: Enviroment) {
+    init(transactionsProvider: MoyaProvider<NodeService.Target.Transaction>, enviroment: WavesEnvironment) {
         self.transactionsProvider = transactionsProvider
         super.init(enviroment: enviroment)
     }

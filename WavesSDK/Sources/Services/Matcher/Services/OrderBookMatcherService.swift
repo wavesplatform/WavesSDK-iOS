@@ -13,7 +13,7 @@ final class OrderBookMatcherService: InternalWavesService, OrderBookMatcherServi
    
     private let orderBookProvider: MoyaProvider<MatcherService.Target.OrderBook>
         
-    init(orderBookProvider: MoyaProvider<MatcherService.Target.OrderBook>, enviroment: Enviroment) {
+    init(orderBookProvider: MoyaProvider<MatcherService.Target.OrderBook>, enviroment: WavesEnvironment) {
         self.orderBookProvider = orderBookProvider
         super.init(enviroment: enviroment)
     }

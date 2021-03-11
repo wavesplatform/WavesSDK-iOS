@@ -13,7 +13,7 @@ final class AliasDataService: InternalWavesService, AliasDataServiceProtocol {
     
     private let aliasProvider: MoyaProvider<DataService.Target.Alias>
         
-    init(aliasProvider: MoyaProvider<DataService.Target.Alias>, enviroment: Enviroment) {
+    init(aliasProvider: MoyaProvider<DataService.Target.Alias>, enviroment: WavesEnvironment) {
         self.aliasProvider = aliasProvider
         super.init(enviroment: enviroment)
     }

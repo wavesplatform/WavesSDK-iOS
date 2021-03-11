@@ -13,7 +13,7 @@ final class PublicKeyMatcherService: InternalWavesService, PublicKeyMatcherServi
     
     private let publicKeyProvider: MoyaProvider<MatcherService.Target.MatcherPublicKey>
     
-    init(publicKeyProvider: MoyaProvider<MatcherService.Target.MatcherPublicKey>, enviroment: Enviroment) {
+    init(publicKeyProvider: MoyaProvider<MatcherService.Target.MatcherPublicKey>, enviroment: WavesEnvironment) {
         self.publicKeyProvider = publicKeyProvider
         super.init(enviroment: enviroment)
     }
