@@ -80,6 +80,7 @@ private extension NetworkError {
 
 public extension NetworkError {
     static func error(by error: Error) -> NetworkError {
+        print("error \(error)")
         switch error {
         case let error as NetworkError:
             return error

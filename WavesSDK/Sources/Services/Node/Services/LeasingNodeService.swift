@@ -19,7 +19,7 @@ final class LeasingNodeService: InternalWavesService, LeasingNodeServiceProtocol
         super.init(enviroment: enviroment)
     }
 
-    public func leasingActiveTransactions(by address: String) -> Observable<[NodeService.DTO.LeaseTransaction]> {
+    public func leasingActiveTransactions(by address: String) -> Observable<[NodeService.DTO.LeaseResponse]> {
         
         return self
             .leasingProvider
@@ -30,7 +30,7 @@ final class LeasingNodeService: InternalWavesService, LeasingNodeServiceProtocol
             .catchError({ (error) -> Single<Response> in
                 return Single.error(NetworkError.error(by: error))
             })
-            .map([NodeService.DTO.LeaseTransaction].self, atKeyPath: nil, using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff), failsOnEmptyData: false)
+            .map([NodeService.DTO.LeaseResponse].self, atKeyPath: nil, using: JSONDecoder.decoderBySyncingTimestamp(enviroment.timestampServerDiff), failsOnEmptyData: false)
             .asObservable()
     }
 }
