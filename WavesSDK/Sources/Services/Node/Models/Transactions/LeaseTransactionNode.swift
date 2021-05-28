@@ -44,16 +44,15 @@ public extension NodeService.DTO {
         public let recipient: String
         public let amount: Int64
         public let height: Int64
-        public var status: String
+        public var status: String?
 
         public init(
             id: String,
             sender: String,
             recipient: String,
             height: Int64,
-            amount: Int64,
-            modified _: Date,
-            status: String) {
+            amount: Int64,            
+            status: String?) {
             self.id = id
             self.sender = sender
             self.height = height
