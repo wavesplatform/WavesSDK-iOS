@@ -15,27 +15,19 @@ public extension NodeService.DTO {
       You always can reverse the any leased amount by [LeaseCancelTransaction]
      */
     struct LeaseTransaction: Codable {
-        public let type: Int
         public let id: String
-        public let sender: String
-        public let senderPublicKey: String
-        public let fee: Int64
-        public let timestamp: Date
-        public let version: Int
-        public let height: Int64?
-        public let signature: String?
-        public let proofs: [String]?
-
-        /**
-          Amount to lease of Waves in satoshi
-         */
+        public let originTransactionID: String?
+        public let sender, recipient: String
         public let amount: Int64
-
-        /**
-          Address or alias of Waves blockchain to lease
-         */
-        public let recipient: String
-        public let applicationStatus: String?
+        public let height: Int64?
+        public let status: String?
+        public let type: Int?
+        public let senderPublicKey: String?
+        public let fee: Int64?
+        public let feeAssetID: String?
+        public let timestamp: Date?
+        public let proofs: [String]?
+        public let version: Int?
     }
 
     struct LeaseResponse: Codable {
