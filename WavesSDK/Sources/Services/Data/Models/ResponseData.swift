@@ -11,7 +11,7 @@ import Foundation
 public extension DataService {
     struct Response<T: Decodable>: Decodable {
         public let type: String
-        public let data: T
+        public var data: T
         public let isLastPage: Bool?
         public let lastCursor: String?
         
@@ -32,7 +32,7 @@ public extension DataService {
     
     struct OptionalResponse<T: Decodable>: Decodable {
         public let type: String
-        public let data: T?
+        public var data: T?
         public let isLastPage: Bool?
         public let lastCursor: String?
         
