@@ -66,4 +66,16 @@ final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProt
             .map([NodeService.DTO.WavesBalance].self)
             .asObservable()
     }
+    
+    public func validateAddress(address: String) -> Observable<NodeService.DTO.ValidateAddress> {
+        let target: NodeService.Target.Addresses = .init(kind: .getValidateAddress(address: address), nodeUrl: enviroment.nodeUrl)
+
+        return addressesProvider
+            .rx
+            .request(target)
+            .filterSuccessfulStatusAndRedirectCodes()
+            .catchError { error -> Single<Response> in Single.error(NetworkError.error(by: error)) }
+            .map(NodeService.DTO.ValidateAddress.self)
+            .asObservable()
+    }
 }

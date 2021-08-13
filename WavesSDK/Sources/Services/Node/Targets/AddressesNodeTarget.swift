@@ -28,6 +28,8 @@ extension NodeService.Target {
             case getData(address: String, key: String)
 
             case getAddressesBalance(addresses: [String])
+            
+            case getValidateAddress(address: String)
         }
 
         var kind: Kind
@@ -40,6 +42,7 @@ extension NodeService.Target.Addresses: NodeTargetType {
         static let addresses = "addresses"
         static let balance = "balance"
         static let scriptInfo = "scriptInfo"
+        static let validate = "validate"
     }
 
     var path: String {
@@ -55,12 +58,16 @@ extension NodeService.Target.Addresses: NodeTargetType {
 
         case .getAddressesBalance:
             return Constants.addresses + "/" + Constants.balance
+            
+        case let .getValidateAddress(address):
+            return Constants.addresses + "/" + Constants.validate + "/" + "\(address)".urlEscaped
+        
         }
     }
 
     var method: Moya.Method {
         switch kind {
-        case .getAddressBalance, .scriptInfo, .getData:
+        case .getAddressBalance, .scriptInfo, .getData, .getValidateAddress:
             return .get
         case .getAddressesBalance:
             return .post
@@ -69,7 +76,7 @@ extension NodeService.Target.Addresses: NodeTargetType {
 
     var task: Task {
         switch kind {
-        case .getAddressBalance, .scriptInfo, .getData:
+        case .getAddressBalance, .scriptInfo, .getData, .getValidateAddress:
             return .requestParameters(parameters: ["r": "\(Date().timeIntervalSince1970)"],
                                       encoding: URLEncoding.default)
         case let .getAddressesBalance(address):
