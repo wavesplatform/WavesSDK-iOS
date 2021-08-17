@@ -35,6 +35,8 @@ public protocol AddressesNodeServiceProtocol {
     func scriptInfo(address: String) -> Observable<NodeService.DTO.AddressScriptInfo>
 
     func getAddressData(address: String, key: String) -> Observable<NodeService.DTO.AddressesData>
+    
+    func getAddressDataRegExp(address: String, regexp: String) -> Observable<[NodeService.DTO.AddressesData]>
 
     func addressesBalance(addresses: [String]) -> Observable<[NodeService.DTO.WavesBalance]>
     

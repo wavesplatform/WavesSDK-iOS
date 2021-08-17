@@ -73,6 +73,44 @@ extension NodeService.DTO {
                 self.assetId = assetId
             }
         }
+        
+        /**
+         StateChanges of dApp
+         */
+        public struct StateChanges: Codable {
+            /**
+             Transfers list
+             */
+            public let transfers: [StateChangesTransfers]
+
+            public init(transfers: [StateChangesTransfers]) {
+                self.transfers = transfers
+            }
+        }
+        
+        /**
+         StateChanges Transfers
+         */
+        public struct StateChangesTransfers: Codable {
+            /**
+             Transfers address
+             */
+            public let address: String
+            /**
+             Transfers asset
+             */
+            public let asset: String
+            /**
+             Transfers amount
+             */
+            public let amount: Int64
+
+            public init(address: String, asset: String, amount: Int64) {
+                self.address = address
+                self.asset = asset
+                self.amount = amount
+            }
+        }
 
         public let type: Int
         public let id: String
@@ -108,6 +146,8 @@ extension NodeService.DTO {
         public let payment: [Payment]
 
         public let applicationStatus: String?
+        
+        public let stateChanges: StateChanges?
     
         public init(
             type: Int,
@@ -124,7 +164,8 @@ extension NodeService.DTO {
             dApp: String,
             call: Call?,
             payment: [Payment],
-            applicationStatus: String?) {
+            applicationStatus: String?,
+            stateChanges: StateChanges?) {
             self.type = type
             self.id = id
             self.chainId = chainId
@@ -140,6 +181,7 @@ extension NodeService.DTO {
             self.call = call
             self.payment = payment
             self.applicationStatus = applicationStatus
+            self.stateChanges = stateChanges
         }
     }
 }

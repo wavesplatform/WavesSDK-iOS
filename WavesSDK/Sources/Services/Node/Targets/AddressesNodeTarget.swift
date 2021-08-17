@@ -26,6 +26,8 @@ extension NodeService.Target {
             case scriptInfo(id: String)
 
             case getData(address: String, key: String)
+            
+            case getDataRegExp(address: String, regexp: String)
 
             case getAddressesBalance(addresses: [String])
             
@@ -55,6 +57,9 @@ extension NodeService.Target.Addresses: NodeTargetType {
 
         case let .getData(address, key):
             return Constants.addresses + "/" + "data" + "/" + address.urlEscaped + "/" + "\(key)".urlEscaped
+            
+        case let .getDataRegExp(address, _):
+            return Constants.addresses + "/" + "data" + "/" + address.urlEscaped
 
         case .getAddressesBalance:
             return Constants.addresses + "/" + Constants.balance
@@ -67,7 +72,7 @@ extension NodeService.Target.Addresses: NodeTargetType {
 
     var method: Moya.Method {
         switch kind {
-        case .getAddressBalance, .scriptInfo, .getData, .getValidateAddress:
+        case .getAddressBalance, .scriptInfo, .getData, .getDataRegExp, .getValidateAddress:
             return .get
         case .getAddressesBalance:
             return .post
@@ -79,6 +84,11 @@ extension NodeService.Target.Addresses: NodeTargetType {
         case .getAddressBalance, .scriptInfo, .getData, .getValidateAddress:
             return .requestParameters(parameters: ["r": "\(Date().timeIntervalSince1970)"],
                                       encoding: URLEncoding.default)
+            
+        case let .getDataRegExp(_, regexp):
+            return .requestParameters(
+                            parameters: [ "matches": regexp], encoding: URLEncoding.queryString)
+            
         case let .getAddressesBalance(address):
             return .requestParameters(parameters: ["addresses": address],
                                       encoding: JSONEncoding.default)

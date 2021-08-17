@@ -52,6 +52,19 @@ final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProt
             .map(NodeService.DTO.AddressesData.self)
             .asObservable()
     }
+    
+    func getAddressDataRegExp(address: String, regexp: String) -> Observable<[NodeService.DTO.AddressesData]> {
+        let target: NodeService.Target.Addresses = .init(kind: .getDataRegExp(address: address, regexp: regexp),
+                                                         nodeUrl: enviroment.nodeUrl)
+
+        return addressesProvider
+            .rx
+            .request(target)
+            .filterSuccessfulStatusAndRedirectCodes()
+            .catchError { error -> Single<Response> in Single.error(error) }
+            .map([NodeService.DTO.AddressesData].self)
+            .asObservable()
+    }
 
     func addressesBalance(addresses: [String]) -> Observable<[NodeService.DTO.WavesBalance]> {
         let target: NodeService.Target.Addresses = .init(
