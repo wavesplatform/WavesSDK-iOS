@@ -12,12 +12,12 @@ private struct Constants {
     static let dataUrlMainnet: URL = URL(string: "https://api.wavesplatform.com")!
     static let nodeUrlMainnet: URL = URL(string: "https://nodes.wavesnodes.com")!
     static let matcherUrlMainnet: URL = URL(string: "https://matcher.wavesplatform.com")!
-    static let schemeMainnet: String = "W"
+    static let schemeMainnet: UInt8 = 87
     
     static let dataUrlTestnet: URL = URL(string: "https://api.testnet.wavesplatform.com")!
     static let nodeUrlTestnet: URL = URL(string: "https://nodes-testnet.wavesnodes.com")!
     static let matcherUrlTestnet: URL = URL(string: "https://matcher-testnet.wavesnodes.com")!
-    static let schemeTestnet: String = "T"
+    static let schemeTestnet: UInt8 = 84
 }
 
 public struct WavesEnvironment {
@@ -25,7 +25,7 @@ public struct WavesEnvironment {
     public enum Server {
         case mainNet
         case testNet
-        case custom(node: URL, matcher: URL, data: URL, scheme: String)
+        case custom(node: URL, matcher: URL, data: URL, scheme: UInt8)
     }
     
     public var server: Server {
@@ -55,7 +55,7 @@ public struct WavesEnvironment {
     
     public var timestampServerDiff: Int64
     
-    public var chainId: String
+    public var chainId: UInt8
     public var nodeUrl: URL
     public var matcherUrl: URL
     public var dataUrl: URL
