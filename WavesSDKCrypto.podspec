@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
-  spec.name         = 'WavesSDKCrypto'  
-  spec.version      = '0.1.9'
+  spec.name         = 'WavesSDKCryptoUpdate'  
+  spec.version      = '0.2.0'
   spec.ios.deployment_target = '11.0'
   spec.requires_arc = true
   spec.swift_version = '5.0'
@@ -39,6 +39,6 @@ Pod::Spec.new do |spec|
   spec.ios.framework = 'Foundation'
   spec.ios.framework = 'UIKit'
   spec.ios.framework = 'Security'
-  spec.dependency 'WavesSDKExtensions'
+  spec.dependency 'WavesSDKExtensionsUpdate'
   
 end

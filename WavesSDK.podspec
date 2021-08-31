@@ -20,7 +20,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'RxSwift', '~> 5.1.3'
   spec.dependency 'Moya', '~> 14.0.0'
   spec.dependency 'Moya/RxSwift', '~> 14.0.0'
-  
+  spec.dependency 'WavesSDKExtensionsUpdate'
   
     
 end
