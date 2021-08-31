@@ -7,23 +7,23 @@
 //
 
 import Foundation
-import WavesSDKCrypto
-import WavesSDKExtensions
+import WavesSDKCryptoUpdate
+import WavesSDKExtensionsUpdate
 
 public protocol TransactionSign {
-    mutating func sign(seed: WavesSDKCrypto.Seed)
+    mutating func sign(seed: WavesSDKCryptoUpdate.Seed)
 
-    mutating func sign(privateKey: WavesSDKCrypto.PrivateKey)
+    mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey)
 
-    mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?)
+    mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?)
 }
 
 extension TransactionSign {
-    public mutating func sign(seed: WavesSDKCrypto.Seed) {
+    public mutating func sign(seed: WavesSDKCryptoUpdate.Seed) {
         sign(privateKey: nil, seed: seed)
     }
 
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey) {
         sign(privateKey: privateKey, seed: nil)
     }
 }
@@ -31,7 +31,7 @@ extension TransactionSign {
 // MARK: Transfer
 
 extension NodeService.Query.Transaction.Transfer: TransactionSign {
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?) {
         let signature = TransactionSignatureV2.transfer(.init(senderPublicKey: senderPublicKey,
                                                               recipient: recipient,
                                                               assetId: assetId,
@@ -58,7 +58,7 @@ extension NodeService.Query.Transaction.Data: TransactionSign {
     private static var DATA_TX_SIZE_WITHOUT_ENTRIES: Int = 52
     private static var DATA_ENTRIES_BYTE_LIMIT = 100 * 1024 - DATA_TX_SIZE_WITHOUT_ENTRIES
 
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?) {
         let signature = TransactionSignatureV1.data(.init(fee: fee,
                                                           data: data
                                                               .map { TransactionSignatureV1.Structure.Data.Value(key: $0.key,
@@ -102,7 +102,7 @@ extension NodeService.Query.Transaction.Data.Value {
 // MARK: InvokeScript
 
 extension NodeService.Query.Transaction.InvokeScript: TransactionSign {
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?) {
         let signature = TransactionSignatureV1
             .invokeScript(TransactionSignatureV1.Structure.InvokeScript(senderPublicKey: senderPublicKey,
                                                                         fee: fee,
@@ -155,7 +155,7 @@ extension NodeService.Query.Transaction.InvokeScript.Call {
 // MARK: Burn
 
 extension NodeService.Query.Transaction.Burn: TransactionSign {
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?) {
         let signature = TransactionSignatureV2
             .burn(.init(assetID: assetId, quantity: quantity, fee: fee, chainId: chainId, senderPublicKey: senderPublicKey,
                         timestamp: timestamp))
@@ -173,7 +173,7 @@ extension NodeService.Query.Transaction.Burn: TransactionSign {
 // MARK: Reissue
 
 extension NodeService.Query.Transaction.Reissue: TransactionSign {
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?) {
         let signature = TransactionSignatureV2
             .reissue(.init(assetId: assetId, fee: fee, chainId: chainId, senderPublicKey: senderPublicKey, timestamp: timestamp,
                            quantity: quantity, isReissuable: isReissuable))
@@ -191,7 +191,7 @@ extension NodeService.Query.Transaction.Reissue: TransactionSign {
 // MARK: Issue
 
 extension NodeService.Query.Transaction.Issue: TransactionSign {
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?) {
         let signature = TransactionSignatureV2
             .issue(.init(script: script, fee: fee, chainId: chainId, senderPublicKey: senderPublicKey, timestamp: timestamp,
                          quantity: quantity, isReissuable: isReissuable, name: name, description: description,
@@ -210,7 +210,7 @@ extension NodeService.Query.Transaction.Issue: TransactionSign {
 // MARK: MassTransfer
 
 extension NodeService.Query.Transaction.MassTransfer: TransactionSign {
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?) {
         let signature = TransactionSignatureV1.massTransfer(.init(fee: fee,
                                                                   chainId: chainId,
                                                                   senderPublicKey: senderPublicKey,
@@ -233,7 +233,7 @@ extension NodeService.Query.Transaction.MassTransfer: TransactionSign {
 // MARK: Lease
 
 extension NodeService.Query.Transaction.Lease: TransactionSign {
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?) {
         let signature = TransactionSignatureV2.startLease(.init(recipient: recipient,
                                                                 amount: amount,
                                                                 fee: fee,
@@ -254,7 +254,7 @@ extension NodeService.Query.Transaction.Lease: TransactionSign {
 // MARK: LeaseCancel
 
 extension NodeService.Query.Transaction.LeaseCancel: TransactionSign {
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?) {
         let signature = TransactionSignatureV2.cancelLease(.init(leaseId: leaseId,
                                                                  fee: fee,
                                                                  chainId: chainId,
@@ -274,7 +274,7 @@ extension NodeService.Query.Transaction.LeaseCancel: TransactionSign {
 // MARK: Alias
 
 extension NodeService.Query.Transaction.Alias: TransactionSign {
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?) {
         let signature = TransactionSignatureV2.createAlias(.init(alias: name,
                                                                  fee: fee,
                                                                  chainId: chainId,
@@ -294,7 +294,7 @@ extension NodeService.Query.Transaction.Alias: TransactionSign {
 // MARK: SetScript
 
 extension NodeService.Query.Transaction.SetScript: TransactionSign {
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?) {
         let signature = TransactionSignatureV1.setScript(.init(fee: fee,
                                                                chainId: chainId,
                                                                senderPublicKey: senderPublicKey,
@@ -314,7 +314,7 @@ extension NodeService.Query.Transaction.SetScript: TransactionSign {
 // MARK: SetScript
 
 extension NodeService.Query.Transaction.SetAssetScript: TransactionSign {
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?) {
         let signature = TransactionSignatureV1.setAssetScript(.init(fee: fee,
                                                                     chainId: chainId,
                                                                     senderPublicKey: senderPublicKey,
@@ -335,7 +335,7 @@ extension NodeService.Query.Transaction.SetAssetScript: TransactionSign {
 // MARK: Sponsorship
 
 extension NodeService.Query.Transaction.Sponsorship: TransactionSign {
-    public mutating func sign(privateKey: WavesSDKCrypto.PrivateKey?, seed: WavesSDKCrypto.Seed?) {
+    public mutating func sign(privateKey: WavesSDKCryptoUpdate.PrivateKey?, seed: WavesSDKCryptoUpdate.Seed?) {
         let signature = TransactionSignatureV1.sponsorship(.init(fee: fee,
                                                                  chainId: chainId,
                                                                  senderPublicKey: senderPublicKey,

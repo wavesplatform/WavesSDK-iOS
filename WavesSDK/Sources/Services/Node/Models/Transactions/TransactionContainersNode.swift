@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import WavesSDKExtensions
+import WavesSDKExtensionsUpdate
 
 extension NodeService.DTO {
     enum TransactionType: Int, Decodable {

@@ -17,8 +17,8 @@
 
 import Foundation
 import Moya
-import WavesSDKCrypto
-import WavesSDKExtensions
+import WavesSDKCryptoUpdate
+import WavesSDKExtensionsUpdate
 import WebKit
 
 /**
@@ -91,11 +91,11 @@ public final class WavesSDK {
         var matcherPlugins = servicesPlugins.matcher
 
         dataPlugins.append(DebugServicePlugin())
-        dataPlugins.append(NetworkLoggerPlugin(verbose: true))
+        dataPlugins.append(NetworkLoggerPlugin(configuration: NetworkLoggerPlugin.Configuration(logOptions: .verbose)))
         nodePlugins.append(DebugServicePlugin())
-        nodePlugins.append(NetworkLoggerPlugin(verbose: true))
+        nodePlugins.append(NetworkLoggerPlugin(configuration: NetworkLoggerPlugin.Configuration(logOptions: .verbose)))
         matcherPlugins.append(DebugServicePlugin())
-        matcherPlugins.append(NetworkLoggerPlugin(verbose: true))
+        matcherPlugins.append(NetworkLoggerPlugin(configuration: NetworkLoggerPlugin.Configuration(logOptions: .verbose)))
 
         let services = WavesServices(enviroment: enviroment,
                                      dataServicePlugins: dataPlugins,

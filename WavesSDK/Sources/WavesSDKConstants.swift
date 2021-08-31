@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import WavesSDKExtensions
+import WavesSDKExtensionsUpdate
 
 public enum WavesSDKConstants {
     public static let aliasNameMinLimitSymbols: Int = 4

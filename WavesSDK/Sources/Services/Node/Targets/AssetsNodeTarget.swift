@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import WavesSDKExtensions
+import WavesSDKExtensionsUpdate
 import Moya
 
 extension NodeService.Target {

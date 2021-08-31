@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import WavesSDKExtensions
+import WavesSDKExtensionsUpdate
 import Moya
 
 fileprivate enum Constants {

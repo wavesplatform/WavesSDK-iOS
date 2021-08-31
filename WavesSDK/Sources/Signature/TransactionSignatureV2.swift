@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import WavesSDKCrypto
-import WavesSDKExtensions
+import WavesSDKCryptoUpdate
+import WavesSDKExtensionsUpdate
 
 public extension TransactionSignatureV2 {
     
@@ -132,7 +132,7 @@ public extension TransactionSignatureV2 {
         }
                 
         public struct Transfer {
-            public let senderPublicKey: WavesSDKCrypto.PublicKey
+            public let senderPublicKey: WavesSDKCryptoUpdate.PublicKey
             public let recipient: String
             public let assetId: String
             public let amount: Int64
@@ -199,7 +199,7 @@ public enum TransactionSignatureV2: TransactionSignatureProtocol {
 
 public extension TransactionSignatureV2 {
     
-    var bytesStructure: WavesSDKCrypto.Bytes {
+    var bytesStructure: WavesSDKCryptoUpdate.Bytes {
         
         switch self {
         case .createAlias(let model):

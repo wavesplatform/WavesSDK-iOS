@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import WavesSDKCrypto
-import WavesSDKExtensions
+import WavesSDKCryptoUpdate
+import WavesSDKExtensionsUpdate
 
 public extension TransactionSignatureV1 {
     
@@ -172,7 +172,7 @@ public extension TransactionSignatureV1 {
                 }
             }
             
-            public let senderPublicKey: WavesSDKCrypto.PublicKey
+            public let senderPublicKey: WavesSDKCryptoUpdate.PublicKey
             public let fee: Int64
             public let chainId: UInt8
             public let timestamp: Int64
@@ -181,7 +181,7 @@ public extension TransactionSignatureV1 {
             public let call: Call?
             public let payment: [Payment]
 
-            public init(senderPublicKey: WavesSDKCrypto.PublicKey, fee: Int64, chainId: UInt8, timestamp: Int64, feeAssetId: String, dApp: String, call: Call?, payment: [Payment]) {
+            public init(senderPublicKey: WavesSDKCryptoUpdate.PublicKey, fee: Int64, chainId: UInt8, timestamp: Int64, feeAssetId: String, dApp: String, call: Call?, payment: [Payment]) {
                 self.senderPublicKey = senderPublicKey
                 self.fee = fee
                 self.chainId = chainId
@@ -234,7 +234,7 @@ public enum TransactionSignatureV1: TransactionSignatureProtocol {
 
 public extension TransactionSignatureV1 {
     
-    var bytesStructure: WavesSDKCrypto.Bytes {
+    var bytesStructure: WavesSDKCryptoUpdate.Bytes {
         
         switch self {
 

@@ -7,23 +7,23 @@
 //
 
 import Foundation
-import WavesSDKCrypto
-import WavesSDKExtensions
+import WavesSDKCryptoUpdate
+import WavesSDKExtensionsUpdate
 
 public protocol SignatureProtocol {
     
-    var bytesStructure: WavesSDKCrypto.Bytes { get }
+    var bytesStructure: WavesSDKCryptoUpdate.Bytes { get }
     
-    func signature(privateKey: WavesSDKCrypto.PrivateKey) -> WavesSDKCrypto.Bytes?
+    func signature(privateKey: WavesSDKCryptoUpdate.PrivateKey) -> WavesSDKCryptoUpdate.Bytes?
     
-    func signature(privateKey: WavesSDKCrypto.PrivateKey) -> String?
+    func signature(privateKey: WavesSDKCryptoUpdate.PrivateKey) -> String?
     
     var id: String { get }
 }
 
 public extension SignatureProtocol {
     
-    func signature(seed: Seed) -> WavesSDKCrypto.Bytes? {
+    func signature(seed: Seed) -> WavesSDKCryptoUpdate.Bytes? {
         return WavesCrypto.shared.signBytes(bytes: bytesStructure, seed: seed)
     }
     
@@ -32,11 +32,11 @@ public extension SignatureProtocol {
         return WavesCrypto.shared.base58encode(input: bytes)
     }
     
-    func signature(privateKey: WavesSDKCrypto.PrivateKey) -> WavesSDKCrypto.Bytes? {
+    func signature(privateKey: WavesSDKCryptoUpdate.PrivateKey) -> WavesSDKCryptoUpdate.Bytes? {
         return WavesCrypto.shared.signBytes(bytes: bytesStructure, privateKey: privateKey)
     }
     
-    func signature(privateKey: WavesSDKCrypto.PrivateKey) -> String? {
+    func signature(privateKey: WavesSDKCryptoUpdate.PrivateKey) -> String? {
         guard let bytes: Bytes = signature(privateKey: privateKey) else { return nil }
         return WavesCrypto.shared.base58encode(input: bytes)
     }

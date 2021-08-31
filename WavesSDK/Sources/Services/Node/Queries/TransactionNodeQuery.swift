@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import WavesSDKExtensions
+import WavesSDKExtensionsUpdate
 
 public enum TransactionVersion: Int {
     case version_1 = 1

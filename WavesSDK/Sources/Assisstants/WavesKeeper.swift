@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import WavesSDKCrypto
+import WavesSDKCryptoUpdate
 import RxSwift
 
 extension WavesKeeper {
