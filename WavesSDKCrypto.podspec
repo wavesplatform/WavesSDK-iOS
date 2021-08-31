@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
 
   spec.summary      = 'WavesSDK – it is mobile libraries for easy and simple co-working Waves blockchain platform and any mobile app'  
 
-  spec.source       = { 'git' => 'https://github.com/wavesplatform/WavesSDK-iOS.git', :tag => 'v' + spec.version.to_s }
+  spec.source       = { 'git' => 'https://github.com/adenuga558/WavesSDK-iOS.git', :tag => 'v' + spec.version.to_s }
 
 
 

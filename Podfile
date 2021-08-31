@@ -34,5 +34,6 @@ target 'WavesSDK' do
     pod 'RxSwift'
     pod 'Moya'
     pod 'Moya/RxSwift'
+    
 end
 

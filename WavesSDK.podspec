@@ -12,15 +12,15 @@ Pod::Spec.new do |spec|
   spec.summary      = 'Extensions are helping for developer fast write code'  
 
   spec.source_files =  'WavesSDK/Sources/**/*.{swift}'
-  spec.source =  {  :git => 'https://github.com/wavesplatform/WavesSDK-iOS.git', :tag => 'v' + spec.version.to_s}
+  spec.source =  {  :git => 'https://github.com/adenuga558/WavesSDK-iOS.git', :tag => 'v' + spec.version.to_s}
   
   spec.ios.framework = 'Foundation'
   spec.ios.framework = 'UIKit'
 
-  spec.dependency 'RxSwift', '~> 4.0'
-  spec.dependency 'Moya', '~> 12.0.1'
-  spec.dependency 'Moya/RxSwift', '~> 12.0.1'
-  spec.dependency 'WavesSDKExtensions'
-  spec.dependency 'WavesSDKCrypto'
+  spec.dependency 'RxSwift', '~> 5.1.3'
+  spec.dependency 'Moya', '~> 14.0.0'
+  spec.dependency 'Moya/RxSwift', '~> 14.0.0'
+  
+  
     
 end
