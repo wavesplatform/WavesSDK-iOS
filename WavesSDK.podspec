@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   
   spec.name         = 'WavesSDK'
-  spec.version      = '0.1.9'
+  spec.version      = '0.2.1'
   spec.ios.deployment_target = '11.0'
   spec.requires_arc = true
   spec.swift_version = '5.0'
@@ -21,6 +21,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'Moya', '~> 14.0.0'
   spec.dependency 'Moya/RxSwift', '~> 14.0.0'
   spec.dependency 'WavesSDKExtensionsUpdate'
+  spec.dependency 'WavesSDKCryptoUpdate'
   
     
 end
