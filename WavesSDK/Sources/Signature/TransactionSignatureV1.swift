@@ -409,12 +409,12 @@ private extension TransactionSignatureV1.Structure.InvokeScript {
             
             let assetId = assetIdTrue.isEmpty ? [UInt8(0)] : ([UInt8(1)] + (WavesCrypto.shared.base58decode(input: assetIdTrue) ?? []))
             
-            bytes += amount
-            bytes += assetId
+            let paymentByte = amount + assetId
+            bytes += paymentByte.arrayWithSize()
         }
         
         if bytes.count > 0 {
-            bytes = toByteArray(Int16(self.payment.count)) + bytes.arrayWithSize()
+            bytes = toByteArray(Int16(self.payment.count)) + bytes
         } else {
             bytes = toByteArray(Int16(self.payment.count))
         }
