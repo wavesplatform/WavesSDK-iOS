@@ -26,6 +26,8 @@ extension NodeService.Target {
             case scriptInfo(id: String)
 
             case getData(address: String, key: String)
+            
+            case getWXData(address: String, key: String)
 
             case getAddressesBalance(addresses: [String])
         }
@@ -52,6 +54,9 @@ extension NodeService.Target.Addresses: NodeTargetType {
 
         case let .getData(address, key):
             return Constants.addresses + "/" + "data" + "/" + address.urlEscaped + "/" + "\(key)".urlEscaped
+            
+        case let .getWXData(address, key):
+            return Constants.addresses + "/" + "data" + "/" + address.urlEscaped + "/" + "\(key)"
 
         case .getAddressesBalance:
             return Constants.addresses + "/" + Constants.balance
@@ -60,7 +65,7 @@ extension NodeService.Target.Addresses: NodeTargetType {
 
     var method: Moya.Method {
         switch kind {
-        case .getAddressBalance, .scriptInfo, .getData:
+        case .getAddressBalance, .scriptInfo, .getData, .getWXData:
             return .get
         case .getAddressesBalance:
             return .post
@@ -69,6 +74,8 @@ extension NodeService.Target.Addresses: NodeTargetType {
 
     var task: Task {
         switch kind {
+        case .getWXData:
+            return .requestPlain
         case .getAddressBalance, .scriptInfo, .getData:
             return .requestParameters(parameters: ["r": "\(Date().timeIntervalSince1970)"],
                                       encoding: URLEncoding.default)

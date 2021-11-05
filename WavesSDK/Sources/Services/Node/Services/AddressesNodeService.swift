@@ -52,6 +52,19 @@ final class AddressesNodeService: InternalWavesService, AddressesNodeServiceProt
             .map(NodeService.DTO.AddressesData.self)
             .asObservable()
     }
+    
+    func getWXAddressData(address: String, key: String) -> Observable<NodeService.DTO.AddressesWXData> {
+        let target: NodeService.Target.Addresses = .init(kind: .getWXData(address: address, key: key),
+                                                         nodeUrl: enviroment.nodeUrl)
+
+        return addressesProvider
+            .rx
+            .request(target)
+            .filterSuccessfulStatusAndRedirectCodes()
+            .catchError { error -> Single<Response> in Single.error(error) }
+            .map(NodeService.DTO.AddressesWXData.self)
+            .asObservable()
+    }
 
     func addressesBalance(addresses: [String]) -> Observable<[NodeService.DTO.WavesBalance]> {
         let target: NodeService.Target.Addresses = .init(
