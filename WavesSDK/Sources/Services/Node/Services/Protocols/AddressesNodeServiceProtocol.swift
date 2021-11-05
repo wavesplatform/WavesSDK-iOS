@@ -21,6 +21,7 @@ public extension NodeService.DTO {
 }
 
 public protocol AddressesNodeServiceProtocol {
+    
     /**
       Account's Waves balance
       - Parameter: address Address
@@ -35,6 +36,8 @@ public protocol AddressesNodeServiceProtocol {
     func scriptInfo(address: String) -> Observable<NodeService.DTO.AddressScriptInfo>
 
     func getAddressData(address: String, key: String) -> Observable<NodeService.DTO.AddressesData>
+    
+    func getWXAddressData(address: String, key: String) -> Observable<NodeService.DTO.AddressesWXData>
 
     func addressesBalance(addresses: [String]) -> Observable<[NodeService.DTO.WavesBalance]>
 }

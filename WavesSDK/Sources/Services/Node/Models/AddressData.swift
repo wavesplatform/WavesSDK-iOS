@@ -20,4 +20,16 @@ extension NodeService.DTO {
             self.key = key
         }
     }
+    
+    public struct AddressesWXData: Decodable {
+        public let type: String
+        public let value: String
+        public let key: String
+        
+        public init(type: String, value: String, key: String) {
+            self.type = type
+            self.value = value
+            self.key = key
+        }
+    }
 }
