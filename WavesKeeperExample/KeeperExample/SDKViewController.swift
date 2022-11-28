@@ -8,7 +8,7 @@ import WavesSDKCrypto
 
 final class SDKViewController: UIViewController {
 
-    private var currentServer: Enviroment.Server!
+    private var currentServer: WavesEnvironment.Server!
     private let disposeBag = DisposeBag()
 
     @IBOutlet private weak var labelInfo: UILabel!
@@ -104,7 +104,7 @@ private extension SDKViewController {
     }
 }
 
-extension Enviroment.Server {
+extension WavesEnvironment.Server {
     var isMainNet: Bool {
         switch self {
         case .mainNet:
