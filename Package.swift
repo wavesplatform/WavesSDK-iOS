@@ -30,9 +30,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/mattgallagher/CwlUtils.git", from: Version(3, 0, 0)),
         .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.5.0")),
-        .package(url: "https://github.com/Moya/Moya.git", .upToNextMajor(from: "15.0.0")),
-        // Documentation dependencies
-        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0")
+        .package(url: "https://github.com/Moya/Moya.git", .upToNextMajor(from: "15.0.0"))
     ],
     targets: [
         ///

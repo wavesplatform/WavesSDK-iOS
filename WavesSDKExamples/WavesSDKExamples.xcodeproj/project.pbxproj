@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		58B3E01500A57D9CC55790A8 /* Pods_WavesSDKExamples.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1B4723B95E8C24C6D311F7 /* Pods_WavesSDKExamples.framework */; };
+		225D883429355D3D00B9B419 /* WavesSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 225D883329355D3D00B9B419 /* WavesSDK */; };
 		7B96E8B922E9AD53005DB5CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B96E8B022E9AD52005DB5CC /* Assets.xcassets */; };
 		7B96E8BA22E9AD53005DB5CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B96E8B122E9AD52005DB5CC /* LaunchScreen.storyboard */; };
 		7B96E8BC22E9AD53005DB5CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B96E8B522E9AD52005DB5CC /* Main.storyboard */; };
@@ -16,15 +16,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C1B4723B95E8C24C6D311F7 /* Pods_WavesSDKExamples.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WavesSDKExamples.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		225D883129355A6900B9B419 /* WavesSDK-iOS */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "WavesSDK-iOS"; path = ..; sourceTree = "<group>"; };
 		7B96E89522E9AC6B005DB5CC /* WavesSDKExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WavesSDKExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B96E8B022E9AD52005DB5CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B96E8B222E9AD52005DB5CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B96E8B622E9AD52005DB5CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7B96E8B722E9AD52005DB5CC /* AssetListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListViewController.swift; sourceTree = "<group>"; };
 		7B96E8B822E9AD52005DB5CC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		899A79B4641D15194BF855E4 /* Pods-WavesSDKExamples.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKExamples.release.xcconfig"; path = "Target Support Files/Pods-WavesSDKExamples/Pods-WavesSDKExamples.release.xcconfig"; sourceTree = "<group>"; };
-		DCC2BC418DD9DE1D780D68B0 /* Pods-WavesSDKExamples.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WavesSDKExamples.debug.xcconfig"; path = "Target Support Files/Pods-WavesSDKExamples/Pods-WavesSDKExamples.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,17 +30,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58B3E01500A57D9CC55790A8 /* Pods_WavesSDKExamples.framework in Frameworks */,
+				225D883429355D3D00B9B419 /* WavesSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		571BCAFF0FC18764A43CE32E /* Frameworks */ = {
+		225D883029355A6900B9B419 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				1C1B4723B95E8C24C6D311F7 /* Pods_WavesSDKExamples.framework */,
+				225D883129355A6900B9B419 /* WavesSDK-iOS */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		225D883229355D3D00B9B419 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -50,10 +55,10 @@
 		7B96E88C22E9AC6B005DB5CC = {
 			isa = PBXGroup;
 			children = (
+				225D883029355A6900B9B419 /* Packages */,
 				7B96E89722E9AC6B005DB5CC /* WavesSDKExamples */,
 				7B96E89622E9AC6B005DB5CC /* Products */,
-				84643D4D2464F61ECDD56A02 /* Pods */,
-				571BCAFF0FC18764A43CE32E /* Frameworks */,
+				225D883229355D3D00B9B419 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,15 +98,6 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		84643D4D2464F61ECDD56A02 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DCC2BC418DD9DE1D780D68B0 /* Pods-WavesSDKExamples.debug.xcconfig */,
-				899A79B4641D15194BF855E4 /* Pods-WavesSDKExamples.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,17 +105,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7B96E8A722E9AC6C005DB5CC /* Build configuration list for PBXNativeTarget "WavesSDKExamples" */;
 			buildPhases = (
-				86826A3DA5B968E2986EF57B /* [CP] Check Pods Manifest.lock */,
 				7B96E89122E9AC6B005DB5CC /* Sources */,
 				7B96E89222E9AC6B005DB5CC /* Frameworks */,
 				7B96E89322E9AC6B005DB5CC /* Resources */,
-				744133AB4EFBE20FC9D7A007 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = WavesSDKExamples;
+			packageProductDependencies = (
+				225D883329355D3D00B9B419 /* WavesSDK */,
+			);
 			productName = WavesSDKExamples;
 			productReference = 7B96E89522E9AC6B005DB5CC /* WavesSDKExamples.app */;
 			productType = "com.apple.product-type.application";
@@ -169,48 +166,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		744133AB4EFBE20FC9D7A007 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WavesSDKExamples/Pods-WavesSDKExamples-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WavesSDKExamples/Pods-WavesSDKExamples-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WavesSDKExamples/Pods-WavesSDKExamples-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		86826A3DA5B968E2986EF57B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WavesSDKExamples-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7B96E89122E9AC6B005DB5CC /* Sources */ = {
@@ -295,7 +250,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -350,7 +305,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -362,13 +317,12 @@
 		};
 		7B96E8A822E9AC6C005DB5CC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DCC2BC418DD9DE1D780D68B0 /* Pods-WavesSDKExamples.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96SW78M3KJ;
 				INFOPLIST_FILE = WavesSDKExamples/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -382,13 +336,12 @@
 		};
 		7B96E8A922E9AC6C005DB5CC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 899A79B4641D15194BF855E4 /* Pods-WavesSDKExamples.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96SW78M3KJ;
 				INFOPLIST_FILE = WavesSDKExamples/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -422,6 +375,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		225D883329355D3D00B9B419 /* WavesSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WavesSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7B96E88D22E9AC6B005DB5CC /* Project object */;
 }

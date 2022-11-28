@@ -8,7 +8,6 @@
 
 import UIKit
 import WavesSDK
-import WavesSDKExtensions
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

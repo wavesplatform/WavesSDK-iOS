@@ -101,10 +101,10 @@ extension AssetListViewController: UITableViewDataSource {
         
         let balance = self.balances?.balances[indexPath.row]
         
-        cell.nameLabel.text = balance?.issueTransaction.name
+        cell.nameLabel.text = balance?.issueTransaction?.name
         
         let balanceValue = balance?.balance ?? 0
-        let decimals = Int(balance?.issueTransaction.decimals ?? 0)
+        let decimals = Int(balance?.issueTransaction?.decimals ?? 0)
         
         let value = Decimal(balanceValue) / pow(10, decimals)
         
