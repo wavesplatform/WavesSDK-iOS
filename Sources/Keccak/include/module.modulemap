@@ -1,0 +1,4 @@
+
+module Keccak {
+  header "keccak.h"
+}
