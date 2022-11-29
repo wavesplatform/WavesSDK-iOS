@@ -13,7 +13,7 @@ class KeeperViewController: UIViewController {
     @IBOutlet var toolBar: UIToolbar!
     @IBOutlet private weak var labelInfo: UILabel!
     
-    private var currentServer: Enviroment.Server!
+    private var currentServer: WavesEnvironment.Server!
     private var transaction: NodeService.Query.Transaction?
     private let disposeBag = DisposeBag()
     

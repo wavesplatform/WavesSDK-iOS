@@ -1,0 +1,5 @@
+module Curve25519 {
+  header "Ed25519.h"
+  header "Randomness.h"
+  header "Curve25519.h"
+}

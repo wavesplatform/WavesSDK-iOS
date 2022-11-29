@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		225D88272935424B00B9B419 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 225D88262935424B00B9B419 /* TextFieldEffects */; };
+		225D882A293543B000B9B419 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 225D8829293543B000B9B419 /* CryptoSwift */; };
+		225D882F2935577100B9B419 /* WavesSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 225D882E2935577100B9B419 /* WavesSDK */; };
 		321D36EE23312F0000D81E8E /* SDKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321D36ED23312F0000D81E8E /* SDKViewController.swift */; };
 		321D36F023312F0F00D81E8E /* KeeperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321D36EF23312F0F00D81E8E /* KeeperViewController.swift */; };
 		321D36F22331345800D81E8E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321D36F12331345800D81E8E /* Constants.swift */; };
@@ -15,18 +18,15 @@
 		7B0B6FAE231FE7D200CC5DCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B0B6FAC231FE7D200CC5DCB /* Main.storyboard */; };
 		7B0B6FB0231FE7D500CC5DCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B0B6FAF231FE7D500CC5DCB /* Assets.xcassets */; };
 		7B0B6FB3231FE7D500CC5DCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B0B6FB1231FE7D500CC5DCB /* LaunchScreen.storyboard */; };
-		812A0E129CE2957D25792974 /* Pods_KeeperExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B95FEAA32BFDCCA2146064 /* Pods_KeeperExample.framework */; };
 		E9BFFA3B23215949000F59FC /* Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BFFA3A23215949000F59FC /* Transactions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1617F8A74DB2172DB83913FF /* Pods-KeeperExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeeperExample.release.xcconfig"; path = "Target Support Files/Pods-KeeperExample/Pods-KeeperExample.release.xcconfig"; sourceTree = "<group>"; };
-		27B95FEAA32BFDCCA2146064 /* Pods_KeeperExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KeeperExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		225D882C293543C000B9B419 /* WavesSDK-iOS */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "WavesSDK-iOS"; path = ..; sourceTree = "<group>"; };
 		321D36ED23312F0000D81E8E /* SDKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKViewController.swift; sourceTree = "<group>"; };
 		321D36EF23312F0F00D81E8E /* KeeperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeeperViewController.swift; sourceTree = "<group>"; };
 		321D36F12331345800D81E8E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		323B8DE02331418200034343 /* CustomNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationViewController.swift; sourceTree = "<group>"; };
-		66AA2D092A1DAAA641D55F44 /* Pods-KeeperExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeeperExample.debug.xcconfig"; path = "Target Support Files/Pods-KeeperExample/Pods-KeeperExample.debug.xcconfig"; sourceTree = "<group>"; };
 		7B0B6FA5231FE7D200CC5DCB /* KeeperExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeeperExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B0B6FA8231FE7D200CC5DCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B0B6FAD231FE7D200CC5DCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -41,26 +41,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				812A0E129CE2957D25792974 /* Pods_KeeperExample.framework in Frameworks */,
+				225D882F2935577100B9B419 /* WavesSDK in Frameworks */,
+				225D88272935424B00B9B419 /* TextFieldEffects in Frameworks */,
+				225D882A293543B000B9B419 /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		186FC67489E6D85D026B69F6 /* Pods */ = {
+		225D882B293543C000B9B419 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				66AA2D092A1DAAA641D55F44 /* Pods-KeeperExample.debug.xcconfig */,
-				1617F8A74DB2172DB83913FF /* Pods-KeeperExample.release.xcconfig */,
+				225D882C293543C000B9B419 /* WavesSDK-iOS */,
 			);
-			path = Pods;
+			name = Packages;
 			sourceTree = "<group>";
 		};
-		433BEB3BD50D8B41E21ACDC3 /* Frameworks */ = {
+		225D882D2935577100B9B419 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				27B95FEAA32BFDCCA2146064 /* Pods_KeeperExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -68,10 +68,10 @@
 		7B0B6F9C231FE7D200CC5DCB = {
 			isa = PBXGroup;
 			children = (
+				225D882B293543C000B9B419 /* Packages */,
 				7B0B6FA7231FE7D200CC5DCB /* KeeperExample */,
 				7B0B6FA6231FE7D200CC5DCB /* Products */,
-				186FC67489E6D85D026B69F6 /* Pods */,
-				433BEB3BD50D8B41E21ACDC3 /* Frameworks */,
+				225D882D2935577100B9B419 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,17 +107,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7B0B6FB7231FE7D500CC5DCB /* Build configuration list for PBXNativeTarget "KeeperExample" */;
 			buildPhases = (
-				564BCC1E38339ADD3E6597E0 /* [CP] Check Pods Manifest.lock */,
 				7B0B6FA1231FE7D200CC5DCB /* Sources */,
 				7B0B6FA2231FE7D200CC5DCB /* Frameworks */,
 				7B0B6FA3231FE7D200CC5DCB /* Resources */,
-				A06B845665CDE7E661094008 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = KeeperExample;
+			packageProductDependencies = (
+				225D88262935424B00B9B419 /* TextFieldEffects */,
+				225D8829293543B000B9B419 /* CryptoSwift */,
+				225D882E2935577100B9B419 /* WavesSDK */,
+			);
 			productName = KeeperExample;
 			productReference = 7B0B6FA5231FE7D200CC5DCB /* KeeperExample.app */;
 			productType = "com.apple.product-type.application";
@@ -129,7 +132,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1410;
 				ORGANIZATIONNAME = Waves;
 				TargetAttributes = {
 					7B0B6FA4231FE7D200CC5DCB = {
@@ -146,6 +149,10 @@
 				Base,
 			);
 			mainGroup = 7B0B6F9C231FE7D200CC5DCB;
+			packageReferences = (
+				225D88252935424B00B9B419 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
+				225D8828293543B000B9B419 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+			);
 			productRefGroup = 7B0B6FA6231FE7D200CC5DCB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -167,48 +174,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		564BCC1E38339ADD3E6597E0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-KeeperExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A06B845665CDE7E661094008 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KeeperExample/Pods-KeeperExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KeeperExample/Pods-KeeperExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KeeperExample/Pods-KeeperExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7B0B6FA1231FE7D200CC5DCB /* Sources */ = {
@@ -272,6 +237,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -297,7 +263,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -333,6 +299,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -352,7 +319,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -364,14 +331,13 @@
 		};
 		7B0B6FB8231FE7D500CC5DCB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 66AA2D092A1DAAA641D55F44 /* Pods-KeeperExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96SW78M3KJ;
 				INFOPLIST_FILE = KeeperExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -386,14 +352,13 @@
 		};
 		7B0B6FB9231FE7D500CC5DCB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1617F8A74DB2172DB83913FF /* Pods-KeeperExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96SW78M3KJ;
 				INFOPLIST_FILE = KeeperExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,6 +393,42 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		225D88252935424B00B9B419 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raulriera/TextFieldEffects";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.0;
+			};
+		};
+		225D8828293543B000B9B419 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		225D88262935424B00B9B419 /* TextFieldEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 225D88252935424B00B9B419 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
+			productName = TextFieldEffects;
+		};
+		225D8829293543B000B9B419 /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 225D8828293543B000B9B419 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
+		};
+		225D882E2935577100B9B419 /* WavesSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WavesSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7B0B6F9D231FE7D200CC5DCB /* Project object */;
 }

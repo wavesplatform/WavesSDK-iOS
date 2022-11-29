@@ -1,0 +1,10 @@
+module Blake2 {
+  header "api.h"
+  header "blake2-impl.h"
+  header "blake2.h"
+  header "crypto_generichash_blake2b.h"
+  header "crypto_generichash.h"
+  header "export.h"
+  header "randombytes.h"
+  header "utils.h"
+}

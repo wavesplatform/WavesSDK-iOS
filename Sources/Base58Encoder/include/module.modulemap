@@ -1,0 +1,3 @@
+module Base58Encoder {
+  header "Base58Encoder.h"
+}

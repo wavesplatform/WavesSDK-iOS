@@ -29,7 +29,7 @@ final class Transactions {
                 .init(name: "Burn", type: .burn(txBurn))]
     }
     
-    private static var chainId: String {
+    private static var chainId: UInt8 {
         return  WavesSDK.shared.enviroment.chainId
     }
 }
